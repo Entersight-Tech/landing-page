@@ -26,10 +26,20 @@
   font-weight: 800;
   font-size: 22px;
   letter-spacing: 1px;
-  color: var(--ink);
+  color: var(--white);
+  transition: color 0.25s ease;
 }
 
 .logo span {
+  color: #9d92ff;
+  transition: color 0.25s ease;
+}
+
+.scrolled .logo {
+  color: var(--ink);
+}
+
+.scrolled .logo span {
   color: var(--blue);
 }
 
@@ -42,11 +52,19 @@
 .links a {
   font-size: 15px;
   font-weight: 500;
-  color: #3a3a4a;
+  color: rgba(255, 255, 255, 0.9);
   transition: color 0.18s ease;
 }
 
 .links a:hover {
+  color: var(--white);
+}
+
+.scrolled .links a {
+  color: #3a3a4a;
+}
+
+.scrolled .links a:hover {
   color: var(--blue);
 }
 
@@ -69,8 +87,12 @@
 .burger span {
   width: 24px;
   height: 2px;
-  background: var(--ink);
+  background: var(--white);
   border-radius: 2px;
+}
+
+.scrolled .burger span {
+  background: var(--ink);
 }
 
 @media (max-width: 860px) {
@@ -90,9 +112,11 @@
     transition: opacity 0.2s ease, transform 0.2s ease;
   }
 
-  .links a {
+  .links a,
+  .scrolled .links a {
     width: 100%;
     padding: 10px 0;
+    color: #3a3a4a;
   }
 
   .linksOpen {

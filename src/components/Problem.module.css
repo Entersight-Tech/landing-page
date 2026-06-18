@@ -1,0 +1,88 @@
+.head {
+  margin-bottom: 56px;
+}
+
+.head .eyebrow {
+  margin-bottom: 18px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.card {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: flex-start;
+  gap: 22px;
+  background: var(--white);
+  border: 1px solid var(--neutral-300);
+  border-radius: 22px;
+  padding: 34px 32px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.7s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 26px 50px -28px rgba(30, 20, 80, 0.3);
+}
+
+.num {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 46px;
+  line-height: 1;
+  color: var(--ink);
+  opacity: 0.9;
+}
+
+.body {
+  min-width: 0;
+}
+
+.title {
+  display: inline;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--ink);
+  box-shadow: inset 0 -10px 0 rgba(196, 255, 11, 0.85);
+}
+
+.desc {
+  margin-top: 14px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: #5b5b6b;
+}
+
+.icon {
+  flex-shrink: 0;
+  width: 58px;
+  height: 58px;
+  border-radius: 16px;
+  background: var(--blue);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+@media (max-width: 760px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 26px 22px;
+    gap: 16px;
+  }
+}

@@ -1,32 +1,49 @@
-export default function Hero() {
-    return (
-        <section id="hero">
-            <div className="hero-bg"></div>
-            <div className="hero-grid"></div>
-            <div className="hero-blob hero-blob-1"></div>
-            <div className="hero-blob hero-blob-2"></div>
+import Image from "next/image";
+import styles from "./Hero.module.css";
+import hero from "../../public/figma/hero.png";
 
-            <div className="hero-tag">AI-Powered Marketing & Operations</div>
-            <h1 className="hero-h1">
-                TỐI ƯU<br />
-                <span className="accent-blue">VẬN HÀNH</span><br />
-                ĐỘT PHÁ<br />
-                <span className="accent-lime">MARKETING</span>
-            </h1>
-            <div className="hero-bottom">
-                <p className="hero-desc">
-                    Entersight cung cấp giải pháp toàn diện giúp doanh nghiệp SME tự động hóa quy trình,
-                    tối ưu chi phí và tăng trưởng doanh thu mà không cần phình to bộ máy nhân sự.
-                </p>
-                <div className="hero-ctas">
-                    <a href="#cta" className="btn-lime">Nhận Tư Vấn AI Ngay &rarr;</a>
-                    <a href="#projects" className="btn-outline">Xem Dự Án Thực Tế</a>
-                </div>
-            </div>
-            <div className="hero-scroll">
-                <div className="scroll-line"></div>
-                <span>Scroll</span>
-            </div>
-        </section>
-    );
+export default function Hero() {
+  return (
+    <section className={styles.hero} id="top">
+      <div className={`container ${styles.inner}`}>
+        <div className={styles.copy}>
+          <span className="eyebrow">AI Marketing &amp; Operation</span>
+          <h1 className={styles.title}>
+            SỐ HOÁ <span className={styles.accent}>QUY TRÌNH</span>
+            <br />
+            MARKETING <span className={styles.accent}>ĐÚNG ĐÍCH</span>
+          </h1>
+          <p className={styles.sub}>
+            Entersight kiến tạo hệ sinh thái tiếp thị số toàn diện, giúp SMEs
+            tái cấu trúc vận hành, làm chủ mọi điểm chạm khách hàng và xây dựng
+            nền tảng tăng trưởng bền vững.
+          </p>
+          <div className={styles.actions}>
+            <a href="#contact" className="btn btn-primary">
+              Bắt đầu ngay
+            </a>
+            <a href="#solutions" className="btn btn-outline">
+              Khám phá giải pháp
+            </a>
+          </div>
+        </div>
+
+        <div className={styles.visual}>
+          <div className={styles.blob} aria-hidden />
+          <div className={styles.imgWrap}>
+            <Image
+              src={hero}
+              alt="Chuyên gia Entersight"
+              priority
+              className={styles.img}
+            />
+          </div>
+          <div className={styles.badge}>
+            <strong>10+</strong>
+            <span>Doanh nghiệp SMEs đồng hành</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }

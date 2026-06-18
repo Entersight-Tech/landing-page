@@ -1,29 +1,33 @@
-import CustomCursor from "@/components/CustomCursor";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
-import Marquee from "@/components/Marquee";
+import Values from "@/components/Values";
+import Quote from "@/components/Quote";
 import Problem from "@/components/Problem";
+import CtaBanner from "@/components/CtaBanner";
 import Solutions from "@/components/Solutions";
-import Projects from "@/components/Projects";
-import Benefits from "@/components/Benefits";
+import Cases from "@/components/Cases";
+import Partners from "@/components/Partners";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export default function Home() {
   return (
     <>
-      <CustomCursor />
       <Navigation />
       <main>
         <Hero />
-        <Marquee />
+        <Values />
+        <Quote />
         <Problem />
+        <CtaBanner />
         <Solutions />
-        <Projects />
-        <Benefits />
+        <Cases />
+        <Partners />
         <Contact />
       </main>
       <Footer />
+      <ScrollReveal />
     </>
   );
 }

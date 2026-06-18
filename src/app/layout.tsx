@@ -1,32 +1,30 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, Space_Grotesk, DM_Mono } from "next/font/google";
+import { Montserrat, Roboto } from "next/font/google";
 import "./globals.css";
 
-const bebasNeue = Bebas_Neue({
-  variable: "--font-bebas-neue",
-  weight: "400",
-  subsets: ["latin"],
+// The Figma design uses SVN-Gotham (a paid Vietnamese display font) for
+// headings and Roboto for body copy. SVN-Gotham is not available on Google
+// Fonts, so Montserrat — a geometric sans with the closest character to
+// Gotham — is used as the heading face. Roboto is mapped 1:1 from the design.
+const montserrat = Montserrat({
+  variable: "--font-heading",
+  weight: ["400", "500", "600", "700", "800"],
+  subsets: ["latin", "vietnamese"],
+  display: "swap",
 });
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+const roboto = Roboto({
+  variable: "--font-body",
   weight: ["300", "400", "500", "600", "700"],
-  subsets: ["latin"],
-});
-
-const dmMono = DM_Mono({
-  variable: "--font-dm-mono",
-  weight: ["400", "500"],
-  style: ["normal", "italic"],
-  subsets: ["latin"],
+  subsets: ["latin", "vietnamese"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Entersight Marketing Solution",
-  description: "AI-Powered Marketing & Operations",
+  title: "Entersight — Số hoá quy trình marketing đúng đích",
+  description:
+    "Entersight kiến tạo hệ sinh thái tiếp thị số toàn diện, giúp SMEs tái cấu trúc vận hành, làm chủ mọi điểm chạm khách hàng và xây dựng nền tảng tăng trưởng bền vững.",
 };
-
-import IntersectionObserverSetup from "@/components/IntersectionObserverSetup";
 
 export default function RootLayout({
   children,
@@ -35,9 +33,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi">
-      <body className={`${bebasNeue.variable} ${spaceGrotesk.variable} ${dmMono.variable}`}>
+      <body className={`${montserrat.variable} ${roboto.variable}`}>
         {children}
-        <IntersectionObserverSetup />
       </body>
     </html>
   );

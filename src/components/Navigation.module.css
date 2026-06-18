@@ -5,54 +5,66 @@
   right: 0;
   z-index: 100;
   transition: background 0.25s ease, box-shadow 0.25s ease, backdrop-filter 0.25s;
-  padding: 14px 0;
+  padding: 18px 0;
 }
 
 .scrolled {
   background: rgba(245, 246, 255, 0.82);
   backdrop-filter: blur(14px);
   box-shadow: 0 1px 0 rgba(74, 58, 255, 0.08);
+  padding: 12px 0;
 }
 
 .inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  gap: 20px;
 }
 
+/* ---- logo lockup (white wordmark on hero, dark when scrolled) ---- */
 .logo {
-  font-family: var(--font-head);
-  font-weight: 800;
-  font-size: 22px;
-  letter-spacing: 1px;
-  color: var(--white);
-  transition: color 0.25s ease;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 30px;
+  flex: none;
 }
 
-.logo span {
-  color: #9d92ff;
-  transition: color 0.25s ease;
+.logoImg {
+  height: 30px;
+  width: auto;
+  display: block;
+  transition: opacity 0.25s ease;
 }
 
-.scrolled .logo {
-  color: var(--ink);
+.logoDark {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
 }
 
-.scrolled .logo span {
-  color: var(--blue);
+.scrolled .logoLight {
+  opacity: 0;
 }
 
+.scrolled .logoDark {
+  opacity: 1;
+}
+
+/* ---- links ---- */
 .links {
   display: flex;
-  gap: 30px;
+  gap: clamp(14px, 1.6vw, 26px);
   align-items: center;
 }
 
 .links a {
-  font-size: 15px;
+  font-size: 13.5px;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.9);
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.88);
   transition: color 0.18s ease;
 }
 
@@ -72,6 +84,51 @@
   display: flex;
   align-items: center;
   gap: 14px;
+  flex: none;
+}
+
+/* ---- ĐĂNG KÍ NGAY pill ---- */
+.signup {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.2px;
+  color: var(--white);
+  border: 1.5px solid rgba(255, 255, 255, 0.65);
+  border-radius: 999px;
+  padding: 10px 20px;
+  white-space: nowrap;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease,
+    transform 0.18s ease;
+}
+
+.signup:hover {
+  background: var(--white);
+  color: var(--purple);
+  border-color: var(--white);
+  transform: translateY(-1px);
+}
+
+.arrow {
+  transition: transform 0.18s ease;
+}
+
+.signup:hover .arrow {
+  transform: translateX(3px);
+}
+
+.scrolled .signup {
+  color: var(--purple);
+  border-color: rgba(85, 73, 222, 0.5);
+}
+
+.scrolled .signup:hover {
+  background: var(--purple);
+  color: var(--white);
+  border-color: var(--purple);
 }
 
 .burger {
@@ -95,7 +152,8 @@
   background: var(--ink);
 }
 
-@media (max-width: 860px) {
+/* 7 long links need room — collapse to a drawer below the desktop breakpoint */
+@media (max-width: 1024px) {
   .links {
     position: absolute;
     top: 100%;
@@ -117,6 +175,7 @@
     width: 100%;
     padding: 10px 0;
     color: #3a3a4a;
+    font-size: 15px;
   }
 
   .linksOpen {
@@ -131,7 +190,7 @@
 }
 
 @media (max-width: 520px) {
-  .right .btn {
+  .signup {
     display: none;
   }
 }

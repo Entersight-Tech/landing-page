@@ -1,0 +1,48 @@
+.band {
+  position: relative;
+  padding: 80px 0;
+  background:
+    radial-gradient(80% 120% at 100% 0%, rgba(196, 255, 11, 0.18), transparent 60%),
+    linear-gradient(120deg, var(--blue), var(--purple));
+  overflow: hidden;
+}
+
+.band::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 46px 46px;
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.mark {
+  display: block;
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 80px;
+  line-height: 0.6;
+  color: var(--lime);
+}
+
+.quote {
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: clamp(20px, 3vw, 32px);
+  line-height: 1.45;
+  color: var(--white);
+  max-width: 900px;
+  margin: 18px auto 0;
+}
+
+.quote em {
+  font-style: normal;
+  color: var(--lime);
+}

@@ -1,0 +1,121 @@
+.hero {
+  position: relative;
+  padding: 150px 0 90px;
+  overflow: hidden;
+  background:
+    radial-gradient(60% 60% at 80% 10%, rgba(85, 73, 222, 0.1), transparent 70%),
+    radial-gradient(50% 50% at 10% 90%, rgba(196, 255, 11, 0.12), transparent 70%),
+    var(--bg);
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: 48px;
+}
+
+.copy .eyebrow {
+  margin-bottom: 22px;
+}
+
+.title {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: clamp(38px, 6vw, 70px);
+  line-height: 1.04;
+  letter-spacing: -1px;
+  color: var(--ink);
+  margin-bottom: 26px;
+}
+
+.accent {
+  color: var(--blue);
+}
+
+.sub {
+  max-width: 520px;
+  font-size: 18px;
+  line-height: 1.7;
+  color: #5b5b6b;
+  margin-bottom: 36px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.blob {
+  position: absolute;
+  inset: 6% 4% 6% 4%;
+  background: linear-gradient(150deg, var(--blue), #7a6cff 60%, var(--purple-200));
+  border-radius: 40px 40px 40px 120px;
+  transform: rotate(-3deg);
+}
+
+.imgWrap {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 460px;
+  border-radius: 32px 32px 32px 110px;
+  overflow: hidden;
+  aspect-ratio: 610 / 470;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.badge {
+  position: absolute;
+  z-index: 2;
+  left: -8px;
+  bottom: 26px;
+  background: var(--white);
+  border-radius: 16px;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  box-shadow: 0 24px 50px -18px rgba(30, 20, 80, 0.35);
+  max-width: 210px;
+}
+
+.badge strong {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 34px;
+  color: var(--blue);
+  line-height: 1;
+}
+
+.badge span {
+  font-size: 13px;
+  color: #5b5b6b;
+  line-height: 1.35;
+}
+
+@media (max-width: 860px) {
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .visual {
+    order: -1;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+}

@@ -1,44 +1,53 @@
 # Entersight Landing Page Context
 
+This project is rebuilt from the Figma design:
+https://www.figma.com/design/obT5dMPVcKKxq2nXA8EtJo/Entersight-Real--Copy---Copy-
+
 ## Brand Identity
-- **Logo**: `/context/logo` should be referenced in navigation and footer.
-- **Brand Identity Reference**: `/context/brand-identity.png`
-- **Reference HTML UI**: `/context/entersign-example.html`
+- A light-themed B2B landing page (Vietnamese) for Entersight — an AI
+  Marketing & Operation platform for SMEs.
 
-## Colors (CSS Variables)
-- `--blue`: #5549DE
-- `--blue-dark`: #3f35c0
-- `--blue-light`: rgba(85,73,222,0.12)
-- `--lime`: #C4FF0B
-- `--lime-dark`: #a8e000
+## Design Tokens (from Figma → `src/app/globals.css`)
+- `--ink`: #010205 (near-black text)
+- `--lime`: #C4FF0B (accent / highlights)
+- `--blue`: #5549DE (primary brand)
+- `--purple`: #4A3AFF (primary purple)
+- `--purple-200`: #E1DEFF
 - `--lightgray`: #F4F4F4
-- `--charcoal`: #1F1F1F
-- `--white`: #ffffff
-- `--muted`: #888
-- `--muted-dark`: #555
+- `--neutral-300`: #EFF0F6 (card borders)
+- `--muted`: #8987A1
+- `--white`: #FFFFFF
+- `--bg`: #F5F6FF (page background)
 
-## Typography & CSS Variables
-The project uses exact font variables mapped to `next/font/google` instances. 
+## Typography
+The Figma file uses **SVN-Gotham** (Bold) for headings and **Roboto** for body.
+SVN-Gotham is a paid Vietnamese font not available on Google Fonts, so it is
+substituted with **Montserrat** (the closest free geometric sans). Mapped via
+`next/font/google` in `src/app/layout.tsx`:
+- Headings: Montserrat → `--font-heading` → CSS `--font-head`
+- Body: Roboto → `--font-body` → CSS `--font-body`
 
-**IMPORTANT RULE:** When applying these variables to CSS, you MUST scope them to the `body` selector and NOT `:root`, otherwise Next.js will fail to load the font properly and default to system wildcards.
+## Page Structure (`src/app/page.tsx`)
+1. `Navigation` — sticky header
+2. `Hero` — "SỐ HOÁ QUY TRÌNH MARKETING ĐÚNG ĐÍCH"
+3. `Values` — E/T/S core values (Evolutionary / Tailor-made / Sincere)
+4. `Quote` — brand philosophy banner
+5. `Problem` — 4 pain points ("NGÂN SÁCH MARKETING ... BỐC HƠI?")
+6. `CtaBanner` — mid-page CTA
+7. `Solutions` — "MỘT ĐIỂM CHẠM — MỌI GIẢI PHÁP" (ETS AI Operation + cards)
+8. `Cases` — Oni Homestay & KYE Agency case studies
+9. `Partners` — partner logo marquee
+10. `Contact` — stats + lead-capture form ("SẴN SÀNG BỨT PHÁ")
+11. `Footer`
 
-- **Bebas Neue**: Used for large titles, headings, numbers, and the Logo. 
-  - Weight: 400
-  - Next.js Variable: `--font-bebas-neue`
-  - CSS Map: `--font-bebas: var(--font-bebas-neue), sans-serif;`
+Components use CSS Modules; shared utilities live in `globals.css`.
+Assets exported from Figma are in `public/figma/`.
 
-- **Space Grotesk**: Used for paragraphs, structural UI body text, and generic sans-serif reads.
-  - Weights: 300, 400, 500, 600, 700
-  - Next.js Variable: `--font-space-grotesk`
-  - CSS Map: `--font-space: var(--font-space-grotesk), sans-serif;`
-
-- **DM Mono**: Used for uppercase section labels (like "VẤN ĐỀ", "GIẢI PHÁP"), contact labels, and specific monospaced aesthetic tags.
-  - Display: ital 0, 1
-  - Next.js Variable: `--font-dm-mono`
-  - CSS Map: `--font-dm: var(--font-dm-mono), monospace;`
+## Build Note
+`next.config.ts` sets `experimental.turbopackUseSystemTlsCerts: true` so
+`next/font` can fetch Google Fonts in restricted/CI network environments.
 
 ## Contact Information
-(Used in the Contact Section, replacing the form)
 - **Facebook**: https://www.facebook.com/entersight
 - **Mail**: info@entersight-tech.com
-- **SDT**: Lã Thị Kiều Oanh - Founder - 0941233481
+- **SĐT**: Lã Thị Kiều Oanh — Founder — 0941233481

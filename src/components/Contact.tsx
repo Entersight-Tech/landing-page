@@ -1,58 +1,82 @@
+"use client";
+
+import { useState } from "react";
+import styles from "./Contact.module.css";
+
+const stats = [
+  { value: "50%", label: "Giảm chi phí vận hành" },
+  { value: "3x", label: "Tốc độ xử lý công việc" },
+  { value: "27/7", label: "Hệ thống tự động thực thi" },
+  { value: "20+", label: "Dự án vận hành thành công" },
+];
+
 export default function Contact() {
-    return (
-        <section id="cta">
-            <div className="cta-inner">
-                <div className="cta-left reveal">
-                    <div className="section-label">Liên hệ ngay</div>
-                    <h2 className="section-title">Sẵn sàng để AI nâng tầm doanh nghiệp?</h2>
-                    <p className="cta-subtitle">Các chuyên gia tại Entersight sẽ phác thảo một chiến lược tối ưu hóa dành riêng cho mô hình kinh doanh của bạn.</p>
-                    <div className="cta-stats">
-                        <div className="stat-block">
-                            <div className="stat-val">50%+</div>
-                            <div className="stat-label">Giảm chi phí vận hành</div>
-                        </div>
-                        <div className="stat-block">
-                            <div className="stat-val">3&times;</div>
-                            <div className="stat-label">Tốc độ xử lý công việc</div>
-                        </div>
-                        <div className="stat-block">
-                            <div className="stat-val">24/7</div>
-                            <div className="stat-label">Hệ thống tự động hoạt động</div>
-                        </div>
-                        <div className="stat-block">
-                            <div className="stat-val">2+</div>
-                            <div className="stat-label">Dự án AI đã triển khai</div>
-                        </div>
-                    </div>
-                </div>
-                <div className="cta-right reveal delay-1">
-                    <div className="form-card">
-                        <div className="form-title">Thông Tin Liên Hệ</div>
-                        <div className="contact-info">
-                            <div className="contact-item">
-                                <span className="contact-label">Hotline / Zalo</span>
-                                <span className="contact-value">
-                                    Lã Thị Kiều Oanh - Founder - <a href="tel:0941233481">0941233481</a>
-                                </span>
-                            </div>
-                            <div className="contact-item">
-                                <span className="contact-label">Email</span>
-                                <span className="contact-value">
-                                    <a href="mailto:info@entersight-tech.com">info@entersight-tech.com</a>
-                                </span>
-                            </div>
-                            <div className="contact-item">
-                                <span className="contact-label">Facebook</span>
-                                <span className="contact-value">
-                                    <a href="https://www.facebook.com/entersight" target="_blank" rel="noopener noreferrer">
-                                        facebook.com/entersight
-                                    </a>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    );
+  const [sent, setSent] = useState(false);
+
+  return (
+    <section className="section" id="contact">
+      <div className={`container ${styles.inner}`}>
+        <div className={styles.left}>
+          <h2 className={styles.title}>
+            SẴN SÀNG BỨT PHÁ
+            <br />
+            <span>CÙNG ENTERSIGHT?</span>
+          </h2>
+          <p className={styles.sub}>
+            Để lại thông tin, đội ngũ Entersight sẽ phác thảo lộ trình tối ưu
+            riêng cho mô hình kinh doanh của bạn.
+          </p>
+
+          <div className={styles.stats}>
+            {stats.map((s) => (
+              <div className={styles.stat} key={s.label}>
+                <strong>{s.value}</strong>
+                <span>{s.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className={styles.formCard}>
+          <h3 className={styles.formTitle}>
+            Đăng Ký Nhận Tư Vấn <span>Miễn Phí</span>
+          </h3>
+
+          {sent ? (
+            <p className={styles.thanks}>
+              Cảm ơn bạn! Entersight sẽ liên hệ trong thời gian sớm nhất.
+            </p>
+          ) : (
+            <form
+              className={styles.form}
+              onSubmit={(e) => {
+                e.preventDefault();
+                setSent(true);
+              }}
+            >
+              <label>
+                Họ và tên
+                <input type="text" placeholder="Nguyễn Văn A" required />
+              </label>
+              <label>
+                Số điện thoại
+                <input type="tel" placeholder="0123 456 789" required />
+              </label>
+              <label>
+                Tên doanh nghiệp
+                <input type="text" placeholder="Công ty TNHH…" />
+              </label>
+              <label>
+                Vấn đề bạn đang gặp phải
+                <textarea rows={3} placeholder="Viết vấn đề của bạn" />
+              </label>
+              <button type="submit" className={styles.submit}>
+                Gửi Yêu Cầu Tư Vấn →
+              </button>
+            </form>
+          )}
+        </div>
+      </div>
+    </section>
+  );
 }

@@ -1,13 +1,12 @@
 import Image from "next/image";
 import styles from "./Hero.module.css";
-import hero from "../../public/figma/hero.png";
+import heroPerson from "../../public/figma/hero-person.png";
 
 export default function Hero() {
   return (
     <section className={styles.hero} id="top">
       <div className={`container ${styles.inner}`}>
         <div className={styles.copy}>
-          <span className="eyebrow">AI Marketing &amp; Operation</span>
           <h1 className={styles.title}>
             SỐ HOÁ <span className={styles.accent}>QUY TRÌNH</span>
             <br />
@@ -19,29 +18,21 @@ export default function Hero() {
             nền tảng tăng trưởng bền vững.
           </p>
           <div className={styles.actions}>
-            <a href="#contact" className="btn btn-primary">
-              Bắt đầu ngay
-            </a>
-            <a href="#solutions" className="btn btn-outline">
-              Khám phá giải pháp
+            <a href="#contact" className={styles.cta}>
+              Tư Vấn Triển Khai
             </a>
           </div>
         </div>
 
         <div className={styles.visual}>
-          <div className={styles.blob} aria-hidden />
-          <div className={styles.imgWrap}>
-            <Image
-              src={hero}
-              alt="Chuyên gia Entersight"
-              priority
-              className={styles.img}
-            />
-          </div>
-          <div className={styles.badge}>
-            <strong>10+</strong>
-            <span>Doanh nghiệp SMEs đồng hành</span>
-          </div>
+          <div className={styles.glow} aria-hidden />
+          <div className={styles.bubble} aria-hidden />
+          <Image
+            src={heroPerson}
+            alt="Chuyên gia Entersight ứng dụng công nghệ AI"
+            priority
+            className={styles.img}
+          />
         </div>
       </div>
     </section>

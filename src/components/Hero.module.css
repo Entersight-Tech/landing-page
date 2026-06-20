@@ -9,13 +9,6 @@
      lime-green glow on the right, behind the model */
   background-color: #5549de;
   background-image:
-    /* soft dark-navy pocket behind the orb so the frosted sphere pops */
-    radial-gradient(
-      33% 46% at 64% 18%,
-      rgba(8, 4, 56, 0.86),
-      rgba(12, 7, 78, 0.46) 44%,
-      transparent 76%
-    ),
     /* lime-green glow, bottom-right, behind / under the model */
     radial-gradient(
       56% 62% at 92% 90%,
@@ -104,56 +97,17 @@
   user-select: none;
 }
 
-/* frosted-glass orb (Figma "DECOR") — top-centre, over the model's shoulder.
-   Built like the Figma layers: a frosted body, a crisp delicate rim at the
-   edge, soft white rim-glow rings, and a lower-left refraction crescent. */
+/* decorative sphere (Figma "DECOR") — top-centre, over the model's shoulder.
+   Rendered from an image asset, so it only needs placement + sizing. */
 .orb {
   position: absolute;
   z-index: 3;
-  top: 11%;
-  left: 60%;
-  width: clamp(92px, 10vw, 144px);
-  aspect-ratio: 1;
-  border-radius: 50%;
+  top: 10%;
+  left: 59%;
+  width: clamp(92px, 10vw, 146px);
+  height: auto;
   pointer-events: none;
-  /* crisp, delicate bright rim at the very edge (Figma's thin ~3.6px ring) */
-  border: 1.5px solid rgba(255, 255, 255, 0.62);
-  background:
-    /* soft refraction crescent along the lower-left inner edge */
-    radial-gradient(
-      62% 62% at 30% 76%,
-      rgba(255, 255, 255, 0.34),
-      transparent 60%
-    ),
-    /* brighter upper body */
-    radial-gradient(
-      96% 76% at 50% 22%,
-      rgba(236, 242, 255, 0.26),
-      transparent 62%
-    ),
-    /* frosted base tint, slightly cooler at the centre */
-    radial-gradient(
-      circle at 50% 50%,
-      rgba(214, 224, 255, 0.1) 0%,
-      rgba(198, 210, 250, 0.07) 64%,
-      rgba(255, 255, 255, 0.16) 100%
-    );
-  /* frost the backdrop so it reads soft & lightened through the orb */
-  backdrop-filter: blur(12px) brightness(1.06) saturate(1.05);
-  -webkit-backdrop-filter: blur(12px) brightness(1.06) saturate(1.05);
-  box-shadow:
-    /* tight bright rim-light just inside the border */
-    inset 0 0 5px 0.5px rgba(255, 255, 255, 0.5),
-    /* medium soft rim ring */
-    inset 0 0 13px 2px rgba(255, 255, 255, 0.18),
-    /* lower-left refraction crescent */
-    inset 7px -9px 16px rgba(255, 255, 255, 0.22),
-    /* faint upper sheen */
-    inset 0 9px 16px rgba(255, 255, 255, 0.14),
-    /* faint cool shade lower-right */
-    inset -6px -10px 20px rgba(92, 110, 180, 0.14),
-    /* delicate outer halo so it lifts off the gradient */
-    0 0 14px rgba(196, 210, 255, 0.16);
+  user-select: none;
 }
 
 .inner {

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import styles from "./Hero.module.css";
 import heroPerson from "../../public/figma/hero-model.png";
+import orb from "../../public/figma/orb.webp";
 
 export default function Hero() {
   return (
@@ -16,7 +17,13 @@ export default function Hero() {
         sizes="(max-width: 860px) 70vw, 38vw"
         className={styles.model}
       />
-      <span className={styles.orb} aria-hidden />
+      <Image
+        src={orb}
+        alt=""
+        aria-hidden
+        sizes="(max-width: 860px) 64px, 144px"
+        className={styles.orb}
+      />
 
       <div className={`container ${styles.inner}`}>
         <div className={styles.copy}>

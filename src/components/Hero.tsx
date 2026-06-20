@@ -5,41 +5,36 @@ import heroPerson from "../../public/figma/hero-model.png";
 export default function Hero() {
   return (
     <section className={styles.hero} id="top">
-      <div className={styles.card}>
-        <span className={styles.watermark} aria-hidden>
-          Entersight
-        </span>
-        <div className={styles.visorGlow} aria-hidden />
+      <span className={styles.watermark} aria-hidden>
+        Entersight
+      </span>
 
-        <div className={`container ${styles.inner}`}>
-          <div className={styles.copy}>
-            <h1 className={styles.title}>
-              SỐ HOÁ <span className={styles.accent}>QUY TRÌNH</span>
-              <br />
-              MARKETING <span className={styles.accent}>ĐÚNG ĐÍCH</span>
-            </h1>
-            <p className={styles.sub}>
-              Entersight kiến tạo hệ sinh thái tiếp thị số toàn diện, giúp SMEs
-              tái cấu trúc vận hành, làm chủ mọi điểm chạm khách hàng và xây
-              dựng nền tảng tăng trưởng bền vững.
-            </p>
-            <div className={styles.actions}>
-              <a href="#contact" className={styles.cta}>
-                Tư Vấn Triển Khai
-              </a>
-            </div>
+      <Image
+        src={heroPerson}
+        alt="Chuyên gia Entersight ứng dụng công nghệ thực tế ảo"
+        priority
+        sizes="(max-width: 860px) 70vw, 38vw"
+        className={styles.model}
+      />
+      <span className={styles.orb} aria-hidden />
+
+      <div className={`container ${styles.inner}`}>
+        <div className={styles.copy}>
+          <h1 className={styles.title}>
+            SỐ HOÁ <span className={styles.accent}>QUY TRÌNH</span>
+            <br />
+            MARKETING <span className={styles.accent}>ĐÚNG ĐÍCH</span>
+          </h1>
+          <p className={styles.sub}>
+            Entersight kiến tạo hệ sinh thái tiếp thị số toàn diện, giúp SMEs
+            tái cấu trúc vận hành, làm chủ mọi điểm chạm khách hàng và xây dựng
+            nền tảng tăng trưởng bền vững.
+          </p>
+          <div className={styles.actions}>
+            <a href="#contact" className={styles.cta}>
+              Tư Vấn Triển Khai
+            </a>
           </div>
-        </div>
-
-        <div className={styles.visual}>
-          <div className={styles.sphere} aria-hidden />
-          <Image
-            src={heroPerson}
-            alt="Chuyên gia Entersight ứng dụng công nghệ thực tế ảo"
-            priority
-            sizes="(max-width: 860px) 78vw, 46vw"
-            className={styles.model}
-          />
         </div>
       </div>
     </section>

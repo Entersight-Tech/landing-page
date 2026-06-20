@@ -9,6 +9,13 @@
      lime-green glow on the right, behind the model */
   background-color: #5549de;
   background-image:
+    /* soft dark-navy pocket behind the orb so the frosted sphere pops */
+    radial-gradient(
+      33% 46% at 64% 18%,
+      rgba(8, 4, 56, 0.86),
+      rgba(12, 7, 78, 0.46) 44%,
+      transparent 76%
+    ),
     /* lime-green glow, bottom-right, behind / under the model */
     radial-gradient(
       56% 62% at 92% 90%,

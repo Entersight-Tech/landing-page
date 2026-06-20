@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styles from "./Hero.module.css";
 import heroPerson from "../../public/figma/hero-model.png";
-import orb from "../../public/figma/orb.webp";
+import orb from "../../public/figma/orb.png";
 
 export default function Hero() {
   return (
@@ -21,7 +21,7 @@ export default function Hero() {
         src={orb}
         alt=""
         aria-hidden
-        sizes="(max-width: 860px) 64px, 144px"
+        unoptimized
         className={styles.orb}
       />
 

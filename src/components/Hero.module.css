@@ -68,7 +68,9 @@
   pointer-events: none;
 }
 
-/* model — anchored to the right, headset near the top, cropped at the fold */
+/* model — anchored to the right, headset near the top, cropped at the fold.
+   Mirrored on X so she turns toward the headline, matching Figma (the design
+   applies -scale-y-100 rotate-180, which composes to a horizontal flip). */
 .model {
   position: absolute;
   z-index: 2;
@@ -76,6 +78,7 @@
   right: clamp(0px, 4vw, 64px);
   width: clamp(300px, 33vw, 472px);
   height: auto;
+  transform: scaleX(-1);
   pointer-events: none;
   user-select: none;
 }
@@ -85,7 +88,7 @@
   position: absolute;
   z-index: 3;
   top: 12%;
-  left: 57%;
+  left: 60%;
   width: clamp(84px, 9.6vw, 138px);
   aspect-ratio: 1;
   border-radius: 50%;

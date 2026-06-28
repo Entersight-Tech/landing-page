@@ -279,13 +279,13 @@
 
   .body {
     align-self: stretch;
-    padding: 38px 30px 32px;
+    padding: 74px 30px 32px;
   }
 
   .quoteMark {
-    top: -48px;
-    left: 12px;
-    width: 100px;
+    top: 6px;
+    left: 24px;
+    width: 78px;
   }
 
   .badgeDot {

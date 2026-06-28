@@ -8,15 +8,31 @@
   background: #2b2f8c url("/figma/hero-bg.webp") center center / cover no-repeat;
 }
 
-/* model — anchored to the right, headset near the top, cropped at the fold.
+/* centered stage that the decorative layers anchor to. It spans the hero's
+   full height but is capped at the design canvas width and centered, so on
+   ultra-wide screens the model/orb stay glued to the (also-centered) content
+   instead of drifting to the viewport edge. The background still bleeds full
+   width because it lives on .hero, not here. */
+.stage {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  pointer-events: none;
+}
+
+/* model — anchored flush to the BOTTOM edge of the section so it always sits
+   on the fold regardless of viewport size, pinned to the right of the stage.
    Mirrored on X so she turns toward the headline, matching Figma (the design
    applies -scale-y-100 rotate-180, which composes to a horizontal flip). */
 .model {
   position: absolute;
   z-index: 2;
-  top: calc(clamp(150px, 25%, 188px) - 60px);
+  bottom: 0;
   right: clamp(0px, 4vw, 64px);
-  width: clamp(270px, 29.7vw, 425px);
+  width: clamp(300px, 31vw, 430px);
   height: auto;
   transform: scaleX(-1);
   pointer-events: none;
@@ -125,6 +141,12 @@
     min-height: 0;
   }
 
+  /* drop the stage wrapper so the model + orb become flex children of the
+     hero again and the stacked (copy-then-model) layout works as before */
+  .stage {
+    display: contents;
+  }
+
   .inner {
     order: 1;
     flex-direction: column;
@@ -150,7 +172,9 @@
     top: auto;
     right: auto;
     display: block;
-    width: min(46%, 218px);
+    /* 46% keeps phones (<=480px) exactly as tuned; the larger cap lets the
+       model scale up on tablets (600-860px) so it isn't lost in the space */
+    width: min(46%, 320px);
     margin: -32px auto 0;
     /* nudge ~10%+60px right, up (keep the X-flip) */
     transform: translateX(calc(10% + 60px)) scaleX(-1);

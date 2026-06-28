@@ -54,21 +54,6 @@ const TESTIMONIALS: Testimonial[] = [
   },
 ];
 
-function QuoteGlyph({ className }: { className: string }) {
-  // Solid double quotation mark (no cut-outs) so it never reads as a hole.
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 150 120"
-      fill="currentColor"
-      aria-hidden="true"
-    >
-      <path d="M58 22 C58 8 46 2 32 2 C16 2 4 16 4 36 C4 54 16 66 34 66 C28 90 20 104 4 116 C30 108 58 86 64 52 C66 42 64 30 58 22 Z" />
-      <path d="M132 22 C132 8 120 2 106 2 C90 2 78 16 78 36 C78 54 90 66 108 66 C102 90 94 104 78 116 C104 108 132 86 138 52 C140 42 138 30 132 22 Z" />
-    </svg>
-  );
-}
-
 function Asterisk({ className }: { className: string }) {
   return (
     <svg
@@ -144,7 +129,7 @@ export default function Cases() {
                     </div>
 
                     <div className={styles.body}>
-                      <QuoteGlyph className={styles.quoteMark} />
+                      <span className={styles.quoteMark} aria-hidden="true" />
                       <p className={styles.quote}>{t.quote}</p>
                       <div className={styles.attr}>
                         <span className={styles.role}>{t.role}</span>

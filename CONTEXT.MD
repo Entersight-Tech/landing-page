@@ -39,8 +39,17 @@ substituted with **Montserrat** (the closest free geometric sans). Mapped via
 5. `Solutions` — "MỘT ĐIỂM CHẠM — MỌI GIẢI PHÁP" (ETS AI Operation + cards)
 6. `Cases` — Oni Homestay & KYE Agency case studies
 7. `Partners` — partner logo marquee
-8. `Contact` — stats + lead-capture form ("SẴN SÀNG BỨT PHÁ")
-9. `Footer`
+8. `Outro` — the closing of the page. Two visually separate sections that
+   share ONE continuous gradient background (light at top → lime glow + faded
+   Entersight mark watermark bottom-left → purple glow bottom-right):
+   - `Contact` (Figma SCREEN 9, node 1134:2161) — stats + lead-capture form
+     ("SẴN SÀNG BỨT PHÁ CÙNG ENTERSIGHT?")
+   - "Tối ưu vận hành, Tăng trưởng đột phá" banner card (Figma SCREEN 10,
+     node 1134:2218) — floating phone (`public/figma/contact-phone.png`,
+     a transparent source asset + CSS lime glow) + headline & subtitle
+   - the light footer (logo + copyright, Home/About/How it Works/Services nav,
+     and circular Email / Facebook / Zalo social buttons)
+   The former standalone dark `Footer` component was replaced by this footer.
 
 Components use CSS Modules; shared utilities live in `globals.css`.
 Assets exported from Figma are in `public/figma/`.

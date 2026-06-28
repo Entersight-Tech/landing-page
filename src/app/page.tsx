@@ -5,8 +5,7 @@ import Problem from "@/components/Problem";
 import Solutions from "@/components/Solutions";
 import Cases from "@/components/Cases";
 import Partners from "@/components/Partners";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
+import Outro from "@/components/Outro";
 import ScrollReveal from "@/components/ScrollReveal";
 
 export default function Home() {
@@ -20,9 +19,8 @@ export default function Home() {
         <Solutions />
         <Cases />
         <Partners />
-        <Contact />
+        <Outro />
       </main>
-      <Footer />
       <ScrollReveal />
     </>
   );

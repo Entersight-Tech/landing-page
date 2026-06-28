@@ -14,7 +14,7 @@
 .model {
   position: absolute;
   z-index: 2;
-  top: calc(clamp(150px, 25%, 188px) - 20px);
+  top: calc(clamp(150px, 25%, 188px) - 60px);
   right: clamp(0px, 4vw, 64px);
   width: clamp(270px, 29.7vw, 425px);
   height: auto;
@@ -28,8 +28,8 @@
 .orb {
   position: absolute;
   z-index: 3;
-  top: calc(10% + 10px);
-  left: calc(59% + 20px);
+  top: calc(10% + 25px);
+  left: calc(59% + 30px);
   width: clamp(92px, 10vw, 146px);
   height: auto;
   pointer-events: none;
@@ -150,10 +150,10 @@
     top: auto;
     right: auto;
     display: block;
-    width: min(58%, 272px);
-    margin: -12px auto 0;
-    /* nudge 10% right, ~20px up (keep the X-flip) */
-    transform: translateX(10%) scaleX(-1);
+    width: min(46%, 218px);
+    margin: -32px auto 0;
+    /* nudge ~10%+30px right, up (keep the X-flip) */
+    transform: translateX(calc(10% + 30px)) scaleX(-1);
   }
 
   .orb {
@@ -161,9 +161,9 @@
     bottom: 26%;
     left: 9%;
     width: 64px;
-    /* raise ~50px and soften further */
-    transform: translateY(-50px);
-    opacity: 0.3;
+    /* shift right ~20px, raise ~35px, soften further */
+    transform: translate(20px, -35px);
+    opacity: 0.1;
   }
 }
 

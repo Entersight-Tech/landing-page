@@ -37,11 +37,10 @@ substituted with **Montserrat** (the closest free geometric sans). Mapped via
    ("TIẾP THỊ THÔNG MINH — VẬN HÀNH TINH GỌN") + glass button. The former
    standalone `CtaBanner` was merged into this section.
 5. `Solutions` — "MỘT ĐIỂM CHẠM — MỌI GIẢI PHÁP" (ETS AI Operation + cards)
-6. `Cases` — Oni Homestay & KYE Agency case studies
-7. `Partners` — Figma SCREEN 7 (node 1123:3217): "ĐỐI TÁC DOANH NGHIỆP" —
+6. `Partners` — Figma SCREEN 7 (node 1123:3217): "ĐỐI TÁC DOANH NGHIỆP" —
    a full-bleed lime accent strip on a light-gray (`--lightgray`) band, a
    single centered heading, and a full-colour partner logo marquee
-8. `Outro` — the closing of the page. Two visually separate sections that
+7. `Outro` — the closing of the page. Two visually separate sections that
    share ONE continuous gradient background (Figma node 997:1598 — white at
    top/centre → lime glow + lime asterisk watermark bottom-left → purple glow
    rising up the right side):
@@ -50,7 +49,7 @@ substituted with **Montserrat** (the closest free geometric sans). Mapped via
    - "Tối ưu vận hành, Tăng trưởng đột phá" banner card (Figma SCREEN 10,
      node 1134:2218) — floating phone (`public/figma/contact-phone.png`,
      a transparent source asset + CSS lime glow) + headline & subtitle
-   - the light footer (logo + copyright, Home/About/How it Works/Services nav,
+   - the light footer (logo + copyright, Home/About/How it Works nav,
      and circular Email / Facebook / Zalo social buttons)
    The former standalone dark `Footer` component was replaced by this footer.
 

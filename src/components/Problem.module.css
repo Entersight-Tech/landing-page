@@ -3,78 +3,10 @@
   overflow: hidden;
   isolation: isolate;
   padding: clamp(72px, 9vw, 116px) 0 clamp(70px, 9vw, 104px);
-  background:
-    radial-gradient(105% 70% at 50% -6%, rgba(126, 112, 255, 0.42), transparent 58%),
-    linear-gradient(178deg, #3a2dcc 0%, #4636d8 28%, #4a3ee0 50%, #3b2ec0 76%, #2c2294 100%);
+  /* single background image exported from Figma (gradient + "Entersight"
+     wordmark + curved waves + lime stripe baked in) */
+  background: url("/figma/problem-bg.png") center bottom / cover no-repeat;
   background-color: #4434c8;
-}
-
-/* soft curved waves along the bottom (Figma "BG SOLID" layer) */
-.curves {
-  position: absolute;
-  z-index: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  aspect-ratio: 2880 / 436;
-  background: url("/figma/problem-curves.png") bottom center / 100% 100% no-repeat;
-  mix-blend-mode: soft-light;
-  opacity: 0.55;
-  pointer-events: none;
-}
-
-/* film grain, matching the Values band treatment */
-.section::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background: url("/figma/values-noise.png") top left / 1047px auto repeat;
-  mix-blend-mode: soft-light;
-  opacity: 0.4;
-  pointer-events: none;
-}
-
-/* darker navy pool behind the CTA at the bottom of the band */
-.section::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: -8%;
-  width: 150%;
-  height: 44%;
-  z-index: 0;
-  transform: translateX(-50%);
-  background: radial-gradient(60% 100% at 50% 100%, rgba(20, 14, 76, 0.85), transparent 72%);
-  pointer-events: none;
-}
-
-/* faint "Entersight" wordmark watermark, centred behind the cards */
-.watermark {
-  position: absolute;
-  z-index: 0;
-  left: 50%;
-  top: 46%;
-  width: min(1320px, 116%);
-  aspect-ratio: 2880 / 506;
-  transform: translate(-50%, -50%);
-  background: url("/figma/problem-watermark.png") center / contain no-repeat;
-  opacity: 0.16;
-  mix-blend-mode: soft-light;
-  pointer-events: none;
-}
-
-.glow {
-  position: absolute;
-  z-index: 0;
-  top: -160px;
-  right: -120px;
-  width: 620px;
-  height: 620px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(196, 255, 11, 0.16), transparent 62%);
-  pointer-events: none;
 }
 
 .inner {
@@ -231,20 +163,6 @@
   color: var(--ink);
   transform: translateY(-2px);
   box-shadow: 0 16px 34px -14px rgba(196, 255, 11, 0.7);
-}
-
-/* ---------- Lime accent stripe ---------- */
-.stripe {
-  position: absolute;
-  z-index: 0;
-  left: -4%;
-  right: -4%;
-  bottom: 14px;
-  height: 8px;
-  background: var(--lime);
-  transform: rotate(-1.6deg);
-  box-shadow: 0 -16px 0 -10px rgba(196, 255, 11, 0.55);
-  pointer-events: none;
 }
 
 @media (max-width: 760px) {

@@ -30,10 +30,6 @@ const items = [
 export default function Problem() {
   return (
     <section className={styles.section} id="problem">
-      <span className={styles.watermark} aria-hidden="true" />
-      <span className={styles.curves} aria-hidden="true" />
-      <span className={styles.glow} aria-hidden="true" />
-
       <div className={`container ${styles.inner}`}>
         <h2 className={styles.title}>
           NGÂN SÁCH MARKETING
@@ -68,8 +64,6 @@ export default function Problem() {
           </a>
         </div>
       </div>
-
-      <span className={styles.stripe} aria-hidden="true" />
     </section>
   );
 }

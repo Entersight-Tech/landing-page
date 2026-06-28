@@ -82,24 +82,16 @@
   min-width: 0;
 }
 
-/* Card — neon-green art (stepped top + quote circles) from Figma */
+/* Card — uniform neon-green block */
 .card {
   position: relative;
   display: grid;
   grid-template-columns: 360px minmax(0, 1fr);
   gap: 16px;
   min-height: 372px;
-}
-
-/* card art sits behind the content so its shadow never hits the photo */
-.card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background: url("/figma/card-bg.png") center / 100% 100% no-repeat;
-  filter: drop-shadow(0 30px 44px rgba(7, 6, 40, 0.4));
-  pointer-events: none;
+  background: var(--lime);
+  border-radius: 32px;
+  box-shadow: 0 40px 80px -40px rgba(7, 6, 40, 0.7);
 }
 
 /* Photo column */
@@ -122,13 +114,14 @@
   object-position: top center;
 }
 
+/* Brand badge — fixed circle, logo never drives its size */
 .badge {
   position: absolute;
   z-index: 3;
-  top: 88px;
-  left: -2px;
-  width: 88px;
-  height: 88px;
+  top: 92px;
+  left: 22px;
+  width: clamp(78px, 6.6vw, 96px);
+  aspect-ratio: 1 / 1;
   border-radius: 50%;
   background: var(--white);
   display: flex;
@@ -139,20 +132,21 @@
 }
 
 .badgeLogo {
-  width: auto;
-  height: auto;
-  max-width: 62%;
-  max-height: 52%;
+  width: 60%;
+  height: 60%;
   object-fit: contain;
+  object-position: center;
+  display: block;
 }
 
-.badgeDot {
+/* the small companion dot is anchored to the badge, not to the logo */
+.badge::after {
+  content: "";
   position: absolute;
-  z-index: 3;
-  top: 128px;
-  left: 84px;
-  width: 18px;
-  height: 18px;
+  right: -10px;
+  top: 58%;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   background: var(--white);
   box-shadow: 0 8px 18px -10px rgba(7, 6, 40, 0.5);
@@ -266,15 +260,7 @@
     grid-template-columns: 1fr;
     gap: 0;
     min-height: 0;
-    /* the wide stepped art can't stretch to a tall card — use a clean
-       lime card + rendered quote circles instead */
-    background: var(--lime);
     border-radius: 28px;
-    box-shadow: 0 30px 60px -34px rgba(7, 6, 40, 0.6);
-  }
-
-  .card::before {
-    display: none;
   }
 
   .photoCol {
@@ -290,17 +276,13 @@
   }
 
   .badge {
-    top: 30px;
+    top: 26px;
     left: calc(50% - 150px);
   }
 
   .body {
     align-self: stretch;
     padding: 36px 30px 32px;
-  }
-
-  .badgeDot {
-    display: none;
   }
 
   .astTopRightSmall {

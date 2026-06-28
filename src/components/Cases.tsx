@@ -116,7 +116,6 @@ export default function Cases() {
                           className={styles.badgeLogo}
                         />
                       </span>
-                      <span className={styles.badgeDot} aria-hidden="true" />
                       <div className={styles.photoBox}>
                         <Image
                           src={t.photo}

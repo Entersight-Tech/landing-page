@@ -38,7 +38,9 @@ substituted with **Montserrat** (the closest free geometric sans). Mapped via
    standalone `CtaBanner` was merged into this section.
 5. `Solutions` — "MỘT ĐIỂM CHẠM — MỌI GIẢI PHÁP" (ETS AI Operation + cards)
 6. `Cases` — Oni Homestay & KYE Agency case studies
-7. `Partners` — partner logo marquee
+7. `Partners` — Figma SCREEN 7 (node 1123:3217): "ĐỐI TÁC DOANH NGHIỆP" —
+   a full-bleed lime accent strip on a light-gray (`--lightgray`) band, a
+   single centered heading, and a full-colour partner logo marquee
 8. `Contact` — stats + lead-capture form ("SẴN SÀNG BỨT PHÁ")
 9. `Footer`
 

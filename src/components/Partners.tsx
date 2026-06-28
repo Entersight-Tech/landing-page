@@ -11,19 +11,10 @@ const logos = [
 
 export default function Partners() {
   return (
-    <section className="section" id="partners">
+    <section className={styles.section} id="partners">
+      <div className={styles.bar} aria-hidden="true" />
       <div className="container">
-        <div className={styles.head}>
-          <span className="eyebrow">Đối tác doanh nghiệp</span>
-          <h2 className="h-title">
-            ĐỒNG HÀNH CÙNG DOANH NGHIỆP
-            <br />
-            XUYÊN SUỐT <span className="accent">LỘ TRÌNH CHUYỂN ĐỔI SỐ</span>
-          </h2>
-          <p className={styles.lead}>
-            <strong>10+ doanh nghiệp SMEs</strong> đã chuyển mình cùng Entersight.
-          </p>
-        </div>
+        <h2 className={`h-title ${styles.title}`}>ĐỐI TÁC DOANH NGHIỆP</h2>
       </div>
 
       <div className={styles.marquee}>

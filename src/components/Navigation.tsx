@@ -12,7 +12,7 @@ const links = [
   { label: "Painpoints", href: "#problem" },
   { label: "Giải Pháp", href: "#solutions" },
   { label: "Khách Hàng", href: "#cases" },
-  { label: "Lộ Trình Triển Khai", href: "#partners" },
+  { label: "Đối Tác", href: "#partners" },
   { label: "Liên Hệ", href: "#contact" },
 ];
 

@@ -101,25 +101,22 @@
   text-align: center;
 }
 
-/* frosted-glass panel that softly fades out at the bottom */
+/* frosted-glass panel — full rounded rectangle, matching Figma */
 .card::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: 0;
-  border-radius: 28px;
+  border-radius: 26px;
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.17) 0%,
-    rgba(255, 255, 255, 0.06) 48%,
-    rgba(255, 255, 255, 0) 100%
+    rgba(255, 255, 255, 0.16),
+    rgba(255, 255, 255, 0.07)
   );
-  border: 1px solid rgba(255, 255, 255, 0.32);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
-  -webkit-mask-image: linear-gradient(180deg, #000 60%, transparent 100%);
-  mask-image: linear-gradient(180deg, #000 60%, transparent 100%);
-  box-shadow: 0 24px 46px -28px rgba(7, 5, 40, 0.7);
+  box-shadow: 0 26px 48px -26px rgba(7, 5, 40, 0.6);
   transition: transform 0.25s ease, border-color 0.25s ease;
 }
 
@@ -128,29 +125,19 @@
   border-color: rgba(255, 255, 255, 0.5);
 }
 
-/* circular icon badge overlapping the top-left corner */
+/* icon badge (Figma asset) overlapping the top-left corner.
+   The exported PNG has an opaque white square behind the circular badge,
+   so clip it to the badge circle and re-apply a soft drop shadow. */
 .icon {
   position: absolute;
   z-index: 2;
-  top: clamp(-24px, -2vw, -18px);
-  left: clamp(-22px, -2vw, -14px);
-  width: clamp(58px, 5.4vw, 70px);
-  height: clamp(58px, 5.4vw, 70px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  color: var(--white);
-  background: rgba(85, 73, 222, 0.78);
-  border: 2px solid rgba(239, 239, 239, 0.55);
-  box-shadow: 0 12px 24px -10px rgba(7, 5, 40, 0.7);
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
-}
-
-.icon svg {
-  width: 50%;
-  height: 50%;
+  top: clamp(-26px, -2.4vw, -20px);
+  left: clamp(-22px, -2.2vw, -16px);
+  width: clamp(64px, 6vw, 80px);
+  height: auto;
+  pointer-events: none;
+  clip-path: circle(48.5% at 49.8% 48.6%);
+  filter: drop-shadow(0 9px 16px rgba(7, 5, 40, 0.45));
 }
 
 .cardBody {

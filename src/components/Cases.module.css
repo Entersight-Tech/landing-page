@@ -68,8 +68,8 @@
 
 .viewport {
   overflow: hidden;
-  /* room for the head + quote bubble that poke above the card */
-  padding-top: 64px;
+  /* room for the head + quote mark that poke above the card */
+  padding-top: 84px;
 }
 
 .track {
@@ -150,7 +150,7 @@
 .quoteMark {
   position: absolute;
   z-index: 2;
-  top: -54px;
+  top: -74px;
   left: -40px;
   width: 122px;
   height: auto;

@@ -32,7 +32,11 @@
   z-index: 2;
   bottom: 0;
   right: clamp(0px, 4vw, 64px);
-  width: clamp(300px, 31vw, 430px);
+  /* Steeper curve through the narrow-desktop range so the model is ~15%
+     smaller around 900px (where it otherwise crowds the headline), then
+     naturally returns to the 430px cap by ~1280px — so 1280px+ stay
+     identical. e.g. 900px -> 254px, 1024px -> 311px, 1280px+ -> 430px. */
+  width: clamp(250px, calc(46vw - 160px), 430px);
   height: auto;
   transform: scaleX(-1);
   pointer-events: none;

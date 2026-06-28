@@ -6,20 +6,25 @@ import orb from "../../public/figma/orb.png";
 export default function Hero() {
   return (
     <section className={styles.hero} id="top">
-      <Image
-        src={heroPerson}
-        alt="Chuyên gia Entersight ứng dụng công nghệ thực tế ảo"
-        priority
-        sizes="(max-width: 860px) 70vw, 38vw"
-        className={styles.model}
-      />
-      <Image
-        src={orb}
-        alt=""
-        aria-hidden
-        unoptimized
-        className={styles.orb}
-      />
+      {/* centered max-width stage: keeps the model + orb anchored to the
+          content on ultra-wide screens while the background stays full-bleed.
+          Collapses to display:contents on mobile so the stacked layout works. */}
+      <div className={styles.stage}>
+        <Image
+          src={heroPerson}
+          alt="Chuyên gia Entersight ứng dụng công nghệ thực tế ảo"
+          priority
+          sizes="(max-width: 860px) 70vw, 38vw"
+          className={styles.model}
+        />
+        <Image
+          src={orb}
+          alt=""
+          aria-hidden
+          unoptimized
+          className={styles.orb}
+        />
+      </div>
 
       <div className={`container ${styles.inner}`}>
         <div className={styles.copy}>

@@ -54,6 +54,22 @@ const TESTIMONIALS: Testimonial[] = [
   },
 ];
 
+function QuoteGlyph({ className }: { className: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 130 80"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <circle cx="31" cy="29" r="23" />
+      <path d="M14 42 L48 42 L26 70 Z" />
+      <circle cx="99" cy="29" r="23" />
+      <path d="M82 42 L116 42 L94 70 Z" />
+    </svg>
+  );
+}
+
 function Asterisk({ className }: { className: string }) {
   return (
     <svg
@@ -114,6 +130,7 @@ export default function Cases() {
                         alt={t.brand}
                         className={styles.badge}
                       />
+                      <span className={styles.badgeDot} aria-hidden="true" />
                       <div className={styles.photoBox}>
                         <Image
                           src={t.photo}
@@ -126,9 +143,7 @@ export default function Cases() {
                     </div>
 
                     <div className={styles.body}>
-                      <div className={styles.quoteBubble}>
-                        <span>“</span>
-                      </div>
+                      <QuoteGlyph className={styles.quoteMark} />
                       <p className={styles.quote}>{t.quote}</p>
                       <div className={styles.attr}>
                         <span className={styles.role}>{t.role}</span>

@@ -1,96 +1,200 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
+import Image, { type StaticImageData } from "next/image";
 import styles from "./Cases.module.css";
-import onihome from "../../public/figma/onihome.jpg";
+
+import caseKye from "../../public/figma/case-kye.png";
+import caseOni from "../../public/figma/case-oni.png";
+import caseSma from "../../public/figma/case-sma.png";
+import badgeKye from "../../public/figma/badge-kye.png";
+import badgeOni from "../../public/figma/badge-oni.png";
+import badgeSma from "../../public/figma/badge-sma.png";
+
+type Testimonial = {
+  id: string;
+  photo: StaticImageData;
+  badge: StaticImageData;
+  brand: string;
+  quote: string;
+  role: string;
+  name: string;
+};
+
+const TESTIMONIALS: Testimonial[] = [
+  {
+    id: "kye",
+    photo: caseKye,
+    badge: badgeKye,
+    brand: "KYE Agency",
+    quote:
+      "“Tại KYE, chúng tôi không để nỗi lo công nghệ giới hạn biên độ sáng tạo. Giải pháp AI Fashion Transform chính là cầu nối để công nghệ chạm đến cảm xúc một cách tự nhiên nhất. Với sự hỗ trợ tuyệt đối 24/7, đội ngũ KYE có thể tự do hiện thực hóa những kỳ vọng khắt khe nhất của tệp khách Elite bằng một chuẩn mực chuyên nghiệp và tốc độ vượt trội.”",
+    role: "Founder · CEO Kye Agency",
+    name: "Mr. KYE NGUYỄN",
+  },
+  {
+    id: "oni",
+    photo: caseOni,
+    badge: badgeOni,
+    brand: "Oni Homestay",
+    quote:
+      "“Từ một ý tưởng chưa từng nghĩ tới, Entersight đã hiện thực hóa hệ thống vận hành chuyên nghiệp cho mô hình lưu trú nhỏ của tôi tại Huế. Mọi quy trình từ quản lý phòng đến dòng tiền đều được tự động hóa 100%. Giờ đây, thay vì vùi đầu vào sổ sách, tôi có thể thảnh thơi du lịch trong khi hệ thống vẫn gửi báo cáo chi tiết mỗi ngày. Hiệu suất rõ rệt, quản trị thông minh.”",
+    role: "Founder · Oni Homestay",
+    name: "Ms. TRẦN BẢO NHI",
+  },
+  {
+    id: "sma",
+    photo: caseSma,
+    badge: badgeSma,
+    brand: "SMA Agency",
+    quote:
+      "“Entersight mang đến góc nhìn chiến lược rõ ràng cho các doanh nghiệp trong quá trình tăng trưởng. Từ góc nhìn của một digital performance agency, chúng tôi nhận thấy các doanh nghiệp khi áp dụng những đề xuất từ Entersight có thể xác định rõ điểm nghẽn trong vận hành và cải thiện hiệu quả marketing lên đến 20–30% trong giai đoạn tối ưu ban đầu.”",
+    role: "Founder · CEO SMA Agency",
+    name: "Mr. VŨ ANH PHÚC",
+  },
+];
+
+function Asterisk({ className }: { className: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 100 100"
+      fill="none"
+      aria-hidden="true"
+    >
+      <g
+        stroke="currentColor"
+        strokeWidth="13"
+        strokeLinecap="round"
+        transform="rotate(8 50 50)"
+      >
+        <line x1="50" y1="8" x2="50" y2="92" />
+        <line x1="14" y1="29" x2="86" y2="71" />
+        <line x1="86" y1="29" x2="14" y2="71" />
+      </g>
+    </svg>
+  );
+}
 
 export default function Cases() {
+  const [active, setActive] = useState(0);
+  const count = TESTIMONIALS.length;
+
+  const go = (i: number) => setActive((i + count) % count);
+
   return (
-    <section className="section" id="cases">
+    <section className={styles.section} id="cases">
+      <Asterisk className={`${styles.asterisk} ${styles.astTopRight}`} />
+      <Asterisk className={`${styles.asterisk} ${styles.astTopRightSmall}`} />
+      <Asterisk className={`${styles.asterisk} ${styles.astBottomLeft}`} />
+
       <div className="container">
-        <div className={styles.head}>
-          <span className="eyebrow">Dự án tiêu biểu</span>
-          <h2 className="h-title">
-            CHUYỂN <span className="accent">ÁP LỰC VẬN HÀNH</span>
-            <br />
-            THÀNH <span className="accent">ĐÒN BẨY TĂNG TRƯỞNG</span>
-          </h2>
+        <h2 className={`${styles.heading} reveal`}>
+          <span className={styles.lime}>10+ DOANH NGHIỆP</span> SMEs
+          <br />
+          ĐÃ CHUYỂN MÌNH CÙNG ENTERSIGHT
+        </h2>
+
+        <div className={`${styles.carousel} reveal`}>
+          <div className={styles.viewport}>
+            <div
+              className={styles.track}
+              style={{ transform: `translateX(-${active * 100}%)` }}
+            >
+              {TESTIMONIALS.map((t, i) => (
+                <div
+                  className={styles.slide}
+                  key={t.id}
+                  aria-hidden={i !== active}
+                >
+                  <article className={styles.card}>
+                    <div className={styles.photoCol}>
+                      <Image
+                        src={t.badge}
+                        alt={t.brand}
+                        className={styles.badge}
+                      />
+                      <div className={styles.photoBox}>
+                        <Image
+                          src={t.photo}
+                          alt={`${t.name} — ${t.brand}`}
+                          fill
+                          sizes="(max-width: 900px) 230px, 340px"
+                          className={styles.photo}
+                        />
+                      </div>
+                    </div>
+
+                    <div className={styles.body}>
+                      <div className={styles.quoteBubble}>
+                        <span>“</span>
+                      </div>
+                      <p className={styles.quote}>{t.quote}</p>
+                      <div className={styles.attr}>
+                        <span className={styles.role}>{t.role}</span>
+                        <strong className={styles.name}>{t.name}</strong>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className={styles.controls}>
+            <button
+              type="button"
+              className={`${styles.navBtn} ${styles.navDark}`}
+              onClick={() => go(active - 1)}
+              aria-label="Khách hàng trước"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <line x1="19" y1="12" x2="5" y2="12" />
+                <polyline points="11 18 5 12 11 6" />
+              </svg>
+            </button>
+
+            <div className={styles.dots} role="tablist" aria-label="Chọn khách hàng">
+              {TESTIMONIALS.map((t, i) => (
+                <button
+                  type="button"
+                  key={t.id}
+                  className={`${styles.dot} ${i === active ? styles.dotActive : ""}`}
+                  onClick={() => setActive(i)}
+                  aria-label={t.brand}
+                  aria-selected={i === active}
+                  role="tab"
+                />
+              ))}
+            </div>
+
+            <button
+              type="button"
+              className={`${styles.navBtn} ${styles.navLight}`}
+              onClick={() => go(active + 1)}
+              aria-label="Khách hàng tiếp theo"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="13 6 19 12 13 18" />
+              </svg>
+            </button>
+          </div>
         </div>
-
-        {/* Case 1 — Oni Homestay */}
-        <article className={`${styles.case} reveal`}>
-          <div className={styles.media}>
-            <div className={styles.mediaInnerLight}>
-              <Image src={onihome} alt="Oni Home" className={styles.logo} />
-            </div>
-          </div>
-          <div className={styles.content}>
-            <div className={styles.tags}>
-              <span>ETS AI OPERATION</span>
-              <span>LƯU TRÚ</span>
-            </div>
-            <h3 className={styles.caseTitle}>
-              Homestay check-in tự động — Hẹn hò riêng tư không lễ tân
-            </h3>
-            <p className={styles.pain}>
-              Áp lực vận hành 24/7 &amp; chi phí nhân sự lễ tân quá cao, khó
-              kiểm soát tài chính và quản lý dữ liệu khách hàng.
-            </p>
-            <ul className={styles.results}>
-              <li>Tối ưu 100% chi phí lễ tân</li>
-              <li>Rút ngắn 80% thời gian tư vấn và booking</li>
-              <li>
-                Tích hợp thanh toán đa nền tảng (Visa, MasterCard, Momo, VNPay,
-                VietQR…), quản trị dòng tiền tự động
-              </li>
-            </ul>
-            <blockquote className={styles.quote}>
-              “Entersight không chỉ làm ra một trang web đẹp, chúng tôi trao cho
-              khách hàng một cỗ máy kiếm tiền tự động.”
-              <cite>
-                <strong>Nguyễn Anh Quốc Huy</strong>
-                <span>Founder · Oni Homestay</span>
-              </cite>
-            </blockquote>
-          </div>
-        </article>
-
-        {/* Case 2 — KYE Agency */}
-        <article className={`${styles.case} ${styles.reverse} reveal`}>
-          <div className={styles.media}>
-            <div className={styles.mediaInnerGradient}>
-              <span className={styles.kye}>KYE</span>
-            </div>
-          </div>
-          <div className={styles.content}>
-            <div className={styles.tags}>
-              <span>ETS AI OPERATION</span>
-              <span>THỜI TRANG</span>
-            </div>
-            <h3 className={styles.caseTitle}>
-              AI Fashion Creative Platform — Sáng tạo bứt phá cùng KYE Agency
-            </h3>
-            <p className={styles.pain}>
-              Bài toán sản xuất nội dung thời trang với số lượng lớn nhưng vẫn
-              phải giữ trọn vẹn bản sắc và độ chính xác của từng thiết kế.
-            </p>
-            <ul className={styles.results}>
-              <li>Tăng 5x tốc độ output nội dung</li>
-              <li>
-                Chuẩn xác 100% chi tiết (ren, lưới, họa tiết) &amp; giữ nguyên
-                diện mạo mẫu gốc
-              </li>
-              <li>Hiệu quả 70% Virtual Try-on ngay giai đoạn Demo</li>
-            </ul>
-            <blockquote className={styles.quote}>
-              “Dự án chứng minh rằng công nghệ AI có thể đáp ứng những yêu cầu
-              khắt khe nhất của giới sáng tạo khi được xây dựng dựa trên sự thấu
-              hiểu người dùng.”
-              <cite>
-                <strong>Nguyễn Văn Công</strong>
-                <span>CEO &amp; Founder · KYE Agency</span>
-              </cite>
-            </blockquote>
-          </div>
-        </article>
       </div>
     </section>
   );

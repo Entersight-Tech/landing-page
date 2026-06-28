@@ -37,7 +37,11 @@ substituted with **Montserrat** (the closest free geometric sans). Mapped via
    ("TIẾP THỊ THÔNG MINH — VẬN HÀNH TINH GỌN") + glass button. The former
    standalone `CtaBanner` was merged into this section.
 5. `Solutions` — "MỘT ĐIỂM CHẠM — MỌI GIẢI PHÁP" (ETS AI Operation + cards)
-6. `Cases` — Oni Homestay & KYE Agency case studies
+6. `Cases` — "10+ DOANH NGHIỆP SMEs ĐÃ CHUYỂN MÌNH CÙNG ENTERSIGHT": a
+   purple-themed testimonial carousel (Figma SCREEN 6, node `1114:2673`) with
+   3 client slides (KYE, Oni, SMA) on a lime speech-bubble card, prev/next
+   arrows + dots. Client component (`useState`). Photos/badges live in
+   `public/figma/case-*.png` & `badge-*.png`.
 7. `Partners` — partner logo marquee
 8. `Contact` — stats + lead-capture form ("SẴN SÀNG BỨT PHÁ")
 9. `Footer`

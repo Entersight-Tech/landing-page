@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useState } from "react";
 import Image, { type StaticImageData } from "next/image";
 import styles from "./Cases.module.css";
 
@@ -55,36 +55,16 @@ const TESTIMONIALS: Testimonial[] = [
 ];
 
 function QuoteGlyph({ className }: { className: string }) {
-  // Unique mask id per instance so the cutouts don't collide across slides.
-  const maskId = `qm-${useId().replace(/[^a-zA-Z0-9]/g, "")}`;
+  // Solid double quotation mark (no cut-outs) so it never reads as a hole.
   return (
-    <svg className={className} viewBox="0 0 150 130" aria-hidden="true">
-      <mask
-        id={maskId}
-        maskUnits="userSpaceOnUse"
-        x="0"
-        y="0"
-        width="150"
-        height="130"
-      >
-        <rect width="150" height="130" fill="black" />
-        <circle cx="38" cy="42" r="37" fill="white" />
-        <path d="M14 58 C10 96 22 122 46 128 C38 100 54 82 74 60 Z" fill="white" />
-        <circle cx="112" cy="42" r="37" fill="white" />
-        <path
-          d="M88 58 C84 96 96 122 120 128 C112 100 128 82 148 60 Z"
-          fill="white"
-        />
-        {/* hook notches — black = punched through so the background shows */}
-        <circle cx="60" cy="24" r="14" fill="black" />
-        <circle cx="134" cy="24" r="14" fill="black" />
-      </mask>
-      <rect
-        width="150"
-        height="130"
-        fill="currentColor"
-        mask={`url(#${maskId})`}
-      />
+    <svg
+      className={className}
+      viewBox="0 0 150 120"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path d="M58 22 C58 8 46 2 32 2 C16 2 4 16 4 36 C4 54 16 66 34 66 C28 90 20 104 4 116 C30 108 58 86 64 52 C66 42 64 30 58 22 Z" />
+      <path d="M132 22 C132 8 120 2 106 2 C90 2 78 16 78 36 C78 54 90 66 108 66 C102 90 94 104 78 116 C104 108 132 86 138 52 C140 42 138 30 132 22 Z" />
     </svg>
   );
 }

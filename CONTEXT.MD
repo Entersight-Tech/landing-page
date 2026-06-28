@@ -31,14 +31,16 @@ substituted with **Montserrat** (the closest free geometric sans). Mapped via
 1. `Navigation` — sticky header
 2. `Hero` — "SỐ HOÁ QUY TRÌNH MARKETING ĐÚNG ĐÍCH"
 3. `Values` — E/T/S core values (Evolutionary / Tailor-made / Sincere)
-4. `Quote` — brand philosophy banner
-5. `Problem` — 4 pain points ("NGÂN SÁCH MARKETING ... BỐC HƠI?")
-6. `CtaBanner` — mid-page CTA
-7. `Solutions` — "MỘT ĐIỂM CHẠM — MỌI GIẢI PHÁP" (ETS AI Operation + cards)
-8. `Cases` — Oni Homestay & KYE Agency case studies
-9. `Partners` — partner logo marquee
-10. `Contact` — stats + lead-capture form ("SẴN SÀNG BỨT PHÁ")
-11. `Footer`
+4. `Problem` — Figma SCREEN 3 (node 526:1806): a dark indigo band with the
+   "Entersight" wordmark watermark, 4 frosted-glass pain-point cards
+   ("NGÂN SÁCH MARKETING ... BỐC HƠI?"), and the integrated CTA headline
+   ("TIẾP THỊ THÔNG MINH — VẬN HÀNH TINH GỌN") + glass button. The former
+   standalone `CtaBanner` was merged into this section.
+5. `Solutions` — "MỘT ĐIỂM CHẠM — MỌI GIẢI PHÁP" (ETS AI Operation + cards)
+6. `Cases` — Oni Homestay & KYE Agency case studies
+7. `Partners` — partner logo marquee
+8. `Contact` — stats + lead-capture form ("SẴN SÀNG BỨT PHÁ")
+9. `Footer`
 
 Components use CSS Modules; shared utilities live in `globals.css`.
 Assets exported from Figma are in `public/figma/`.

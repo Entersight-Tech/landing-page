@@ -129,8 +129,8 @@
 .badgeDot {
   position: absolute;
   z-index: 3;
-  top: 150px;
-  left: 82px;
+  top: 128px;
+  left: 84px;
   width: 18px;
   height: 18px;
   border-radius: 50%;

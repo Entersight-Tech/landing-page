@@ -7,7 +7,6 @@ const navLinks = [
   { label: "Home", href: "#top" },
   { label: "About", href: "#values" },
   { label: "How it Works", href: "#solutions" },
-  { label: "Services", href: "#cases" },
 ];
 
 export default function Outro() {

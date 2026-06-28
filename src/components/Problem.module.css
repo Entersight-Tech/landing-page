@@ -4,9 +4,24 @@
   isolation: isolate;
   padding: clamp(72px, 9vw, 116px) 0 clamp(70px, 9vw, 104px);
   background:
-    radial-gradient(120% 70% at 50% -10%, rgba(140, 130, 255, 0.45), transparent 55%),
-    linear-gradient(180deg, #5347d8 0%, #4a3ecf 42%, #362aa6 100%);
-  background-color: #4a3ecf;
+    radial-gradient(105% 70% at 50% -6%, rgba(126, 112, 255, 0.42), transparent 58%),
+    linear-gradient(178deg, #3a2dcc 0%, #4636d8 28%, #4a3ee0 50%, #3b2ec0 76%, #2c2294 100%);
+  background-color: #4434c8;
+}
+
+/* soft curved waves along the bottom (Figma "BG SOLID" layer) */
+.curves {
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  aspect-ratio: 2880 / 436;
+  background: url("/figma/problem-curves.png") bottom center / 100% 100% no-repeat;
+  mix-blend-mode: soft-light;
+  opacity: 0.55;
+  pointer-events: none;
 }
 
 /* film grain, matching the Values band treatment */

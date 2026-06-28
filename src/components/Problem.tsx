@@ -31,6 +31,7 @@ export default function Problem() {
   return (
     <section className={styles.section} id="problem">
       <span className={styles.watermark} aria-hidden="true" />
+      <span className={styles.curves} aria-hidden="true" />
       <span className={styles.glow} aria-hidden="true" />
 
       <div className={`container ${styles.inner}`}>

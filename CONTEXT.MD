@@ -40,8 +40,9 @@ substituted with **Montserrat** (the closest free geometric sans). Mapped via
 6. `Cases` — Oni Homestay & KYE Agency case studies
 7. `Partners` — partner logo marquee
 8. `Outro` — the closing of the page. Two visually separate sections that
-   share ONE continuous gradient background (light at top → lime glow + faded
-   Entersight mark watermark bottom-left → purple glow bottom-right):
+   share ONE continuous gradient background (Figma node 997:1598 — white at
+   top/centre → lime glow + lime asterisk watermark bottom-left → purple glow
+   rising up the right side):
    - `Contact` (Figma SCREEN 9, node 1134:2161) — stats + lead-capture form
      ("SẴN SÀNG BỨT PHÁ CÙNG ENTERSIGHT?")
    - "Tối ưu vận hành, Tăng trưởng đột phá" banner card (Figma SCREEN 10,

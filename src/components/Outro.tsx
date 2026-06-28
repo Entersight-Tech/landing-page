@@ -13,18 +13,18 @@ const navLinks = [
 export default function Outro() {
   return (
     <div className={styles.closing}>
-      {/* faded Entersight mark watermark, bottom-left */}
+      {/* lime asterisk watermark hugging the bottom-left edge */}
       <svg
         className={styles.watermark}
-        viewBox="0 0 120 132"
+        viewBox="-60 -60 120 120"
         fill="currentColor"
         aria-hidden="true"
       >
-        <path d="M6 6h84L60 40H6z" />
-        <path d="M90 6 60 40V8z" opacity="0.7" />
-        <path d="M18 52h84L72 86H18z" />
-        <path d="M102 52 72 86V54z" opacity="0.7" />
-        <path d="M72 86v40L50 100z" opacity="0.55" />
+        <g>
+          <rect x="-9" y="-52" width="18" height="104" rx="9" />
+          <rect x="-9" y="-52" width="18" height="104" rx="9" transform="rotate(60)" />
+          <rect x="-9" y="-52" width="18" height="104" rx="9" transform="rotate(120)" />
+        </g>
       </svg>
 
       {/* Section 1 — "SẴN SÀNG BỨT PHÁ CÙNG ENTERSIGHT?" (lead capture) */}
@@ -40,6 +40,7 @@ export default function Outro() {
               className={styles.phone}
               width={1200}
               height={1200}
+              priority
             />
           </div>
           <div className={styles.bannerText}>

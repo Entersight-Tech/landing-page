@@ -58,14 +58,18 @@ function QuoteGlyph({ className }: { className: string }) {
   return (
     <svg
       className={className}
-      viewBox="0 0 130 80"
-      fill="currentColor"
+      viewBox="0 0 150 130"
+      fill="none"
       aria-hidden="true"
     >
-      <circle cx="31" cy="29" r="23" />
-      <path d="M14 42 L48 42 L26 70 Z" />
-      <circle cx="99" cy="29" r="23" />
-      <path d="M82 42 L116 42 L94 70 Z" />
+      <g fill="currentColor">
+        <circle cx="38" cy="42" r="37" />
+        <path d="M14 58 C10 96 22 122 46 128 C38 100 54 82 74 60 Z" />
+        <circle cx="112" cy="42" r="37" />
+        <path d="M88 58 C84 96 96 122 120 128 C112 100 128 82 148 60 Z" />
+      </g>
+      <circle cx="60" cy="24" r="14" fill="var(--blue)" />
+      <circle cx="134" cy="24" r="14" fill="var(--blue)" />
     </svg>
   );
 }

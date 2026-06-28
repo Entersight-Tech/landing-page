@@ -150,13 +150,13 @@
 .quoteMark {
   position: absolute;
   z-index: 2;
-  top: -44px;
-  left: -36px;
-  width: 110px;
+  top: -54px;
+  left: -40px;
+  width: 122px;
   height: auto;
   color: var(--white);
   pointer-events: none;
-  filter: drop-shadow(0 12px 22px rgba(7, 6, 40, 0.35));
+  filter: drop-shadow(0 14px 22px rgba(7, 6, 40, 0.3));
 }
 
 .quote {
@@ -283,9 +283,9 @@
   }
 
   .quoteMark {
-    top: -40px;
-    left: 14px;
-    width: 92px;
+    top: -48px;
+    left: 12px;
+    width: 100px;
   }
 
   .badgeDot {

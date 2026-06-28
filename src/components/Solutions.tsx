@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import Image, { type StaticImageData } from "next/image";
 import styles from "./Solutions.module.css";
 import brain from "../../public/figma/brain.png";
@@ -77,7 +77,7 @@ const slides: Slide[] = [
 
 function Check() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <circle cx="12" cy="12" r="10" />
       <path d="M8 12.5l2.5 2.5L16 9.5" />
     </svg>
@@ -86,7 +86,7 @@ function Check() {
 
 function ArrowRight() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M5 12h14" />
       <path d="M13 6l6 6-6 6" />
     </svg>
@@ -95,7 +95,7 @@ function ArrowRight() {
 
 function ArrowUpRight() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M7 17 17 7" />
       <path d="M8 7h9v9" />
     </svg>
@@ -104,7 +104,33 @@ function ArrowUpRight() {
 
 export default function Solutions() {
   const [active, setActive] = useState(0);
+  const [offset, setOffset] = useState(0);
+  const trackRef = useRef<HTMLDivElement>(null);
   const count = slides.length;
+
+  // Distance to translate the track so the active card aligns to the left
+  // edge of the content column, leaving the next card peeking on the right.
+  const measure = useCallback((idx: number) => {
+    const track = trackRef.current;
+    if (!track) return 0;
+    const items = track.children;
+    const first = items[0] as HTMLElement | undefined;
+    if (!first) return 0;
+    const second = items[1] as HTMLElement | undefined;
+    const step = second ? second.offsetLeft - first.offsetLeft : first.offsetWidth;
+    return step * idx;
+  }, []);
+
+  useEffect(() => {
+    setOffset(measure(active));
+  }, [active, measure]);
+
+  useEffect(() => {
+    const onResize = () => setOffset(measure(active));
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, [active, measure]);
+
   const go = (i: number) => setActive(((i % count) + count) % count);
 
   return (
@@ -128,79 +154,78 @@ export default function Solutions() {
         </div>
 
         <div className={`${styles.carousel} reveal`}>
-          <div className={styles.viewport}>
-            <div
-              className={styles.track}
-              style={{ transform: `translateX(-${active * 100}%)` }}
-            >
-              {slides.map((s, i) => (
-                <div
-                  className={styles.slide}
-                  key={s.title}
-                  aria-hidden={i !== active}
-                >
-                  <article className={styles.card}>
-                    <div className={styles.cardText}>
-                      <h3 className={styles.cTitle}>{s.title}</h3>
-                      <p className={styles.tagline}>{s.tagline}</p>
-                      <ul className={styles.bullets}>
-                        {s.bullets.map((b) => (
-                          <li key={b}>
-                            <Check />
-                            <span>{b}</span>
-                          </li>
-                        ))}
-                      </ul>
-                      <a href="#contact" className={styles.cta} tabIndex={i === active ? 0 : -1}>
-                        Tư vấn triển khai
-                        <ArrowUpRight />
-                      </a>
+          <div
+            className={styles.track}
+            ref={trackRef}
+            style={{ transform: `translateX(-${offset}px)` }}
+          >
+            {slides.map((s, i) => (
+              <div
+                className={`${styles.slide} ${i === active ? styles.isActive : ""}`}
+                key={s.title}
+                aria-hidden={i !== active}
+              >
+                <article className={styles.card}>
+                  <div className={styles.cardText}>
+                    <h3 className={styles.cTitle}>{s.title}</h3>
+                    <p className={styles.tagline}>{s.tagline}</p>
+                    <ul className={styles.bullets}>
+                      {s.bullets.map((b) => (
+                        <li key={b}>
+                          <Check />
+                          <span>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <a href="#contact" className={styles.cta} tabIndex={i === active ? 0 : -1}>
+                      Tư vấn triển khai
+                      <ArrowUpRight />
+                    </a>
+                  </div>
+                  <div className={styles.cardVisual}>
+                    <div className={styles.media}>
+                      <Image src={s.image} alt={s.alt} sizes="(max-width: 860px) 90vw, 340px" />
                     </div>
-                    <div className={styles.cardVisual}>
-                      <div className={styles.media}>
-                        <Image src={s.image} alt={s.alt} sizes="(max-width: 860px) 90vw, 340px" />
-                      </div>
-                    </div>
-                  </article>
-                </div>
-              ))}
-            </div>
+                  </div>
+                </article>
+              </div>
+            ))}
           </div>
+        </div>
 
-          <div className={styles.controls}>
-            <div className={styles.dots} role="tablist" aria-label="Chọn giải pháp">
-              {slides.map((s, i) => (
-                <button
-                  key={s.title}
-                  type="button"
-                  role="tab"
-                  aria-selected={i === active}
-                  aria-label={s.title}
-                  className={`${styles.dot} ${i === active ? styles.dotActive : ""}`}
-                  onClick={() => go(i)}
-                />
-              ))}
-            </div>
-            <div className={styles.arrows}>
+        <div className={styles.controls}>
+          <div className={styles.dots} role="tablist" aria-label="Chọn giải pháp">
+            {slides.map((s, i) => (
               <button
+                key={s.title}
                 type="button"
-                className={`${styles.arrow} ${styles.arrowPrev}`}
-                onClick={() => go(active - 1)}
-                aria-label="Giải pháp trước"
-              >
-                <span className={styles.flip}>
-                  <ArrowRight />
-                </span>
-              </button>
-              <button
-                type="button"
-                className={`${styles.arrow} ${styles.arrowNext}`}
-                onClick={() => go(active + 1)}
-                aria-label="Giải pháp tiếp theo"
-              >
+                role="tab"
+                aria-selected={i === active}
+                aria-label={s.title}
+                className={`${styles.dot} ${i === active ? styles.dotActive : ""}`}
+                onClick={() => go(i)}
+              />
+            ))}
+          </div>
+          <div className={styles.arrows}>
+            <button
+              type="button"
+              className={`${styles.arrow} ${styles.arrowPrev}`}
+              onClick={() => go(active - 1)}
+              aria-label="Giải pháp trước"
+            >
+              <span className={styles.flip}>
                 <ArrowRight />
-              </button>
-            </div>
+              </span>
+            </button>
+            <button
+              type="button"
+              className={`${styles.arrow} ${styles.arrowNext}`}
+              onClick={() => go(active + 1)}
+              aria-label="Giải pháp tiếp theo"
+            >
+              <ArrowRight />
+            </button>
           </div>
         </div>
       </div>

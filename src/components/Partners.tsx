@@ -1,12 +1,12 @@
 import styles from "./Partners.module.css";
 
 const logos = [
-  "/figma/logo1.svg",
-  "/figma/logo2.svg",
-  "/figma/logo3.svg",
-  "/figma/logo4.svg",
-  "/figma/logo5.svg",
-  "/figma/logo6.svg",
+  "/figma/partner-buttery.png",
+  "/figma/partner-sma.png",
+  "/figma/partner-vemanti.png",
+  "/figma/partner-mtl.png",
+  "/figma/partner-kye.png",
+  "/figma/partner-dctech.png",
 ];
 
 export default function Partners() {

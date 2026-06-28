@@ -41,8 +41,18 @@ substituted with **Montserrat** (the closest free geometric sans). Mapped via
 7. `Partners` — Figma SCREEN 7 (node 1123:3217): "ĐỐI TÁC DOANH NGHIỆP" —
    a full-bleed lime accent strip on a light-gray (`--lightgray`) band, a
    single centered heading, and a full-colour partner logo marquee
-8. `Contact` — stats + lead-capture form ("SẴN SÀNG BỨT PHÁ")
-9. `Footer`
+8. `Outro` — the closing of the page. Two visually separate sections that
+   share ONE continuous gradient background (Figma node 997:1598 — white at
+   top/centre → lime glow + lime asterisk watermark bottom-left → purple glow
+   rising up the right side):
+   - `Contact` (Figma SCREEN 9, node 1134:2161) — stats + lead-capture form
+     ("SẴN SÀNG BỨT PHÁ CÙNG ENTERSIGHT?")
+   - "Tối ưu vận hành, Tăng trưởng đột phá" banner card (Figma SCREEN 10,
+     node 1134:2218) — floating phone (`public/figma/contact-phone.png`,
+     a transparent source asset + CSS lime glow) + headline & subtitle
+   - the light footer (logo + copyright, Home/About/How it Works/Services nav,
+     and circular Email / Facebook / Zalo social buttons)
+   The former standalone dark `Footer` component was replaced by this footer.
 
 Components use CSS Modules; shared utilities live in `globals.css`.
 Assets exported from Figma are in `public/figma/`.

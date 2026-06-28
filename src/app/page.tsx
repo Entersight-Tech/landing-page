@@ -1,7 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import Values from "@/components/Values";
-import Quote from "@/components/Quote";
 import Problem from "@/components/Problem";
 import CtaBanner from "@/components/CtaBanner";
 import Solutions from "@/components/Solutions";
@@ -18,7 +17,6 @@ export default function Home() {
       <main>
         <Hero />
         <Values />
-        <Quote />
         <Problem />
         <CtaBanner />
         <Solutions />

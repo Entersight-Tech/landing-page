@@ -1,85 +1,11 @@
-/* ---- Hero: full-bleed indigo gradient screen (Figma node 544:2116) ---- */
+/* ---- Hero: full-bleed background image (gradient + "Entersight" wordmark +
+   grain are all baked into the asset), with the model/orb/copy layered on top ---- */
 .hero {
   position: relative;
   isolation: isolate;
   overflow: hidden;
   min-height: 686px;
-  /* solid base (#5549DE) lifted by stacked glows:
-     bright blue top-left · violet top-right · deep navy bottom-left ·
-     lime-green glow on the right, behind the model */
-  background-color: #5549de;
-  background-image:
-    /* lime-green glow, bottom-right, behind / under the model */
-    radial-gradient(
-      56% 62% at 92% 90%,
-      rgba(180, 240, 56, 0.66),
-      rgba(122, 206, 96, 0.22) 42%,
-      transparent 72%
-    ),
-    /* green wash along the bottom-centre */
-    radial-gradient(
-      50% 46% at 64% 103%,
-      rgba(150, 224, 86, 0.32),
-      transparent 64%
-    ),
-    /* teal-green lift mid-right behind the model */
-    radial-gradient(
-      38% 48% at 80% 56%,
-      rgba(110, 205, 150, 0.22),
-      transparent 62%
-    ),
-    /* deep navy, bottom-left */
-    radial-gradient(
-      66% 82% at -8% 110%,
-      rgba(7, 2, 86, 0.96),
-      rgba(15, 7, 118, 0.5) 42%,
-      transparent 72%
-    ),
-    /* bright blue, top-left */
-    radial-gradient(
-      72% 66% at 6% -12%,
-      rgba(92, 112, 250, 0.52),
-      transparent 56%
-    ),
-    /* violet, top-right */
-    radial-gradient(
-      58% 60% at 99% -6%,
-      rgba(126, 92, 234, 0.42),
-      transparent 56%
-    );
-}
-
-/* film-grain overlay (Figma "Noise" layer, soft-light) — a seamless SVG grain
-   in place of the heavy raster export */
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='220'%20height='220'%3E%3Cfilter%20id='n'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='0.82'%20numOctaves='3'%20stitchTiles='stitch'/%3E%3CfeColorMatrix%20type='saturate'%20values='0'/%3E%3C/filter%3E%3Crect%20width='100%25'%20height='100%25'%20filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 180px 180px;
-  mix-blend-mode: soft-light;
-  opacity: 0.62;
-}
-
-/* faint tone-on-tone wordmark behind the content */
-.watermark {
-  position: absolute;
-  z-index: 1;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: var(--font-head);
-  font-weight: 800;
-  font-size: clamp(140px, 21vw, 300px);
-  letter-spacing: -0.025em;
-  line-height: 1;
-  white-space: nowrap;
-  color: #5e51f7;
-  opacity: 0.55;
-  user-select: none;
-  pointer-events: none;
+  background: #2b2f8c url("/figma/hero-bg.webp") center center / cover no-repeat;
 }
 
 /* model — anchored to the right, headset near the top, cropped at the fold.
@@ -233,11 +159,6 @@
     bottom: 26%;
     left: 9%;
     width: 64px;
-  }
-
-  .watermark {
-    font-size: 32vw;
-    top: 38%;
   }
 }
 

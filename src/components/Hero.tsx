@@ -6,10 +6,6 @@ import orb from "../../public/figma/orb.png";
 export default function Hero() {
   return (
     <section className={styles.hero} id="top">
-      <span className={styles.watermark} aria-hidden>
-        Entersight
-      </span>
-
       <Image
         src={heroPerson}
         alt="Chuyên gia Entersight ứng dụng công nghệ thực tế ảo"

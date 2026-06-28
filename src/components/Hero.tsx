@@ -35,7 +35,7 @@ export default function Hero() {
           </p>
           <div className={styles.actions}>
             <a href="#contact" className={styles.cta}>
-              <span>Tư Vấn Triển Khai</span>
+              Tư Vấn Triển Khai
             </a>
           </div>
         </div>

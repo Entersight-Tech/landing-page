@@ -129,7 +129,6 @@ export default function Cases() {
                     </div>
 
                     <div className={styles.body}>
-                      <span className={styles.quoteMark} aria-hidden="true" />
                       <p className={styles.quote}>{t.quote}</p>
                       <div className={styles.attr}>
                         <span className={styles.role}>{t.role}</span>

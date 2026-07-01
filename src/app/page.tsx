@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import Values from "@/components/Values";
 import Problem from "@/components/Problem";
 import Solutions from "@/components/Solutions";
+import CaseStudies from "@/components/CaseStudies";
 import Partners from "@/components/Partners";
 import Outro from "@/components/Outro";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -16,6 +17,7 @@ export default function Home() {
         <Values />
         <Problem />
         <Solutions />
+        <CaseStudies />
         <Partners />
         <Outro />
       </main>

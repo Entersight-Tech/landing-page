@@ -1,29 +1,20 @@
 import styles from "./Partners.module.css";
 
 const logos = [
-  "/figma/logo1.svg",
-  "/figma/logo2.svg",
-  "/figma/logo3.svg",
-  "/figma/logo4.svg",
-  "/figma/logo5.svg",
-  "/figma/logo6.svg",
+  "/figma/partner-buttery.png",
+  "/figma/partner-sma.png",
+  "/figma/partner-vemanti.png",
+  "/figma/partner-mtl.png",
+  "/figma/partner-kye.png",
+  "/figma/partner-dctech.png",
 ];
 
 export default function Partners() {
   return (
-    <section className="section" id="partners">
+    <section className={styles.section} id="partners">
+      <div className={styles.bar} aria-hidden="true" />
       <div className="container">
-        <div className={styles.head}>
-          <span className="eyebrow">Đối tác doanh nghiệp</span>
-          <h2 className="h-title">
-            ĐỒNG HÀNH CÙNG DOANH NGHIỆP
-            <br />
-            XUYÊN SUỐT <span className="accent">LỘ TRÌNH CHUYỂN ĐỔI SỐ</span>
-          </h2>
-          <p className={styles.lead}>
-            <strong>10+ doanh nghiệp SMEs</strong> đã chuyển mình cùng Entersight.
-          </p>
-        </div>
+        <h2 className={`h-title ${styles.title}`}>ĐỐI TÁC DOANH NGHIỆP</h2>
       </div>
 
       <div className={styles.marquee}>

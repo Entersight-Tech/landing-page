@@ -39,12 +39,25 @@ substituted with **Montserrat** (the closest free geometric sans). Mapped via
 5. `Solutions` — "MỘT ĐIỂM CHẠM — MỌI GIẢI PHÁP" (ETS AI Operation + cards)
 6. `Cases` — "10+ DOANH NGHIỆP SMEs ĐÃ CHUYỂN MÌNH CÙNG ENTERSIGHT": a
    purple-themed testimonial carousel (Figma SCREEN 6, node `1114:2673`) with
-   3 client slides (KYE, Oni, SMA) on a lime speech-bubble card, prev/next
-   arrows + dots. Client component (`useState`). Photos/badges live in
-   `public/figma/case-*.png` & `badge-*.png`.
-7. `Partners` — partner logo marquee
-8. `Contact` — stats + lead-capture form ("SẴN SÀNG BỨT PHÁ")
-9. `Footer`
+   3 client slides (KYE, Oni, SMA) on a uniform lime card, prev/next arrows +
+   dots. Client component (`useState`). Founder photos in
+   `public/figma/case-*.png`, brand logos in `public/figma/logo-*.png`.
+   Sits between `Solutions` and `Partners`.
+7. `Partners` — Figma SCREEN 7 (node 1123:3217): "ĐỐI TÁC DOANH NGHIỆP" —
+   a full-bleed lime accent strip on a light-gray (`--lightgray`) band, a
+   single centered heading, and a full-colour partner logo marquee
+8. `Outro` — the closing of the page. Two visually separate sections that
+   share ONE continuous gradient background (Figma node 997:1598 — white at
+   top/centre → lime glow + lime asterisk watermark bottom-left → purple glow
+   rising up the right side):
+   - `Contact` (Figma SCREEN 9, node 1134:2161) — stats + lead-capture form
+     ("SẴN SÀNG BỨT PHÁ CÙNG ENTERSIGHT?")
+   - "Tối ưu vận hành, Tăng trưởng đột phá" banner card (Figma SCREEN 10,
+     node 1134:2218) — floating phone (`public/figma/contact-phone.png`,
+     a transparent source asset + CSS lime glow) + headline & subtitle
+   - the light footer (logo + copyright, Home/About/How it Works nav,
+     and circular Email / Facebook / Zalo social buttons)
+   The former standalone dark `Footer` component was replaced by this footer.
 
 Components use CSS Modules; shared utilities live in `globals.css`.
 Assets exported from Figma are in `public/figma/`.

@@ -6,7 +6,7 @@ import logoFull from "../../public/figma/logo-full.png";
 const navLinks = [
   { label: "Home", href: "#top" },
   { label: "About", href: "#values" },
-  { label: "How it Works", href: "#digital-transformation" },
+  { label: "How it Works", href: "#transformation" },
   { label: "Services", href: "#solutions" },
 ];
 

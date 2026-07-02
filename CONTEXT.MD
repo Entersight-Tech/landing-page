@@ -37,10 +37,22 @@ substituted with **Montserrat** (the closest free geometric sans). Mapped via
    ("TIẾP THỊ THÔNG MINH — VẬN HÀNH TINH GỌN") + glass button. The former
    standalone `CtaBanner` was merged into this section.
 5. `Solutions` — "MỘT ĐIỂM CHẠM — MỌI GIẢI PHÁP" (ETS AI Operation + cards)
-6. `Partners` — Figma SCREEN 7 (node 1123:3217): "ĐỐI TÁC DOANH NGHIỆP" —
+6. `CaseStudies` — "CHUYỂN ÁP LỰC VẬN HÀNH THÀNH ĐÒN BẨY TĂNG TRƯỞNG":
+   project carousel (Oni, KYE, Một, Quà Tết Má Làm) with Painpoints /
+   Solutions / Data-driven results chips per slide
+7. `Cases` — "10+ DOANH NGHIỆP SMEs ĐÃ CHUYỂN MÌNH CÙNG ENTERSIGHT": a
+   purple-themed testimonial carousel (Figma SCREEN 6, node `1148:3199`) with
+   3 client slides (KYE, Oni, SMA) on the stepped lime card art
+   (`public/figma/card-bg.png`) with a white comma quote + head halo,
+   prev/next arrows + dots. Client component (`useState`). Founder photos in
+   `public/figma/case-kye.png` / `founder-oni.png` / `case-sma.png`, brand
+   logos in `public/figma/logo-*.png`.
+8. `Partners` — Figma SCREEN 7 (node 1123:3217): "ĐỐI TÁC DOANH NGHIỆP" —
    a full-bleed lime accent strip on a light-gray (`--lightgray`) band, a
    single centered heading, and a full-colour partner logo marquee
-7. `Outro` — the closing of the page:
+9. `Transformation` — digital transformation band (section id
+   `transformation`)
+10. `Outro` — the closing of the page:
    - `Contact` (Figma SCREEN 9, node 1134:2161) — stats + lead-capture form
      ("SẴN SÀNG BỨT PHÁ CÙNG ENTERSIGHT?") on a plain white background
    - a gradient zone matching Figma node 997:1598 (SCREEN 10 background:

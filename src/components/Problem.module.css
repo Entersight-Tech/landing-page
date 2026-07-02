@@ -192,23 +192,35 @@
   color: var(--lightgray);
 }
 
+/* frosted-glass CTA, node 565:343 — 572×56 rounded 17px, lime label,
+   layered glowing white borders + a light glare on the top-left corner */
 .ctaBtn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   margin-top: clamp(24px, 3vw, 34px);
-  padding: 15px 40px;
+  width: min(572px, 100%);
+  min-height: clamp(48px, 3.9vw, 56px);
+  padding: 10px 28px;
   font-family: var(--font-head);
   font-weight: 700;
-  font-size: clamp(14px, 1.5vw, 16px);
-  letter-spacing: 0.5px;
+  font-size: clamp(15px, 1.8vw, 25px);
+  letter-spacing: 0.4px;
   text-transform: uppercase;
   color: var(--lime);
-  background: rgba(255, 255, 255, 0.07);
-  border: 1.5px solid rgba(255, 255, 255, 0.4);
-  border-radius: 999px;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  background: radial-gradient(
+      180px 70px at 12% -25%,
+      rgba(255, 255, 255, 0.3),
+      transparent 70%
+    ),
+    rgba(255, 255, 255, 0.1);
+  border: 1.6px solid rgba(255, 255, 255, 0.75);
+  border-radius: 17px;
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.09),
+    0 0 14px 3px rgba(255, 255, 255, 0.12),
+    inset 0 0 14px rgba(255, 255, 255, 0.14);
   transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease,
     box-shadow 0.18s ease;
 }

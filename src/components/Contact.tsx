@@ -60,7 +60,7 @@ export default function Contact() {
               </label>
               <label>
                 Số điện thoại
-                <input type="tel" placeholder="0123 456 789" required />
+                <input type="tel" placeholder="0123456789" required />
               </label>
               <label>
                 Tên doanh nghiệp

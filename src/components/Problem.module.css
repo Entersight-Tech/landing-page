@@ -2,16 +2,71 @@
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  padding: clamp(72px, 9vw, 116px) 0 clamp(70px, 9vw, 104px);
-  /* single background image exported from Figma (gradient + "Entersight"
-     wordmark + curved waves + lime stripe baked in) */
-  background: url("/figma/problem-bg.png") center bottom / cover no-repeat;
-  background-color: #4434c8;
+  padding: clamp(72px, 9vw, 116px) 0 clamp(110px, 13vw, 170px);
+  /* Figma layer stack rebuilt in CSS: #5549DE base darkened toward the top
+     by two huge blurred shadows, grain on top, light band + lime stripe at
+     the bottom (see .band / .wedge / .stripe) */
+  background-color: #5549de;
+  background-image: radial-gradient(
+      100% 55% at 85% -5%,
+      rgba(13, 8, 60, 0.45),
+      transparent 62%
+    ),
+    radial-gradient(100% 55% at 12% -5%, rgba(13, 8, 60, 0.35), transparent 60%),
+    linear-gradient(180deg, #4a3ccd 0%, #5549de 45%, #6153e4 100%);
+}
+
+/* film grain over every layer, same asset Figma uses (mix soft-light) */
+.section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: url("/figma/values-noise.png") top left / 1047px auto repeat;
+  mix-blend-mode: soft-light;
+  opacity: 0.43;
+  pointer-events: none;
+}
+
+/* lighter violet band behind the CTA with the two faint decorative rings,
+   fading dark toward the lime stripe */
+.band {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: clamp(180px, 17.6vw, 253px);
+  background: linear-gradient(180deg, rgba(10, 6, 44, 0.16), transparent 38%),
+    linear-gradient(180deg, transparent 55%, rgba(10, 7, 45, 0.5) 100%),
+    url("/figma/problem-band.svg") center top / cover no-repeat,
+    linear-gradient(180deg, #6153e4 0%, #5c4fe1 100%);
+}
+
+/* diagonal lime stripe — higher on the left, like the design */
+.stripe {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: clamp(56px, 6.3vw, 91px);
+  background: var(--lime);
+  clip-path: polygon(0 0, 100% 44.6%, 100% 61.5%, 0 26.4%);
+}
+
+/* dark wedge under the stripe */
+.wedge {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: clamp(56px, 6.3vw, 91px);
+  background: linear-gradient(90deg, #14103e, #1c164a);
+  clip-path: polygon(0 26.4%, 100% 61.5%, 100% 100%, 0 100%);
 }
 
 .inner {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 /* ---------- Heading ---------- */
@@ -137,23 +192,35 @@
   color: var(--lightgray);
 }
 
+/* frosted-glass CTA, node 565:343 — 572×56 rounded 17px, lime label,
+   layered glowing white borders + a light glare on the top-left corner */
 .ctaBtn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   margin-top: clamp(24px, 3vw, 34px);
-  padding: 15px 40px;
+  width: min(572px, 100%);
+  min-height: clamp(48px, 3.9vw, 56px);
+  padding: 10px 28px;
   font-family: var(--font-head);
   font-weight: 700;
-  font-size: clamp(14px, 1.5vw, 16px);
-  letter-spacing: 0.5px;
+  font-size: clamp(15px, 1.8vw, 25px);
+  letter-spacing: 0.4px;
   text-transform: uppercase;
   color: var(--lime);
-  background: rgba(255, 255, 255, 0.07);
-  border: 1.5px solid rgba(255, 255, 255, 0.4);
-  border-radius: 999px;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  background: radial-gradient(
+      180px 70px at 12% -25%,
+      rgba(255, 255, 255, 0.3),
+      transparent 70%
+    ),
+    rgba(255, 255, 255, 0.1);
+  border: 1.6px solid rgba(255, 255, 255, 0.75);
+  border-radius: 17px;
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.09),
+    0 0 14px 3px rgba(255, 255, 255, 0.12),
+    inset 0 0 14px rgba(255, 255, 255, 0.14);
   transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease,
     box-shadow 0.18s ease;
 }

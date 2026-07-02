@@ -30,6 +30,9 @@ const items = [
 export default function Problem() {
   return (
     <section className={styles.section} id="problem">
+      <div className={styles.band} aria-hidden="true" />
+      <div className={styles.wedge} aria-hidden="true" />
+      <div className={styles.stripe} aria-hidden="true" />
       <div className={`container ${styles.inner}`}>
         <h2 className={styles.title}>
           NGÂN SÁCH MARKETING

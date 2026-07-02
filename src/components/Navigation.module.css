@@ -4,25 +4,45 @@
   left: 0;
   right: 0;
   z-index: 100;
-  transition: background 0.25s ease, box-shadow 0.25s ease, backdrop-filter 0.25s;
+  transition: padding 0.25s ease;
   padding: 18px 0;
 }
 
 .scrolled {
-  background: rgba(245, 246, 255, 0.82);
-  backdrop-filter: blur(14px);
-  box-shadow: 0 1px 0 rgba(74, 58, 255, 0.08);
   padding: 12px 0;
 }
 
 .inner {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
 }
 
-/* ---- logo lockup (white wordmark on hero, dark when scrolled) ---- */
+/* ---- frosted pill shown behind the bar once the page scrolls ----
+   Per Figma the pill wraps the logo + menu with rounded 32px corners while
+   the ĐĂNG KÍ NGAY button pokes out past its right edge. */
+.glass {
+  position: absolute;
+  top: -8px;
+  bottom: -12px;
+  left: 7px;
+  right: 129px;
+  border-radius: 32px;
+  background: rgba(188, 188, 188, 0.5);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.scrolled .glass {
+  opacity: 1;
+}
+
+/* ---- logo (white wordmark in both states, per Figma) ---- */
 .logo {
   position: relative;
   display: inline-flex;
@@ -35,25 +55,9 @@
   height: 30px;
   width: auto;
   display: block;
-  transition: opacity 0.25s ease;
 }
 
-.logoDark {
-  position: absolute;
-  left: 0;
-  top: 0;
-  opacity: 0;
-}
-
-.scrolled .logoLight {
-  opacity: 0;
-}
-
-.scrolled .logoDark {
-  opacity: 1;
-}
-
-/* ---- links ---- */
+/* ---- links (stay white when scrolled) ---- */
 .links {
   display: flex;
   gap: clamp(14px, 1.6vw, 26px);
@@ -62,7 +66,7 @@
 
 .links a {
   font-size: 13.5px;
-  font-weight: 500;
+  font-weight: 600;
   white-space: nowrap;
   color: rgba(255, 255, 255, 0.88);
   transition: color 0.18s ease;
@@ -72,14 +76,6 @@
   color: var(--white);
 }
 
-.scrolled .links a {
-  color: #3a3a4a;
-}
-
-.scrolled .links a:hover {
-  color: var(--blue);
-}
-
 .right {
   display: flex;
   align-items: center;
@@ -87,7 +83,7 @@
   flex: none;
 }
 
-/* ---- ĐĂNG KÍ NGAY pill ---- */
+/* ---- ĐĂNG KÍ NGAY pill (filled light pill, purple text — both states) ---- */
 .signup {
   display: inline-flex;
   align-items: center;
@@ -96,19 +92,17 @@
   font-weight: 700;
   font-size: 13px;
   letter-spacing: 0.2px;
-  color: var(--white);
-  border: 1.5px solid rgba(255, 255, 255, 0.65);
+  color: var(--purple);
+  background: #f4f4f4;
   border-radius: 999px;
   padding: 10px 20px;
   white-space: nowrap;
-  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease,
-    transform 0.18s ease;
+  transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
 }
 
 .signup:hover {
-  background: var(--white);
-  color: var(--purple);
-  border-color: var(--white);
+  background: var(--purple);
+  color: var(--white);
   transform: translateY(-1px);
 }
 
@@ -118,17 +112,6 @@
 
 .signup:hover .arrow {
   transform: translateX(3px);
-}
-
-.scrolled .signup {
-  color: var(--purple);
-  border-color: rgba(85, 73, 222, 0.5);
-}
-
-.scrolled .signup:hover {
-  background: var(--purple);
-  color: var(--white);
-  border-color: var(--purple);
 }
 
 .burger {
@@ -148,12 +131,14 @@
   border-radius: 2px;
 }
 
-.scrolled .burger span {
-  background: var(--ink);
-}
-
 /* 7 long links need room — collapse to a drawer below the desktop breakpoint */
 @media (max-width: 1024px) {
+  /* no desktop menu inside the pill — let it span the whole bar */
+  .glass {
+    left: 7px;
+    right: 7px;
+  }
+
   .links {
     position: absolute;
     top: 100%;
@@ -170,8 +155,7 @@
     transition: opacity 0.2s ease, transform 0.2s ease;
   }
 
-  .links a,
-  .scrolled .links a {
+  .links a {
     width: 100%;
     padding: 10px 0;
     color: #3a3a4a;

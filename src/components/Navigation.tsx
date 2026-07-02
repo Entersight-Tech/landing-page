@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./Navigation.module.css";
 import logoReverse from "../../public/figma/logo-reverse.png";
-import logoFull from "../../public/figma/logo-full.png";
 
 const links = [
   { label: "Về Entersight", href: "#top" },
@@ -30,18 +29,13 @@ export default function Navigation() {
   return (
     <header className={`${styles.nav} ${scrolled ? styles.scrolled : ""}`}>
       <div className={`container ${styles.inner}`}>
+        <div className={styles.glass} aria-hidden />
         <a href="#top" className={styles.logo} aria-label="Entersight">
           <Image
             src={logoReverse}
             alt="Entersight"
-            className={`${styles.logoImg} ${styles.logoLight}`}
+            className={styles.logoImg}
             priority
-          />
-          <Image
-            src={logoFull}
-            alt=""
-            aria-hidden
-            className={`${styles.logoImg} ${styles.logoDark}`}
           />
         </a>
 

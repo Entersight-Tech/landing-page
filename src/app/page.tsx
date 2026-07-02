@@ -4,6 +4,7 @@ import Values from "@/components/Values";
 import Problem from "@/components/Problem";
 import Solutions from "@/components/Solutions";
 import CaseStudies from "@/components/CaseStudies";
+import Cases from "@/components/Cases";
 import Partners from "@/components/Partners";
 import DigitalTransformation from "@/components/DigitalTransformation";
 import Outro from "@/components/Outro";
@@ -19,6 +20,7 @@ export default function Home() {
         <Problem />
         <Solutions />
         <CaseStudies />
+        <Cases />
         <Partners />
         <DigitalTransformation />
         <Outro />

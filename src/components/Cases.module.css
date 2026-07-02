@@ -1,0 +1,373 @@
+/* ===== Testimonial carousel — Figma SCREEN 6 ===== */
+
+.section {
+  position: relative;
+  overflow: hidden;
+  background: var(--blue);
+  color: var(--white);
+  padding: 104px 0 96px;
+}
+
+/* Decorative brand asterisks */
+.asterisk {
+  position: absolute;
+  color: #3a2cc4;
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.astTopRight {
+  top: -56px;
+  right: -40px;
+  width: 240px;
+  transform: rotate(-6deg);
+}
+
+.astTopRightSmall {
+  top: 92px;
+  right: 132px;
+  width: 96px;
+  transform: rotate(8deg);
+  opacity: 0.4;
+}
+
+.astBottomLeft {
+  bottom: -70px;
+  left: -64px;
+  width: 250px;
+  transform: rotate(10deg);
+}
+
+/* Heading */
+.heading {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-head);
+  font-weight: 800;
+  text-align: center;
+  letter-spacing: 0.4px;
+  line-height: 1.16;
+  color: var(--white);
+  font-size: clamp(24px, 3.8vw, 46px);
+  max-width: 900px;
+  margin: 0 auto 60px;
+}
+
+.heading .lime {
+  color: var(--lime);
+}
+
+/* Carousel shell */
+.carousel {
+  position: relative;
+  z-index: 1;
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.viewport {
+  overflow: hidden;
+  /* room for the head + quote mark that poke above the card */
+  padding-top: 84px;
+}
+
+.track {
+  display: flex;
+  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slide {
+  flex: 0 0 100%;
+  min-width: 0;
+}
+
+/* Card — neon-green Figma art (stepped top + notch circles) */
+.card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 480px minmax(0, 1fr);
+  gap: 16px;
+  min-height: 372px;
+}
+
+/* card art sits behind the content so its shadow never hits the photo */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url("/figma/card-bg.png") center / 100% 100% no-repeat;
+  filter: drop-shadow(0 30px 44px rgba(7, 6, 40, 0.4));
+  pointer-events: none;
+}
+
+/* single white comma straddling the card notch */
+.quoteComma {
+  position: absolute;
+  z-index: 2;
+  left: 31.4%;
+  top: -42px;
+  width: clamp(64px, 6.8vw, 94px);
+  height: auto;
+  color: var(--white);
+  pointer-events: none;
+}
+
+/* white circle halo peeking out behind the model's head */
+.headHalo {
+  position: absolute;
+  z-index: 1;
+  left: 238px;
+  top: -16px;
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  background: var(--white);
+  pointer-events: none;
+}
+
+/* Photo column */
+.photoCol {
+  position: relative;
+  align-self: stretch;
+}
+
+.photoBox {
+  position: absolute;
+  z-index: 2;
+  left: 96px;
+  right: 30px;
+  bottom: 0;
+  /* let the head poke above the card top edge */
+  top: -42px;
+}
+
+.photo {
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* Brand badge — fixed circle, logo never drives its size */
+.badge {
+  position: absolute;
+  z-index: 3;
+  top: 74px;
+  left: 56px;
+  width: clamp(72px, 6.2vw, 90px);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 0 1px rgba(1, 2, 5, 0.06),
+    0 14px 30px -16px rgba(7, 6, 40, 0.55);
+}
+
+.badgeLogo {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+}
+
+/* the small companion dot is anchored to the badge, not to the logo */
+.badge::after {
+  content: "";
+  position: absolute;
+  right: -6px;
+  bottom: -12px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--white);
+  box-shadow: 0 8px 18px -10px rgba(7, 6, 40, 0.5);
+}
+
+/* Body */
+.body {
+  position: relative;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  padding: 46px 50px 40px 14px;
+}
+
+.quote {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: clamp(15px, 1.35vw, 21px);
+  line-height: 1.52;
+  color: var(--ink);
+  margin-bottom: 26px;
+}
+
+.attr {
+  margin-top: auto;
+  text-align: right;
+}
+
+.role {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: rgba(1, 2, 5, 0.72);
+  margin-bottom: 4px;
+}
+
+.name {
+  display: block;
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: clamp(20px, 2vw, 28px);
+  letter-spacing: 0.3px;
+  color: var(--ink);
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.dots {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dot {
+  width: 11px;
+  height: 11px;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: width 0.25s ease, background 0.25s ease;
+}
+
+.dotActive {
+  width: 30px;
+  background: var(--lime);
+}
+
+.navBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 32px;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+}
+
+.navBtn svg {
+  width: 22px;
+  height: 22px;
+}
+
+.navDark {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.navLight {
+  background: var(--white);
+  color: var(--ink);
+}
+
+.navBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 28px -16px rgba(0, 0, 0, 0.6);
+}
+
+/* ===== Tablet ===== */
+@media (max-width: 900px) {
+  .card {
+    grid-template-columns: 1fr;
+    gap: 0;
+    min-height: 0;
+    /* the wide stepped art can't stretch to a tall card — plain lime */
+    background: var(--lime);
+    border-radius: 28px;
+    box-shadow: 0 30px 60px -34px rgba(7, 6, 40, 0.6);
+  }
+
+  .card::before {
+    display: none;
+  }
+
+  .quoteComma {
+    display: none;
+  }
+
+  .headHalo {
+    display: none;
+  }
+
+  .photoCol {
+    height: 300px;
+  }
+
+  .photoBox {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: 230px;
+    top: -48px;
+  }
+
+  .badge {
+    top: 26px;
+    left: calc(50% - 150px);
+  }
+
+  .body {
+    align-self: stretch;
+    padding: 36px 30px 32px;
+  }
+
+  .astTopRightSmall {
+    display: none;
+  }
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 560px) {
+  .section {
+    padding: 72px 0 64px;
+  }
+
+  .photoCol {
+    height: 260px;
+  }
+
+  .photoBox {
+    width: 200px;
+  }
+
+  .badge {
+    width: 72px;
+    height: 72px;
+    left: calc(50% - 128px);
+  }
+
+  .controls {
+    gap: 22px;
+  }
+
+  .navBtn {
+    padding: 13px 26px;
+  }
+
+  .attr {
+    text-align: left;
+  }
+}

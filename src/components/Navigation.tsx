@@ -11,6 +11,7 @@ const links = [
   { label: "Giá Trị Cốt Lõi", href: "#values" },
   { label: "Painpoints", href: "#problem" },
   { label: "Giải Pháp", href: "#solutions" },
+  { label: "Khách Hàng", href: "#cases" },
   { label: "Đối Tác", href: "#partners" },
   { label: "Liên Hệ", href: "#contact" },
 ];

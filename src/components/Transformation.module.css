@@ -1,0 +1,122 @@
+.section {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--white);
+  padding: clamp(72px, 9vw, 116px) 0 clamp(80px, 10vw, 128px);
+}
+
+/* soft purple blobs echoing the Figma background mask */
+.section::before,
+.section::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  background: var(--purple-200);
+  opacity: 0.55;
+  filter: blur(2px);
+}
+
+.section::before {
+  width: clamp(260px, 30vw, 420px);
+  height: clamp(260px, 30vw, 420px);
+  top: -180px;
+  right: -140px;
+}
+
+.section::after {
+  width: clamp(220px, 26vw, 360px);
+  height: clamp(220px, 26vw, 360px);
+  bottom: -160px;
+  left: -140px;
+}
+
+.inner {
+  text-align: center;
+}
+
+.title {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: clamp(26px, 3.2vw, 38px) auto 0;
+  padding: 14px 32px;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--white);
+  background: var(--ink);
+  border-radius: 999px;
+  transition: transform 0.18s ease, background 0.18s ease;
+}
+
+.cta:hover {
+  background: #24242c;
+  transform: translateY(-2px);
+}
+
+.grid {
+  margin-top: clamp(52px, 6.5vw, 92px);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(20px, 2.4vw, 32px);
+  text-align: left;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+.media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 273 / 323;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.media :global(img) {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cardTitle {
+  margin-top: 20px;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--ink);
+}
+
+.desc {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+@media (max-width: 980px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .grid {
+    grid-template-columns: 1fr;
+    max-width: 340px;
+  }
+}

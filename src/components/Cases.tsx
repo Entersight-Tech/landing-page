@@ -108,7 +108,19 @@ export default function Cases() {
                   aria-hidden={i !== active}
                 >
                   <article className={styles.card}>
+                    <svg
+                      className={styles.quoteComma}
+                      viewBox="0 0 68 118"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M58 22 C58 8 46 2 32 2 C16 2 4 16 4 36 C4 54 16 66 34 66 C28 90 20 104 4 116 C30 108 58 86 64 52 C66 42 64 30 58 22 Z"
+                        transform="scale(-1,1) translate(-68,0)"
+                      />
+                    </svg>
                     <div className={styles.photoCol}>
+                      <span className={styles.headHalo} aria-hidden="true" />
                       <span className={styles.badge}>
                         <Image
                           src={t.logo}

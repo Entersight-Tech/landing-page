@@ -17,6 +17,13 @@
   isolation: isolate;
   overflow: hidden;
   background:
+    /* fade in from the white Contact section above — hides the hard seam */
+    linear-gradient(
+      180deg,
+      #ffffff 0%,
+      rgba(255, 255, 255, 0.6) 12%,
+      rgba(255, 255, 255, 0) 30%
+    ),
     /* purple — sweeps up the right edge, strongest bottom-right */
     radial-gradient(
       100% 110% at 110% 95%,

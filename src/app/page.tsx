@@ -5,7 +5,7 @@ import Problem from "@/components/Problem";
 import Solutions from "@/components/Solutions";
 import CaseStudies from "@/components/CaseStudies";
 import Partners from "@/components/Partners";
-import DigitalTransformation from "@/components/DigitalTransformation";
+import Transformation from "@/components/Transformation";
 import Outro from "@/components/Outro";
 import ScrollReveal from "@/components/ScrollReveal";
 
@@ -20,7 +20,7 @@ export default function Home() {
         <Solutions />
         <CaseStudies />
         <Partners />
-        <DigitalTransformation />
+        <Transformation />
         <Outro />
       </main>
       <ScrollReveal />

@@ -22,13 +22,14 @@
 
 /* ---- frosted pill shown behind the bar once the page scrolls ----
    Per Figma the pill wraps the logo + menu with rounded 32px corners while
-   the ĐĂNG KÍ NGAY button pokes out past its right edge. */
+   the ĐĂNG KÍ NGAY button sits outside it on the right (24px container
+   padding + ~152px button + gap). */
 .glass {
   position: absolute;
   top: -8px;
   bottom: -12px;
   left: 7px;
-  right: 129px;
+  right: 190px;
   border-radius: 32px;
   background: rgba(188, 188, 188, 0.5);
   backdrop-filter: blur(30px);

@@ -5,7 +5,7 @@ import Image, { type StaticImageData } from "next/image";
 import styles from "./Cases.module.css";
 
 import caseKye from "../../public/figma/case-kye.png";
-import caseOni from "../../public/figma/case-oni.png";
+import caseOni from "../../public/figma/founder-oni.png";
 import caseSma from "../../public/figma/case-sma.png";
 import logoKye from "../../public/figma/logo-kye.png";
 import logoOni from "../../public/figma/logo-oni.png";

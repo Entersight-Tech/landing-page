@@ -67,7 +67,7 @@
   gap: clamp(10px, 2.2vw, 22px);
   font-family: var(--font-head);
   font-weight: 800;
-  font-size: clamp(26px, 5vw, 50px);
+  font-size: clamp(26px, 3.4vw, 44px);
   line-height: 1.05;
   letter-spacing: -0.5px;
   text-wrap: balance;

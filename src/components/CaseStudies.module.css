@@ -17,13 +17,18 @@
   margin: 0 auto 52px;
   font-family: var(--font-head);
   font-weight: 800;
-  font-size: clamp(24px, 4.4vw, 46px);
+  font-size: clamp(21px, 4.4vw, 46px);
   line-height: 1.25;
   color: var(--white);
 }
 
 .line {
   display: block;
+}
+
+/* keep each phrase whole so mobile wraps after the highlight, not mid-phrase */
+.phrase {
+  white-space: nowrap;
 }
 
 .mark {

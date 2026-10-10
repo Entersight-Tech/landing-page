@@ -184,10 +184,12 @@ export default function CaseStudies() {
       <div className={`container ${styles.inner}`}>
         <h2 className={`${styles.title} reveal`}>
           <span className={styles.line}>
-            <mark className={styles.mark}>CHUYỂN</mark> ÁP LỰC VẬN HÀNH
+            <mark className={styles.mark}>CHUYỂN</mark>{" "}
+            <span className={styles.phrase}>ÁP LỰC VẬN HÀNH</span>
           </span>
           <span className={styles.line}>
-            <mark className={styles.mark}>THÀNH</mark> ĐÒN BẨY TĂNG TRƯỞNG
+            <mark className={styles.mark}>THÀNH</mark>{" "}
+            <span className={styles.phrase}>ĐÒN BẨY TĂNG TRƯỞNG</span>
           </span>
         </h2>
 

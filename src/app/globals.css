@@ -38,6 +38,13 @@ body {
   line-height: 1.5;
 }
 
+/* Montserrat runs wide: balance headings so no line ends with a lone word */
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
 a {
   color: inherit;
   text-decoration: none;

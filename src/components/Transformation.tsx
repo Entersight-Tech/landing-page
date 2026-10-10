@@ -39,7 +39,9 @@ export default function Transformation() {
         <h2 className={`h-title ${styles.title} reveal`}>
           ĐỒNG HÀNH CÙNG DOANH NGHIỆP
           <br />
-          <span className="accent">XUYÊN SUỐT</span> LỘ TRÌNH CHUYỂN ĐỔI SỐ
+          <span className="accent">XUYÊN SUỐT</span>{" "}
+          <span className={styles.nowrap}>LỘ TRÌNH</span>{" "}
+          <span className={styles.nowrap}>CHUYỂN ĐỔI SỐ</span>
         </h2>
 
         <a href="#contact" className={`${styles.cta} reveal`}>

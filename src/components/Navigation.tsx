@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./Navigation.module.css";
-import logoReverse from "../../public/figma/logo-reverse.png";
+// all-white wordmark: the purple mark of logo-reverse.png vanishes on the purple hero
+import logoReverse from "../../public/figma/logo-mono-reverse.png";
 
 const links = [
   { label: "Về Entersight", href: "#top" },

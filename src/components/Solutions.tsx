@@ -22,7 +22,6 @@ const slides: Slide[] = [
     title: "ETS AI OPERATION",
     tagline: "Tự động hóa quy trình & Chăm sóc khách hàng.",
     bullets: [
-      "Tự động hóa quy trình & Chăm sóc khách hàng.",
       "Xử lý dữ liệu thông minh trong vài giây, giảm sai sót thủ công.",
       "Tối ưu hóa nguồn lực, vận hành bộ máy tinh gọn nhưng hiệu suất tối đa.",
     ],

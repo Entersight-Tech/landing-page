@@ -30,7 +30,7 @@
   left: 7px;
   right: 129px;
   border-radius: 32px;
-  background: rgba(188, 188, 188, 0.5);
+  background: rgba(24, 18, 78, 0.62);
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
   opacity: 0;
@@ -59,6 +59,8 @@
 
 /* ---- links (stay white when scrolled) ---- */
 .links {
+  /* positioned so it paints above the absolutely-positioned .glass pill */
+  position: relative;
   display: flex;
   gap: clamp(14px, 1.6vw, 26px);
   align-items: center;
@@ -77,6 +79,7 @@
 }
 
 .right {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 14px;
@@ -175,6 +178,15 @@
 
 @media (max-width: 520px) {
   .signup {
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+
+  .arrow {
     display: none;
+  }
+
+  .right {
+    gap: 8px;
   }
 }

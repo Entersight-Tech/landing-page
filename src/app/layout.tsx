@@ -20,10 +20,25 @@ const roboto = Roboto({
   display: "swap",
 });
 
+const title = "Entersight — Số hoá quy trình marketing đúng đích";
+const description =
+  "Entersight kiến tạo hệ sinh thái tiếp thị số toàn diện, giúp SMEs tái cấu trúc vận hành, làm chủ mọi điểm chạm khách hàng và xây dựng nền tảng tăng trưởng bền vững.";
+
 export const metadata: Metadata = {
-  title: "Entersight — Số hoá quy trình marketing đúng đích",
-  description:
-    "Entersight kiến tạo hệ sinh thái tiếp thị số toàn diện, giúp SMEs tái cấu trúc vận hành, làm chủ mọi điểm chạm khách hàng và xây dựng nền tảng tăng trưởng bền vững.",
+  metadataBase: new URL("https://www.entersight-tech.com"),
+  title,
+  description,
+  alternates: { canonical: "/" },
+  // link previews on Facebook / Zalo; the image is src/app/opengraph-image.jpg
+  openGraph: {
+    type: "website",
+    locale: "vi_VN",
+    url: "/",
+    siteName: "Entersight",
+    title,
+    description,
+  },
+  twitter: { card: "summary_large_image", title, description },
 };
 
 export default function RootLayout({

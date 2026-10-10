@@ -4,10 +4,10 @@ import styles from "./Outro.module.css";
 import logoFull from "../../public/figma/logo-full.png";
 
 const navLinks = [
-  { label: "Home", href: "#top" },
-  { label: "About", href: "#values" },
-  { label: "How it Works", href: "#transformation" },
-  { label: "Services", href: "#solutions" },
+  { label: "Trang chủ", href: "#top" },
+  { label: "Giá trị", href: "#values" },
+  { label: "Giải pháp", href: "#solutions" },
+  { label: "Lộ trình", href: "#transformation" },
 ];
 
 export default function Outro() {

@@ -26,6 +26,13 @@ export default function Navigation() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
   return (
     <header className={`${styles.nav} ${scrolled ? styles.scrolled : ""}`}>
       <div className={`container ${styles.inner}`}>
@@ -39,7 +46,10 @@ export default function Navigation() {
           />
         </a>
 
-        <nav className={`${styles.links} ${open ? styles.linksOpen : ""}`}>
+        <nav
+          id="site-menu"
+          className={`${styles.links} ${open ? styles.linksOpen : ""}`}
+        >
           {links.map((l) => (
             <a key={l.href} href={l.href} onClick={() => setOpen(false)}>
               {l.label}
@@ -69,7 +79,10 @@ export default function Navigation() {
           </a>
           <button
             className={styles.burger}
+            type="button"
             aria-label="Menu"
+            aria-expanded={open}
+            aria-controls="site-menu"
             onClick={() => setOpen((v) => !v)}
           >
             <span />

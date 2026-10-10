@@ -6,7 +6,7 @@ import styles from "./Contact.module.css";
 const stats = [
   { value: "50%", label: "Giảm chi phí vận hành" },
   { value: "3x", label: "Tốc độ xử lý công việc" },
-  { value: "27/7", label: "Hệ thống tự động thực thi" },
+  { value: "24/7", label: "Hệ thống tự động thực thi" },
   { value: "20+", label: "Dự án vận hành thành công" },
 ];
 

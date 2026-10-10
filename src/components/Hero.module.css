@@ -73,7 +73,7 @@
 .title {
   font-family: var(--font-head);
   font-weight: 800;
-  font-size: clamp(40px, 5.2vw, 64px);
+  font-size: clamp(38px, 4.4vw, 58px);
   line-height: 1.12;
   letter-spacing: -0.01em;
   text-transform: uppercase;
@@ -81,8 +81,10 @@
   margin-bottom: 26px;
 }
 
-/* lime accent words use the Figma vertical gradient (#D1FF3F -> #95FF00) */
+/* lime accent words use the Figma vertical gradient (#D1FF3F -> #95FF00);
+   each accent phrase stays on one line so it never orphans a word */
 .accent {
+  white-space: nowrap;
   background: linear-gradient(180deg, #d1ff3f 0%, #95ff00 100%);
   -webkit-background-clip: text;
   background-clip: text;

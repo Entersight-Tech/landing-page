@@ -242,6 +242,7 @@
 }
 
 .dot {
+  position: relative;
   width: 11px;
   height: 11px;
   padding: 0;
@@ -250,6 +251,13 @@
   background: rgba(255, 255, 255, 0.4);
   cursor: pointer;
   transition: width 0.25s ease, background 0.25s ease;
+}
+
+/* invisible padding so the tiny dot is still a usable tap target */
+.dot::before {
+  content: "";
+  position: absolute;
+  inset: -12px -5px;
 }
 
 .dotActive {

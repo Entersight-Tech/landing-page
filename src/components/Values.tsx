@@ -22,8 +22,11 @@ function Asterisk({ className }: { className: string }) {
 export default function Values() {
   return (
     <section className={styles.section} id="values">
-      {/* Purple title band with skyline + noise texture */}
-      <div className={styles.band}>
+      <div className={styles.dark}>
+        <Asterisk className={`${styles.star} ${styles.starOne}`} />
+        <Asterisk className={`${styles.star} ${styles.starTwo}`} />
+        <Asterisk className={`${styles.star} ${styles.starThree}`} />
+
         <div className={styles.bandInner}>
           <h2 className={styles.title}>GIÁ TRỊ CỐT LÕI</h2>
           <p className={styles.quote}>
@@ -31,13 +34,6 @@ export default function Values() {
             lớn mạnh nhờ giải pháp thực tế và bền vững bởi sự đồng hành tận tâm. ”
           </p>
         </div>
-      </div>
-
-      {/* Dark band with the E / T / S value cards */}
-      <div className={styles.dark}>
-        <Asterisk className={`${styles.star} ${styles.starOne}`} />
-        <Asterisk className={`${styles.star} ${styles.starTwo}`} />
-        <Asterisk className={`${styles.star} ${styles.starThree}`} />
 
         <div className={styles.grid}>
           {values.map((v, i) => (

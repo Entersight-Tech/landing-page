@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import Image, { type StaticImageData } from "next/image";
 import styles from "./Solutions.module.css";
+import CarouselControls from "./CarouselControls";
 import brain from "../../public/figma/brain.png";
 import dataImg from "../../public/figma/solution-data.png";
 import creativeImg from "../../public/figma/solution-creative.png";
@@ -79,15 +80,6 @@ function Check() {
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <circle cx="12" cy="12" r="10" />
       <path d="M8 12.5l2.5 2.5L16 9.5" />
-    </svg>
-  );
-}
-
-function ArrowRight() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M5 12h14" />
-      <path d="M13 6l6 6-6 6" />
     </svg>
   );
 }
@@ -192,41 +184,15 @@ export default function Solutions() {
           </div>
         </div>
 
-        <div className={styles.controls}>
-          <div className={styles.dots} role="tablist" aria-label="Chọn giải pháp">
-            {slides.map((s, i) => (
-              <button
-                key={s.title}
-                type="button"
-                role="tab"
-                aria-selected={i === active}
-                aria-label={s.title}
-                className={`${styles.dot} ${i === active ? styles.dotActive : ""}`}
-                onClick={() => go(i)}
-              />
-            ))}
-          </div>
-          <div className={styles.arrows}>
-            <button
-              type="button"
-              className={`${styles.arrow} ${styles.arrowPrev}`}
-              onClick={() => go(active - 1)}
-              aria-label="Giải pháp trước"
-            >
-              <span className={styles.flip}>
-                <ArrowRight />
-              </span>
-            </button>
-            <button
-              type="button"
-              className={`${styles.arrow} ${styles.arrowNext}`}
-              onClick={() => go(active + 1)}
-              aria-label="Giải pháp tiếp theo"
-            >
-              <ArrowRight />
-            </button>
-          </div>
-        </div>
+        <CarouselControls
+          count={slides.length}
+          active={active}
+          onSelect={go}
+          label="Chọn giải pháp"
+          prevLabel="Giải pháp trước"
+          nextLabel="Giải pháp tiếp theo"
+          itemLabels={slides.map((s) => s.title)}
+        />
       </div>
     </section>
   );

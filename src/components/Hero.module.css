@@ -103,7 +103,8 @@
 .actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  align-items: center;
+  gap: 8px 24px;
 }
 
 /* frosted-glass pill with a subtle lime under-glow */
@@ -137,6 +138,28 @@
   box-shadow:
     0 18px 40px -10px rgba(196, 255, 11, 0.45),
     inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* secondary action: plain text link so the primary pill stays dominant */
+.ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 17px 6px;
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 14.5px;
+  color: var(--lime);
+}
+
+.ghost svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.18s ease;
+}
+
+.ghost:hover svg {
+  transform: translateX(4px);
 }
 
 /* ---- tablet / mobile: copy first, model stacked beneath ---- */

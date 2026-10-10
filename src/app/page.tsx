@@ -16,13 +16,13 @@ export default function Home() {
       <Navigation />
       <main>
         <Hero />
-        <Values />
+        <Partners />
         <Problem />
         <Solutions />
+        <Transformation />
         <CaseStudies />
         <Cases />
-        <Partners />
-        <Transformation />
+        <Values />
         <Outro />
       </main>
       <ScrollReveal />

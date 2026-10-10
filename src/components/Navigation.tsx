@@ -7,12 +7,12 @@ import styles from "./Navigation.module.css";
 import logoReverse from "../../public/figma/logo-mono-reverse.png";
 
 const links = [
-  { label: "Về Entersight", href: "#top" },
-  { label: "Giá Trị Cốt Lõi", href: "#values" },
-  { label: "Painpoints", href: "#problem" },
+  { label: "Thách Thức", href: "#problem" },
   { label: "Giải Pháp", href: "#solutions" },
+  { label: "Lộ Trình", href: "#transformation" },
+  { label: "Dự Án", href: "#case-studies" },
   { label: "Khách Hàng", href: "#cases" },
-  { label: "Đối Tác", href: "#partners" },
+  { label: "Về Entersight", href: "#values" },
   { label: "Liên Hệ", href: "#contact" },
 ];
 

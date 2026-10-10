@@ -40,6 +40,8 @@
     linear-gradient(180deg, transparent 55%, rgba(10, 7, 45, 0.5) 100%),
     url("/figma/problem-band.svg") center top / cover no-repeat,
     linear-gradient(180deg, #6153e4 0%, #5c4fe1 100%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 34%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 34%);
 }
 
 /* diagonal lime stripe — higher on the left, like the design */
@@ -71,7 +73,7 @@
 
 /* ---------- Heading ---------- */
 .title {
-  max-width: 880px;
+  max-width: 1000px;
   margin: 0 auto;
   text-align: center;
   font-family: var(--font-head);
@@ -85,6 +87,7 @@
 
 .accent {
   color: var(--lime);
+  white-space: nowrap;
 }
 
 /* ---------- Cards ---------- */

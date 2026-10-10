@@ -1,17 +1,55 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import styles from "./Contact.module.css";
+import { LIMITS, validateLead } from "@/lib/lead";
+
+type Status = "idle" | "sending" | "sent" | "error";
+
+const HOTLINE = "0941233481";
 
 const stats = [
   { value: "50%", label: "Giảm chi phí vận hành" },
   { value: "3x", label: "Tốc độ xử lý công việc" },
-  { value: "27/7", label: "Hệ thống tự động thực thi" },
+  { value: "24/7", label: "Hệ thống tự động thực thi" },
   { value: "20+", label: "Dự án vận hành thành công" },
 ];
 
 export default function Contact() {
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<Status>("idle");
+  const [error, setError] = useState("");
+
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const fields = Object.fromEntries(new FormData(e.currentTarget));
+    const checked = validateLead(fields);
+    if ("error" in checked) {
+      setError(checked.error);
+      setStatus("error");
+      return;
+    }
+
+    setStatus("sending");
+    setError("");
+    try {
+      const res = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(fields),
+      });
+      if (res.ok) {
+        setStatus("sent");
+        return;
+      }
+      const data = (await res.json().catch(() => ({}))) as { error?: string };
+      // validation messages are shown as-is; anything else gets the fallback
+      setError(res.status === 400 && data.error ? data.error : "");
+      setStatus("error");
+    } catch {
+      setError("");
+      setStatus("error");
+    }
+  }
 
   return (
     <section className="section" id="contact">
@@ -42,36 +80,81 @@ export default function Contact() {
             Đăng Ký Nhận Tư Vấn <span>Miễn Phí</span>
           </h3>
 
-          {sent ? (
-            <p className={styles.thanks}>
-              Cảm ơn bạn! Entersight sẽ liên hệ trong thời gian sớm nhất.
+          {status === "sent" ? (
+            <p className={styles.thanks} role="status">
+              Cảm ơn bạn! Entersight đã nhận thông tin và sẽ liên hệ trong thời
+              gian sớm nhất.
             </p>
           ) : (
-            <form
-              className={styles.form}
-              onSubmit={(e) => {
-                e.preventDefault();
-                setSent(true);
-              }}
-            >
+            <form className={styles.form} onSubmit={onSubmit} noValidate>
               <label>
                 Họ và tên
-                <input type="text" placeholder="Nguyễn Văn A" required />
+                <input
+                  name="name"
+                  type="text"
+                  autoComplete="name"
+                  placeholder="Nguyễn Văn A"
+                  maxLength={LIMITS.name}
+                  required
+                />
               </label>
               <label>
                 Số điện thoại
-                <input type="tel" placeholder="0123456789" required />
+                <input
+                  name="phone"
+                  type="tel"
+                  inputMode="tel"
+                  autoComplete="tel"
+                  placeholder="0912 345 678"
+                  required
+                />
               </label>
               <label>
                 Tên doanh nghiệp
-                <input type="text" placeholder="Công ty TNHH…" />
+                <input
+                  name="company"
+                  type="text"
+                  autoComplete="organization"
+                  placeholder="Công ty TNHH…"
+                  maxLength={LIMITS.company}
+                />
               </label>
               <label>
                 Vấn đề bạn đang gặp phải
-                <textarea rows={3} placeholder="Viết vấn đề của bạn" />
+                <textarea
+                  name="message"
+                  rows={3}
+                  placeholder="Viết vấn đề của bạn"
+                  maxLength={LIMITS.message}
+                />
               </label>
-              <button type="submit" className={styles.submit}>
-                Gửi Yêu Cầu Tư Vấn →
+              {/* honeypot — hidden from people, bots tend to fill it */}
+              <input
+                className={styles.honeypot}
+                name="website"
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden
+              />
+
+              {status === "error" && (
+                <p className={styles.error} role="alert">
+                  {error ||
+                    "Chưa gửi được yêu cầu. Bạn vui lòng thử lại, hoặc gọi / nhắn Zalo "}
+                  {!error && (
+                    <a href={`https://zalo.me/${HOTLINE}`}>{HOTLINE.replace(/(\d{4})(\d{3})(\d{3})/, "$1 $2 $3")}</a>
+                  )}
+                  {!error && "."}
+                </p>
+              )}
+
+              <button
+                type="submit"
+                className={styles.submit}
+                disabled={status === "sending"}
+              >
+                {status === "sending" ? "Đang gửi…" : "Gửi Yêu Cầu Tư Vấn →"}
               </button>
             </form>
           )}

@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import Image, { type StaticImageData } from "next/image";
 import styles from "./CaseStudies.module.css";
+import CarouselControls from "./CarouselControls";
 import oniImg from "../../public/figma/case-oni.png";
 import kyeImg from "../../public/figma/case-kye.jpg";
 import motImg from "../../public/figma/case-mot.png";
@@ -141,15 +142,6 @@ function FileIcon() {
   );
 }
 
-function ArrowRight() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M5 12h14" />
-      <path d="M13 6l6 6-6 6" />
-    </svg>
-  );
-}
-
 export default function CaseStudies() {
   const [active, setActive] = useState(0);
   const [offset, setOffset] = useState(0);
@@ -184,10 +176,12 @@ export default function CaseStudies() {
       <div className={`container ${styles.inner}`}>
         <h2 className={`${styles.title} reveal`}>
           <span className={styles.line}>
-            <mark className={styles.mark}>CHUYỂN</mark> ÁP LỰC VẬN HÀNH
+            <mark className={styles.mark}>CHUYỂN</mark>{" "}
+            <span className={styles.phrase}>ÁP LỰC VẬN HÀNH</span>
           </span>
           <span className={styles.line}>
-            <mark className={styles.mark}>THÀNH</mark> ĐÒN BẨY TĂNG TRƯỞNG
+            <mark className={styles.mark}>THÀNH</mark>{" "}
+            <span className={styles.phrase}>ĐÒN BẨY TĂNG TRƯỞNG</span>
           </span>
         </h2>
 
@@ -274,41 +268,15 @@ export default function CaseStudies() {
           </div>
         </div>
 
-        <div className={styles.controls}>
-          <div className={styles.dots} role="tablist" aria-label="Chọn dự án">
-            {cases.map((c, i) => (
-              <button
-                key={c.title}
-                type="button"
-                role="tab"
-                aria-selected={i === active}
-                aria-label={c.title}
-                className={`${styles.dot} ${i === active ? styles.dotActive : ""}`}
-                onClick={() => go(i)}
-              />
-            ))}
-          </div>
-          <div className={styles.arrows}>
-            <button
-              type="button"
-              className={`${styles.arrow} ${styles.arrowPrev}`}
-              onClick={() => go(active - 1)}
-              aria-label="Dự án trước"
-            >
-              <span className={styles.flip}>
-                <ArrowRight />
-              </span>
-            </button>
-            <button
-              type="button"
-              className={`${styles.arrow} ${styles.arrowNext}`}
-              onClick={() => go(active + 1)}
-              aria-label="Dự án tiếp theo"
-            >
-              <ArrowRight />
-            </button>
-          </div>
-        </div>
+        <CarouselControls
+          count={cases.length}
+          active={active}
+          onSelect={go}
+          label="Chọn dự án"
+          prevLabel="Dự án trước"
+          nextLabel="Dự án tiếp theo"
+          itemLabels={cases.map((c) => c.title)}
+        />
       </div>
     </section>
   );

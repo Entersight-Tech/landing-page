@@ -14,8 +14,9 @@
   --hero-frame: #0a0a16;
   --maxw: 1200px;
 
-  --font-head: var(--font-heading), "Segoe UI", sans-serif;
-  --font-body: var(--font-body), "Segoe UI", sans-serif;
+  /* next/font sets --nf-* on <html>, so they resolve here on :root */
+  --font-head: var(--nf-heading), "Segoe UI", sans-serif;
+  --font-body: var(--nf-body), "Segoe UI", sans-serif;
 }
 
 * {
@@ -35,6 +36,13 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   line-height: 1.5;
+}
+
+/* Montserrat runs wide: balance headings so no line ends with a lone word */
+h1,
+h2,
+h3 {
+  text-wrap: balance;
 }
 
 a {

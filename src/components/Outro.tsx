@@ -4,10 +4,10 @@ import styles from "./Outro.module.css";
 import logoFull from "../../public/figma/logo-full.png";
 
 const navLinks = [
-  { label: "Home", href: "#top" },
-  { label: "About", href: "#values" },
-  { label: "How it Works", href: "#transformation" },
-  { label: "Services", href: "#solutions" },
+  { label: "Giải pháp", href: "#solutions" },
+  { label: "Lộ trình", href: "#transformation" },
+  { label: "Dự án", href: "#case-studies" },
+  { label: "Liên hệ", href: "#contact" },
 ];
 
 export default function Outro() {
@@ -36,34 +36,6 @@ export default function Outro() {
             <rect x="-9" y="-52" width="18" height="104" rx="9" transform="rotate(120)" />
           </g>
         </svg>
-
-        {/* Section 2 — "Tối ưu vận hành, Tăng trưởng đột phá" banner */}
-        <section className={styles.banner}>
-          <div className={`container ${styles.bannerCard}`}>
-            <div className={styles.phoneWrap}>
-              <Image
-                src="/figma/contact-phone.png"
-                alt="Ứng dụng vận hành Entersight"
-                className={styles.phone}
-                width={1200}
-                height={1200}
-                priority
-              />
-            </div>
-            <div className={styles.bannerText}>
-              <h2 className={styles.bannerTitle}>
-                Tối ưu vận hành,
-                <br />
-                Tăng trưởng đột phá
-              </h2>
-              <p className={styles.bannerSub}>
-                Từ Marketing số đến hệ sinh thái vận hành thông minh, Entersight
-                mang đến góc nhìn chiến lược rõ ràng cho hành trình tăng trưởng
-                của doanh nghiệp.
-              </p>
-            </div>
-          </div>
-        </section>
 
         {/* Footer */}
         <footer className={styles.footer}>

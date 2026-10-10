@@ -3,15 +3,16 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./Navigation.module.css";
-import logoReverse from "../../public/figma/logo-reverse.png";
+// all-white wordmark: the purple mark of logo-reverse.png vanishes on the purple hero
+import logoReverse from "../../public/figma/logo-mono-reverse.png";
 
 const links = [
-  { label: "Về Entersight", href: "#top" },
-  { label: "Giá Trị Cốt Lõi", href: "#values" },
-  { label: "Painpoints", href: "#problem" },
+  { label: "Thách Thức", href: "#problem" },
   { label: "Giải Pháp", href: "#solutions" },
+  { label: "Lộ Trình", href: "#transformation" },
+  { label: "Dự Án", href: "#case-studies" },
   { label: "Khách Hàng", href: "#cases" },
-  { label: "Đối Tác", href: "#partners" },
+  { label: "Về Entersight", href: "#values" },
   { label: "Liên Hệ", href: "#contact" },
 ];
 
@@ -26,6 +27,13 @@ export default function Navigation() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
   return (
     <header className={`${styles.nav} ${scrolled ? styles.scrolled : ""}`}>
       <div className={`container ${styles.inner}`}>
@@ -39,7 +47,10 @@ export default function Navigation() {
           />
         </a>
 
-        <nav className={`${styles.links} ${open ? styles.linksOpen : ""}`}>
+        <nav
+          id="site-menu"
+          className={`${styles.links} ${open ? styles.linksOpen : ""}`}
+        >
           {links.map((l) => (
             <a key={l.href} href={l.href} onClick={() => setOpen(false)}>
               {l.label}
@@ -69,7 +80,10 @@ export default function Navigation() {
           </a>
           <button
             className={styles.burger}
+            type="button"
             aria-label="Menu"
+            aria-expanded={open}
+            aria-controls="site-menu"
             onClick={() => setOpen((v) => !v)}
           >
             <span />

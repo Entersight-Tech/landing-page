@@ -34,3 +34,18 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Lead form → Google Sheet + email
+
+The contact form posts to `/api/lead`, which forwards to a Google Apps Script
+web app (`scripts/lead-to-sheet.gs`) that appends a row to a Sheet and emails
+`info@entersight-tech.com`.
+
+1. Create a Google Sheet → Extensions → Apps Script → paste `scripts/lead-to-sheet.gs`.
+2. Set `SECRET` (long random string) and `NOTIFY_EMAIL` in the script.
+3. Deploy → New deployment → Web app, *Execute as: Me*, *Who has access: Anyone*.
+4. In Vercel → Project → Settings → Environment Variables add
+   `LEAD_WEBHOOK_URL` (the `/exec` URL) and `LEAD_WEBHOOK_SECRET` (same as `SECRET`), then redeploy.
+
+Until both variables are set the form shows an error with the Zalo hotline
+instead of pretending the lead was sent.

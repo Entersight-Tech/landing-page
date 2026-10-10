@@ -28,43 +28,29 @@ substituted with **Montserrat** (the closest free geometric sans). Mapped via
 - Body: Roboto → `--font-body` → CSS `--font-body`
 
 ## Page Structure (`src/app/page.tsx`)
-1. `Navigation` — sticky header
-2. `Hero` — "SỐ HOÁ QUY TRÌNH MARKETING ĐÚNG ĐÍCH"
-3. `Values` — E/T/S core values (Evolutionary / Tailor-made / Sincere)
-4. `Problem` — Figma SCREEN 3 (node 526:1806): a dark indigo band with the
-   "Entersight" wordmark watermark, 4 frosted-glass pain-point cards
-   ("NGÂN SÁCH MARKETING ... BỐC HƠI?"), and the integrated CTA headline
-   ("TIẾP THỊ THÔNG MINH — VẬN HÀNH TINH GỌN") + glass button. The former
-   standalone `CtaBanner` was merged into this section.
-5. `Solutions` — "MỘT ĐIỂM CHẠM — MỌI GIẢI PHÁP" (ETS AI Operation + cards)
-6. `CaseStudies` — "CHUYỂN ÁP LỰC VẬN HÀNH THÀNH ĐÒN BẨY TĂNG TRƯỞNG":
-   project carousel (Oni, KYE, Một, Quà Tết Má Làm) with Painpoints /
-   Solutions / Data-driven results chips per slide
-7. `Cases` — "10+ DOANH NGHIỆP SMEs ĐÃ CHUYỂN MÌNH CÙNG ENTERSIGHT": a
-   purple-themed testimonial carousel (Figma SCREEN 6, node `1148:3199`) with
-   3 client slides (KYE, Oni, SMA) on the stepped lime card art
-   (`public/figma/card-bg.png`) with a white comma quote + head halo,
-   prev/next arrows + dots. Client component (`useState`). Founder photos in
-   `public/figma/case-kye.png` / `founder-oni.png` / `case-sma.png`, brand
-   logos in `public/figma/logo-*.png`.
-8. `Partners` — Figma SCREEN 7 (node 1123:3217): "ĐỐI TÁC DOANH NGHIỆP" —
-   a full-bleed lime accent strip on a light-gray (`--lightgray`) band, a
-   single centered heading, and a full-colour partner logo marquee
-9. `Transformation` — digital transformation band (section id
-   `transformation`)
-10. `Outro` — the closing of the page:
-   - `Contact` (Figma SCREEN 9, node 1134:2161) — stats + lead-capture form
-     ("SẴN SÀNG BỨT PHÁ CÙNG ENTERSIGHT?") on a plain white background
-   - a gradient zone matching Figma node 997:1598 (SCREEN 10 background:
-     white top/centre, lime washing down the left edge → vivid bottom-left,
-     green asterisk watermark peeking in mid-left, purple sweeping up the
-     right edge) containing:
-     · "Tối ưu vận hành, Tăng trưởng đột phá" banner card (node 1134:2218) —
-       floating phone (`public/figma/contact-phone.png`, a transparent source
-       asset + CSS lime glow) + headline & subtitle
-     · the footer (logo + copyright; white Home/About/How it Works/Services
-       nav; circular Email / Facebook / Zalo social buttons)
-   The former standalone dark `Footer` component was replaced by this footer.
+Ordered as a buyer's journey: promise → proof → problem → solution → how →
+results → who we are → contact.
+1. `Navigation` — fixed header; frosted pill on scroll (links/CTA sit above
+   the glass layer), all-white logo, compact CTA kept on phones
+2. `Hero` — "SỐ HOÁ QUY TRÌNH MARKETING ĐÚNG ĐÍCH", primary CTA + "Xem dự án
+   thực tế" link to `#case-studies`
+3. `Partners` — slim trust bar right under the hero (grayscale logo marquee)
+4. `Problem` — 4 pain-point cards + "TIẾP THỊ THÔNG MINH" CTA band
+5. `Solutions` — "MỘT ĐIỂM CHẠM — MỌI GIẢI PHÁP" carousel
+6. `Transformation` — 01→04 roadmap (Tư vấn / Số hoá / Tối ưu hoá / Dữ liệu
+   hoá) on a shared rail; vertical timeline below 980px
+7. `CaseStudies` — project carousel (Oni, KYE, Một, Quà Tết Má Làm)
+8. `Cases` — testimonial carousel (KYE, Oni, SMA)
+9. `Values` — single dark section: title + quote + E/T/S cards
+10. `Outro` — `Contact` (stats + lead form) and the gradient footer
+
+All three carousels share `CarouselControls` (← dots →).
+
+## Lead form
+`Contact` posts to `/api/lead` (`src/app/api/lead/route.ts`), which validates
+with `src/lib/lead.ts` and forwards to the Google Apps Script in
+`scripts/lead-to-sheet.gs` (Sheet row + email). Needs `LEAD_WEBHOOK_URL` and
+`LEAD_WEBHOOK_SECRET` on Vercel — see README.
 
 Components use CSS Modules; shared utilities live in `globals.css`.
 Assets exported from Figma are in `public/figma/`.

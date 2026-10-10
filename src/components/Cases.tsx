@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image, { type StaticImageData } from "next/image";
 import styles from "./Cases.module.css";
+import CarouselControls from "./CarouselControls";
 
 import caseKye from "../../public/figma/case-kye.png";
 import caseOni from "../../public/figma/founder-oni.png";
@@ -152,59 +153,15 @@ export default function Cases() {
             </div>
           </div>
 
-          <div className={styles.controls}>
-            <button
-              type="button"
-              className={`${styles.navBtn} ${styles.navDark}`}
-              onClick={() => go(active - 1)}
-              aria-label="Khách hàng trước"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <line x1="19" y1="12" x2="5" y2="12" />
-                <polyline points="11 18 5 12 11 6" />
-              </svg>
-            </button>
-
-            <div className={styles.dots} role="tablist" aria-label="Chọn khách hàng">
-              {TESTIMONIALS.map((t, i) => (
-                <button
-                  type="button"
-                  key={t.id}
-                  className={`${styles.dot} ${i === active ? styles.dotActive : ""}`}
-                  onClick={() => setActive(i)}
-                  aria-label={t.brand}
-                  aria-selected={i === active}
-                  role="tab"
-                />
-              ))}
-            </div>
-
-            <button
-              type="button"
-              className={`${styles.navBtn} ${styles.navLight}`}
-              onClick={() => go(active + 1)}
-              aria-label="Khách hàng tiếp theo"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <polyline points="13 6 19 12 13 18" />
-              </svg>
-            </button>
-          </div>
+          <CarouselControls
+            count={TESTIMONIALS.length}
+            active={active}
+            onSelect={go}
+            label="Chọn khách hàng"
+            prevLabel="Khách hàng trước"
+            nextLabel="Khách hàng tiếp theo"
+            itemLabels={TESTIMONIALS.map((t) => t.brand)}
+          />
         </div>
       </div>
     </section>

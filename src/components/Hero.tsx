@@ -39,10 +39,10 @@ export default function Hero() {
             nền tảng tăng trưởng bền vững.
           </p>
           <div className={styles.actions}>
-            <a href="#contact" className={styles.cta}>
+            <a href="#contact" className={styles.cta} data-scramble>
               Tư Vấn Triển Khai
             </a>
-            <a href="#case-studies" className={styles.ghost}>
+            <a href="#case-studies" className={styles.ghost} data-scramble>
               Xem dự án thực tế
               <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <path d="M3 8h9M8.5 4l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />

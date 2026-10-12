@@ -35,16 +35,24 @@ results → who we are → contact.
 2. `Hero` — "SỐ HOÁ QUY TRÌNH MARKETING ĐÚNG ĐÍCH", primary CTA + "Xem dự án
    thực tế" link to `#case-studies`
 3. `Partners` — slim trust bar right under the hero (grayscale logo marquee)
-4. `Problem` — 4 pain-point cards + "TIẾP THỊ THÔNG MINH" CTA band
-5. `Solutions` — "MỘT ĐIỂM CHẠM — MỌI GIẢI PHÁP" carousel
-6. `Transformation` — 01→04 roadmap (Tư vấn / Số hoá / Tối ưu hoá / Dữ liệu
+4. `Problem` — dark "ngân sách đang bốc hơi" beat: draining budget bar +
+   numbered pain points + CTA
+5. `Distill` — pinned manifesto (built from the Solutions taglines); on
+   scroll the filler words fade and the 5 product names fly into a list
+   whose rows jump the carousel (`ets:solution` event)
+6. `Solutions` — "MỘT ĐIỂM CHẠM — MỌI GIẢI PHÁP" carousel
+7. `Transformation` — 01→04 roadmap (Tư vấn / Số hoá / Tối ưu hoá / Dữ liệu
    hoá) on a shared rail; vertical timeline below 980px
-7. `CaseStudies` — project carousel (Oni, KYE, Một, Quà Tết Má Làm)
-8. `Cases` — testimonial carousel (KYE, Oni, SMA)
-9. `Values` — single dark section: title + quote + E/T/S cards
-10. `Outro` — `Contact` (stats + lead form) and the gradient footer
+8. `CaseStudies` — project carousel (Oni, KYE, Một, Quà Tết Má Làm)
+9. `Cases` — testimonial carousel (KYE, Oni, SMA)
+10. `Values` — single dark section: title + quote + E/T/S cards
+11. `Outro` — `Contact` (stats + lead form) and the gradient footer
 
 All three carousels share `CarouselControls` (← dots →).
+
+`Scramble` gives text a "decoding" effect: `data-scramble` re-decodes on
+hover/focus (nav, hero CTAs, footer links), `data-scramble="in"` decodes once
+on scroll-in (section eyebrows). Both respect prefers-reduced-motion.
 
 ## Lead form
 `Contact` posts to `/api/lead` (`src/app/api/lead/route.ts`), which validates

@@ -56,7 +56,7 @@ export default function Outro() {
             <div className={styles.footerRight}>
               <nav className={styles.nav}>
                 {navLinks.map((l) => (
-                  <a key={l.href} href={l.href}>
+                  <a key={l.href} href={l.href} data-scramble>
                     {l.label}
                   </a>
                 ))}

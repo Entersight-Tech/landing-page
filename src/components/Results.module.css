@@ -1,0 +1,151 @@
+.section {
+  --p: 0;
+  position: relative;
+  height: 260vh;
+  background: var(--night);
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 0 var(--gutter);
+  text-align: center;
+  transform: translateY(calc(var(--p) * -8vh));
+  /* the headline softens as the cards land on it, like SVZ */
+  filter: blur(calc(var(--p) * 3px));
+  opacity: calc(1 - var(--p) * 0.45);
+}
+
+.title {
+  max-width: 16ch;
+  font-size: clamp(32px, 5vw, 80px);
+}
+
+.table {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  list-style: none;
+}
+
+.card {
+  --t: 0;
+  --x: 0px;
+  --y: 0px;
+  --r: 0deg;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: clamp(150px, 19vw, 270px);
+  aspect-ratio: 3 / 4;
+  margin: calc(clamp(150px, 19vw, 270px) * -0.667) 0 0 calc(clamp(150px, 19vw, 270px) * -0.5);
+  padding: clamp(14px, 1.6vw, 22px);
+  border: 1px solid rgba(244, 244, 244, 0.16);
+  border-radius: clamp(12px, 1.2vw, 18px);
+  background: linear-gradient(160deg, #1a1745, #0b0a1f 70%);
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.8);
+  transform: translate(var(--x), calc(var(--y) + (1 - var(--t)) * 110vh))
+    rotate(calc(var(--r) * var(--t) - (1 - var(--t)) * 28deg));
+  will-change: transform;
+}
+
+.card:nth-child(4) {
+  background: var(--lime);
+  color: var(--ink);
+  border-color: var(--lime);
+}
+
+.mark {
+  width: 26px;
+  color: var(--lime);
+}
+
+.card:nth-child(4) .mark {
+  color: var(--ink);
+}
+
+.value {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: clamp(40px, 5.4vw, 84px);
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+}
+
+.cardLabel {
+  margin-top: 10px;
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: clamp(10px, 0.9vw, 12px);
+  letter-spacing: 0.12em;
+  line-height: 1.5;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+/* reduced motion: a plain row of cards under the headline */
+.section[data-static] {
+  height: auto;
+}
+
+.section[data-static] .sticky {
+  position: static;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  padding: 120px var(--gutter);
+}
+
+.section[data-static] .head {
+  transform: none;
+  filter: none;
+  opacity: 1;
+}
+
+.section[data-static] .table {
+  position: static;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.section[data-static] .card {
+  position: static;
+  margin: 0;
+  transform: none;
+}
+
+/* phones: headline parks above the 2x2 stack instead of under it */
+@media (max-width: 759px) {
+  .sticky {
+    place-items: start center;
+  }
+
+  .head {
+    padding-top: 96px;
+    transform: none;
+    filter: none;
+    opacity: 1;
+  }
+
+  .title {
+    font-size: clamp(28px, 8vw, 40px);
+  }
+}

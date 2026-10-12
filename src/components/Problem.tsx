@@ -47,7 +47,7 @@ export default function Problem() {
 
       <div className={`container ${styles.inner}`}>
         <div className={styles.lead}>
-          <span className={styles.eyebrow} data-scramble="in"><b>[01]</b> Thách thức của SMEs</span>
+          <span className="label" data-scramble="in"><b>01</b> — Thách thức của SMEs</span>
           <h2 className={styles.title}>
             Ngân sách marketing của doanh nghiệp đang{" "}
             <span className={styles.vapor} aria-label="bốc hơi">
@@ -125,11 +125,8 @@ export default function Problem() {
         <p className={styles.ctaTitle}>
           Tiếp thị thông minh <span>—</span> Vận hành tinh gọn
         </p>
-        <a href="#contact" className={styles.ctaBtn}>
+        <a href="#contact" className="btn btn--solid" data-scramble>
           Bắt đầu ngay với Entersight
-          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M3 8h9M8.5 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
         </a>
       </div>
     </section>

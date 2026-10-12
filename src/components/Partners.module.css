@@ -1,34 +1,67 @@
-.section {
+/* light card sliding over the pinned hero; rounded top like SVZ's panels */
+.panel {
+  --in: 1;
   position: relative;
   z-index: 1;
-  background: var(--white);
-  border-bottom: 1px solid var(--neutral-300);
-  scroll-margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: clamp(100px, 14vh, 150px) 0 clamp(28px, 4vh, 44px);
+  overflow: hidden;
+  color: var(--ink);
+  background: var(--paper);
+  border-radius: var(--radius) var(--radius) 0 0;
+  scroll-margin-top: 0;
 }
 
-.inner {
+.statement {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  /* settles from oversized + soft as the panel arrives */
+  transform: scale(calc(1.25 - var(--in) * 0.25));
+  filter: blur(calc((1 - var(--in)) * 10px));
+  will-change: transform;
+}
+
+.word {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: clamp(52px, 13vw, 220px);
+  line-height: 0.86;
+  letter-spacing: -0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.wordB {
+  color: var(--blue);
+}
+
+.ast {
+  width: clamp(54px, 9vw, 140px);
+  margin: clamp(-18px, -1.6vw, -8px) 0;
+  color: var(--lime);
+  transform: rotate(calc(var(--in) * 180deg));
+  filter: drop-shadow(0 10px 30px rgba(120, 160, 0, 0.35));
+}
+
+.trust {
   display: flex;
   align-items: center;
-  gap: clamp(24px, 4vw, 56px);
-  padding-top: 26px;
-  padding-bottom: 26px;
+  gap: clamp(20px, 4vw, 56px);
+  padding: 0 var(--gutter);
 }
 
-.label {
+.trustLabel {
   flex: none;
-  padding-right: clamp(20px, 3vw, 40px);
-  border-right: 1px solid var(--neutral-300);
-  font-family: var(--font-head);
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 1.5;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
   color: var(--muted);
 }
 
 .marquee {
-  position: relative;
   flex: 1;
   min-width: 0;
   overflow: hidden;
@@ -39,72 +72,48 @@
 .track {
   display: flex;
   align-items: center;
-  gap: clamp(36px, 4vw, 64px);
+  gap: clamp(44px, 5vw, 80px);
   width: max-content;
-  animation: scroll 30s linear infinite;
+  animation: scroll 32s linear infinite;
 }
 
-.marquee:hover .track {
-  animation-play-state: paused;
-}
-
-.cell {
-  flex-shrink: 0;
-  width: 132px;
-  height: 52px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* muted until hovered so the logos read as a calm proof row, not a banner */
 .logo {
-  max-width: 100%;
-  max-height: 38px;
+  flex: none;
+  max-width: 130px;
+  max-height: 36px;
   width: auto;
   height: auto;
   object-fit: contain;
   filter: grayscale(1);
-  opacity: 0.6;
+  opacity: 0.65;
   transition: filter 0.2s ease, opacity 0.2s ease;
 }
 
-.cell:hover .logo {
+.logo:hover {
   filter: none;
   opacity: 1;
 }
 
 @keyframes scroll {
-  from {
-    transform: translateX(0);
-  }
   to {
     transform: translateX(-50%);
   }
 }
 
 @media (max-width: 760px) {
-  .inner {
+  .trust {
     flex-direction: column;
-    align-items: stretch;
-    gap: 14px;
-    padding-top: 22px;
-    padding-bottom: 20px;
-  }
-
-  .label {
-    padding-right: 0;
-    border-right: none;
-    text-align: center;
-  }
-
-  .label br {
-    display: none;
+    gap: 16px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .track {
     animation: none;
+  }
+
+  .statement {
+    transform: none;
+    filter: none;
   }
 }

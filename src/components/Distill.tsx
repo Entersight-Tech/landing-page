@@ -111,18 +111,14 @@ export default function Distill() {
     };
   }, []);
 
-  const pick = (i: number) => {
-    window.dispatchEvent(new CustomEvent("ets:solution", { detail: i }));
-  };
-
   let wordIndex = 0;
 
   return (
     <section className={styles.section} ref={sectionRef} aria-labelledby="distill-title">
       <div className={styles.sticky}>
         <div className={`container ${styles.stage}`} ref={stageRef}>
-          <span className={styles.eyebrow} id="distill-title" data-scramble="in">
-            <b>[02]</b> Công nghệ <i>×</i> Sáng tạo
+          <span className={`label ${styles.eyebrow}`} id="distill-title" data-scramble="in">
+            <b>02</b> — Công nghệ × Sáng tạo
           </span>
 
           <p className={styles.manifesto}>
@@ -152,7 +148,7 @@ export default function Distill() {
             {KEYWORDS.map((k, i) => (
               <li key={k} className={styles.row} style={{ "--i": i } as React.CSSProperties}>
                 <span className={styles.idx}>0{i + 1}</span>
-                <a href="#solutions" className={styles.link} onClick={() => pick(i)}>
+                <a href={`#sol-${i}`} className={styles.link}>
                   <span className={styles.slot} data-slot={i}>
                     {k}
                   </span>

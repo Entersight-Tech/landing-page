@@ -2,6 +2,7 @@ import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import Values from "@/components/Values";
 import Problem from "@/components/Problem";
+import Results from "@/components/Results";
 import Distill from "@/components/Distill";
 import Solutions from "@/components/Solutions";
 import CaseStudies from "@/components/CaseStudies";
@@ -22,12 +23,13 @@ export default function Home() {
         <div className="curtain">
           <Hero />
           <Partners />
-          <Problem />
         </div>
+        <Problem />
         <Distill />
         <Solutions />
         <Transformation />
         <CaseStudies />
+        <Results />
         <Cases />
         <Values />
         <Outro />

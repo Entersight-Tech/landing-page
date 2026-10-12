@@ -1,9 +1,8 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useRef, useState, type PointerEvent } from "react";
 import Image, { type StaticImageData } from "next/image";
 import styles from "./CaseStudies.module.css";
-import CarouselControls from "./CarouselControls";
 import oniImg from "../../public/figma/case-oni.png";
 import kyeImg from "../../public/figma/case-kye.jpg";
 import motImg from "../../public/figma/case-mot.png";
@@ -111,175 +110,110 @@ const cases: CaseStudy[] = [
   },
 ];
 
-function PainIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z" />
-      <line x1="12" y1="9" x2="12" y2="13" />
-      <line x1="12" y1="17" x2="12.01" y2="17" />
-    </svg>
-  );
-}
+const COLUMNS = [
+  { key: "painpoints", label: "Vấn đề" },
+  { key: "solutions", label: "Giải pháp" },
+  { key: "results", label: "Kết quả" },
+] as const;
 
-function BulbIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M9 18h6" />
-      <path d="M10 22h4" />
-      <path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1v.2h6v-.2c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2Z" />
-    </svg>
-  );
-}
-
-function FileIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2Z" />
-      <path d="M14 2v6h6" />
-      <line x1="8" y1="13" x2="16" y2="13" />
-      <line x1="8" y1="17" x2="16" y2="17" />
-    </svg>
-  );
-}
-
+/**
+ * SVZ portfolio rows: an index of projects; one opens at a time to show the
+ * problem → solution → result. On desktop a preview follows the pointer.
+ */
 export default function CaseStudies() {
-  const [active, setActive] = useState(0);
-  const [offset, setOffset] = useState(0);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const count = cases.length;
+  const [open, setOpen] = useState(0);
+  const [hover, setHover] = useState<number | null>(null);
+  const previewRef = useRef<HTMLDivElement>(null);
 
-  const measure = useCallback((idx: number) => {
-    const track = trackRef.current;
-    if (!track) return 0;
-    const items = track.children;
-    const first = items[0] as HTMLElement | undefined;
-    if (!first) return 0;
-    const second = items[1] as HTMLElement | undefined;
-    const step = second ? second.offsetLeft - first.offsetLeft : first.offsetWidth;
-    return step * idx;
-  }, []);
-
-  useEffect(() => {
-    setOffset(measure(active));
-  }, [active, measure]);
-
-  useEffect(() => {
-    const onResize = () => setOffset(measure(active));
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, [active, measure]);
-
-  const go = (i: number) => setActive(((i % count) + count) % count);
+  const onMove = (e: PointerEvent<HTMLElement>) => {
+    const el = previewRef.current;
+    if (!el) return;
+    el.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+  };
 
   return (
-    <section className={styles.band} id="case-studies">
-      <div className={`container ${styles.inner}`}>
-<p className="tag tag--c" data-scramble="in" style={{ "--tag-accent": "var(--lime)", color: "rgba(255, 255, 255, 0.78)" } as React.CSSProperties}>
-          <b>[05]</b> Dự án
-        </p>
-        <h2 className={`${styles.title} reveal`} data-split>
-          <span className={styles.line}>
-            <mark className={styles.mark}>CHUYỂN</mark>{" "}
-            <span className={styles.phrase}>ÁP LỰC VẬN HÀNH</span>
-          </span>
-          <span className={styles.line}>
-            <mark className={styles.mark}>THÀNH</mark>{" "}
-            <span className={styles.phrase}>ĐÒN BẨY TĂNG TRƯỞNG</span>
-          </span>
-        </h2>
+    <section className={styles.section} id="case-studies">
+      <div className="container">
+        <header className={styles.head}>
+          <p className="label" data-scramble="in">
+            <b>05</b> — Dự án
+          </p>
+          <h2 className={`display ${styles.title} reveal`} data-split>
+            <i className="mini">chuyển</i>{"\u00a0"}áp lực vận hành <i className="mini">thành</i>{"\u00a0"}
+            <span className="lime">đòn bẩy tăng trưởng</span>
+          </h2>
+        </header>
 
-        <div className={`${styles.carousel} reveal`}>
-          <div
-            className={styles.track}
-            ref={trackRef}
-            style={{ transform: `translateX(-${offset}px)` }}
-          >
-            {cases.map((c, i) => (
-              <div
-                className={`${styles.slide} ${i === active ? styles.isActive : ""}`}
-                key={c.title}
-                aria-hidden={i !== active}
-              >
-                <article className={styles.card}>
-                  <div className={styles.left}>
-                    <h3 className={styles.cTitle}>{c.title}</h3>
-                    <p className={styles.meta}>
-                      Tag: {c.tag}
-                      <br />
-                      {c.subtitle}
-                    </p>
-                    <div className={`${styles.logo} wipe`}>
+        <ol className={styles.list} onPointerMove={onMove} onPointerLeave={() => setHover(null)}>
+          {cases.map((c, i) => {
+            const isOpen = open === i;
+            return (
+              <li key={c.title} className={`${styles.row} reveal`} data-open={isOpen || undefined}>
+                <button
+                  type="button"
+                  className={styles.rowHead}
+                  aria-expanded={isOpen}
+                  aria-controls={`case-${i}`}
+                  onClick={() => setOpen(isOpen ? -1 : i)}
+                  onPointerEnter={() => setHover(i)}
+                >
+                  <span className={styles.idx}>0{i + 1}</span>
+                  <span className={styles.name}>{c.title}</span>
+                  <span className={styles.meta}>
+                    <span>{c.subtitle}</span>
+                    <span className={styles.tag}>{c.tag}</span>
+                  </span>
+                  <span className={styles.plus} aria-hidden="true" />
+                </button>
+
+                <div id={`case-${i}`} className={styles.drawer} role="region" aria-label={c.title}>
+                  <div className={styles.drawerInner}>
+                    <div className={`${styles.thumb} ${isOpen ? "in" : ""} wipe`}>
                       <Image
                         src={c.image}
                         alt={c.alt}
                         fill
-                        sizes="(max-width: 860px) 90vw, 408px"
+                        sizes="(max-width: 860px) 92vw, 380px"
                         style={{ objectFit: c.fit }}
                       />
                     </div>
-                    <a
-                      href={c.link ?? "#contact"}
-                      className={styles.cta}
-                      target={c.link ? "_blank" : undefined}
-                      rel={c.link ? "noopener noreferrer" : undefined}
-                      tabIndex={i === active ? 0 : -1}
-                    >
-                      Xem Chi Tiết
-                    </a>
-                  </div>
-
-                  <div className={styles.right}>
-                    <div className={`${styles.chip} ${styles.chipDark}`}>
-                      <span className={styles.chipIcon}>
-                        <PainIcon />
-                      </span>
-                      <h4 className={styles.chipTitle}>Painpoints</h4>
-                      <div className={styles.chipBody}>
-                        {c.painpoints.map((p) => (
-                          <p key={p}>{p}</p>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className={`${styles.chip} ${styles.chipLime}`}>
-                      <span className={styles.chipIcon}>
-                        <BulbIcon />
-                      </span>
-                      <h4 className={styles.chipTitle}>Solutions</h4>
-                      <div className={styles.chipBody}>
-                        {c.solutions.map((s) => (
-                          <p key={s}>{s}</p>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className={`${styles.chip} ${styles.chipResults}`}>
-                      <span className={styles.chipIcon}>
-                        <FileIcon />
-                      </span>
-                      <h4 className={styles.chipTitle}>Data-driven results</h4>
-                      <ul className={styles.resultsList}>
-                        {c.results.map((r) => (
-                          <li key={r}>{r}</li>
-                        ))}
-                      </ul>
+                    <div className={styles.cols}>
+                      {COLUMNS.map((col) => (
+                        <div key={col.key} className={styles.col}>
+                          <span className={styles.colLabel}>{col.label}</span>
+                          <ul>
+                            {c[col.key].map((t) => (
+                              <li key={t}>{t}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                      {c.link && (
+                        <a href={c.link} className={`btn ${styles.visit}`} target="_blank" rel="noopener noreferrer">
+                          Xem dự án
+                        </a>
+                      )}
                     </div>
                   </div>
-                </article>
-              </div>
-            ))}
+                </div>
+              </li>
+            );
+          })}
+        </ol>
+      </div>
+
+      {/* pointer-following preview (desktop, hidden for the open row) */}
+      <div
+        ref={previewRef}
+        className={styles.preview}
+        data-show={(hover !== null && hover !== open) || undefined}
+        aria-hidden="true"
+      >
+        {cases.map((c, i) => (
+          <div key={c.title} className={styles.previewImg} data-active={hover === i || undefined}>
+            <Image src={c.image} alt="" fill sizes="280px" style={{ objectFit: c.fit }} />
           </div>
-        </div>
-
-        <CarouselControls
-          count={cases.length}
-          active={active}
-          onSelect={go}
-          label="Chọn dự án"
-          prevLabel="Dự án trước"
-          nextLabel="Dự án tiếp theo"
-          itemLabels={cases.map((c) => c.title)}
-        />
+        ))}
       </div>
     </section>
   );

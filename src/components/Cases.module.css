@@ -1,303 +1,215 @@
-/* ===== Testimonial carousel — Figma SCREEN 6 ===== */
-
 .section {
   position: relative;
+  padding: clamp(100px, 12vw, 170px) 0 clamp(80px, 10vw, 140px);
+  background: var(--night);
   overflow: hidden;
-  background: var(--blue);
-  color: var(--white);
-  padding: 104px 0 96px;
+  border-top: 1px solid var(--line);
 }
 
-/* Decorative brand asterisks */
-.asterisk {
-  position: absolute;
-  color: #3a2cc4;
-  opacity: 0.55;
-  pointer-events: none;
-  z-index: 0;
+.head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  text-align: center;
 }
 
-.astTopRight {
-  top: -56px;
-  right: -40px;
-  width: 240px;
-  transform: rotate(-6deg);
-}
-
-.astTopRightSmall {
-  top: 92px;
-  right: 132px;
-  width: 96px;
-  transform: rotate(8deg);
-  opacity: 0.4;
-}
-
-.astBottomLeft {
-  bottom: -70px;
-  left: -64px;
-  width: 250px;
-  transform: rotate(10deg);
-}
-
-/* Heading */
 .heading {
+  max-width: 22ch;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: clamp(22px, 2.6vw, 38px);
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+/* giant marquee with the speaker standing in front of it */
+.stage {
   position: relative;
-  z-index: 1;
+  height: clamp(320px, 46vw, 600px);
+  margin-top: clamp(24px, 3vw, 40px);
+  display: grid;
+  place-items: center;
+}
+
+.marquee {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  overflow: hidden;
+}
+
+.marqueeTrack {
+  display: flex;
+  width: max-content;
   font-family: var(--font-head);
   font-weight: 800;
-  text-align: center;
-  letter-spacing: 0.4px;
-  line-height: 1.16;
-  color: var(--white);
-  font-size: clamp(24px, 3.8vw, 46px);
-  max-width: 1040px;
-  margin: 0 auto 60px;
+  font-size: clamp(64px, 13vw, 210px);
+  line-height: 1;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  animation: run 38s linear infinite;
 }
 
-.heading .lime {
-  color: var(--lime);
+.marqueeTrack span:nth-child(even) {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(244, 244, 244, 0.5);
 }
 
-/* Carousel shell */
-.carousel {
+@keyframes run {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.photos {
   position: relative;
-  z-index: 1;
-  max-width: 1040px;
-  margin: 0 auto;
-}
-
-.viewport {
-  overflow: hidden;
-  /* room for the head + quote mark that poke above the card */
-  padding-top: 84px;
-}
-
-.track {
-  display: flex;
-  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.slide {
-  flex: 0 0 100%;
-  min-width: 0;
-}
-
-/* Card — neon-green Figma art (stepped top + notch circles) */
-.card {
-  position: relative;
-  display: grid;
-  grid-template-columns: 480px minmax(0, 1fr);
-  gap: 16px;
-  min-height: 372px;
-}
-
-/* card art sits behind the content so its shadow never hits the photo */
-.card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background: url("/figma/card-bg.png") center / 100% 100% no-repeat;
-  filter: drop-shadow(0 30px 44px rgba(7, 6, 40, 0.4));
-  pointer-events: none;
-}
-
-/* single white comma straddling the card notch */
-.quoteComma {
-  position: absolute;
-  z-index: 2;
-  left: 31.4%;
-  top: -42px;
-  width: clamp(64px, 6.8vw, 94px);
-  height: auto;
-  color: var(--white);
-  pointer-events: none;
-}
-
-/* white circle halo peeking out behind the model's head */
-.headHalo {
-  position: absolute;
-  z-index: 1;
-  left: 238px;
-  top: -16px;
-  width: 128px;
-  height: 128px;
-  border-radius: 50%;
-  background: var(--white);
-  pointer-events: none;
-}
-
-/* Photo column */
-.photoCol {
-  position: relative;
-  align-self: stretch;
-}
-
-.photoBox {
-  position: absolute;
-  z-index: 2;
-  left: 96px;
-  right: 30px;
-  bottom: 0;
-  /* let the head poke above the card top edge */
-  top: -42px;
+  width: clamp(200px, 24vw, 340px);
+  height: 100%;
 }
 
 .photo {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: clamp(14px, 1.4vw, 20px);
+  background: #000;
+  box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.9);
+  opacity: 0;
+  transform: translateY(30px) rotate(3deg) scale(0.96);
+  transition: opacity 0.5s ease, transform 0.8s var(--ease-out);
+}
+
+.photo[data-active] {
+  opacity: 1;
+  transform: none;
+}
+
+.photo img {
   object-fit: cover;
   object-position: top center;
 }
 
-/* Brand badge — fixed circle, logo never drives its size */
-.badge {
-  position: absolute;
-  z-index: 3;
-  top: 74px;
-  left: 56px;
-  width: clamp(72px, 6.2vw, 90px);
-  aspect-ratio: 1 / 1;
-  border-radius: 50%;
-  background: var(--white);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: inset 0 0 0 1px rgba(1, 2, 5, 0.06),
-    0 14px 30px -16px rgba(7, 6, 40, 0.55);
-}
-
-.badgeLogo {
-  width: 60%;
-  height: 60%;
-  object-fit: contain;
-  object-position: center;
-  display: block;
-}
-
-/* the small companion dot is anchored to the badge, not to the logo */
-.badge::after {
-  content: "";
-  position: absolute;
-  right: -6px;
-  bottom: -12px;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: var(--white);
-  box-shadow: 0 8px 18px -10px rgba(7, 6, 40, 0.5);
-}
-
-/* Body */
 .body {
-  position: relative;
-  align-self: center;
   display: flex;
   flex-direction: column;
-  padding: 46px 50px 40px 14px;
+  align-items: center;
+  gap: clamp(28px, 3vw, 40px);
+  margin-top: clamp(32px, 4vw, 56px);
+}
+
+.quoteBox {
+  max-width: 860px;
+  text-align: center;
+  animation: swap 0.7s var(--ease-out);
+}
+
+@keyframes swap {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
 }
 
 .quote {
-  font-family: var(--font-body);
-  font-weight: 400;
-  font-size: clamp(15px, 1.35vw, 21px);
-  line-height: 1.52;
-  color: var(--ink);
-  margin-bottom: 26px;
+  font-family: var(--font-head);
+  font-weight: 500;
+  font-size: clamp(17px, 1.7vw, 24px);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
 }
 
 .attr {
-  margin-top: auto;
-  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 22px;
 }
 
-.role {
-  display: block;
-  font-family: var(--font-body);
-  font-size: 15px;
-  color: rgba(1, 2, 5, 0.72);
-  margin-bottom: 4px;
-}
-
-.name {
-  display: block;
+.attr strong {
   font-family: var(--font-head);
-  font-weight: 800;
-  font-size: clamp(20px, 2vw, 28px);
-  letter-spacing: 0.3px;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  color: var(--lime);
+}
+
+.attr span {
+  font-size: 13px;
+  color: var(--dim);
+}
+
+.switcher {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.brand,
+.arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: transparent;
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dim);
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.arrow {
+  width: 44px;
+  justify-content: center;
+  padding: 0;
+  font-size: 16px;
+}
+
+.brand:hover,
+.arrow:hover {
+  border-color: var(--paper);
+  color: var(--paper);
+}
+
+.brand[aria-selected="true"] {
+  border-color: var(--lime);
+  background: var(--lime);
   color: var(--ink);
 }
 
-/* ===== Tablet ===== */
-@media (max-width: 900px) {
-  .card {
-    grid-template-columns: 1fr;
-    gap: 0;
-    min-height: 0;
-    /* the wide stepped art can't stretch to a tall card — plain lime */
-    background: var(--lime);
-    border-radius: 28px;
-    box-shadow: 0 30px 60px -34px rgba(7, 6, 40, 0.6);
+.brandLogo {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: #fff;
+}
+
+@media (max-width: 520px) {
+  .brand {
+    padding: 0 12px;
   }
 
-  .card::before {
-    display: none;
-  }
-
-  .quoteComma {
-    display: none;
-  }
-
-  .headHalo {
-    display: none;
-  }
-
-  .photoCol {
-    height: 300px;
-  }
-
-  .photoBox {
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
-    width: 230px;
-    top: -48px;
-  }
-
-  .badge {
-    top: 26px;
-    left: calc(50% - 150px);
-  }
-
-  .body {
-    align-self: stretch;
-    padding: 36px 30px 32px;
-  }
-
-  .astTopRightSmall {
+  .brandLogo {
     display: none;
   }
 }
 
-/* ===== Mobile ===== */
-@media (max-width: 560px) {
-  .section {
-    padding: 72px 0 64px;
-  }
-
-  .photoCol {
-    height: 260px;
-  }
-
-  .photoBox {
-    width: 200px;
-  }
-
-  .badge {
-    width: 72px;
-    height: 72px;
-    left: calc(50% - 128px);
-  }
-
-  .attr {
-    text-align: left;
+@media (prefers-reduced-motion: reduce) {
+  .marqueeTrack,
+  .quoteBox {
+    animation: none;
   }
 }

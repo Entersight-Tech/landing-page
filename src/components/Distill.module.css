@@ -5,8 +5,8 @@
   --done: 0;
   position: relative;
   height: 240vh;
-  background: var(--lightgray);
-  color: var(--ink);
+  background: var(--night);
+  color: var(--paper);
 }
 
 .sticky {
@@ -29,27 +29,6 @@
 
 .eyebrow {
   grid-area: eyebrow;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--font-head);
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--blue);
-}
-
-.eyebrow::before {
-  content: "";
-  width: 28px;
-  height: 2px;
-  background: currentColor;
-}
-
-.eyebrow i {
-  font-style: normal;
-  color: var(--ink);
 }
 
 .manifesto {
@@ -61,7 +40,7 @@
   font-size: clamp(21px, 2.3vw, 34px);
   line-height: 1.42;
   letter-spacing: -0.4px;
-  color: var(--ink);
+  color: var(--paper);
 }
 
 .word {
@@ -84,7 +63,7 @@
 .key {
   position: relative;
   z-index: 1;
-  color: var(--blue);
+  color: var(--lime);
   transform-origin: 0 0;
   will-change: transform;
   opacity: calc(1 - var(--done));
@@ -138,11 +117,11 @@
   display: flex;
   align-items: baseline;
   gap: clamp(14px, 2vw, 28px);
-  border-bottom: 1px solid rgba(1, 2, 5, calc(0.12 * var(--done)));
+  border-bottom: 1px solid rgba(244, 244, 244, calc(0.14 * var(--done)));
 }
 
 .row:first-child {
-  border-top: 1px solid rgba(1, 2, 5, calc(0.12 * var(--done)));
+  border-top: 1px solid rgba(244, 244, 244, calc(0.14 * var(--done)));
 }
 
 .idx {
@@ -173,7 +152,7 @@
 .slot {
   font-size: clamp(24px, 4.4vw, 64px);
   white-space: nowrap;
-  color: var(--ink);
+  color: var(--paper);
   opacity: var(--done);
   transition: color 0.2s ease, transform 0.25s ease;
 }
@@ -182,14 +161,14 @@
   font-family: var(--font-head);
   font-weight: 700;
   font-size: clamp(20px, 2.4vw, 32px);
-  color: var(--blue);
-  opacity: calc(var(--done) * 0.35);
+  color: var(--lime);
+  opacity: calc(var(--done) * 0.5);
   transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
 .link:hover .slot,
 .link:focus-visible .slot {
-  color: var(--blue);
+  color: var(--lime);
   transform: translateX(10px);
 }
 

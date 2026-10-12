@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Image, { type StaticImageData } from "next/image";
 import styles from "./Cases.module.css";
-import CarouselControls from "./CarouselControls";
 
 import caseKye from "../../public/figma/case-kye.png";
 import caseOni from "../../public/figma/founder-oni.png";
@@ -55,116 +54,79 @@ const TESTIMONIALS: Testimonial[] = [
   },
 ];
 
-function Asterisk({ className }: { className: string }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 100 100"
-      fill="none"
-      aria-hidden="true"
-    >
-      <g
-        stroke="currentColor"
-        strokeWidth="13"
-        strokeLinecap="round"
-        transform="rotate(8 50 50)"
-      >
-        <line x1="50" y1="8" x2="50" y2="92" />
-        <line x1="14" y1="29" x2="86" y2="71" />
-        <line x1="86" y1="29" x2="14" y2="71" />
-      </g>
-    </svg>
-  );
-}
-
+/**
+ * SVZ "testimonials": a giant marquee runs behind the speaker's cut-out
+ * photo; the quote and a brand switcher sit underneath.
+ */
 export default function Cases() {
   const [active, setActive] = useState(0);
   const count = TESTIMONIALS.length;
-
   const go = (i: number) => setActive((i + count) % count);
+  const t = TESTIMONIALS[active];
 
   return (
     <section className={styles.section} id="cases">
-      <Asterisk className={`${styles.asterisk} ${styles.astTopRight}`} />
-      <Asterisk className={`${styles.asterisk} ${styles.astTopRightSmall}`} />
-      <Asterisk className={`${styles.asterisk} ${styles.astBottomLeft}`} />
-
-      <div className="container">
-<p className="tag tag--c" data-scramble="in" style={{ "--tag-accent": "var(--lime)" } as React.CSSProperties}>
-          <b>[06]</b> Khách hàng
+      <header className={`container ${styles.head}`}>
+        <p className="label" data-scramble="in">
+          <b>07</b> — Khách hàng
         </p>
         <h2 className={`${styles.heading} reveal`} data-split>
-          <span className={styles.lime}>10+ DOANH NGHIỆP</span> SMEs
-          <br />
-          ĐÃ CHUYỂN MÌNH CÙNG ENTERSIGHT
+          <span className="lime">10+ doanh nghiệp SMEs</span> đã chuyển mình cùng Entersight
         </h2>
+      </header>
 
-        <div className={`${styles.carousel} reveal`}>
-          <div className={styles.viewport}>
-            <div
-              className={styles.track}
-              style={{ transform: `translateX(-${active * 100}%)` }}
-            >
-              {TESTIMONIALS.map((t, i) => (
-                <div
-                  className={styles.slide}
-                  key={t.id}
-                  aria-hidden={i !== active}
-                >
-                  <article className={styles.card}>
-                    <svg
-                      className={styles.quoteComma}
-                      viewBox="0 0 68 118"
-                      fill="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M58 22 C58 8 46 2 32 2 C16 2 4 16 4 36 C4 54 16 66 34 66 C28 90 20 104 4 116 C30 108 58 86 64 52 C66 42 64 30 58 22 Z"
-                        transform="scale(-1,1) translate(-68,0)"
-                      />
-                    </svg>
-                    <div className={styles.photoCol}>
-                      <span className={styles.headHalo} aria-hidden="true" />
-                      <span className={styles.badge}>
-                        <Image
-                          src={t.logo}
-                          alt={t.brand}
-                          className={styles.badgeLogo}
-                        />
-                      </span>
-                      <div className={`${styles.photoBox} wipe`}>
-                        <Image
-                          src={t.photo}
-                          alt={`${t.name} — ${t.brand}`}
-                          fill
-                          sizes="(max-width: 900px) 230px, 340px"
-                          className={styles.photo}
-                        />
-                      </div>
-                    </div>
-
-                    <div className={styles.body}>
-                      <p className={styles.quote}>{t.quote}</p>
-                      <div className={styles.attr}>
-                        <span className={styles.role}>{t.role}</span>
-                        <strong className={styles.name}>{t.name}</strong>
-                      </div>
-                    </div>
-                  </article>
-                </div>
-              ))}
-            </div>
+      <div className={styles.stage}>
+        <div className={styles.marquee} aria-hidden="true">
+          <div className={styles.marqueeTrack}>
+            {Array.from({ length: 4 }, (_, i) => (
+              <span key={i}>Khách hàng nói gì —&nbsp;</span>
+            ))}
           </div>
+        </div>
 
-          <CarouselControls
-            count={TESTIMONIALS.length}
-            active={active}
-            onSelect={go}
-            label="Chọn khách hàng"
-            prevLabel="Khách hàng trước"
-            nextLabel="Khách hàng tiếp theo"
-            itemLabels={TESTIMONIALS.map((t) => t.brand)}
-          />
+        <div className={styles.photos}>
+          {TESTIMONIALS.map((p, i) => (
+            <div key={p.id} className={styles.photo} data-active={i === active || undefined}>
+              <Image
+                src={p.photo}
+                alt={i === active ? `${p.name} — ${p.brand}` : ""}
+                fill
+                sizes="(max-width: 760px) 60vw, 340px"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className={`container ${styles.body}`}>
+        <figure key={t.id} className={styles.quoteBox}>
+          <blockquote className={styles.quote}>{t.quote}</blockquote>
+          <figcaption className={styles.attr}>
+            <strong>{t.name}</strong>
+            <span>{t.role}</span>
+          </figcaption>
+        </figure>
+
+        <div className={styles.switcher} role="tablist" aria-label="Chọn khách hàng">
+          <button type="button" className={styles.arrow} onClick={() => go(active - 1)} aria-label="Khách hàng trước">
+            ←
+          </button>
+          {TESTIMONIALS.map((p, i) => (
+            <button
+              key={p.id}
+              type="button"
+              role="tab"
+              aria-selected={i === active}
+              className={styles.brand}
+              onClick={() => go(i)}
+            >
+              <Image src={p.logo} alt="" className={styles.brandLogo} />
+              {p.brand}
+            </button>
+          ))}
+          <button type="button" className={styles.arrow} onClick={() => go(active + 1)} aria-label="Khách hàng tiếp theo">
+            →
+          </button>
         </div>
       </div>
     </section>

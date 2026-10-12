@@ -4,7 +4,7 @@
 .section {
   --done: 0;
   position: relative;
-  height: 320vh;
+  height: 240vh;
   background: var(--lightgray);
   color: var(--ink);
 }
@@ -55,13 +55,13 @@
 .manifesto {
   grid-area: body;
   align-self: center;
-  max-width: 1000px;
+  max-width: 920px;
   font-family: var(--font-head);
-  font-weight: 700;
-  font-size: clamp(22px, 2.9vw, 40px);
-  line-height: 1.32;
-  letter-spacing: -0.3px;
-  text-transform: uppercase;
+  font-weight: 500;
+  font-size: clamp(21px, 2.3vw, 34px);
+  line-height: 1.42;
+  letter-spacing: -0.4px;
+  color: var(--ink);
 }
 
 .word {
@@ -90,17 +90,31 @@
   opacity: calc(1 - var(--done));
 }
 
-/* lime marker under each keyword, like a highlighter pass */
-.key::after {
-  content: "";
+/* scroll cue — gone as soon as the reading starts */
+.hint {
   position: absolute;
-  z-index: -1;
-  left: -0.08em;
-  right: -0.08em;
-  bottom: 0.08em;
-  height: 0.34em;
-  background: var(--lime);
-  opacity: calc(1 - var(--done));
+  left: 50%;
+  bottom: clamp(24px, 5vh, 48px);
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+  opacity: calc(1 - var(--p, 0) * 6);
+  pointer-events: none;
+}
+
+.hint::after {
+  content: "";
+  width: 1px;
+  height: 28px;
+  background: linear-gradient(var(--muted), transparent);
 }
 
 .list {
@@ -218,8 +232,8 @@
   opacity: 1;
 }
 
-.section[data-static] .key::after {
-  opacity: 1;
+.section[data-static] .hint {
+  display: none;
 }
 
 @media (max-width: 560px) {

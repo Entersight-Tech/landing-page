@@ -16,17 +16,17 @@ const KEYWORDS = [
 ];
 
 const MANIFESTO: Part[] = [
-  "Entersight là nơi công nghệ gặp sáng tạo. Chúng tôi dùng",
+  "Một đối tác, năm năng lực.",
   { key: 0 },
-  "để tự động hóa quy trình và chăm sóc khách hàng,",
+  "tự động hóa quy trình,",
   { key: 1 },
-  "để tiếp thị dựa trên dữ liệu thực,",
+  "tiếp thị bằng dữ liệu thực,",
   { key: 2 },
-  "để sáng tạo bản sắc chạm điểm rơi cảm xúc,",
+  "chạm điểm rơi cảm xúc,",
   { key: 3 },
-  "để sản xuất nội dung quy mô lớn, và",
+  "sản xuất nội dung quy mô lớn, và",
   { key: 4 },
-  "để quản trị doanh nghiệp theo thời gian thực.",
+  "giúp bạn ra quyết định theo thời gian thực.",
 ];
 
 const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
@@ -93,6 +93,7 @@ export default function Distill() {
       });
       const done = clamp01((p - 0.76) / 0.12);
       section.style.setProperty("--done", String(done));
+      section.style.setProperty("--p", p.toFixed(3));
       section.toggleAttribute("data-done", done > 0.9);
     };
     const onScroll = () => {
@@ -163,6 +164,9 @@ export default function Distill() {
             ))}
           </ol>
         </div>
+        <span className={styles.hint} aria-hidden="true">
+          Cuộn để xem 5 giải pháp
+        </span>
       </div>
     </section>
   );

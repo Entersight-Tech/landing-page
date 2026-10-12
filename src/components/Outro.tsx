@@ -7,6 +7,7 @@ const sitemap = [
   { label: "Giải pháp", href: "#solutions" },
   { label: "Lộ trình", href: "#transformation" },
   { label: "Dự án", href: "#case-studies" },
+  { label: "Creative", href: "#work" },
   { label: "Khách hàng", href: "#cases" },
   { label: "Liên hệ", href: "#contact" },
 ];

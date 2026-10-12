@@ -39,17 +39,26 @@ Roboto body + italic "mini" words). Shared pieces live in globals.css:
    shapes, pointer-following lime dot, service list
 3. `Partners` — light panel that slides over the hero: "CÔNG NGHỆ ✱ SÁNG TẠO"
    statement settling on scroll + partner logo marquee
-4. `Problem` — dark "ngân sách đang bốc hơi" beat
+4. `Problem` — pinned 5-screen stage: each scroll step reveals one pain point
+   and burns two letters off the giant "NGÂN SÁCH" (the budget evaporating)
 5. `Distill` — pinned manifesto; keywords fly into a list linking `#sol-N`
 6. `Solutions` — light "hub" panel with a bento of the 5 products (+ CTA tile)
 7. `Transformation` — 4 phases as a staircase next to a sticky heading
 8. `CaseStudies` — project index rows; one opens to problem/solution/result,
    pointer-following preview on desktop
-9. `Results` — pinned headline while the 4 stat cards are dealt on scroll
-10. `Cases` — testimonials: giant marquee behind the speaker photo + switcher
-11. `Values` — purple block, EN / TER / SIGHT value stack
-12. `Outro` — `Contact` (headline + form panel) and footer with the giant
+9. `Work` — LauLau Creative portfolio (data in `work.ts`, images in
+   `public/work/<slug>/`): an index screen, then one screen per project whose
+   tone tints the section; "Xem dự án" opens a full-screen case viewer
+10. `Results` — pinned headline while the 4 stat cards are dealt on scroll
+11. `Cases` — testimonials: giant marquee behind the speaker photo + switcher
+12. `Values` — purple block, EN / TER / SIGHT value stack
+13. `Outro` — `Contact` (headline + form panel) and footer with the giant
     ENTER✱SIGHT wordmark
+
+Scrolling (`Motion.tsx`): Lenis smooth scroll; on desktop (fine pointer,
+≥900px) each wheel gesture pages exactly one screen — to the next
+`main section` / `[data-page]` / `footer` top, or one viewport further inside
+a taller section. Touch devices keep free scrolling.
 
 ## Lead form
 `Contact` posts to `/api/lead` (`src/app/api/lead/route.ts`), which validates

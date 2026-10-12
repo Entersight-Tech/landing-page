@@ -14,7 +14,7 @@ export default function Values() {
       <div className={styles.panel}>
         <div className={styles.intro}>
           <p className="label" data-scramble="in">
-            <b>08</b> — Về Entersight
+            <b>09</b> — Về Entersight
           </p>
           <h2 className={`display ${styles.title} reveal`} data-split>
             Giá trị <i className="mini">cốt lõi</i>

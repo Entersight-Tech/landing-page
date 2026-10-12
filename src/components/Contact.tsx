@@ -49,7 +49,7 @@ export default function Contact() {
       <div className={`container ${styles.inner}`}>
         <div className={styles.left}>
           <p className="label" data-scramble="in">
-            <b>09</b> — Liên hệ
+            <b>10</b> — Liên hệ
           </p>
           <h2 className={`display ${styles.title} reveal`} data-split>
             <i className="mini">sẵn sàng</i>{"\u00a0"}bứt phá <span className="lime">cùng Entersight?</span>

@@ -19,39 +19,40 @@ const steps = [
   },
 ];
 
+/** SVZ "how we work": the four phases step down a staircase as you read. */
 export default function Transformation() {
   return (
     <section className={styles.section} id="transformation">
       <div className={`container ${styles.inner}`}>
-<p className="tag tag--c" data-scramble="in">
-          <b>[04]</b> Lộ trình
-        </p>
-        <h2 className={`h-title ${styles.title} reveal`} data-split>
-          ĐỒNG HÀNH CÙNG DOANH NGHIỆP
-          <br />
-          <span className="accent">XUYÊN SUỐT</span>{" "}
-          <span className={styles.nowrap}>LỘ TRÌNH</span>{" "}
-          <span className={styles.nowrap}>CHUYỂN ĐỔI SỐ</span>
-        </h2>
+        <header className={styles.head}>
+          <p className="label" data-scramble="in">
+            <b>04</b> — Lộ trình
+          </p>
+          <h2 className={`display ${styles.title} reveal`} data-split>
+            <i className="mini">đồng hành</i>{"\u00a0"}xuyên suốt <span className="lime">lộ trình</span> chuyển đổi số
+          </h2>
+          <p className={`${styles.lede} reveal`}>
+            Từ khảo sát hiện trạng đến báo cáo quản trị — một đội ngũ đi cùng
+            doanh nghiệp qua bốn giai đoạn.
+          </p>
+          <a href="#contact" className="btn reveal" data-scramble>
+            Tư vấn triển khai ngay
+          </a>
+        </header>
 
-        <a href="#contact" className={`${styles.cta} reveal`}>
-          Tư Vấn Triển Khai Ngay
-        </a>
-
-        {/* the four phases read as one roadmap: numbered nodes on a shared rail */}
-        <ol className={styles.roadmap}>
+        <ol className={styles.stairs}>
           {steps.map((s, i) => (
             <li
               className={`${styles.step} reveal`}
               key={s.title}
-              style={{ transitionDelay: `${i * 0.08}s` }}
+              style={{ "--i": i, transitionDelay: `${i * 0.1}s` } as React.CSSProperties}
             >
-              <span className={styles.node} aria-hidden>
-                {String(i + 1).padStart(2, "0")}
+              <span className={styles.num} aria-hidden="true">
+                0{i + 1}
               </span>
-              <div className={styles.body}>
+              <div>
                 <span className={styles.phase}>Giai đoạn {i + 1}</span>
-                <h3 className={styles.cardTitle}>{s.title}</h3>
+                <h3 className={styles.stepTitle}>{s.title}</h3>
                 <p className={styles.desc}>{s.desc}</p>
               </div>
             </li>

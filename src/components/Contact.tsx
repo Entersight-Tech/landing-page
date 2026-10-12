@@ -8,13 +8,6 @@ type Status = "idle" | "sending" | "sent" | "error";
 
 const HOTLINE = "0941233481";
 
-const stats = [
-  { value: "50%", label: "Giảm chi phí vận hành" },
-  { value: "3x", label: "Tốc độ xử lý công việc" },
-  { value: "24/7", label: "Hệ thống tự động thực thi" },
-  { value: "20+", label: "Dự án vận hành thành công" },
-];
-
 export default function Contact() {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
@@ -52,30 +45,29 @@ export default function Contact() {
   }
 
   return (
-    <section className="section" id="contact">
+    <section className={styles.section} id="contact">
       <div className={`container ${styles.inner}`}>
         <div className={styles.left}>
-          <p className="tag" data-scramble="in">
-            <b>[08]</b> Liên hệ
+          <p className="label" data-scramble="in">
+            <b>09</b> — Liên hệ
           </p>
-          <h2 className={`${styles.title} reveal`} data-split>
-            SẴN SÀNG BỨT PHÁ
-            <br />
-            <span>CÙNG ENTERSIGHT?</span>
+          <h2 className={`display ${styles.title} reveal`} data-split>
+            <i className="mini">sẵn sàng</i>{"\u00a0"}bứt phá <span className="lime">cùng Entersight?</span>
           </h2>
-          <p className={styles.sub}>
+          <p className={`${styles.sub} reveal`}>
             Để lại thông tin, đội ngũ Entersight sẽ phác thảo lộ trình tối ưu
             riêng cho mô hình kinh doanh của bạn.
           </p>
-
-          <div className={styles.stats}>
-            {stats.map((s) => (
-              <div className={styles.stat} key={s.label}>
-                <strong>{s.value}</strong>
-                <span>{s.label}</span>
-              </div>
-            ))}
-          </div>
+          <ul className={`${styles.direct} reveal`}>
+            <li>
+              <span>Email</span>
+              <a href="mailto:info@entersight-tech.com">info@entersight-tech.com</a>
+            </li>
+            <li>
+              <span>Zalo / Hotline</span>
+              <a href={`https://zalo.me/${HOTLINE}`}>0941 233 481</a>
+            </li>
+          </ul>
         </div>
 
         <div className={styles.formCard}>

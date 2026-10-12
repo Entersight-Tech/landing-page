@@ -1,36 +1,30 @@
-"use client";
-
-import { useState, useRef, useEffect, useCallback } from "react";
 import Image, { type StaticImageData } from "next/image";
 import styles from "./Solutions.module.css";
-import CarouselControls from "./CarouselControls";
 import brain from "../../public/figma/brain.png";
 import dataImg from "../../public/figma/solution-data.png";
 import creativeImg from "../../public/figma/solution-creative.png";
 import genaiImg from "../../public/figma/solution-genai.png";
 import dashboardImg from "../../public/figma/solution-dashboard.png";
 
-type Slide = {
+type Solution = {
   title: string;
   tagline: string;
   bullets: string[];
   image: StaticImageData;
-  alt: string;
 };
 
-const slides: Slide[] = [
+const solutions: Solution[] = [
   {
-    title: "ETS AI OPERATION",
+    title: "AI Operation",
     tagline: "Tự động hóa quy trình & Chăm sóc khách hàng.",
     bullets: [
       "Xử lý dữ liệu thông minh trong vài giây, giảm sai sót thủ công.",
       "Tối ưu hóa nguồn lực, vận hành bộ máy tinh gọn nhưng hiệu suất tối đa.",
     ],
     image: brain,
-    alt: "ETS AI Operation",
   },
   {
-    title: "ETS DATA MARKETING",
+    title: "Data Marketing",
     tagline: "Tiếp thị thông minh dựa trên dữ liệu thực.",
     bullets: [
       "Cá nhân hóa trải nghiệm khách hàng trên đa điểm chạm.",
@@ -38,10 +32,9 @@ const slides: Slide[] = [
       'Triển khai chiến dịch trúng đích, ngừng lãng phí ngân sách "mù".',
     ],
     image: dataImg,
-    alt: "ETS Data Marketing",
   },
   {
-    title: "ETS CREATIVE",
+    title: "Creative",
     tagline: "Sáng tạo bản sắc, chạm điểm rơi cảm xúc.",
     bullets: [
       "Sản xuất hình ảnh, video và phát triển nội dung marketing đa kênh.",
@@ -49,10 +42,9 @@ const slides: Slide[] = [
       "Xây dựng chiến lược sáng tạo và tối ưu quảng cáo để tăng trưởng doanh thu.",
     ],
     image: creativeImg,
-    alt: "ETS Creative",
   },
   {
-    title: "ETS GENERATIVE AI PLATFORM",
+    title: "Generative AI Platform",
     tagline: "Hệ thống sản xuất nội dung quy mô lớn.",
     bullets: [
       "x5 tốc độ output nội dung mà không tăng chi phí nhân sự.",
@@ -60,10 +52,9 @@ const slides: Slide[] = [
       "Đảm bảo tính đồng nhất thương hiệu trên mọi nền tảng số.",
     ],
     image: genaiImg,
-    alt: "ETS Generative AI Platform",
   },
   {
-    title: "ETS DASHBOARD & ANALYTICS",
+    title: "Dashboard & Analytics",
     tagline: "Quản trị doanh nghiệp theo thời gian thực.",
     bullets: [
       "Hệ thống báo cáo minh bạch, nắm bắt mọi chỉ số kinh doanh 24/7.",
@@ -71,138 +62,63 @@ const slides: Slide[] = [
       "Theo dõi sức khỏe thương hiệu và hiệu quả chiến dịch tức thời.",
     ],
     image: dashboardImg,
-    alt: "ETS Dashboard & Analytics",
   },
 ];
 
-function Check() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <circle cx="12" cy="12" r="10" />
-      <path d="M8 12.5l2.5 2.5L16 9.5" />
-    </svg>
-  );
-}
-
-function ArrowUpRight() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M7 17 17 7" />
-      <path d="M8 7h9v9" />
-    </svg>
-  );
-}
-
+/** SVZ "THE HUB": a light rounded panel holding a bento of the five products. */
 export default function Solutions() {
-  const [active, setActive] = useState(0);
-  const [offset, setOffset] = useState(0);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const count = slides.length;
-
-  // Distance to translate the track so the active card aligns to the left
-  // edge of the content column, leaving the next card peeking on the right.
-  const measure = useCallback((idx: number) => {
-    const track = trackRef.current;
-    if (!track) return 0;
-    const items = track.children;
-    const first = items[0] as HTMLElement | undefined;
-    if (!first) return 0;
-    const second = items[1] as HTMLElement | undefined;
-    const step = second ? second.offsetLeft - first.offsetLeft : first.offsetWidth;
-    return step * idx;
-  }, []);
-
-  useEffect(() => {
-    setOffset(measure(active));
-  }, [active, measure]);
-
-  useEffect(() => {
-    const onResize = () => setOffset(measure(active));
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, [active, measure]);
-
-  // the Distill list jumps straight to a product card
-  useEffect(() => {
-    const onPick = (e: Event) => setActive((e as CustomEvent<number>).detail);
-    window.addEventListener("ets:solution", onPick);
-    return () => window.removeEventListener("ets:solution", onPick);
-  }, []);
-
-  const go = (i: number) => setActive(((i % count) + count) % count);
-
   return (
-    <section className={styles.band} id="solutions">
-      <span className={styles.watermark} aria-hidden>
-        Entersight
-      </span>
-
-      <div className={`container ${styles.inner}`}>
-        <div className={styles.head}>
-          <p className="tag tag--c" data-scramble="in" style={{ "--tag-accent": "var(--lime)" } as React.CSSProperties}>
-            <b>[03]</b> Giải pháp
+    <section className={styles.section} id="solutions">
+      <div className={styles.panel}>
+        <header className={styles.head}>
+          <p className="label" data-scramble="in">
+            <b>03</b> — Giải pháp
           </p>
-          <h2 className={`${styles.title} reveal`} data-split>
-            <span className={styles.one}>MỘT ĐIỂM CHẠM</span>
-            <span className={styles.divider} aria-hidden />
-            <span className={styles.all}>MỌI GIẢI PHÁP</span>
+          <h2 className={`display ${styles.title} reveal`} data-split>
+            <i className="mini">một</i>{"\u00a0"}điểm chạm <span className={styles.blue}>mọi giải pháp</span>
           </h2>
           <p className={`${styles.quote} reveal`}>
-            &ldquo; Entersight không chỉ giúp bạn kể câu chuyện hay, chúng tôi xây
-            dựng một bộ máy mạnh mẽ để hiện thực hóa câu chuyện đó bằng công nghệ
-            số &rdquo;
+            Entersight không chỉ giúp bạn kể câu chuyện hay, chúng tôi xây dựng
+            một bộ máy mạnh mẽ để hiện thực hóa câu chuyện đó bằng công nghệ số.
           </p>
-        </div>
+        </header>
 
-        <div className={`${styles.carousel} reveal`}>
-          <div
-            className={styles.track}
-            ref={trackRef}
-            style={{ transform: `translateX(-${offset}px)` }}
-          >
-            {slides.map((s, i) => (
-              <div
-                className={`${styles.slide} ${i === active ? styles.isActive : ""}`}
-                key={s.title}
-                aria-hidden={i !== active}
-              >
-                <article className={styles.card}>
-                  <div className={styles.cardText}>
-                    <h3 className={styles.cTitle}>{s.title}</h3>
-                    <p className={styles.tagline}>{s.tagline}</p>
-                    <ul className={styles.bullets}>
-                      {s.bullets.map((b) => (
-                        <li key={b}>
-                          <Check />
-                          <span>{b}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <a href="#contact" className={styles.cta} tabIndex={i === active ? 0 : -1}>
-                      Tư vấn triển khai
-                      <ArrowUpRight />
-                    </a>
-                  </div>
-                  <div className={styles.cardVisual}>
-                    <div className={`${styles.media} wipe`}>
-                      <Image src={s.image} alt={s.alt} sizes="(max-width: 860px) 90vw, 340px" />
-                    </div>
-                  </div>
-                </article>
+        <div className={styles.bento}>
+          {solutions.map((s, i) => (
+            <article
+              key={s.title}
+              id={`sol-${i}`}
+              className={`${styles.tile} ${styles[`t${i}`]} reveal`}
+              style={{ transitionDelay: `${(i % 3) * 0.08}s` }}
+              tabIndex={0}
+            >
+              <div className={`${styles.media} wipe`}>
+                <Image
+                  src={s.image}
+                  alt=""
+                  fill
+                  sizes="(max-width: 760px) 92vw, (max-width: 1100px) 46vw, 640px"
+                />
               </div>
-            ))}
-          </div>
-        </div>
+              <div className={styles.body}>
+                <span className={styles.idx}>ETS / 0{i + 1}</span>
+                <h3 className={styles.name}>{s.title}</h3>
+                <p className={styles.tagline}>{s.tagline}</p>
+                <ul className={styles.bullets}>
+                  {s.bullets.map((b) => (
+                    <li key={b}>{b}</li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))}
 
-        <CarouselControls
-          count={slides.length}
-          active={active}
-          onSelect={go}
-          label="Chọn giải pháp"
-          prevLabel="Giải pháp trước"
-          nextLabel="Giải pháp tiếp theo"
-          itemLabels={slides.map((s) => s.title)}
-        />
+          <a href="#contact" className={`${styles.tile} ${styles.t5} ${styles.ctaTile} reveal`} data-scramble>
+            <span className={styles.idx}>Bắt đầu</span>
+            <span className={styles.ctaText}>Tư vấn triển khai</span>
+            <span className={styles.ctaArrow} aria-hidden="true">↗</span>
+          </a>
+        </div>
       </div>
     </section>
   );

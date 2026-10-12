@@ -28,40 +28,28 @@ substituted with **Montserrat** (the closest free geometric sans). Mapped via
 - Body: Roboto → `--font-body` → CSS `--font-body`
 
 ## Page Structure (`src/app/page.tsx`)
-Ordered as a buyer's journey: promise → proof → problem → solution → how →
-results → who we are → contact.
-1. `Navigation` — fixed header; frosted pill on scroll (links/CTA sit above
-   the glass layer), all-white logo, compact CTA kept on phones
-2. `Hero` — "SỐ HOÁ QUY TRÌNH MARKETING ĐÚNG ĐÍCH", primary CTA + "Xem dự án
-   thực tế" link to `#case-studies`
-3. `Partners` — slim trust bar right under the hero (grayscale logo marquee)
-4. `Problem` — dark "ngân sách đang bốc hơi" beat: draining budget bar +
-   numbered pain points + CTA
-5. `Distill` — pinned manifesto (built from the Solutions taglines); on
-   scroll the filler words fade and the 5 product names fly into a list
-   whose rows jump the carousel (`ets:solution` event)
-6. `Solutions` — "MỘT ĐIỂM CHẠM — MỌI GIẢI PHÁP" carousel
-7. `Transformation` — 01→04 roadmap (Tư vấn / Số hoá / Tối ưu hoá / Dữ liệu
-   hoá) on a shared rail; vertical timeline below 980px
-8. `CaseStudies` — project carousel (Oni, KYE, Một, Quà Tết Má Làm)
-9. `Cases` — testimonial carousel (KYE, Oni, SMA)
-10. `Values` — single dark section: title + quote + E/T/S cards
-11. `Outro` — `Contact` (stats + lead form) and the gradient footer
+SVZ-inspired editorial layout on a dark canvas (`--night`), keeping the brand
+palette (ink / lime / blue-purple / light gray) and fonts (Montserrat display,
+Roboto body + italic "mini" words). Shared pieces live in globals.css:
+`.display`, `.mini`, `.label` ([ 03 — GIẢI PHÁP ]), `.btn` / `.btn--solid`.
 
-All three carousels share `CarouselControls` (← dots →).
-
-Motion system (SVZ-inspired, `Motion.tsx` + globals.css), skipped under
-prefers-reduced-motion:
-- Lenis smooth scroll; in-page anchors honour each section's scroll-margin-top
-- curtain: `Hero` is sticky inside `.curtain` (Hero + Partners + Problem) and
-  dims (`--cover`) as those panels slide over it
-- `data-split` headings: words rise out of masks when `.reveal` gets `in`
-- `.wipe` image containers clip open from the bottom on reveal
-- every section opens with a `.tag` index label, e.g. `[03] Giải pháp`
-
-`Scramble` gives text a "decoding" effect: `data-scramble` re-decodes on
-hover/focus (nav, hero CTAs, footer links), `data-scramble="in"` decodes once
-on scroll-in (section eyebrows). Both respect prefers-reduced-motion.
+1. `Navigation` — fixed, `mix-blend-mode: difference` (white on dark, black on
+   light panels); grouped links on desktop, full-screen sheet on mobile
+2. `Hero` — sticky "curtain" hero: centred display headline, brand asterisk
+   shapes, pointer-following lime dot, service list
+3. `Partners` — light panel that slides over the hero: "CÔNG NGHỆ ✱ SÁNG TẠO"
+   statement settling on scroll + partner logo marquee
+4. `Problem` — dark "ngân sách đang bốc hơi" beat
+5. `Distill` — pinned manifesto; keywords fly into a list linking `#sol-N`
+6. `Solutions` — light "hub" panel with a bento of the 5 products (+ CTA tile)
+7. `Transformation` — 4 phases as a staircase next to a sticky heading
+8. `CaseStudies` — project index rows; one opens to problem/solution/result,
+   pointer-following preview on desktop
+9. `Results` — pinned headline while the 4 stat cards are dealt on scroll
+10. `Cases` — testimonials: giant marquee behind the speaker photo + switcher
+11. `Values` — purple block, EN / TER / SIGHT value stack
+12. `Outro` — `Contact` (headline + form panel) and footer with the giant
+    ENTER✱SIGHT wordmark
 
 ## Lead form
 `Contact` posts to `/api/lead` (`src/app/api/lead/route.ts`), which validates

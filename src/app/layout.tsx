@@ -16,6 +16,7 @@ const montserrat = Montserrat({
 const roboto = Roboto({
   variable: "--nf-body",
   weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
   subsets: ["latin", "vietnamese"],
   display: "swap",
 });

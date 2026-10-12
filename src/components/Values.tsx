@@ -6,58 +6,43 @@ const values = [
   { big: "S", rest: "ight", title: "Sincere", note: "(Tận tâm)" },
 ];
 
-/** Faint 6-spoke asterisk used as background decoration on the dark band. */
-function Asterisk({ className }: { className: string }) {
-  return (
-    <svg className={className} viewBox="-50 -50 100 100" aria-hidden="true" focusable="false">
-      <g fill="currentColor">
-        <rect x="-9" y="-50" width="18" height="100" rx="9" />
-        <rect x="-9" y="-50" width="18" height="100" rx="9" transform="rotate(60)" />
-        <rect x="-9" y="-50" width="18" height="100" rx="9" transform="rotate(120)" />
-      </g>
-    </svg>
-  );
-}
-
+/** SVZ's coloured "culture" block, in brand purple: the three values stack
+ *  into the word En·Ter·Sight. */
 export default function Values() {
   return (
     <section className={styles.section} id="values">
-      <div className={styles.dark}>
-        <Asterisk className={`${styles.star} ${styles.starOne}`} />
-        <Asterisk className={`${styles.star} ${styles.starTwo}`} />
-        <Asterisk className={`${styles.star} ${styles.starThree}`} />
-
-        <div className={styles.bandInner}>
-          <p className="tag tag--c" data-scramble="in" style={{ "--tag-accent": "var(--lime)", color: "rgba(255, 255, 255, 0.78)" } as React.CSSProperties}>
-            <b>[07]</b> Về Entersight
+      <div className={styles.panel}>
+        <div className={styles.intro}>
+          <p className="label" data-scramble="in">
+            <b>08</b> — Về Entersight
           </p>
-          <h2 className={`${styles.title} reveal`} data-split>
-            GIÁ TRỊ CỐT LÕI
+          <h2 className={`display ${styles.title} reveal`} data-split>
+            Giá trị <i className="mini">cốt lõi</i>
           </h2>
-          <p className={styles.quote}>
-            “ Entersight tin rằng gốc rễ của sự bứt phá nằm ở việc đổi mới tư duy,
-            lớn mạnh nhờ giải pháp thực tế và bền vững bởi sự đồng hành tận tâm. ”
+          <p className={`${styles.quote} reveal`}>
+            “Entersight tin rằng gốc rễ của sự bứt phá nằm ở việc đổi mới tư duy,
+            lớn mạnh nhờ giải pháp thực tế và bền vững bởi sự đồng hành tận tâm.”
           </p>
         </div>
 
-        <div className={styles.grid}>
+        <ul className={styles.stack}>
           {values.map((v, i) => (
-            <div
-              className={`${styles.card} reveal`}
+            <li
+              className={`${styles.row} reveal`}
               key={v.title}
               style={{ transitionDelay: `${i * 0.1}s` }}
             >
-              <div className={styles.letter}>
+              <span className={styles.chunk} aria-hidden="true">
                 {v.big}
-                <span>{v.rest}</span>
-              </div>
-              <div className={styles.cardText}>
-                <h3 className={styles.cardTitle}>{v.title}</h3>
-                <p className={styles.cardNote}>{v.note}</p>
-              </div>
-            </div>
+                {v.rest}
+              </span>
+              <span className={styles.meaning}>
+                <strong>{v.title}</strong>
+                <span>{v.note}</span>
+              </span>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );

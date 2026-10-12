@@ -3,31 +3,30 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./Navigation.module.css";
-// all-white wordmark: the purple mark of logo-reverse.png vanishes on the purple hero
-import logoReverse from "../../public/figma/logo-mono-reverse.png";
+import logo from "../../public/figma/logo-mono-reverse.png";
 
-const links = [
-  { label: "Thách Thức", href: "#problem" },
-  { label: "Giải Pháp", href: "#solutions" },
-  { label: "Lộ Trình", href: "#transformation" },
-  { label: "Dự Án", href: "#case-studies" },
-  { label: "Khách Hàng", href: "#cases" },
-  { label: "Về Entersight", href: "#values" },
-  { label: "Liên Hệ", href: "#contact" },
+// grouped two-per-column like SVZ's top bar
+const groups = [
+  [
+    { label: "Thách thức", href: "#problem" },
+    { label: "Giải pháp", href: "#solutions" },
+  ],
+  [
+    { label: "Lộ trình", href: "#transformation" },
+    { label: "Dự án", href: "#case-studies" },
+  ],
+  [
+    { label: "Khách hàng", href: "#cases" },
+    { label: "Về Entersight", href: "#values" },
+  ],
 ];
+const links = groups.flat();
 
 export default function Navigation() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
+    document.documentElement.toggleAttribute("data-menu", open);
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
     window.addEventListener("keydown", onKey);
@@ -35,63 +34,72 @@ export default function Navigation() {
   }, [open]);
 
   return (
-    <header className={`${styles.nav} ${scrolled ? styles.scrolled : ""}`}>
-      <div className={`container ${styles.inner}`}>
-        <div className={styles.glass} aria-hidden />
-        <a href="#top" className={styles.logo} aria-label="Entersight">
-          <Image
-            src={logoReverse}
-            alt="Entersight"
-            className={styles.logoImg}
-            priority
-          />
+    <>
+      {/* difference blend: white over dark sections, black over light panels */}
+      <header className={styles.nav}>
+        <a href="#top" className={styles.logo} aria-label="Entersight — về đầu trang">
+          <Image src={logo} alt="Entersight" className={styles.logoImg} priority />
         </a>
 
-        <nav
-          id="site-menu"
-          className={`${styles.links} ${open ? styles.linksOpen : ""}`}
-        >
-          {links.map((l) => (
-            <a key={l.href} href={l.href} data-scramble onClick={() => setOpen(false)}>
-              {l.label}
-            </a>
+        <nav className={styles.groups} aria-label="Điều hướng chính">
+          {groups.map((g, i) => (
+            <div key={i} className={styles.group}>
+              {g.map((l) => (
+                <a key={l.href} href={l.href} data-scramble>
+                  {l.label}
+                </a>
+              ))}
+            </div>
           ))}
         </nav>
 
         <div className={styles.right}>
-          <a href="#contact" className={styles.signup}>
-            ĐĂNG KÍ NGAY
-            <svg
-              className={styles.arrow}
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              aria-hidden
-            >
-              <path
-                d="M3 8h9M8.5 4l4 4-4 4"
-                stroke="currentColor"
-                strokeWidth="1.6"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+          <a href="#contact" className={styles.cta} data-scramble>
+            Tư vấn miễn phí
           </a>
           <button
             className={styles.burger}
             type="button"
-            aria-label="Menu"
+            aria-label={open ? "Đóng menu" : "Mở menu"}
             aria-expanded={open}
             aria-controls="site-menu"
             onClick={() => setOpen((v) => !v)}
           >
             <span />
             <span />
-            <span />
           </button>
         </div>
+      </header>
+
+      <div
+        id="site-menu"
+        className={styles.sheet}
+        data-open={open || undefined}
+        aria-hidden={!open}
+      >
+        <nav className={styles.sheetLinks}>
+          {[...links, { label: "Liên hệ", href: "#contact" }].map((l, i) => (
+            <a
+              key={l.href}
+              href={l.href}
+              tabIndex={open ? 0 : -1}
+              style={{ transitionDelay: open ? `${0.08 + i * 0.04}s` : "0s" }}
+              onClick={() => setOpen(false)}
+            >
+              <span className={styles.sheetIdx}>0{i + 1}</span>
+              {l.label}
+            </a>
+          ))}
+        </nav>
+        <p className={styles.sheetFoot}>
+          <a href="mailto:info@entersight-tech.com" tabIndex={open ? 0 : -1}>
+            info@entersight-tech.com
+          </a>
+          <a href="https://zalo.me/0941233481" tabIndex={open ? 0 : -1}>
+            Zalo 0941 233 481
+          </a>
+        </p>
       </div>
-    </header>
+    </>
   );
 }

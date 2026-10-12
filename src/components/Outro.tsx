@@ -1,117 +1,74 @@
-import Image from "next/image";
 import Contact from "./Contact";
 import styles from "./Outro.module.css";
-import logoFull from "../../public/figma/logo-full.png";
+import Asterisk from "./Asterisk";
 
-const navLinks = [
+const sitemap = [
+  { label: "Thách thức", href: "#problem" },
   { label: "Giải pháp", href: "#solutions" },
   { label: "Lộ trình", href: "#transformation" },
   { label: "Dự án", href: "#case-studies" },
+  { label: "Khách hàng", href: "#cases" },
   { label: "Liên hệ", href: "#contact" },
+];
+
+const connect = [
+  { label: "Email", href: "mailto:info@entersight-tech.com" },
+  { label: "Facebook", href: "https://www.facebook.com/entersight", external: true },
+  { label: "Zalo", href: "https://zalo.me/0941233481", external: true },
 ];
 
 export default function Outro() {
   return (
-    <div className={styles.closing}>
-      {/* Section 1 — "SẴN SÀNG BỨT PHÁ CÙNG ENTERSIGHT?" (lead capture, white bg) */}
+    <>
       <Contact />
 
-      {/* Sections 2 + 3 share the lime→purple gradient (Figma node 997:1598) */}
-      <div className={styles.gradientZone}>
-        {/* green asterisk watermark peeking in from the left edge */}
-        <svg
-          className={styles.watermark}
-          viewBox="-60 -60 120 120"
-          aria-hidden="true"
-        >
-          <defs>
-            <linearGradient id="outro-asterisk" x1="0" y1="1" x2="1" y2="0">
-              <stop offset="0" stopColor="#77b22e" />
-              <stop offset="1" stopColor="#a9e034" />
-            </linearGradient>
-          </defs>
-          <g fill="url(#outro-asterisk)">
-            <rect x="-9" y="-52" width="18" height="104" rx="9" />
-            <rect x="-9" y="-52" width="18" height="104" rx="9" transform="rotate(60)" />
-            <rect x="-9" y="-52" width="18" height="104" rx="9" transform="rotate(120)" />
-          </g>
-        </svg>
-
-        {/* Footer */}
-        <footer className={styles.footer}>
-          <div className={`container ${styles.footerInner}`}>
-            <div className={styles.brand}>
-              <a href="#top" className={styles.logo} aria-label="Entersight">
-                <Image
-                  src={logoFull}
-                  alt="Entersight"
-                  className={styles.logoImg}
-                />
+      <footer className={styles.footer}>
+        <div className={`container ${styles.cols}`}>
+          <div className={styles.col}>
+            <span className={styles.colLabel}>Sitemap</span>
+            {sitemap.map((l) => (
+              <a key={l.href} href={l.href} data-scramble>
+                {l.label}
               </a>
-              <span className={styles.copyright}>
-                Entersight © {new Date().getFullYear()} All Rights reserved
-              </span>
-            </div>
-
-            <div className={styles.footerRight}>
-              <nav className={styles.nav}>
-                {navLinks.map((l) => (
-                  <a key={l.href} href={l.href} data-scramble>
-                    {l.label}
-                  </a>
-                ))}
-              </nav>
-
-              <div className={styles.social}>
-                <a
-                  className={styles.socialBtn}
-                  href="mailto:info@entersight-tech.com"
-                  aria-label="Email"
-                >
-                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <rect
-                      x="3"
-                      y="5"
-                      width="18"
-                      height="14"
-                      rx="2.5"
-                      stroke="currentColor"
-                      strokeWidth="1.8"
-                    />
-                    <path
-                      d="m4 7 8 6 8-6"
-                      stroke="currentColor"
-                      strokeWidth="1.8"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </a>
-                <a
-                  className={styles.socialBtn}
-                  href="https://www.facebook.com/entersight"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Facebook"
-                >
-                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M13.4 20.8v-6.9h2.32l.35-2.7h-2.67V9.48c0-.78.22-1.31 1.34-1.31h1.43V5.75c-.25-.03-1.1-.11-2.09-.11-2.07 0-3.48 1.26-3.48 3.58v1.98H8.27v2.7h2.33v6.9h2.8z" />
-                  </svg>
-                </a>
-                <a
-                  className={styles.socialBtn}
-                  href="https://zalo.me/0941233481"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Zalo"
-                >
-                  Zalo
-                </a>
-              </div>
-            </div>
+            ))}
           </div>
-        </footer>
-      </div>
-    </div>
+          <div className={styles.col}>
+            <span className={styles.colLabel}>Kết nối</span>
+            {connect.map((l) => (
+              <a
+                key={l.label}
+                href={l.href}
+                data-scramble
+                {...(l.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              >
+                {l.label} ↗
+              </a>
+            ))}
+          </div>
+          <div className={`${styles.col} ${styles.pitch}`}>
+            <span className={styles.colLabel}>Entersight</span>
+            <p>
+              Hệ sinh thái tiếp thị số toàn diện cho SMEs — nơi công nghệ gặp
+              sáng tạo.
+            </p>
+            <a href="#top" className="btn" data-scramble>
+              Về đầu trang
+            </a>
+          </div>
+        </div>
+
+        {/* oversized wordmark bleeding off the bottom edge */}
+        <div className={styles.wordmark} aria-hidden="true">
+          <span>Enter</span>
+          <Asterisk className={styles.ast} />
+          <span>sight</span>
+        </div>
+
+        <div className={`container ${styles.base}`}>
+          <span>© {new Date().getFullYear()} Entersight. All rights reserved.</span>
+          <span>Công nghệ × Sáng tạo</span>
+        </div>
+      </footer>
+    </>
   );
 }

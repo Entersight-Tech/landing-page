@@ -68,7 +68,7 @@ export default function Cases() {
     <section className={styles.section} id="cases">
       <header className={`container ${styles.head}`}>
         <p className="label" data-scramble="in">
-          <b>07</b> — Khách hàng
+          <b>08</b> — Khách hàng
         </p>
         <h2 className={`${styles.heading} reveal`} data-split>
           <span className="lime">10+ doanh nghiệp SMEs</span> đã chuyển mình cùng Entersight

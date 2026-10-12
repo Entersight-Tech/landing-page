@@ -6,6 +6,7 @@ import Results from "@/components/Results";
 import Distill from "@/components/Distill";
 import Solutions from "@/components/Solutions";
 import CaseStudies from "@/components/CaseStudies";
+import Work from "@/components/Work";
 import Cases from "@/components/Cases";
 import Partners from "@/components/Partners";
 import Transformation from "@/components/Transformation";
@@ -29,6 +30,7 @@ export default function Home() {
         <Solutions />
         <Transformation />
         <CaseStudies />
+        <Work />
         <Results />
         <Cases />
         <Values />

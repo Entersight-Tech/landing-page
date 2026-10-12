@@ -76,7 +76,7 @@ export default function Results() {
       <div className={styles.sticky}>
         <div className={styles.head}>
           <p className="label" data-scramble="in">
-            <b>06</b> — Kết quả
+            <b>07</b> — Kết quả
           </p>
           <h2 id="results-title" className={`display ${styles.title}`}>
             <i className="mini">vận hành</i>{"\u00a0"}20+ dự án <i className="mini">với</i>{"\u00a0"}

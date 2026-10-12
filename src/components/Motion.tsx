@@ -10,6 +10,8 @@ import "lenis/dist/lenis.css";
  *  - `data-split` headings: every word rises out of a mask when the heading's
  *    `.reveal` gets `in` (ScrollReveal)
  *  - curtain: the sticky hero dims as the next panels slide over it
+ *  - paged wheel on desktop: one gesture = one screen (section top, or one
+ *    viewport step inside tall scroll-driven sections)
  * Everything is skipped under prefers-reduced-motion.
  */
 function splitWords(root: HTMLElement) {
@@ -49,7 +51,74 @@ export default function Motion() {
 
     document.querySelectorAll<HTMLElement>("[data-split]").forEach(splitWords);
 
-    const lenis = new Lenis({ autoRaf: true, lerp: 0.11 });
+    // paged wheel: on desktop one wheel gesture moves exactly one screen —
+    // to the next section, or one viewport further inside a tall section
+    const paged = window.matchMedia("(pointer: fine) and (min-width: 900px)");
+    let busy = false;
+    let armed = true;
+    let lastWheel = 0;
+
+    const stops = () => {
+      const vh = window.innerHeight;
+      const max = document.documentElement.scrollHeight - vh;
+      const out = [0, max];
+      document.querySelectorAll<HTMLElement>("main section, [data-page], footer").forEach((el) => {
+        const sticky = getComputedStyle(el).position === "sticky";
+        const box = (sticky ? el.parentElement! : el).getBoundingClientRect();
+        const top = box.top + window.scrollY;
+        const h = el.offsetHeight;
+        out.push(top);
+        if (h > vh * 1.12) {
+          for (let y = top + vh; y < top + h - vh - 4; y += vh) out.push(y);
+          out.push(top + h - vh);
+        }
+      });
+      return out
+        .map((y) => Math.round(Math.min(max, Math.max(0, y))))
+        .sort((a, b) => a - b)
+        .filter((y, i, a) => i === 0 || y - a[i - 1] > 8);
+    };
+
+    const page = (dir: number) => {
+      const y = window.scrollY;
+      const list = stops();
+      const target = dir > 0 ? list.find((s) => s > y + 4) : list.reverse().find((s) => s < y - 4);
+      if (target === undefined) return;
+      busy = true;
+      lenis.scrollTo(target, {
+        duration: 1.05,
+        easing: (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2),
+        lock: true,
+        force: true,
+        onComplete: () => {
+          busy = false;
+        },
+      });
+    };
+
+    const lenis = new Lenis({
+      autoRaf: true,
+      lerp: 0.11,
+      virtualScroll: ({ deltaX, deltaY, event }) => {
+        if (!(event instanceof WheelEvent) || !paged.matches || event.ctrlKey) return true;
+        if (document.documentElement.hasAttribute("data-menu")) return true;
+        // nested scrollers (the case viewer) and sideways swipes stay native
+        const path = event.composedPath();
+        if (path.some((n) => n instanceof HTMLElement && n.hasAttribute("data-lenis-prevent"))) return true;
+        if (Math.abs(deltaX) > Math.abs(deltaY)) return true;
+
+        if (event.cancelable) event.preventDefault();
+        const now = performance.now();
+        // a pause between wheel events starts a new gesture; trackpad inertia
+        // keeps firing without one, so it can't skip a second screen
+        if (now - lastWheel > 220) armed = true;
+        lastWheel = now;
+        if (busy || !armed || Math.abs(deltaY) < 2) return false;
+        armed = false;
+        page(Math.sign(deltaY));
+        return false;
+      },
+    });
 
     const onClick = (e: MouseEvent) => {
       if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey) return;

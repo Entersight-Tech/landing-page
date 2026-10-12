@@ -14,6 +14,7 @@ const groups = [
   [
     { label: "Lộ trình", href: "#transformation" },
     { label: "Dự án", href: "#case-studies" },
+    { label: "Creative", href: "#work" },
   ],
   [
     { label: "Khách hàng", href: "#cases" },

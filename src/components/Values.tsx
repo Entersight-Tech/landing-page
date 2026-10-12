@@ -28,7 +28,12 @@ export default function Values() {
         <Asterisk className={`${styles.star} ${styles.starThree}`} />
 
         <div className={styles.bandInner}>
-          <h2 className={styles.title}>GIÁ TRỊ CỐT LÕI</h2>
+          <p className="tag tag--c" data-scramble="in" style={{ "--tag-accent": "var(--lime)", color: "rgba(255, 255, 255, 0.78)" } as React.CSSProperties}>
+            <b>[07]</b> Về Entersight
+          </p>
+          <h2 className={`${styles.title} reveal`} data-split>
+            GIÁ TRỊ CỐT LÕI
+          </h2>
           <p className={styles.quote}>
             “ Entersight tin rằng gốc rễ của sự bứt phá nằm ở việc đổi mới tư duy,
             lớn mạnh nhờ giải pháp thực tế và bền vững bởi sự đồng hành tận tâm. ”

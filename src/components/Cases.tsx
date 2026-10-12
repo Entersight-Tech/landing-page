@@ -90,7 +90,10 @@ export default function Cases() {
       <Asterisk className={`${styles.asterisk} ${styles.astBottomLeft}`} />
 
       <div className="container">
-        <h2 className={`${styles.heading} reveal`}>
+<p className="tag tag--c" data-scramble="in" style={{ "--tag-accent": "var(--lime)" } as React.CSSProperties}>
+          <b>[06]</b> Khách hàng
+        </p>
+        <h2 className={`${styles.heading} reveal`} data-split>
           <span className={styles.lime}>10+ DOANH NGHIỆP</span> SMEs
           <br />
           ĐÃ CHUYỂN MÌNH CÙNG ENTERSIGHT
@@ -129,7 +132,7 @@ export default function Cases() {
                           className={styles.badgeLogo}
                         />
                       </span>
-                      <div className={styles.photoBox}>
+                      <div className={`${styles.photoBox} wipe`}>
                         <Image
                           src={t.photo}
                           alt={`${t.name} — ${t.brand}`}

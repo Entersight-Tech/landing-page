@@ -11,15 +11,19 @@ import Transformation from "@/components/Transformation";
 import Outro from "@/components/Outro";
 import ScrollReveal from "@/components/ScrollReveal";
 import Scramble from "@/components/Scramble";
+import Motion from "@/components/Motion";
 
 export default function Home() {
   return (
     <>
       <Navigation />
       <main>
-        <Hero />
-        <Partners />
-        <Problem />
+        {/* the hero stays pinned while these panels slide over it */}
+        <div className="curtain">
+          <Hero />
+          <Partners />
+          <Problem />
+        </div>
         <Distill />
         <Solutions />
         <Transformation />
@@ -30,6 +34,7 @@ export default function Home() {
       </main>
       <ScrollReveal />
       <Scramble />
+      <Motion />
     </>
   );
 }

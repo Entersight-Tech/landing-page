@@ -122,7 +122,7 @@ export default function Distill() {
       <div className={styles.sticky}>
         <div className={`container ${styles.stage}`} ref={stageRef}>
           <span className={styles.eyebrow} id="distill-title" data-scramble="in">
-            Công nghệ <i>×</i> Sáng tạo
+            <b>[02]</b> Công nghệ <i>×</i> Sáng tạo
           </span>
 
           <p className={styles.manifesto}>

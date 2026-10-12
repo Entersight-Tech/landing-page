@@ -47,7 +47,7 @@ export default function Problem() {
 
       <div className={`container ${styles.inner}`}>
         <div className={styles.lead}>
-          <span className={styles.eyebrow} data-scramble="in">Thách thức của SMEs</span>
+          <span className={styles.eyebrow} data-scramble="in"><b>[01]</b> Thách thức của SMEs</span>
           <h2 className={styles.title}>
             Ngân sách marketing của doanh nghiệp đang{" "}
             <span className={styles.vapor} aria-label="bốc hơi">

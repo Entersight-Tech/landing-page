@@ -9,6 +9,8 @@ export default function Hero() {
       {/* centered max-width stage: keeps the model + orb anchored to the
           content on ultra-wide screens while the background stays full-bleed.
           Collapses to display:contents on mobile so the stacked layout works. */}
+      {/* darkens as the next panel slides over the pinned hero */}
+      <div className={styles.shade} aria-hidden="true" />
       <div className={styles.stage}>
         <Image
           src={heroPerson}
@@ -29,9 +31,16 @@ export default function Hero() {
       <div className={`container ${styles.inner}`}>
         <div className={styles.copy}>
           <h1 className={styles.title}>
-            SỐ HOÁ <span className={styles.accent}>QUY TRÌNH</span>
-            <br />
-            MARKETING <span className={styles.accent}>ĐÚNG ĐÍCH</span>
+            <span className={styles.line}>
+              <span>
+                SỐ HOÁ <span className={styles.accent}>QUY TRÌNH</span>
+              </span>
+            </span>{" "}
+            <span className={styles.line}>
+              <span>
+                MARKETING <span className={styles.accent}>ĐÚNG ĐÍCH</span>
+              </span>
+            </span>
           </h1>
           <p className={styles.sub}>
             Entersight kiến tạo hệ sinh thái tiếp thị số toàn diện, giúp SMEs

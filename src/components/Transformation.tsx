@@ -23,7 +23,10 @@ export default function Transformation() {
   return (
     <section className={styles.section} id="transformation">
       <div className={`container ${styles.inner}`}>
-        <h2 className={`h-title ${styles.title} reveal`}>
+<p className="tag tag--c" data-scramble="in">
+          <b>[04]</b> Lộ trình
+        </p>
+        <h2 className={`h-title ${styles.title} reveal`} data-split>
           ĐỒNG HÀNH CÙNG DOANH NGHIỆP
           <br />
           <span className="accent">XUYÊN SUỐT</span>{" "}

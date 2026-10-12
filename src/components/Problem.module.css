@@ -2,6 +2,7 @@
    Solutions band right after it reads as the way out. */
 .section {
   position: relative;
+  z-index: 1;
   overflow: hidden;
   isolation: isolate;
   scroll-margin-top: 80px;

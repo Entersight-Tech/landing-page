@@ -122,6 +122,13 @@ export default function Solutions() {
     return () => window.removeEventListener("resize", onResize);
   }, [active, measure]);
 
+  // the Distill list jumps straight to a product card
+  useEffect(() => {
+    const onPick = (e: Event) => setActive((e as CustomEvent<number>).detail);
+    window.addEventListener("ets:solution", onPick);
+    return () => window.removeEventListener("ets:solution", onPick);
+  }, []);
+
   const go = (i: number) => setActive(((i % count) + count) % count);
 
   return (

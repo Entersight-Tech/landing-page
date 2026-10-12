@@ -52,7 +52,7 @@ export default function Navigation() {
           className={`${styles.links} ${open ? styles.linksOpen : ""}`}
         >
           {links.map((l) => (
-            <a key={l.href} href={l.href} onClick={() => setOpen(false)}>
+            <a key={l.href} href={l.href} data-scramble onClick={() => setOpen(false)}>
               {l.label}
             </a>
           ))}

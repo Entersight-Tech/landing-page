@@ -50,6 +50,15 @@ results → who we are → contact.
 
 All three carousels share `CarouselControls` (← dots →).
 
+Motion system (SVZ-inspired, `Motion.tsx` + globals.css), skipped under
+prefers-reduced-motion:
+- Lenis smooth scroll; in-page anchors honour each section's scroll-margin-top
+- curtain: `Hero` is sticky inside `.curtain` (Hero + Partners + Problem) and
+  dims (`--cover`) as those panels slide over it
+- `data-split` headings: words rise out of masks when `.reveal` gets `in`
+- `.wipe` image containers clip open from the bottom on reveal
+- every section opens with a `.tag` index label, e.g. `[03] Giải pháp`
+
 `Scramble` gives text a "decoding" effect: `data-scramble` re-decodes on
 hover/focus (nav, hero CTAs, footer links), `data-scramble="in"` decodes once
 on scroll-in (section eyebrows). Both respect prefers-reduced-motion.

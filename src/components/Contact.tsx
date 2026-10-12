@@ -55,7 +55,10 @@ export default function Contact() {
     <section className="section" id="contact">
       <div className={`container ${styles.inner}`}>
         <div className={styles.left}>
-          <h2 className={styles.title}>
+          <p className="tag" data-scramble="in">
+            <b>[08]</b> Liên hệ
+          </p>
+          <h2 className={`${styles.title} reveal`} data-split>
             SẴN SÀNG BỨT PHÁ
             <br />
             <span>CÙNG ENTERSIGHT?</span>

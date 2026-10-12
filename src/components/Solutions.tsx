@@ -138,13 +138,16 @@ export default function Solutions() {
       </span>
 
       <div className={`container ${styles.inner}`}>
-        <div className={`${styles.head} reveal`}>
-          <h2 className={styles.title}>
+        <div className={styles.head}>
+          <p className="tag tag--c" data-scramble="in" style={{ "--tag-accent": "var(--lime)" } as React.CSSProperties}>
+            <b>[03]</b> Giải pháp
+          </p>
+          <h2 className={`${styles.title} reveal`} data-split>
             <span className={styles.one}>MỘT ĐIỂM CHẠM</span>
             <span className={styles.divider} aria-hidden />
             <span className={styles.all}>MỌI GIẢI PHÁP</span>
           </h2>
-          <p className={styles.quote}>
+          <p className={`${styles.quote} reveal`}>
             &ldquo; Entersight không chỉ giúp bạn kể câu chuyện hay, chúng tôi xây
             dựng một bộ máy mạnh mẽ để hiện thực hóa câu chuyện đó bằng công nghệ
             số &rdquo;
@@ -181,7 +184,7 @@ export default function Solutions() {
                     </a>
                   </div>
                   <div className={styles.cardVisual}>
-                    <div className={styles.media}>
+                    <div className={`${styles.media} wipe`}>
                       <Image src={s.image} alt={s.alt} sizes="(max-width: 860px) 90vw, 340px" />
                     </div>
                   </div>

@@ -1,5 +1,6 @@
 .section {
   position: relative;
+  z-index: 1;
   background: var(--white);
   border-bottom: 1px solid var(--neutral-300);
   scroll-margin-top: 80px;

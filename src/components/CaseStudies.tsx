@@ -174,7 +174,10 @@ export default function CaseStudies() {
   return (
     <section className={styles.band} id="case-studies">
       <div className={`container ${styles.inner}`}>
-        <h2 className={`${styles.title} reveal`}>
+<p className="tag tag--c" data-scramble="in" style={{ "--tag-accent": "var(--lime)", color: "rgba(255, 255, 255, 0.78)" } as React.CSSProperties}>
+          <b>[05]</b> Dự án
+        </p>
+        <h2 className={`${styles.title} reveal`} data-split>
           <span className={styles.line}>
             <mark className={styles.mark}>CHUYỂN</mark>{" "}
             <span className={styles.phrase}>ÁP LỰC VẬN HÀNH</span>
@@ -205,7 +208,7 @@ export default function CaseStudies() {
                       <br />
                       {c.subtitle}
                     </p>
-                    <div className={styles.logo}>
+                    <div className={`${styles.logo} wipe`}>
                       <Image
                         src={c.image}
                         alt={c.alt}

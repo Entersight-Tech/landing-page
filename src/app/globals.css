@@ -149,3 +149,88 @@ img {
   opacity: 1;
   transform: none;
 }
+
+/* ---------- motion system (see Motion.tsx) ---------- */
+:root {
+  --ease-out: cubic-bezier(0.2, 0.75, 0.1, 1);
+}
+
+/* split headings: words rise out of a mask instead of the block fading.
+   Padding + negative margin keeps Vietnamese stacked accents inside the mask. */
+.reveal[data-split-done] {
+  opacity: 1;
+  transform: none;
+}
+
+.sw {
+  display: inline-block;
+  overflow: hidden;
+  padding: 0.16em 0 0.06em;
+  margin: -0.16em 0 -0.06em;
+  vertical-align: top;
+}
+
+.swi {
+  display: inline-block;
+  transform: translateY(115%);
+  transition: transform 0.95s var(--ease-out) calc(var(--i, 0) * 45ms);
+}
+
+.in .swi,
+.in.sw .swi,
+[data-split-done].in .swi {
+  transform: none;
+}
+
+/* images wipe open from the bottom as their block reveals */
+.wipe {
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 1.1s var(--ease-out) 0.15s;
+}
+
+.wipe img {
+  transform: scale(1.18);
+  transition: transform 1.6s var(--ease-out) 0.15s;
+}
+
+.in .wipe {
+  clip-path: inset(0 0 0 0);
+}
+
+.in .wipe img {
+  transform: none;
+}
+
+/* section index tag, e.g. [03] Giải pháp */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: inherit;
+}
+
+.tag b {
+  font-weight: 700;
+  color: var(--tag-accent, var(--blue));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wipe,
+  .wipe img,
+  .swi {
+    clip-path: none;
+    transform: none;
+    transition: none;
+  }
+}
+
+.tag--c {
+  display: flex;
+  justify-content: center;
+}

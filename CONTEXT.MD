@@ -39,9 +39,11 @@ Roboto body + italic "mini" words). Shared pieces live in globals.css:
    shapes, pointer-following lime dot, service list
 3. `Partners` — light panel that slides over the hero: "CÔNG NGHỆ ✱ SÁNG TẠO"
    statement settling on scroll + partner logo marquee
-4. `Problem` — pinned 3-screen stage: each scroll step reveals two pain points
-   and burns their letters off the giant "NGÂN SÁCH" (the budget evaporating)
-5. `Distill` — pinned manifesto; keywords fly into a list linking `#sol-N`
+4. `Problem` — one unpinned screen: all four pain points readable at once;
+   on entering view they light up in turn and each burns two letters off the
+   giant "NGÂN SÁCH" (the budget evaporating)
+5. `Distill` — one unpinned screen: "Một đối tác, năm năng lực." + the five
+   capabilities as an index (name + one-liner) linking `#sol-N`
 6. `Solutions` — light "hub" panel with a bento of the 5 products (+ CTA tile)
 7. `Transformation` — 4 phases as a staircase next to a sticky heading
 8. `CaseStudies` — project index rows; one opens to problem/solution/result,

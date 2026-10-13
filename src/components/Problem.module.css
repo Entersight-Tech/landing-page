@@ -1,7 +1,7 @@
-/* five screens: the headline, then one per pain point */
+/* three screens: the headline, then two pain points per screen */
 .section {
   position: relative;
-  height: 500vh;
+  height: 300vh;
   background: var(--night);
 }
 
@@ -55,7 +55,7 @@
 .word {
   display: flex;
   justify-content: center;
-  font-family: var(--font-head);
+  font-family: var(--font-outline);
   font-weight: 800;
   font-size: min(15.6vw, 30vh);
   line-height: 0.86;
@@ -229,29 +229,30 @@
   color: var(--lime);
 }
 
-/* phones: one pain point at a time, stacked in the same spot */
+/* phones: only the pair on screen, stacked */
 @media (max-width: 760px) {
   .list {
-    display: block;
-    min-height: 150px;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    min-height: 236px;
   }
 
-  .item,
-  .hint {
-    position: absolute;
-    inset: 0 0 auto 0;
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 0.5s ease, transform 0.6s var(--ease-out);
-  }
-
-  .item[data-state="past"] {
-    opacity: 0;
+  .item {
+    display: none;
   }
 
   .item[data-state="on"] {
-    opacity: 1;
-    transform: none;
+    display: flex;
+    animation: up 0.6s var(--ease-out) both;
+  }
+
+  .item[data-state="on"] + .item[data-state="on"] {
+    animation-delay: 0.12s;
+  }
+
+  .desc {
+    font-size: 13px;
+    line-height: 1.55;
   }
 
   .hint {
@@ -260,11 +261,11 @@
     border-top: 1px solid var(--line);
     font-size: 13px;
     color: var(--dim);
+    animation: up 0.6s var(--ease-out) both;
   }
 
-  .list[data-step="0"] .hint {
-    opacity: 1;
-    transform: none;
+  .list:not([data-step="0"]) .hint {
+    display: none;
   }
 
   .cta {
@@ -274,6 +275,13 @@
 
   .cta p {
     display: none;
+  }
+}
+
+@keyframes up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
   }
 }
 
@@ -290,9 +298,9 @@
 }
 
 .section[data-static] .item {
-  position: static;
+  display: flex;
   opacity: 1;
-  transform: none;
+  animation: none;
 }
 
 .section[data-static] .list {

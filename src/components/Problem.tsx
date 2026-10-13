@@ -30,10 +30,13 @@ const items = [
 const WORD = Array.from("NGÂN SÁCH".normalize("NFC"));
 // letter indexes that evaporate, two per pain point
 const DRAIN = [2, 7, 0, 5, 3, 8, 1, 6];
+// pain points revealed per scroll step: two screens cover all four
+const PER = 2;
+const STEPS = items.length / PER;
 
 /**
- * The budget evaporates: a pinned stage where every scroll step reveals one
- * pain point and burns two more letters off the giant "NGÂN SÁCH".
+ * The budget evaporates: a pinned stage where every scroll step reveals two
+ * pain points and burns their letters off the giant "NGÂN SÁCH".
  */
 export default function Problem() {
   const ref = useRef<HTMLElement>(null);
@@ -52,7 +55,7 @@ export default function Problem() {
       const r = section.getBoundingClientRect();
       const span = r.height - window.innerHeight;
       const p = span > 0 ? Math.min(1, Math.max(0, -r.top / span)) : 1;
-      setStep(Math.round(p * items.length));
+      setStep(Math.round(p * STEPS));
     };
     const onScroll = () => {
       if (!frame) frame = requestAnimationFrame(update);
@@ -67,8 +70,8 @@ export default function Problem() {
     };
   }, []);
 
-  const shown = step;
-  const gone = new Set(DRAIN.slice(0, step * 2));
+  const shown = step * PER;
+  const gone = new Set(DRAIN.slice(0, shown * 2));
 
   return (
     <section
@@ -76,6 +79,7 @@ export default function Problem() {
       className={styles.section}
       id="problem"
       aria-labelledby="problem-title"
+      data-steps={STEPS}
     >
       <div className={styles.stage}>
         <div className={`container ${styles.top}`}>
@@ -115,7 +119,7 @@ export default function Problem() {
               <li
                 key={it.title}
                 className={styles.item}
-                data-state={i + 1 === shown ? "on" : i + 1 < shown ? "past" : undefined}
+                data-state={i < shown ? (i >= shown - PER ? "on" : "past") : undefined}
               >
                 <span className={styles.idx}>
                   <i className={styles.tick} />

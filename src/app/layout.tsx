@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Montserrat, Roboto } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
 // The Figma design uses SVN-Gotham (a paid Vietnamese display font) for
@@ -18,6 +19,17 @@ const roboto = Roboto({
   weight: ["300", "400", "500", "600", "700"],
   style: ["normal", "italic"],
   subsets: ["latin", "vietnamese"],
+  display: "swap",
+});
+
+// Outlined (stroke-only) display type. Google serves Montserrat as a variable
+// font whose glyphs keep overlapping contours, and -webkit-text-stroke draws
+// those overlaps as stray lines inside letters (the "1" flag, "Ư" horn …).
+// This is a static ExtraBold instance with the overlaps merged away.
+const outline = localFont({
+  src: "./fonts/montserrat-800-outline.woff2",
+  variable: "--nf-outline",
+  weight: "800",
   display: "swap",
 });
 
@@ -48,7 +60,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi" className={`${montserrat.variable} ${roboto.variable}`}>
+    <html lang="vi" className={`${montserrat.variable} ${roboto.variable} ${outline.variable}`}>
       <body>
         {children}
       </body>

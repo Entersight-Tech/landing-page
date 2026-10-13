@@ -30,13 +30,11 @@ const items = [
 const WORD = Array.from("NGÂN SÁCH".normalize("NFC"));
 // letter indexes that evaporate, two per pain point
 const DRAIN = [2, 7, 0, 5, 3, 8, 1, 6];
-// pain points revealed per scroll step: two screens cover all four
-const PER = 2;
-const STEPS = items.length / PER;
 
 /**
- * The budget evaporates: a pinned stage where every scroll step reveals two
- * pain points and burns their letters off the giant "NGÂN SÁCH".
+ * The budget evaporates: one screen, no pinning. All four pain points are
+ * readable at once; when the section comes into view they light up one after
+ * another and each burns two letters off the giant "NGÂN SÁCH".
  */
 export default function Problem() {
   const ref = useRef<HTMLElement>(null);
@@ -49,28 +47,27 @@ export default function Problem() {
       section.dataset.static = "";
       return;
     }
-    let frame = 0;
-    const update = () => {
-      frame = 0;
-      const r = section.getBoundingClientRect();
-      const span = r.height - window.innerHeight;
-      const p = span > 0 ? Math.min(1, Math.max(0, -r.top / span)) : 1;
-      setStep(Math.round(p * STEPS));
-    };
-    const onScroll = () => {
-      if (!frame) frame = requestAnimationFrame(update);
-    };
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    let timer = 0;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (!e.isIntersecting) return;
+        io.disconnect();
+        let n = 0;
+        timer = window.setInterval(() => {
+          setStep(++n);
+          if (n >= items.length) window.clearInterval(timer);
+        }, 750);
+      },
+      { threshold: 0.45 },
+    );
+    io.observe(section);
     return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      io.disconnect();
+      window.clearInterval(timer);
     };
   }, []);
 
-  const shown = step * PER;
+  const shown = step;
   const gone = new Set(DRAIN.slice(0, shown * 2));
 
   return (
@@ -79,7 +76,6 @@ export default function Problem() {
       className={styles.section}
       id="problem"
       aria-labelledby="problem-title"
-      data-steps={STEPS}
     >
       <div className={styles.stage}>
         <div className={`container ${styles.top}`}>
@@ -119,7 +115,7 @@ export default function Problem() {
               <li
                 key={it.title}
                 className={styles.item}
-                data-state={i < shown ? (i >= shown - PER ? "on" : "past") : undefined}
+                data-state={i < shown ? "on" : undefined}
               >
                 <span className={styles.idx}>
                   <i className={styles.tick} />
@@ -129,9 +125,6 @@ export default function Problem() {
                 <p className={styles.desc}>{it.desc}</p>
               </li>
             ))}
-            <li className={styles.hint} aria-hidden="true">
-              Cuộn để xem ngân sách rò rỉ ở đâu ↓
-            </li>
           </ol>
 
           <div className={styles.cta}>

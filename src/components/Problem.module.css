@@ -1,18 +1,16 @@
-/* three screens: the headline, then two pain points per screen */
+/* one screen, no pinning: everything readable at once */
 .section {
   position: relative;
-  height: 300vh;
   background: var(--night);
 }
 
 .stage {
-  position: sticky;
-  top: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100vh;
-  height: 100svh;
+  gap: clamp(28px, 5vh, 56px);
+  min-height: 100vh;
+  min-height: 100svh;
   overflow: hidden;
   padding: clamp(84px, 11vh, 120px) 0 clamp(24px, 4vh, 44px);
 }
@@ -141,12 +139,8 @@
   gap: 8px;
   padding-top: 14px;
   border-top: 1px solid var(--line);
-  opacity: 0.22;
+  opacity: 0.55;
   transition: opacity 0.6s ease;
-}
-
-.item[data-state="past"] {
-  opacity: 0.5;
 }
 
 .item[data-state="on"] {
@@ -202,10 +196,6 @@
   font-weight: 600;
 }
 
-.hint {
-  display: none;
-}
-
 .cta {
   display: flex;
   justify-content: space-between;
@@ -229,43 +219,37 @@
   color: var(--lime);
 }
 
-/* phones: only the pair on screen, stacked */
+/* tablets: 2 × 2 */
+@media (max-width: 1000px) {
+  .list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 22px;
+  }
+}
+
+/* phones: still 2 × 2 so the whole beat fits one screen */
 @media (max-width: 760px) {
   .list {
-    grid-template-columns: 1fr;
-    gap: 18px;
-    min-height: 236px;
+    gap: 18px 14px;
   }
 
   .item {
-    display: none;
+    gap: 6px;
+    padding-top: 12px;
   }
 
-  .item[data-state="on"] {
-    display: flex;
-    animation: up 0.6s var(--ease-out) both;
+  .tick {
+    top: -13px;
   }
 
-  .item[data-state="on"] + .item[data-state="on"] {
-    animation-delay: 0.12s;
+  .itemTitle {
+    font-size: 13px;
+    line-height: 1.25;
   }
 
   .desc {
-    font-size: 13px;
-    line-height: 1.55;
-  }
-
-  .hint {
-    display: block;
-    padding-top: 14px;
-    border-top: 1px solid var(--line);
-    font-size: 13px;
-    color: var(--dim);
-    animation: up 0.6s var(--ease-out) both;
-  }
-
-  .list:not([data-step="0"]) .hint {
-    display: none;
+    font-size: 12.5px;
+    line-height: 1.5;
   }
 
   .cta {
@@ -278,47 +262,15 @@
   }
 }
 
-@keyframes up {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-}
-
-/* reduced motion: a plain block, every pain point visible */
-.section[data-static] {
-  height: auto;
-}
-
-.section[data-static] .stage {
-  position: static;
-  height: auto;
-  gap: 48px;
-  padding-top: 120px;
-}
-
+/* reduced motion: every pain point lit, no vapor */
 .section[data-static] .item {
-  display: flex;
   opacity: 1;
-  animation: none;
-}
-
-.section[data-static] .list {
-  min-height: 0;
-}
-
-.section[data-static] .hint,
-.section[data-static] .counter {
-  display: none;
 }
 
 .section[data-static] .tick {
   transform: none;
 }
 
-@media (max-width: 760px) {
-  .section[data-static] .list {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
+.section[data-static] .counter {
+  display: none;
 }

@@ -27,6 +27,8 @@
   /* next/font sets --nf-* on <html>, so they resolve here on :root */
   --font-head: var(--nf-heading), "Segoe UI", sans-serif;
   --font-body: var(--nf-body), "Segoe UI", sans-serif;
+  /* stroke-only display type: overlap-free static cut (see layout.tsx) */
+  --font-outline: var(--nf-outline), var(--font-head);
 }
 
 * {
@@ -271,4 +273,27 @@ button {
     transform: none;
     transition: none;
   }
+}
+
+/* touch scroll-snap (Motion.tsx): one swipe settles on one screen */
+html[data-snap] {
+  scroll-snap-type: y mandatory;
+}
+
+.snap-marks {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 0;
+  pointer-events: none;
+}
+
+.snap-marks i {
+  position: absolute;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }

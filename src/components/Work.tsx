@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./Work.module.css";
 import { works } from "./work";
 
@@ -9,14 +10,12 @@ const pad = (n: number) => String(n).padStart(2, "0");
 
 /**
  * LauLau Creative — one project per screen. The section background takes on
- * each project's tone as its slide comes into view; "Xem dự án" opens a
- * full-screen case viewer with every frame of the project.
+ * each project's tone as its slide comes into view; "Xem dự án" leads to the
+ * project's own shareable page at /work/<slug>.
  */
 export default function Work() {
   const ref = useRef<HTMLElement>(null);
-  const dialogRef = useRef<HTMLDialogElement>(null);
   const [tone, setTone] = useState(works[0].tone);
-  const [open, setOpen] = useState<number | null>(null);
 
   useEffect(() => {
     const slides = ref.current?.querySelectorAll<HTMLElement>("[data-tone]");
@@ -32,19 +31,6 @@ export default function Work() {
     slides.forEach((s) => io.observe(s));
     return () => io.disconnect();
   }, []);
-
-  useEffect(() => {
-    const d = dialogRef.current;
-    if (!d) return;
-    if (open === null) {
-      if (d.open) d.close();
-      return;
-    }
-    if (!d.open) d.showModal();
-    d.scrollTop = 0;
-  }, [open]);
-
-  const w = open === null ? null : works[open];
 
   return (
     <section
@@ -67,6 +53,9 @@ export default function Work() {
             UX/UI, visual sự kiện và nội dung số. Mỗi dự án dưới đây là một màn
             hình; cuộn để xem tiếp.
           </p>
+          <Link href="/work" className="btn" data-scramble>
+            Toàn bộ portfolio
+          </Link>
         </div>
 
         <ol className={styles.index}>
@@ -117,16 +106,15 @@ export default function Work() {
                   <li key={t}>{t}</li>
                 ))}
               </ul>
-              <button type="button" className="btn btn--solid" onClick={() => setOpen(i)} data-scramble>
+              <Link href={`/work/${p.slug}`} className="btn btn--solid" data-scramble>
                 Xem dự án
-              </button>
+              </Link>
             </div>
 
-            <button
-              type="button"
+            <Link
+              href={`/work/${p.slug}`}
               className={`${styles.collage} reveal`}
-              onClick={() => setOpen(i)}
-              aria-label={`Mở bộ hình dự án ${p.title}`}
+              aria-label={`Xem dự án ${p.title}`}
             >
               {p.shots.slice(0, 3).map((shot, k) => (
                 <span
@@ -145,80 +133,10 @@ export default function Work() {
               <span className={styles.more} aria-hidden="true">
                 {p.shots.length} khung hình ↗
               </span>
-            </button>
+            </Link>
           </div>
         </article>
       ))}
-
-      <dialog
-        ref={dialogRef}
-        className={styles.viewer}
-        style={w ? ({ "--tone": w.tone } as React.CSSProperties) : undefined}
-        onClose={() => setOpen(null)}
-        aria-label={w ? `Dự án ${w.title}` : "Dự án"}
-        data-lenis-prevent
-      >
-        {w && open !== null && (
-          <>
-            <header className={styles.viewerBar}>
-              <span className={styles.count}>
-                <b>{pad(open + 1)}</b> / {pad(works.length)}
-              </span>
-              <span className={styles.viewerTitle}>{w.title}</span>
-              <button type="button" className="btn" onClick={() => setOpen(null)} autoFocus>
-                Đóng
-              </button>
-            </header>
-
-            <div className={styles.viewerBody}>
-              <div className={styles.viewerIntro}>
-                <p className="label">
-                  <b>{w.kind}</b> — {w.client}
-                </p>
-                <h3 className={styles.viewerName}>{w.title}</h3>
-                <p className={styles.summary}>{w.summary}</p>
-                {w.links && (
-                  <p className={styles.links}>
-                    {w.links.map((l) => (
-                      <a key={l.href} href={l.href} className="btn" target="_blank" rel="noopener noreferrer">
-                        {l.label}
-                      </a>
-                    ))}
-                  </p>
-                )}
-              </div>
-
-              {w.shots.map((shot, k) => (
-                <figure key={shot.src} className={styles.shot}>
-                  <Image
-                    src={shot.src}
-                    alt={`${w.title} — ${shot.caption}`}
-                    width={shot.w}
-                    height={shot.h}
-                    sizes="(max-width: 1240px) 100vw, 1200px"
-                  />
-                  <figcaption>
-                    <b>{pad(k + 1)}</b> {shot.caption}
-                  </figcaption>
-                </figure>
-              ))}
-
-              <nav className={styles.viewerNav} aria-label="Chuyển dự án">
-                <button
-                  type="button"
-                  className="btn"
-                  onClick={() => setOpen((open - 1 + works.length) % works.length)}
-                >
-                  Trước — {works[(open - 1 + works.length) % works.length].title}
-                </button>
-                <button type="button" className="btn btn--solid" onClick={() => setOpen((open + 1) % works.length)}>
-                  Tiếp — {works[(open + 1) % works.length].title}
-                </button>
-              </nav>
-            </div>
-          </>
-        )}
-      </dialog>
     </section>
   );
 }

@@ -75,6 +75,7 @@
   letter-spacing: -0.04em;
   color: transparent;
   -webkit-text-stroke: 1.2px var(--lime);
+  font-family: var(--font-outline);
 }
 
 .step:last-child .num {

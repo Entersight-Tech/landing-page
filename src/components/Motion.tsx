@@ -12,6 +12,8 @@ import "lenis/dist/lenis.css";
  *  - curtain: the sticky hero dims as the next panels slide over it
  *  - paged wheel on desktop: one gesture = one screen (section top, or one
  *    viewport step inside tall scroll-driven sections)
+ *  - touch: the same stops become CSS scroll-snap points, so a swipe lands on
+ *    the next screen instead of flying past what you were reading
  * Everything is skipped under prefers-reduced-motion.
  */
 function splitWords(root: HTMLElement) {
@@ -58,6 +60,9 @@ export default function Motion() {
     let armed = true;
     let lastWheel = 0;
 
+    // a tall section is walked in even strides: `data-steps` when its
+    // scroll-driven stage needs exact positions, else strides a bit under one
+    // screen so a line cut at the bottom edge reappears below the fixed nav
     const stops = () => {
       const vh = window.innerHeight;
       const max = document.documentElement.scrollHeight - vh;
@@ -69,8 +74,9 @@ export default function Motion() {
         const h = el.offsetHeight;
         out.push(top);
         if (h > vh * 1.12) {
-          for (let y = top + vh; y < top + h - vh - 4; y += vh) out.push(y);
-          out.push(top + h - vh);
+          const span = h - vh;
+          const n = Number(el.dataset.steps) || Math.ceil(span / (vh - 72) - 0.02);
+          for (let k = 1; k <= n; k++) out.push(top + (span * k) / n);
         }
       });
       return out
@@ -78,6 +84,43 @@ export default function Motion() {
         .sort((a, b) => a - b)
         .filter((y, i, a) => i === 0 || y - a[i - 1] > 8);
     };
+
+    // touch: drop an invisible snap point at every stop
+    const html = document.documentElement;
+    const marks = document.createElement("div");
+    marks.className = "snap-marks";
+    marks.setAttribute("aria-hidden", "true");
+    let snapFrame = 0;
+    const placeMarks = () => {
+      snapFrame = 0;
+      if (paged.matches) {
+        html.removeAttribute("data-snap");
+        marks.replaceChildren();
+        return;
+      }
+      marks.replaceChildren(
+        ...stops().map((y) => {
+          const m = document.createElement("i");
+          m.style.top = `${y}px`;
+          return m;
+        }),
+      );
+      if (!document.activeElement?.matches("input, textarea, select")) html.setAttribute("data-snap", "");
+    };
+    const queueMarks = () => {
+      if (!snapFrame) snapFrame = requestAnimationFrame(placeMarks);
+    };
+    document.body.append(marks);
+    const ro = new ResizeObserver(queueMarks);
+    ro.observe(document.body);
+    window.addEventListener("resize", queueMarks);
+    // typing: the keyboard resizes the viewport, never yank the field away
+    const onFocus = (e: FocusEvent) => {
+      if ((e.target as Element).matches?.("input, textarea, select")) html.removeAttribute("data-snap");
+    };
+    const onBlur = () => queueMarks();
+    document.addEventListener("focusin", onFocus);
+    document.addEventListener("focusout", onBlur);
 
     const page = (dir: number) => {
       const y = window.scrollY;
@@ -128,11 +171,20 @@ export default function Motion() {
       const target = id === "top" ? 0 : document.getElementById(id);
       if (target === null) return;
       e.preventDefault();
+      // a snapping root would catch every frame of the animated scroll
+      const snapped = html.hasAttribute("data-snap");
+      html.removeAttribute("data-snap");
       const offset =
         typeof target === "number"
           ? 0
           : -(parseFloat(getComputedStyle(target).scrollMarginTop) || 0);
-      lenis.scrollTo(target, { offset, duration: 1.4 });
+      lenis.scrollTo(target, {
+        offset,
+        duration: 1.4,
+        onComplete: () => {
+          if (snapped) html.setAttribute("data-snap", "");
+        },
+      });
       history.replaceState(null, "", `#${id}`);
     };
     document.addEventListener("click", onClick);
@@ -158,6 +210,13 @@ export default function Motion() {
     lenis.on("scroll", cover);
 
     return () => {
+      ro.disconnect();
+      cancelAnimationFrame(snapFrame);
+      marks.remove();
+      html.removeAttribute("data-snap");
+      window.removeEventListener("resize", queueMarks);
+      document.removeEventListener("focusin", onFocus);
+      document.removeEventListener("focusout", onBlur);
       window.removeEventListener("resize", layout);
       document.removeEventListener("click", onClick);
       lenis.destroy();

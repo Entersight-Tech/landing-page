@@ -269,3 +269,91 @@
     min-height: 200px;
   }
 }
+
+/* Review365 strip: a peek at the product page's billboard look */
+.product {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: clamp(220px, 21vw, 300px);
+  margin-top: clamp(8px, 1vw, 14px);
+  padding: clamp(18px, 2vw, 28px);
+  border: 1.5px solid #035542;
+  border-radius: calc(var(--radius) * 0.7);
+  background: #fff;
+  color: #333;
+  isolation: isolate;
+}
+
+.productWord {
+  position: absolute;
+  z-index: -1;
+  right: -0.04em;
+  top: -0.08em;
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: clamp(120px, 20vw, 300px);
+  line-height: 0.7;
+  letter-spacing: -0.04em;
+  color: #56dddb;
+  transition: transform 0.8s var(--ease-out);
+}
+
+.productCopy {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 640px;
+}
+
+.productTag {
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #035542;
+}
+
+.productName {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: clamp(26px, 3.2vw, 46px);
+  line-height: 1;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+}
+
+.productLine {
+  font-size: 14px;
+}
+
+.productCta {
+  flex: none;
+  padding: 10px 20px;
+  border: 1.5px solid #035542;
+  border-radius: 100px;
+  background: #fff;
+  font-weight: 500;
+  font-size: 14px;
+  color: #035542;
+}
+
+.product:hover .productWord {
+  transform: translateX(-3%);
+}
+
+.product:hover .productCta {
+  border-color: #2b7bb9;
+  color: #2b7bb9;
+}
+
+@media (max-width: 760px) {
+  .product {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -19,9 +19,13 @@ import {
 } from "./data";
 import styles from "./review365.module.css";
 import logo from "../../../public/figma/logo-full.png";
+// generated product shots (Figma AI), backgrounds flattened to white
+import mapShot from "../../../public/review365/map.webp";
+import phoneShot from "../../../public/review365/phone.webp";
+import qrShot from "../../../public/review365/qr.webp";
 
 // Review365 has its own billboard look (white canvas, giant Work Sans 900
-// words in teal / butter yellow, forest-green outlines) — scoped to this route.
+// words in lime / lavender, purple outlines) — scoped to this route.
 const workSans = Work_Sans({
   variable: "--nf-work",
   weight: ["400", "500", "900"],
@@ -48,28 +52,11 @@ const nav = [
 ];
 
 /** Giant decorative word that sits behind a section — the billboard. */
-function Billboard({ word, tone }: { word: string; tone: "teal" | "butter" }) {
+function Billboard({ word, tone }: { word: string; tone: "lime" | "lavender" }) {
   return (
     <span className={`${styles.billboard} ${styles[tone]}`} aria-hidden="true">
       {word}
     </span>
-  );
-}
-
-/** Decorative QR-like mark: three finder squares + a fixed pseudo-random fill. */
-function QrMark() {
-  const n = 21;
-  const finder = (x: number, y: number) =>
-    (x < 7 && y < 7) || (x >= n - 7 && y < 7) || (x < 7 && y >= n - 7);
-  const cells: string[] = [];
-  for (let y = 0; y < n; y++)
-    for (let x = 0; x < n; x++)
-      if (!finder(x, y) && ((x * 31 + y * 17 + x * y * 7) % 11) % 2 === 0) cells.push(`M${x} ${y}h1v1h-1z`);
-  const eye = (x: number, y: number) => `M${x} ${y}h7v7h-7z M${x + 1} ${y + 1}v5h5v-5z M${x + 2} ${y + 2}h3v3h-3z`;
-  return (
-    <svg className={styles.qr} viewBox="-1 -1 23 23" fillRule="evenodd">
-      <path d={[eye(0, 0), eye(n - 7, 0), eye(0, n - 7), ...cells].join(" ")} />
-    </svg>
   );
 }
 
@@ -107,7 +94,7 @@ export default function Review365Page() {
       <main>
         {/* ---------- hero ---------- */}
         <section className={styles.hero}>
-          <Billboard word="REVIEW" tone="teal" />
+          <Billboard word="REVIEW" tone="lime" />
           <div className={`${styles.wrap} ${styles.heroGrid}`}>
             <div className={styles.heroCopy}>
               <span className={styles.seal} aria-hidden="true">
@@ -177,7 +164,7 @@ export default function Review365Page() {
 
         {/* ---------- problem ---------- */}
         <section className={styles.section}>
-          <Billboard word="MAPS" tone="butter" />
+          <Billboard word="MAPS" tone="lavender" />
           <div className={`${styles.wrap} ${styles.split}`}>
             <div>
               <p className={styles.tag}>Mỗi ngày, khách vẫn đang tìm</p>
@@ -189,6 +176,12 @@ export default function Review365Page() {
                 và tốc độ chủ quán phản hồi — rồi quyết định trong vài giây. Nếu hồ
                 sơ yếu, khách sang quán bên cạnh mà bạn không hề biết.
               </p>
+              <Image
+                src={mapShot}
+                alt="Bản đồ giấy với ghim định vị tím và ngôi sao lime"
+                className={`${styles.photo} ${styles.problemPhoto}`}
+                sizes="(max-width: 860px) 92vw, 520px"
+              />
             </div>
             <ol className={styles.questions}>
               {questions.map((q, i) => (
@@ -209,10 +202,20 @@ export default function Review365Page() {
 
         {/* ---------- three pillars ---------- */}
         <section className={styles.section} id="how">
-          <Billboard word="365" tone="teal" />
+          <Billboard word="365" tone="lime" />
           <div className={styles.wrap}>
-            <p className={styles.tag}>Ba việc Review365 làm cùng bạn</p>
-            <h2 className={styles.h2}>Thu hút. Chăm sóc. Bảo vệ.</h2>
+            <div className={styles.pillarsHead}>
+              <div>
+                <p className={styles.tag}>Ba việc Review365 làm cùng bạn</p>
+                <h2 className={styles.h2}>Thu hút. Chăm sóc. Bảo vệ.</h2>
+              </div>
+              <Image
+                src={phoneShot}
+                alt="Điện thoại hiển thị review 5 sao cạnh bát phở"
+                className={styles.photo}
+                sizes="(max-width: 860px) 92vw, 640px"
+              />
+            </div>
             <div className={styles.row3}>
               {pillars.map((p) => (
                 <article key={p.tag} className={styles.pillar}>
@@ -228,7 +231,7 @@ export default function Review365Page() {
 
         {/* ---------- QR flow + rollout ---------- */}
         <section className={styles.section}>
-          <Billboard word="QR" tone="butter" />
+          <Billboard word="QR" tone="lavender" />
           <div className={`${styles.wrap} ${styles.split}`}>
             <div className={styles.qrCol}>
               <p className={styles.tag}>Một review thật ra đời thế nào</p>
@@ -239,13 +242,12 @@ export default function Review365Page() {
                 <li>AI soạn nháp review từ đúng trải nghiệm đó</li>
                 <li>Khách xem lại, tự chỉnh và tự đăng lên Google Maps</li>
               </ol>
-              <div className={styles.qrCard} aria-hidden="true">
-                <QrMark />
-                <span>
-                  Bạn thấy hôm nay thế nào?
-                  <small>Quét để chia sẻ · VI / EN / 日本語 / 한국어</small>
-                </span>
-              </div>
+              <Image
+                src={qrShot}
+                alt="Standee QR đặt trên bàn cạnh ly cà phê sữa đá"
+                className={`${styles.photo} ${styles.qrPhoto}`}
+                sizes="(max-width: 860px) 92vw, 560px"
+              />
             </div>
 
             <div>
@@ -267,7 +269,7 @@ export default function Review365Page() {
 
         {/* ---------- results ---------- */}
         <section className={styles.section} id="results">
-          <Billboard word="TOP" tone="teal" />
+          <Billboard word="TOP" tone="lime" />
           <div className={styles.wrap}>
             <p className={styles.tag}>Câu chuyện thành công</p>
             <h2 className={styles.h2}>Từ Việt Nam, Nhật Bản đến Đài Loan.</h2>
@@ -298,8 +300,8 @@ export default function Review365Page() {
               ))}
             </div>
             <p className={styles.source}>
-              Số liệu do Review365 công bố tại review365.vn. Kết quả phụ thuộc ngành
-              hàng, vị trí và mức độ cạnh tranh của từng cửa hàng.
+              Kết quả phụ thuộc ngành hàng, vị trí và mức độ cạnh tranh của từng cửa
+              hàng.
             </p>
             <ul className={styles.industries} aria-label="Ngành phù hợp">
               {industries.map((x) => (
@@ -311,7 +313,7 @@ export default function Review365Page() {
 
         {/* ---------- pricing ---------- */}
         <section className={styles.section} id="pricing">
-          <Billboard word="GÓI" tone="butter" />
+          <Billboard word="GÓI" tone="lavender" />
           <div className={`${styles.wrap} ${styles.split}`}>
             <div>
               <p className={styles.tag}>Gói Đồng Hành</p>
@@ -353,8 +355,8 @@ export default function Review365Page() {
                 Tư vấn gói phù hợp <span aria-hidden="true">↗</span>
               </a>
               <p className={styles.fine}>
-                Công nghệ Yello Inc. (Nhật Bản) · Đại lý chính thức GIANTY Việt Nam ·
-                Tư vấn & triển khai cùng Entersight
+                Entersight cung cấp, thiết lập và hỗ trợ trực tiếp · Hợp đồng tiếng
+                Việt · Hóa đơn VAT
               </p>
             </div>
           </div>
@@ -380,7 +382,7 @@ export default function Review365Page() {
 
         {/* ---------- contact ---------- */}
         <section className={`${styles.section} ${styles.contact}`} id="contact">
-          <Billboard word="0đ" tone="teal" />
+          <Billboard word="0đ" tone="lime" />
           <div className={`${styles.wrap} ${styles.split}`}>
             <div>
               <p className={styles.tag}>Chẩn đoán Google Maps miễn phí</p>
@@ -402,7 +404,7 @@ export default function Review365Page() {
 
       <footer className={styles.foot}>
         <div className={`${styles.wrap} ${styles.footIn}`}>
-        <span>© {new Date().getFullYear()} Entersight · Review365 by Yello × GIANTY</span>
+        <span>© {new Date().getFullYear()} Entersight · Review365</span>
         <Link href="/#solutions">← Các giải pháp khác của Entersight</Link>
         </div>
       </footer>

@@ -96,12 +96,13 @@ Assets exported from Figma are in `public/figma/`.
 - **SĐT**: Lã Thị Kiều Oanh — Founder — 0941233481
 
 ## Review365 product page
-`/review365` (`src/app/review365/`) is the landing for Review365 (Google Maps
-reviews SaaS by Yello Inc., sold in VN via GIANTY). It deliberately uses its
-own scoped "billboard" style — white canvas, Work Sans (loaded only on that
-route), giant 900-weight words in teal #56dddb / butter #f9e9a9 as section
-markers, forest #035542 outlines, no shadows or filled buttons. Copy/prices
-live in `data.ts` (from the Review365 price sheet + review365.vn case studies).
+`/review365` (`src/app/review365/`) is the landing for Review365, Entersight's
+Google Maps review product (QR + AI review collection, multilingual replies,
+GBP optimisation). It uses its own scoped "billboard" style on brand colours —
+white canvas, Work Sans (loaded only on that route), giant 900-weight words in
+lime / lavender (`--purple-200`) as section markers, purple outlines for
+interactive bits, no shadows or filled buttons. Copy/prices live in `data.ts`.
+Product shots in `public/review365/` are AI-generated (Figma AI) on white.
 Its form posts to `/api/lead` with the message prefixed `[Review365]`.
 Linked from the home page by a strip under the Solutions bento, the nav and
 the sitemap.

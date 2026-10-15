@@ -1,5 +1,5 @@
-// Review365 product page content. Figures come from the Review365 price sheet
-// (Gói Đồng Hành) and the case studies published on review365.vn.
+// Review365 product page content: Gói Đồng Hành price sheet, rollout and
+// case-study figures supplied by Entersight.
 
 export const BASE_PRICE = 2_500_000;
 
@@ -155,8 +155,8 @@ export const faqs = [
     a: "Không dịch vụ nào đảm bảo được vị trí cố định — thứ hạng phụ thuộc mức liên quan, khoảng cách và cạnh tranh. Review365 giúp bạn chủ động cải thiện những yếu tố làm được: hồ sơ, review và tốc độ phản hồi.",
   },
   {
-    q: "Ai vận hành Review365 tại Việt Nam? Có hóa đơn VAT không?",
-    a: "Review365 là công nghệ của Yello Inc. (Nhật Bản, tên gốc Kuchikomi 365). GIANTY Việt Nam là đại lý chính thức: hợp đồng tiếng Việt, hóa đơn VAT, thanh toán nội địa. Entersight tư vấn và đồng hành triển khai cùng cửa hàng.",
+    q: "Ai triển khai và hỗ trợ? Có hóa đơn VAT không?",
+    a: "Entersight trực tiếp cung cấp, thiết lập và hỗ trợ Review365 cho cửa hàng: hợp đồng tiếng Việt, hóa đơn VAT, thanh toán nội địa và hỗ trợ kỹ thuật bằng tiếng Việt.",
   },
   {
     q: "Giá tính theo cửa hàng hay theo thương hiệu?",

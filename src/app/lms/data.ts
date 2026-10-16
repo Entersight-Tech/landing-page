@@ -1,46 +1,56 @@
 // Copy for /lms. Every claim here is something the LMS does in code today
 // (product overview doc, checked 17/10/2026) — no invented client numbers.
+// Anything shown as a score or a chat is sample data and labelled so.
 
 /** Product name — change it here only. */
 export const PRODUCT = "EnterLMS";
 export const APP_URL = "https://lms.entersight-tech.com";
 
-export const pains = [
+/** Strip under the hero: facts about the product, not client results. */
+export const facts = [
+  { value: "6", unit: "kỹ năng", label: "bán hàng được AI chấm sau mỗi buổi luyện" },
+  { value: "4", unit: "cấp", label: "lộ trình, từ Newbie đến Quản lý" },
+  { value: "100", unit: "%", label: "bài học, quiz do AI soạn phải qua người duyệt" },
+  { value: "3", unit: "vai trò", label: "đào tạo, quản lý và nhân viên sale, mỗi người một màn hình" },
+];
+
+/** Problem → what EnterLMS does about it. */
+export const whys = [
   {
-    title: "Người giỏi nhất bị kéo đi dạy",
-    body: "Mỗi đợt tuyển, trưởng nhóm lại kèm từ đầu: giải thích bảng giá, quy trình, cách trả lời khách. Thời gian đó lẽ ra để chốt đơn.",
+    pain: "Trưởng nhóm giỏi nhất bị kéo đi dạy lại từ đầu mỗi đợt tuyển.",
+    fix: "AI soạn bài học, slide và quiz từ tài liệu và ca chốt đơn của công ty. Trưởng nhóm chỉ sửa và duyệt.",
   },
   {
-    title: "Lý thuyết không dạy được khách thật",
-    body: "Đọc tài liệu xong, nhân viên mới vẫn lúng túng khi khách chê đắt hay hỏi xoáy kỹ thuật — và khách thật là nơi họ tập.",
+    pain: "Đọc tài liệu xong, nhân viên mới vẫn tập trên khách thật — và mất khách thật.",
+    fix: "Luyện chat với khách ảo khó tính, chê đắt, hỏi xoáy kỹ thuật cho tới khi vững tay.",
   },
   {
-    title: "Không biết đội đang yếu ở đâu",
-    body: "Doanh số thấp nhưng không rõ vì khám phá nhu cầu kém, xử lý từ chối giá kém hay chốt đơn kém, nên đào tạo lại không trúng.",
+    pain: "Doanh số thấp nhưng không biết đội yếu ở khám phá nhu cầu, xử lý giá hay chốt đơn.",
+    fix: "Mỗi câu quiz và mỗi buổi luyện đều chấm theo kỹ năng; Analytics chỉ ra chỗ yếu của cả đội.",
   },
 ];
 
-/** The main journey, from the overview doc. */
+/** The main journey, from the overview doc. Each step has a mock in page.tsx. */
 export const steps = [
   {
     who: "Đội đào tạo",
-    title: "Nạp kiến thức & kịch bản thật",
-    body: "Thêm bảng giá, quy trình, FAQ vào Knowledge Base của khoá học. Tải lên đoạn chat sale thật (.txt/.docx), gắn nhãn thành công hay thất bại.",
+    title: "Nạp kiến thức và ca thật",
+    body: "Thêm bảng giá, quy trình, FAQ vào Knowledge Base. Tải lên đoạn chat bán hàng (.txt, .docx) và gắn nhãn thành công hay thất bại.",
   },
   {
     who: "AI",
-    title: "Phân tích và soạn nháp",
-    body: "AI ẩn danh hoá hội thoại, rút chân dung khách, tìm khoảnh khắc then chốt và kỹ thuật đã dùng, rồi soạn bài học, slide, infographic và quiz.",
+    title: "Phân tích từng ca",
+    body: "AI ẩn danh hoá hội thoại, rút chân dung khách, tìm khoảnh khắc then chốt và kỹ thuật đã dùng.",
   },
   {
     who: "Quản lý",
-    title: "Duyệt trước khi xuất bản",
-    body: "Bài học và quiz do AI tạo nằm ở trạng thái nháp. Người có chuyên môn sửa, duyệt rồi mới xuất bản tới nhân viên.",
+    title: "Duyệt bài AI soạn",
+    body: "Bài học, slide, infographic và quiz nằm ở bản nháp. Người có chuyên môn sửa, duyệt rồi mới xuất bản.",
   },
   {
     who: "Nhân viên sale",
-    title: "Học, thi và luyện với khách ảo",
-    body: "Học bài, làm quiz và bài thi, rồi chat với AI đóng vai khách. Mỗi buổi được chấm điểm tổng và theo từng kỹ năng.",
+    title: "Học, thi và luyện",
+    body: "Mỗi người biết hôm nay cần học gì, làm bài thi có giờ và luyện chat với khách ảo.",
   },
 ];
 
@@ -54,8 +64,11 @@ export const skills = [
   "Chốt đơn",
 ];
 
-/** Illustrative roleplay scores for the demo card — not real user data. */
+/** Sample roleplay scores for the demo card — not real user data. */
 export const demoScores = [72, 85, 64, 58, 70, 66];
+
+/** Sample team averages for the analytics mock — not real user data. */
+export const teamScores = [74, 81, 62, 51, 68, 59];
 
 export const demoChat: { from: "bot" | "me"; text: string }[] = [
   { from: "bot", text: "Bên chị đang dùng chỗ khác rẻ hơn 15%. Sao chị phải đổi?" },
@@ -66,37 +79,41 @@ export const demoChat: { from: "bot" | "me"; text: string }[] = [
 
 export const personas = ["Khó tính", "Hỏi kỹ thuật", "Chê đắt", "Đang so sánh", "Vội"];
 
-export const levels = [
-  { name: "Newbie", body: "Sản phẩm, bảng giá, quy trình cơ bản." },
-  { name: "Thử việc", body: "Luyện tình huống thường gặp, bài thi qua thử việc." },
-  { name: "Chính thức", body: "Khách khó, từ chối giá, chốt đơn giá trị cao." },
-  { name: "Quản lý", body: "Kèm đội, đọc kết quả và chọn khoá tiếp theo." },
+export const levels = ["Newbie", "Thử việc", "Chính thức", "Quản lý"];
+
+/** What a manager gets, next to the analytics mock. */
+export const managerPoints = [
+  { title: "Analytics theo kỹ năng", body: "Tỉ lệ đạt, phân bố điểm, xu hướng, radar kỹ năng, bảng xếp hạng." },
+  { title: "Xem lại từng buổi luyện", body: "Đọc lại cả cuộc chat cùng điểm AI; duyệt, sửa điểm hoặc trả về." },
+  { title: "Bài thi qua thử việc", body: "Lịch mở/đóng, giới hạn giờ, điểm đạt, đảo câu; ghi lại chuyển tab và rời cửa sổ." },
+  { title: "Lộ trình 4 cấp", body: "Mỗi khoá gắn một cấp, AI chỉnh độ khó theo cấp; ghi danh cả nhóm một lần." },
 ];
 
-export const adminFeatures = [
-  { title: "Khoá học & Knowledge Base", body: "Khoá theo cấp, kèm mục kiến thức được đưa vào mọi nội dung AI tạo. Sửa kiến thức là sửa giáo trình." },
-  { title: "Kịch bản bán hàng", body: "Tải chat thật, gắn nhãn thành công / thất bại, chân dung và cảm xúc khách." },
-  { title: "Bài học có slide & infographic", body: "Mục tiêu, nội dung, ý chính; AI vẽ slide, infographic, hoặc bạn tải video lên." },
-  { title: "Quiz", body: "Trắc nghiệm 4 đáp án có giải thích, câu tự luận do AI chấm; mỗi câu gắn một kỹ năng." },
-  { title: "Bài thi", body: "Lịch mở/đóng, giới hạn giờ, điểm đạt, số lần làm, đảo câu; mời qua email kèm lịch .ics." },
-  { title: "Duyệt buổi luyện chat", body: "Xem lại toàn bộ hội thoại và điểm AI; duyệt, sửa điểm hoặc trả về." },
-  { title: "Analytics tổ chức", body: "Tỉ lệ đạt, phân bố điểm, xu hướng, radar kỹ năng, bảng xếp hạng, kỹ năng còn yếu." },
-  { title: "Kỹ năng & người dùng", body: "Bộ kỹ năng riêng cho từng công ty; ghi danh từng người hoặc cả cấp một lần." },
-];
-
-export const salesFeatures = [
-  { title: "Một chỗ để học", body: "Khoá học, bài học, quiz, bài thi được giao; trình đọc có mục lục, slide, đánh dấu hoàn thành." },
-  { title: "Phòng thi", body: "Đồng hồ đếm ngược, tự nộp khi hết giờ; ghi lại chuyển tab, rời cửa sổ, thoát toàn màn hình." },
-  { title: "Luyện chat với AI", body: "Khách ảo theo chân dung và cảm xúc; kết thúc là có điểm theo 6 kỹ năng." },
-  { title: "Trợ lý hỏi đáp", body: "Hỏi như hỏi đồng nghiệp; câu trả lời lấy từ bài học đã xuất bản, kèm trích dẫn nguồn." },
-  { title: "Hồ sơ kỹ năng", body: "Điểm, biểu đồ kỹ năng, khoá học gợi ý, thành tích và thẻ chứng nhận bài thi." },
+/** Short feature tiles. `for` says whose screen it is on. */
+export const features: { title: string; body: string; for: "Đào tạo" | "Nhân viên" }[] = [
+  { for: "Đào tạo", title: "Knowledge Base", body: "Kiến thức của từng khoá, được đưa vào mọi nội dung AI tạo." },
+  { for: "Đào tạo", title: "Kịch bản bán hàng", body: "Chat thật, nhãn thành công / thất bại, chân dung và cảm xúc khách." },
+  { for: "Đào tạo", title: "Bài học có hình", body: "Slide và infographic do AI vẽ, hoặc video bạn tải lên." },
+  { for: "Đào tạo", title: "Quiz", body: "Trắc nghiệm có giải thích và câu tự luận AI chấm, gắn kỹ năng." },
+  { for: "Đào tạo", title: "Mời thi qua email", body: "Lời mời kèm lịch .ics; báo cáo kết quả sau khi đóng." },
+  { for: "Đào tạo", title: "Bộ kỹ năng riêng", body: "Mặc định 6 kỹ năng; mỗi công ty sửa theo cách bán của mình." },
+  { for: "Nhân viên", title: "Một chỗ để học", body: "Khoá, bài, quiz, bài thi được giao; trình đọc có mục lục." },
+  { for: "Nhân viên", title: "Trợ lý hỏi đáp", body: "Trả lời từ bài học đã xuất bản, kèm trích dẫn nguồn." },
+  { for: "Nhân viên", title: "Hồ sơ kỹ năng", body: "Điểm, biểu đồ kỹ năng, khoá gợi ý và thẻ chứng nhận bài thi." },
 ];
 
 export const principles = [
   { title: "AI soạn, người duyệt", body: "Không bài học hay quiz nào tới nhân viên khi chưa được duyệt." },
-  { title: "Ẩn danh hoá trước khi phân tích", body: "Thông tin khách trong đoạn chat được AI làm sạch trước khi thành giáo trình." },
-  { title: "Trả lời có nguồn", body: "Trợ lý chỉ dựa trên bài học công ty đã xuất bản và chỉ rõ nguồn." },
-  { title: "Dữ liệu theo từng tổ chức", body: "Mỗi công ty là một tổ chức riêng, với kiến thức, kỹ năng và cấu hình riêng." },
+  { title: "Ẩn danh trước khi phân tích", body: "Thông tin khách trong đoạn chat được làm sạch trước khi thành bài học." },
+  { title: "Trả lời có nguồn", body: "Trợ lý chỉ dựa trên bài học đã xuất bản và chỉ rõ nguồn." },
+  { title: "Dữ liệu theo tổ chức", body: "Mỗi công ty có kiến thức, kỹ năng và cấu hình riêng." },
+];
+
+/** Qualifier checklist next to the form. */
+export const fitFor = [
+  "Bạn tuyển sale thường xuyên và trưởng nhóm đang phải kèm từ đầu",
+  "Đội bán qua chat, có sẵn đoạn hội thoại chốt đơn thành công lẫn thất bại",
+  "Bạn muốn biết đội yếu kỹ năng nào trước khi mở khoá đào tạo tiếp",
 ];
 
 export const faqs = [
@@ -117,42 +134,7 @@ export const faqs = [
     a: "Hội thoại được ẩn danh hoá trước khi AI phân tích, và dữ liệu tách riêng theo từng tổ chức.",
   },
   {
-    q: "Giao diện có tiếng Việt không?",
-    a: "Toàn bộ giao diện bằng tiếng Việt.",
-  },
-  {
     q: "Chi phí thế nào?",
     a: "Tuỳ quy mô đội và mức dùng AI. Đặt lịch demo, chúng tôi gửi báo giá sau khi hiểu nhu cầu của bạn.",
   },
-];
-
-/** Running strip under the hero. */
-export const marquee = [
-  "AI đóng vai khách",
-  "Chấm điểm 6 kỹ năng",
-  "Bài học từ ca chốt đơn thật",
-  "Slide & infographic do AI vẽ",
-  "Quiz & bài thi chống gian lận",
-  "Trợ lý hỏi đáp có trích dẫn",
-  "Analytics theo kỹ năng",
-  "Lộ trình 4 cấp",
-  "Giao diện tiếng Việt",
-];
-
-/** Before / after, row per part of the onboarding job. */
-export const compare = [
-  { topic: "Người soạn giáo trình", old: "Trưởng nhóm tự viết, khi có thời gian", now: "AI soạn từ kiến thức và ca thật; trưởng nhóm chỉ sửa và duyệt" },
-  { topic: "Nội dung học", old: "File rời rạc, nhanh lỗi thời", now: "Bài học, slide, quiz cùng một nguồn kiến thức: sửa một chỗ, giáo trình đổi theo" },
-  { topic: "Luyện tập", old: "Tập trên khách thật", now: "Luyện với khách ảo khó tính, hỏi kỹ thuật, chê đắt… trước khi gặp khách thật" },
-  { topic: "Đánh giá", old: "Cảm tính, tuỳ người kèm", now: "Điểm tổng và theo 6 kỹ năng; quản lý xem lại và sửa điểm được" },
-  { topic: "Thi qua thử việc", old: "Form online, khó kiểm soát", now: "Phòng thi có giờ, đảo câu, ghi lại chuyển tab và rời cửa sổ" },
-  { topic: "Theo dõi đội", old: "Không biết yếu ở đâu", now: "Radar kỹ năng, bảng xếp hạng và danh sách kỹ năng còn yếu" },
-];
-
-/** Qualifier checklist: who gets the most out of it. */
-export const fitFor = [
-  "Bạn tuyển sale thường xuyên và trưởng nhóm đang phải kèm từ đầu",
-  "Đội bán qua chat, có sẵn các đoạn hội thoại chốt đơn thành công lẫn thất bại",
-  "Có tài liệu sản phẩm, bảng giá nhưng nhân viên mới ít đọc và khó nhớ",
-  "Bạn muốn biết đội đang yếu kỹ năng nào trước khi mở khoá đào tạo tiếp",
 ];

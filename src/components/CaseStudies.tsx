@@ -7,6 +7,8 @@ import oniImg from "../../public/figma/case-oni.png";
 import kyeImg from "../../public/figma/case-kye.jpg";
 import motImg from "../../public/figma/case-mot.png";
 import quaTetImg from "../../public/figma/case-quatet.png";
+import lmsImg from "../app/lms/opengraph-image.jpg";
+import etstarImg from "../app/etstar/opengraph-image.jpg";
 
 type CaseStudy = {
   title: string;
@@ -15,6 +17,8 @@ type CaseStudy = {
   image: StaticImageData;
   alt: string;
   fit: "contain" | "cover";
+  position?: string;
+  /** internal product page (same tab) or an external site */
   link?: string;
   painpoints: string[];
   solutions: string[];
@@ -22,6 +26,52 @@ type CaseStudy = {
 };
 
 const cases: CaseStudy[] = [
+  {
+    title: "ENTERLMS",
+    tag: "ETS PRODUCT",
+    subtitle: "Đào tạo sale bằng AI",
+    image: lmsImg,
+    alt: "EnterLMS — đào tạo sale bằng AI",
+    fit: "cover",
+    // share images are 1200×630 with the headline on the left
+    position: "left center",
+    link: "/lms",
+    painpoints: [
+      "Trưởng nhóm giỏi nhất bị kéo đi dạy lại từ đầu mỗi đợt tuyển.",
+      "Nhân viên mới tập trên khách thật — và mất khách thật.",
+      "Doanh số thấp nhưng không biết đội yếu ở kỹ năng nào.",
+    ],
+    solutions: [
+      "AI soạn bài học, slide và quiz từ tài liệu và ca chốt đơn của công ty; trưởng nhóm chỉ sửa và duyệt.",
+      "Luyện chat với khách ảo khó tính, chê đắt, hỏi xoáy cho tới khi vững tay.",
+    ],
+    results: [
+      "AI chấm 6 kỹ năng bán hàng sau mỗi buổi luyện",
+      "Lộ trình 4 cấp, từ Newbie đến Quản lý",
+      "100% bài học, quiz do AI soạn đều qua người duyệt",
+    ],
+  },
+  {
+    title: "ETSTAR",
+    tag: "ETS PRODUCT",
+    subtitle: "Tăng review thật trên Google Maps",
+    image: etstarImg,
+    alt: "ETStar — review thật trên Google Maps",
+    fit: "cover",
+    // share images are 1200×630 with the headline on the left
+    position: "left center",
+    link: "/etstar",
+    painpoints: [
+      "Hồ sơ thiếu thông tin, ít cập nhật nên Google ít đề xuất.",
+      "Khách hài lòng thường ra về im lặng — rất ít người tự nhớ viết review.",
+      "Review bị bỏ ngỏ nhiều ngày là tín hiệu xấu với cả khách lẫn Google.",
+    ],
+    solutions: [
+      "Khách quét QR, trả lời khảo sát ngắn; AI soạn nháp đánh giá, khách tự chỉnh và tự đăng.",
+      "AI soạn phản hồi đa ngôn ngữ theo giọng thương hiệu, cảnh báo sớm review tiêu cực.",
+    ],
+    results: ["10.000+ địa điểm tin dùng", "50K+ đánh giá AI thu thập", "12+ quốc gia triển khai"],
+  },
   {
     title: "ONI HOMESTAY",
     tag: "ETS AI OPERATION",
@@ -49,6 +99,7 @@ const cases: CaseStudy[] = [
     image: kyeImg,
     alt: "Kye Agency",
     fit: "cover",
+    link: "/fashion-studio",
     painpoints: [
       "Tốc độ sản xuất Concept thủ công chậm (7 ngày/ bộ). AI phổ thông gây lỗi chi tiết vải và biến dạng gương mặt mẫu. Dữ liệu hình ảnh phân tán, khó quản lý.",
     ],
@@ -157,7 +208,7 @@ export default function CaseStudies() {
                   onClick={() => setOpen(isOpen ? -1 : i)}
                   onPointerEnter={() => setHover(i)}
                 >
-                  <span className={styles.idx}>0{i + 1}</span>
+                  <span className={styles.idx}>{String(i + 1).padStart(2, "0")}</span>
                   <span className={styles.name}>{c.title}</span>
                   <span className={styles.meta}>
                     <span>{c.subtitle}</span>
@@ -174,7 +225,7 @@ export default function CaseStudies() {
                         alt={c.alt}
                         fill
                         sizes="(max-width: 860px) 92vw, 380px"
-                        style={{ objectFit: c.fit }}
+                        style={{ objectFit: c.fit, objectPosition: c.position }}
                       />
                     </div>
                     <div className={styles.cols}>
@@ -189,8 +240,12 @@ export default function CaseStudies() {
                         </div>
                       ))}
                       {c.link && (
-                        <a href={c.link} className={`btn ${styles.visit}`} target="_blank" rel="noopener noreferrer">
-                          Xem dự án
+                        <a
+                          href={c.link}
+                          className={`btn ${styles.visit}`}
+                          {...(c.link.startsWith("/") ? {} : { target: "_blank", rel: "noopener noreferrer" })}
+                        >
+                          {c.link.startsWith("/") ? "Xem sản phẩm" : "Xem dự án"}
                         </a>
                       )}
                     </div>
@@ -211,7 +266,7 @@ export default function CaseStudies() {
       >
         {cases.map((c, i) => (
           <div key={c.title} className={styles.previewImg} data-active={hover === i || undefined}>
-            <Image src={c.image} alt="" fill sizes="280px" style={{ objectFit: c.fit }} />
+            <Image src={c.image} alt="" fill sizes="280px" style={{ objectFit: c.fit, objectPosition: c.position }} />
           </div>
         ))}
       </div>

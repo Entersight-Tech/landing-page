@@ -208,18 +208,35 @@
 .home img {
   display: block;
   width: auto;
-  height: 22px;
+  height: 30px;
 }
 
-.product {
+.by {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   padding-left: 20px;
   border-left: 1px solid var(--line-strong);
-  font-family: var(--font-head);
-  font-weight: 700;
-  font-size: 13px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  white-space: nowrap;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.by img {
+  display: block;
+  width: auto;
+  height: 16px;
+}
+
+/* scroll progress along the bar's bottom edge */
+.progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--majorelle-blue);
+  transform-origin: left;
+  transform: scaleX(var(--scroll, 0));
 }
 
 .links {
@@ -240,14 +257,87 @@
   overflow: hidden;
 }
 
-.heroStar {
+.heroStarWrap {
   position: absolute;
   right: -12vw;
   top: -14vw;
   width: 46vw;
   max-width: 680px;
-  color: var(--purple-200);
   pointer-events: none;
+}
+
+.heroStarWrap > span,
+.panelStarWrap > span {
+  display: block;
+  will-change: transform;
+}
+
+.heroStar {
+  display: block;
+  width: 100%;
+  color: var(--purple-200);
+}
+
+/* lime dot trailing the pointer (Motion.tsx) */
+.dot {
+  position: absolute;
+  top: -9px;
+  left: -9px;
+  z-index: 2;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 0 1px var(--ink) inset;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, width 0.3s var(--ease), height 0.3s var(--ease);
+}
+
+.hero[data-pointer] .dot {
+  opacity: 1;
+}
+
+/* ---------- marquee ---------- */
+.marquee {
+  overflow: hidden;
+  padding: 18px 0;
+  background: var(--ink);
+  color: #f4f4f4;
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: clamp(14px, 1.4vw, 18px);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.marqueeTrack {
+  display: flex;
+  width: max-content;
+  animation: marquee 38s linear infinite;
+}
+
+.marquee:hover .marqueeTrack {
+  animation-play-state: paused;
+}
+
+.marquee ul {
+  display: flex;
+  list-style: none;
+}
+
+.marquee li {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding-right: 28px;
+}
+
+.marqueeStar {
+  width: 16px;
+  height: 16px;
+  color: var(--accent);
 }
 
 .heroGrid {
@@ -404,14 +494,19 @@
   text-underline-offset: 3px;
 }
 
-.panelStar {
+.panelStarWrap {
   position: absolute;
   right: -10%;
   bottom: -30%;
   width: 52%;
   max-width: 720px;
-  color: rgba(255, 255, 255, 0.07);
   pointer-events: none;
+}
+
+.panelStar {
+  display: block;
+  width: 100%;
+  color: rgba(255, 255, 255, 0.07);
 }
 
 /* how it works */
@@ -703,9 +798,126 @@
 }
 
 .rpNote {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
   margin-top: 14px;
   font-size: 11px;
   color: var(--text-muted);
+}
+
+.replay {
+  padding: 6px 10px;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  background: transparent;
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.replay:hover:not(:disabled) {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
+.replay:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* ---------- before / after ---------- */
+.compare {
+  border-top: 1px solid var(--line);
+}
+
+.cmpHead,
+.cmpRow {
+  display: grid;
+  grid-template-columns: minmax(0, 0.7fr) minmax(0, 1fr) minmax(0, 1.3fr);
+  gap: 24px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.cmpHead {
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.cmpHead span:last-child {
+  color: var(--text-brand);
+}
+
+.cmpRow {
+  align-items: start;
+  font-size: 16px;
+}
+
+.cmpRow b {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.old {
+  color: var(--text-muted);
+}
+
+.now {
+  position: relative;
+  padding-left: 22px;
+  font-weight: 500;
+}
+
+.now::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.45em;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 0 1px var(--ink) inset;
+}
+
+/* qualifier list in the contact panel */
+.fit {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 560px;
+  list-style: none;
+  font-size: 16px;
+}
+
+.fit li {
+  position: relative;
+  padding-left: 28px;
+}
+
+.fit li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* phone-only CTA that follows the reader between hero and form */
+.stickyCta {
+  display: none;
 }
 
 /* ---------- features ---------- */
@@ -834,7 +1046,7 @@
   border-left: 1px solid var(--line);
 }
 
-.dot {
+.pdot {
   display: block;
   width: 12px;
   height: 12px;
@@ -1005,36 +1217,243 @@
   color: var(--text-brand);
 }
 
-/* ---------- motion (Motion.tsx sets [data-motion] / [data-in]) ---------- */
-.page[data-motion] [data-reveal]:not([data-in]) {
+/* ---------- motion ----------
+   html[data-lmsjs] is set by an inline script before paint unless the
+   viewer prefers reduced motion; without it everything renders static. */
+@keyframes rise {
+  from {
+    transform: translateY(115%);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.25;
+  }
+}
+
+/* display words rise out of a mask; padding keeps stacked accents inside */
+.w {
+  display: inline-block;
+  overflow: hidden;
+  padding: 0.16em 0 0.06em;
+  margin: -0.16em 0 -0.06em;
+  vertical-align: top;
+}
+
+.wi,
+.miniIn {
+  display: inline-block;
+}
+
+:global(html[data-lmsjs]) .page [data-reveal]:not([data-in]) .wi {
+  transform: translateY(115%);
+}
+
+:global(html[data-lmsjs]) .page [data-reveal] .wi {
+  transition: transform 0.95s var(--ease) calc(var(--i, 0) * 45ms + 80ms);
+}
+
+:global(html[data-lmsjs]) .page [data-reveal]:not([data-in]) .miniIn {
+  opacity: 0;
+  transform: translateY(0.4em);
+}
+
+:global(html[data-lmsjs]) .page [data-reveal] .miniIn {
+  transition: opacity 0.6s ease calc(var(--i, 0) * 45ms + 120ms),
+    transform 0.8s var(--ease) calc(var(--i, 0) * 45ms + 120ms);
+}
+
+/* hero: plays on load, no JS needed */
+:global(html[data-lmsjs]) .playNow .wi {
+  animation: rise 0.95s var(--ease) both;
+  animation-delay: calc(var(--i, 0) * 45ms + 150ms);
+}
+
+:global(html[data-lmsjs]) .playNow .miniIn,
+:global(html[data-lmsjs]) .rise {
+  animation: fadeUp 0.9s var(--ease) both;
+  animation-delay: calc(var(--i, var(--d, 0)) * 90ms + 150ms);
+}
+
+:global(html[data-lmsjs]) .heroCard.rise {
+  animation-duration: 1.2s;
+  animation-delay: 0.45s;
+}
+
+/* revealed blocks */
+:global(html[data-lmsjs]) .page [data-reveal]:not([data-in]) {
   opacity: 0;
   transform: translateY(28px);
 }
 
-.page[data-motion] [data-reveal] {
+:global(html[data-lmsjs]) .page [data-reveal] {
   transition: opacity 0.9s var(--ease) calc(var(--d, 0) * 90ms),
     transform 0.9s var(--ease) calc(var(--d, 0) * 90ms);
 }
 
-/* roleplay: messages arrive in turn, then the bars fill */
-.page[data-motion] .rp:not([data-in]) .rpChat li,
-.page[data-motion] .rp:not([data-in]) .rpScore {
+/* intros: the block stays put, only its words move */
+:global(html[data-lmsjs]) .page .intro[data-reveal]:not([data-in]) {
+  opacity: 1;
+  transform: none;
+}
+
+:global(html[data-lmsjs]) .page .intro[data-reveal]:not([data-in]) > :not(.display) {
   opacity: 0;
-  transform: translateY(10px);
+  transform: translateY(16px);
 }
 
-.page[data-motion] .rp .rpChat li,
-.page[data-motion] .rp .rpScore {
-  transition: opacity 0.5s var(--ease) calc(0.3s + var(--m) * 0.7s),
-    transform 0.5s var(--ease) calc(0.3s + var(--m) * 0.7s);
+:global(html[data-lmsjs]) .page .intro[data-reveal] > :not(.display) {
+  transition: opacity 0.8s var(--ease) 0.35s, transform 0.8s var(--ease) 0.35s;
 }
 
-.page[data-motion] .rp:not([data-in]) .rpBars i::after {
+/* levels climb from further down */
+:global(html[data-lmsjs]) .page .levels [data-reveal]:not([data-in]) {
+  transform: translateY(90px);
+}
+
+/* before/after: the old way gets struck through as the row arrives */
+.old s {
+  text-decoration: none;
+  background: linear-gradient(currentColor, currentColor) no-repeat 0 55% / 100% 1px;
+}
+
+:global(html[data-lmsjs]) .page .cmpRow:not([data-in]) .old s {
+  background-size: 0 1px;
+}
+
+:global(html[data-lmsjs]) .page .cmpRow .old s {
+  transition: background-size 0.7s var(--ease) calc(var(--d, 0) * 90ms + 0.45s);
+}
+
+/* roleplay: messages arrive as the player marks them [data-on] */
+:global(html[data-lmsjs]) .rpChat li:not([data-on]),
+:global(html[data-lmsjs]) .rp:not([data-started]) .rpChat li {
+  visibility: hidden;
+}
+
+:global(html[data-lmsjs]) .rp:not([data-started]) .rpTotal b,
+:global(html[data-lmsjs]) .rp:not([data-started]) .rpBars b {
+  opacity: 0;
+}
+
+:global(html[data-lmsjs]) .rp:not([data-started]) .rpBars i::after {
   width: 0;
 }
 
-.page[data-motion] .rp .rpBars i::after {
-  transition: width 0.9s var(--ease) calc(0.6s + var(--m, 4) * 0.7s + var(--b) * 0.1s);
+:global(html[data-lmsjs]) .rpChat li[data-on] {
+  animation: fadeUp 0.45s var(--ease) both;
+}
+
+:global(html[data-lmsjs]) .rp:not([data-scored]) .rpBars i::after {
+  width: 0;
+}
+
+.rpBars i::after {
+  transition: width 0.9s var(--ease) calc(var(--b, 0) * 0.1s);
+}
+
+:global(html[data-lmsjs]) .rp:not([data-scored]) .rpBars b {
+  opacity: 0;
+}
+
+.rpBars b {
+  transition: opacity 0.4s ease calc(var(--b, 0) * 0.1s + 0.5s);
+}
+
+.rpChat li {
+  position: relative;
+}
+
+/* typing bubble shown in the (still hidden) slot of the next message */
+.typing {
+  position: absolute;
+  top: 0;
+  display: inline-flex;
+  gap: 4px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: inherit;
+  visibility: visible;
+  animation: fadeUp 0.3s var(--ease) both;
+}
+
+.bot .typing {
+  left: 0;
+  background: var(--surface);
+  border-bottom-left-radius: 4px;
+}
+
+.night .bot .typing {
+  background: #24223d;
+}
+
+.me .typing {
+  right: 0;
+  background: var(--majorelle-blue);
+  border-bottom-right-radius: 4px;
+}
+
+.typing i {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: currentColor;
+  opacity: 0.7;
+  animation: blink 1s ease-in-out infinite;
+}
+
+.typing i:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.typing i:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+/* how it works: a lime line runs across the steps with scroll */
+.steps {
+  position: relative;
+}
+
+.steps::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background: var(--accent);
+  transform-origin: left;
+  transform: scaleX(var(--p, 1));
+}
+
+.steps li .stepNo,
+.steps li h3,
+.steps li p {
+  transition: color 0.5s ease, opacity 0.5s ease;
+}
+
+.page[data-tracking] .steps li:not([data-on]) .stepNo {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.page[data-tracking] .steps li:not([data-on]) h3,
+.page[data-tracking] .steps li:not([data-on]) p {
+  opacity: 0.55;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1042,6 +1461,7 @@
   .page *::before,
   .page *::after {
     transition: none !important;
+    animation: none !important;
   }
 }
 
@@ -1086,6 +1506,10 @@
   .featGrid {
     grid-template-columns: minmax(0, 1fr);
   }
+
+  .by {
+    display: none;
+  }
 }
 
 @media (max-width: 860px) {
@@ -1108,8 +1532,33 @@
 }
 
 @media (max-width: 560px) {
-  .product {
+  .bar > .btn {
     display: none;
+  }
+
+  .stickyCta {
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    transform: translateY(150%);
+    transition: transform 0.4s var(--ease);
+  }
+
+  .page[data-cta] .stickyCta {
+    transform: none;
+  }
+
+  .cmpHead {
+    display: none;
+  }
+
+  .cmpRow {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
   }
 
   .steps,

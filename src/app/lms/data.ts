@@ -1,9 +1,8 @@
 // Copy for /lms. Every claim here is something the LMS does in code today
 // (product overview doc, checked 17/10/2026) — no invented client numbers.
 
-/** Working product name; the overview doc still lists "Onboarding LMS" vs
- *  "Antigravity Sales LMS" as an open question. Change it here only. */
-export const PRODUCT = "Onboarding LMS";
+/** Product name — change it here only. */
+export const PRODUCT = "EnterLMS";
 export const APP_URL = "https://lms.entersight-tech.com";
 
 export const pains = [
@@ -125,4 +124,35 @@ export const faqs = [
     q: "Chi phí thế nào?",
     a: "Tuỳ quy mô đội và mức dùng AI. Đặt lịch demo, chúng tôi gửi báo giá sau khi hiểu nhu cầu của bạn.",
   },
+];
+
+/** Running strip under the hero. */
+export const marquee = [
+  "AI đóng vai khách",
+  "Chấm điểm 6 kỹ năng",
+  "Bài học từ ca chốt đơn thật",
+  "Slide & infographic do AI vẽ",
+  "Quiz & bài thi chống gian lận",
+  "Trợ lý hỏi đáp có trích dẫn",
+  "Analytics theo kỹ năng",
+  "Lộ trình 4 cấp",
+  "Giao diện tiếng Việt",
+];
+
+/** Before / after, row per part of the onboarding job. */
+export const compare = [
+  { topic: "Người soạn giáo trình", old: "Trưởng nhóm tự viết, khi có thời gian", now: "AI soạn từ kiến thức và ca thật; trưởng nhóm chỉ sửa và duyệt" },
+  { topic: "Nội dung học", old: "File rời rạc, nhanh lỗi thời", now: "Bài học, slide, quiz cùng một nguồn kiến thức: sửa một chỗ, giáo trình đổi theo" },
+  { topic: "Luyện tập", old: "Tập trên khách thật", now: "Luyện với khách ảo khó tính, hỏi kỹ thuật, chê đắt… trước khi gặp khách thật" },
+  { topic: "Đánh giá", old: "Cảm tính, tuỳ người kèm", now: "Điểm tổng và theo 6 kỹ năng; quản lý xem lại và sửa điểm được" },
+  { topic: "Thi qua thử việc", old: "Form online, khó kiểm soát", now: "Phòng thi có giờ, đảo câu, ghi lại chuyển tab và rời cửa sổ" },
+  { topic: "Theo dõi đội", old: "Không biết yếu ở đâu", now: "Radar kỹ năng, bảng xếp hạng và danh sách kỹ năng còn yếu" },
+];
+
+/** Qualifier checklist: who gets the most out of it. */
+export const fitFor = [
+  "Bạn tuyển sale thường xuyên và trưởng nhóm đang phải kèm từ đầu",
+  "Đội bán qua chat, có sẵn các đoạn hội thoại chốt đơn thành công lẫn thất bại",
+  "Có tài liệu sản phẩm, bảng giá nhưng nhân viên mới ít đọc và khó nhớ",
+  "Bạn muốn biết đội đang yếu kỹ năng nào trước khi mở khoá đào tạo tiếp",
 ];

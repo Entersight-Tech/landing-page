@@ -8,7 +8,7 @@ type Status = "idle" | "sending" | "sent" | "error";
 
 const HOTLINE = "0941233481";
 
-/** Demo request; goes to the same /api/lead sheet, tagged [LMS]. */
+/** Demo request; goes to the same /api/lead sheet, tagged [EnterLMS]. */
 export default function LeadForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
@@ -17,7 +17,7 @@ export default function LeadForm() {
     e.preventDefault();
     const raw = Object.fromEntries(new FormData(e.currentTarget)) as Record<string, string>;
     const note = [raw.team && `Quy mô đội sale: ${raw.team}`, raw.message].filter(Boolean).join("\n");
-    const fields = { ...raw, message: `[LMS] ${note}`.trim() };
+    const fields = { ...raw, message: `[EnterLMS] ${note}`.trim() };
     const checked = validateLead(fields);
     if ("error" in checked) {
       setError(checked.error);

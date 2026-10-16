@@ -18,7 +18,7 @@ const groups = [
   ],
   [
     { label: "ETStar", href: "/etstar" },
-    { label: "LMS", href: "/lms" },
+    { label: "EnterLMS", href: "/lms" },
   ],
   [
     { label: "Khách hàng", href: "#cases" },

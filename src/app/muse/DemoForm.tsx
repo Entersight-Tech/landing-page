@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { validateLead } from "@/lib/lead";
-import styles from "./fashion-studio.module.css";
+import styles from "./muse.module.css";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
@@ -17,7 +17,7 @@ export default function DemoForm() {
     e.preventDefault();
     const fields = {
       ...Object.fromEntries(new FormData(e.currentTarget)),
-      message: "Đăng ký demo Fashion Studio",
+      message: "[MUSE Studio] Đăng ký demo",
     };
     const checked = validateLead(fields);
     if ("error" in checked) {

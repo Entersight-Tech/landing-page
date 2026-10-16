@@ -95,13 +95,19 @@ Assets exported from Figma are in `public/figma/`.
 - **Mail**: info@entersight-tech.com
 - **SĐT**: Lã Thị Kiều Oanh — Founder — 0941233481
 
-## Fashion Studio product page
-`/fashion-studio` (`src/app/fashion-studio/`) is a standalone light page for the
-AI Fashion Studio product, styled after an Awesomic-like zinc system (tokens
-scoped to `.page` in `fashion-studio.module.css`; Be Vietnam Pro as the single
-font since DM Sans has no Vietnamese subset). Numbers come from the KYE Agency
-usage report (audit log, 11 Apr – 14 Oct 2026); screenshots and photos are in
-`public/fashion-studio/`. The demo form reuses `/api/lead`.
+## MUSE Studio product page
+`/muse` (`src/app/muse/`; `/fashion-studio` redirects there) is the landing for
+MUSE Studio, Entersight's AI fashion studio for shops: product photos → model
+photos, try-on photos to send customers, and 9:16 dance/clone videos. Content
+follows the MUSE product report (journey Kho → Người mẫu → Ảnh → Video, 9 studio
+modes, input gate + QC). Zinc editorial style with the MUSE-logo pink
+(`#ea4d89`) as the one accent; tokens scoped to `.page` in `muse.module.css`;
+Be Vietnam Pro font. Platform metrics come from the KYE Agency audit log
+(11 Apr – 14 Oct 2026) since MUSE runs on KYE's back end. Pricing comes from the
+AI Video Automation quotation (10/2026), without the client name or the
+client-specific gift. Photos in `public/muse/`. The demo form posts to
+`/api/lead` with the message `[MUSE Studio] Đăng ký demo`. Linked from the home
+page nav and a strip under the Solutions bento.
 
 ## Review365 product page
 `/review365` (`src/app/review365/`) is the landing for Review365, Entersight's

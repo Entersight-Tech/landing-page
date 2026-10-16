@@ -18,7 +18,7 @@ const groups = [
   ],
   [
     { label: "Review365", href: "/review365" },
-    { label: "Fashion Studio", href: "/fashion-studio" },
+    { label: "MUSE Studio", href: "/muse" },
   ],
   [
     { label: "Khách hàng", href: "#cases" },

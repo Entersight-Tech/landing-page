@@ -16,6 +16,7 @@ const groups = [
     { label: "Dự án", href: "#case-studies" },
     { label: "Creative", href: "#work" },
   ],
+  [{ label: "Review365", href: "/review365" }],
   [
     { label: "Khách hàng", href: "#cases" },
     { label: "Về Entersight", href: "#values" },

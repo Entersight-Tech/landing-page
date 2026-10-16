@@ -6,9 +6,12 @@ const nextConfig: NextConfig = {
     // assets from Google Fonts in restricted/CI environments.
     turbopackUseSystemTlsCerts: true,
   },
-  // the product page was first published as Review365
+  // the product page was published as Review365, then briefly EnterReview
   async redirects() {
-    return [{ source: "/review365", destination: "/enterreview", permanent: true }];
+    return [
+      { source: "/review365", destination: "/etstar", permanent: true },
+      { source: "/enterreview", destination: "/etstar", permanent: true },
+    ];
   },
 };
 

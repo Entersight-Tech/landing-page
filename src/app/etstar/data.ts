@@ -1,4 +1,4 @@
-// EnterReview product page content: Gói Đồng Hành price sheet, rollout and
+// ETStar product page content: Gói Đồng Hành price sheet, rollout and
 // case-study figures supplied by Entersight.
 
 export const BASE_PRICE = 2_500_000;
@@ -143,8 +143,8 @@ export const terms = [
 
 export const faqs = [
   {
-    q: "EnterReview có tạo review giả không?",
-    a: "Không. EnterReview chỉ giúp khách thật chia sẻ trải nghiệm thật. Khách tự chọn số sao, tự chỉnh nội dung và tự quyết định có đăng lên Google Maps hay không — tuân thủ chính sách của Google.",
+    q: "ETStar có tạo review giả không?",
+    a: "Không. ETStar chỉ giúp khách thật chia sẻ trải nghiệm thật. Khách tự chọn số sao, tự chỉnh nội dung và tự quyết định có đăng lên Google Maps hay không — tuân thủ chính sách của Google.",
   },
   {
     q: "Thiết lập mất bao lâu? Có cần biết kỹ thuật?",
@@ -152,11 +152,11 @@ export const faqs = [
   },
   {
     q: "Có đảm bảo cửa hàng lên Top 3 không?",
-    a: "Không dịch vụ nào đảm bảo được vị trí cố định — thứ hạng phụ thuộc mức liên quan, khoảng cách và cạnh tranh. EnterReview giúp bạn chủ động cải thiện những yếu tố làm được: hồ sơ, review và tốc độ phản hồi.",
+    a: "Không dịch vụ nào đảm bảo được vị trí cố định — thứ hạng phụ thuộc mức liên quan, khoảng cách và cạnh tranh. ETStar giúp bạn chủ động cải thiện những yếu tố làm được: hồ sơ, review và tốc độ phản hồi.",
   },
   {
     q: "Ai triển khai và hỗ trợ? Có hóa đơn VAT không?",
-    a: "Entersight trực tiếp cung cấp, thiết lập và hỗ trợ EnterReview cho cửa hàng: hợp đồng tiếng Việt, hóa đơn VAT, thanh toán nội địa và hỗ trợ kỹ thuật bằng tiếng Việt.",
+    a: "Entersight trực tiếp cung cấp, thiết lập và hỗ trợ ETStar cho cửa hàng: hợp đồng tiếng Việt, hóa đơn VAT, thanh toán nội địa và hỗ trợ kỹ thuật bằng tiếng Việt.",
   },
   {
     q: "Giá tính theo cửa hàng hay theo thương hiệu?",

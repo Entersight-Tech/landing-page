@@ -103,14 +103,20 @@ font since DM Sans has no Vietnamese subset). Numbers come from the KYE Agency
 usage report (audit log, 11 Apr – 14 Oct 2026); screenshots and photos are in
 `public/fashion-studio/`. The demo form reuses `/api/lead`.
 
-## EnterReview product page
-`/enterreview` (`src/app/enterreview/`) is the landing for EnterReview, Entersight's
+## ETStar product page
+`/etstar` (`src/app/etstar/`) is the landing for ETStar, Entersight's
 Google Maps review product (QR + AI review collection, multilingual replies,
 GBP optimisation). It uses its own scoped "billboard" style on brand colours —
 white canvas, Work Sans (loaded only on that route), giant 900-weight words in
 lime / lavender (`--purple-200`) as section markers, purple outlines for
 interactive bits, no shadows or filled buttons. Copy/prices live in `data.ts`.
-Product shots in `public/enterreview/` are AI-generated (Figma AI) on white.
-Its form posts to `/api/lead` with the message prefixed `[EnterReview]`.
+Product shots in `public/etstar/` are AI-generated (Figma AI) on white.
+Its form posts to `/api/lead` with the message prefixed `[ETStar]`.
+Motion (all off under `prefers-reduced-motion`): the hero plays on load in
+pure CSS (billboard letters rise, copy steps up, seal spins); `MapsList.tsx`
+counts "your store" from 3.9★/21 to 4.8★/128 and FLIPs it to the top;
+`Motion.tsx` reveals `[data-reveal]` on scroll, counts up `[data-count]`
+figures and drifts the billboard words (`[data-drift]`) sideways.
+Old URLs `/review365` and `/enterreview` redirect to `/etstar`.
 Linked from the home page by a strip under the Solutions bento, the nav and
 the sitemap.

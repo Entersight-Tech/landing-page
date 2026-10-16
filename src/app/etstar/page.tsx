@@ -6,10 +6,8 @@ import LeadForm from "./LeadForm";
 import MapsList from "./MapsList";
 import Motion from "./Motion";
 import {
-  BASE_PRICE,
-  cases,
+  playbooks,
   faqs,
-  formatVnd,
   included,
   industries,
   mapsList,
@@ -17,7 +15,6 @@ import {
   questions,
   stats,
   steps,
-  terms,
 } from "./data";
 import styles from "./etstar.module.css";
 import logo from "../../../public/figma/logo-full.png";
@@ -37,7 +34,7 @@ const workSans = Work_Sans({
 
 const title = "ETStar — Thu hút khách mới trên Google Maps | Entersight";
 const description =
-  "ETStar giúp cửa hàng tăng review thật từ khách hàng qua QR & AI, phản hồi đa ngôn ngữ và tối ưu hiển thị Google Maps. Gói Đồng Hành từ 2.500.000đ/tháng.";
+  "ETStar giúp cửa hàng tăng review thật từ khách hàng qua QR & AI, phản hồi đa ngôn ngữ và tối ưu hiển thị Google Maps. Báo giá theo chi nhánh.";
 
 export const metadata: Metadata = {
   title,
@@ -48,7 +45,7 @@ export const metadata: Metadata = {
 
 const nav = [
   { label: "Cách hoạt động", href: "#how" },
-  { label: "Kết quả", href: "#results" },
+  { label: "Kịch bản", href: "#results" },
   { label: "Bảng giá", href: "#pricing" },
   { label: "Hỏi đáp", href: "#faq" },
 ];
@@ -260,29 +257,38 @@ export default function ETStarPage() {
           </div>
         </section>
 
-        {/* ---------- results ---------- */}
+        {/* ---------- illustrative playbooks (not client results) ---------- */}
         <section className={styles.section} id="results">
           <Billboard word="TOP" tone="lime" />
           <div className={styles.wrap}>
-            <p className={styles.tag} data-reveal>Câu chuyện thành công</p>
-            <h2 className={styles.h2} data-reveal style={d(1)}>Từ Việt Nam, Nhật Bản đến Đài Loan.</h2>
+            <p className={styles.tag} data-reveal>Kịch bản minh hoạ</p>
+            <h2 className={styles.h2} data-reveal style={d(1)}>
+              Cửa hàng lên top Google Maps đã làm gì khác?
+            </h2>
+            <p className={styles.body} data-reveal style={d(2)}>
+              Không phải quảng cáo, cũng không phải may mắn. Họ làm đều đặn vài việc
+              nhỏ mà Google Maps ghi nhận — và ETStar tự động hoá đúng những việc đó.
+            </p>
             <div className={styles.cases}>
-              {cases.map((c, i) => (
-                <article key={c.name} className={styles.case} data-reveal style={d(i)}>
+              {playbooks.map((c, i) => (
+                <article key={c.kind} className={styles.case} data-reveal style={d(i)}>
                   <header>
-                    <h3>{c.name}</h3>
-                    <p className={styles.caption}>
-                      {c.kind} · {c.place}
-                    </p>
+                    <span className={styles.demo}>Minh hoạ</span>
+                    <h3>{c.kind}</h3>
+                    <p className={styles.caption}>{c.place}</p>
                   </header>
-                  <p className={styles.caseBig} data-count>
-                    {c.reviews}
-                    <small>review thật / {c.period}</small>
+                  <p className={styles.caseBig}>
+                    {c.big}
+                    <small>{c.bigLabel}</small>
                   </p>
                   <dl>
                     <div>
-                      <dt>Từ khóa {c.keyword}</dt>
-                      <dd>{c.rank}</dd>
+                      <dt>Họ làm</dt>
+                      <dd className={styles.move}>{c.move}</dd>
+                    </div>
+                    <div>
+                      <dt>Google Maps ghi nhận</dt>
+                      <dd className={styles.move}>{c.google}</dd>
                     </div>
                     <div>
                       <dt>{c.metric}</dt>
@@ -293,8 +299,19 @@ export default function ETStarPage() {
               ))}
             </div>
             <p className={styles.source}>
-              Kết quả phụ thuộc ngành hàng, vị trí và mức độ cạnh tranh của từng cửa
-              hàng.
+              Các kịch bản và số liệu trên mang tính minh hoạ cách tính năng Google
+              Maps / Google Business Profile vận hành, không phải kết quả của một
+              khách hàng cụ thể. Theo{" "}
+              <a
+                href="https://support.google.com/business/answer/7091?hl=vi"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                hướng dẫn của Google
+              </a>
+              , thứ hạng địa phương dựa trên mức độ liên quan, khoảng cách và mức độ
+              nổi bật — trong đó có số lượng và điểm đánh giá. Kết quả thực tế tùy
+              ngành hàng, vị trí và mức độ cạnh tranh.
             </p>
             <ul className={styles.industries} aria-label="Ngành phù hợp">
               {industries.map((x) => (
@@ -311,31 +328,14 @@ export default function ETStarPage() {
             <div>
               <p className={styles.tag} data-reveal>Gói Đồng Hành</p>
               <h2 className={styles.h2} data-reveal style={d(1)}>Bắt đầu gọn nhẹ, chạy cùng cửa hàng cả mùa kinh doanh.</h2>
-              <p className={styles.price} data-reveal data-count style={d(2)}>
-                {formatVnd(BASE_PRICE)}
-                <small>VNĐ / tháng / chi nhánh · chưa gồm VAT</small>
+              <p className={styles.price} data-reveal style={d(2)}>
+                Báo giá riêng
+                <small>Theo số chi nhánh · ưu đãi khi ký hợp đồng 6 & 12 tháng</small>
               </p>
-              <table className={styles.terms} data-reveal style={d(3)}>
-                <thead>
-                  <tr>
-                    <th scope="col">Hợp đồng</th>
-                    <th scope="col">Chiết khấu</th>
-                    <th scope="col">Quy đổi / tháng</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {terms.map((t) => (
-                    <tr key={t.months}>
-                      <th scope="row">
-                        {t.months} tháng
-                        <small>{t.note}</small>
-                      </th>
-                      <td>{t.discount ? `${String(t.discount).replace(".", ",")}%` : "—"}</td>
-                      <td>≈ {formatVnd(Math.round((BASE_PRICE * (100 - t.discount)) / 100 / 1000) * 1000)}đ</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              <p className={styles.body} data-reveal style={d(3)}>
+                Gửi tên cửa hàng hoặc link Google Maps — Entersight gửi báo giá và đề
+                xuất gói phù hợp trong ngày làm việc.
+              </p>
             </div>
             <div className={styles.includedCol} data-reveal style={d(1)}>
               <p className={styles.tag} data-reveal>Đã bao gồm</p>
@@ -345,7 +345,7 @@ export default function ETStarPage() {
                 ))}
               </ul>
               <a href="#contact" className={styles.pill}>
-                Tư vấn gói phù hợp <span aria-hidden="true">↗</span>
+                Nhận báo giá <span aria-hidden="true">↗</span>
               </a>
               <p className={styles.fine}>
                 Entersight cung cấp, thiết lập và hỗ trợ trực tiếp · Hợp đồng tiếng

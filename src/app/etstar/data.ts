@@ -1,7 +1,5 @@
-// ETStar product page content: Gói Đồng Hành price sheet, rollout and
-// case-study figures supplied by Entersight.
-
-export const BASE_PRICE = 2_500_000;
+// ETStar product page content: Gói Đồng Hành inclusions, rollout and the
+// illustrative Google Maps playbooks.
 
 export const stats = [
   { value: "10.000+", label: "Địa điểm tin dùng" },
@@ -55,62 +53,62 @@ export const steps = [
   { title: "Theo dõi & báo cáo", body: "Dashboard lượng đánh giá, thứ hạng từ khóa và báo cáo định kỳ." },
 ];
 
-export type CaseStudy = {
-  name: string;
-  place: string;
+/**
+ * Illustrative playbooks — NOT client results. Each pairs one thing a store
+ * does with the Google Maps behaviour it plays into; the numbers only show
+ * the kind of change that behaviour drives, and the page says so.
+ */
+export type Playbook = {
   kind: string;
-  reviews: string;
-  period: string;
-  keyword: string;
-  rank: string;
+  place: string;
+  move: string;
+  google: string;
+  big: string;
+  bigLabel: string;
   metric: string;
   change: string;
 };
 
-export const cases: CaseStudy[] = [
+export const playbooks: Playbook[] = [
   {
-    name: "UTAGE Yokocho",
-    place: "TP. HCM, Việt Nam",
-    kind: "Nhà hàng",
-    reviews: "327",
-    period: "2 tháng",
-    keyword: "“nhà hàng Nhật Bản”",
-    rank: "#12 → #04",
-    metric: "Lượt tìm đường / 2 tháng",
-    change: "780 → 1.125",
-  },
-  {
-    name: "EMO. Hair & Beauty",
-    place: "TP. HCM, Việt Nam",
-    kind: "Làm đẹp",
-    reviews: "705",
-    period: "4 tháng",
-    keyword: "“beauty salon” HCM",
-    rank: "Chưa có → #01",
+    kind: "Quán ăn gia đình",
+    place: "Quận 3, TP. HCM",
+    move: "Đặt QR trên bàn, mời khách đánh giá ngay khi vừa ăn xong.",
+    google: "Nhiều review mới, điểm cao làm hồ sơ “nổi bật” hơn trong kết quả gần đây.",
+    big: "8 → 45",
+    bigLabel: "review mới / tháng",
     metric: "Lượt tìm đường / tháng",
-    change: "0 → 767",
+    change: "120 → 340",
   },
   {
-    name: "Halal Wagyu Yakiniku Naruto",
-    place: "Shibuya, Nhật Bản",
-    kind: "Nhà hàng",
-    reviews: "2.478",
-    period: "10 tháng",
-    keyword: "“shibuya halal restaurant”",
-    rank: "Chưa có → #06",
-    metric: "Lượt tìm đường / tháng",
-    change: "0 → 7.130",
+    kind: "Spa & làm đẹp",
+    place: "Đà Nẵng",
+    move: "Trả lời mọi review trong 24 giờ — kể cả review 3★.",
+    google: "Phản hồi của chủ hiện công khai ngay dưới review, khách mới đọc được.",
+    big: "100%",
+    bigLabel: "review được phản hồi",
+    metric: "Cuộc gọi từ Maps / tháng",
+    change: "30 → 85",
   },
   {
-    name: "Japanese Shokudo Morimoto",
-    place: "Đài Loan",
-    kind: "Nhà hàng",
-    reviews: "1.136",
-    period: "5 tháng",
-    keyword: "“hamburg” khu vực",
-    rank: "Chưa có → #03",
-    metric: "Lượt xem menu / tháng",
-    change: "0 → 5.877",
+    kind: "Nha khoa",
+    place: "Cầu Giấy, Hà Nội",
+    move: "Khảo sát gợi khách nhắc đúng dịch vụ đã làm: niềng răng, tẩy trắng…",
+    google: "Hồ sơ khớp hơn với lượt tìm theo dịch vụ — yếu tố “mức độ liên quan”.",
+    big: "#15 → #4",
+    bigLabel: "“niềng răng gần đây”",
+    metric: "Lượt xem hồ sơ / tháng",
+    change: "1.800 → 4.200",
+  },
+  {
+    kind: "Homestay",
+    place: "Hội An",
+    move: "Khảo sát đa ngôn ngữ, trả lời khách quốc tế bằng chính tiếng của họ.",
+    google: "Khách nước ngoài tìm bằng tiếng của mình vẫn đọc được review và phản hồi.",
+    big: "4.1 → 4.7★",
+    bigLabel: "điểm đánh giá",
+    metric: "Lượt nhấp đặt phòng / tháng",
+    change: "40 → 110",
   },
 ];
 
@@ -134,13 +132,6 @@ export const included = [
   "Hỗ trợ kỹ thuật tiếng Việt",
 ];
 
-/** Contract terms; 3 months is the minimum. */
-export const terms = [
-  { months: 3, discount: 0, note: "Tối thiểu · giá niêm yết" },
-  { months: 6, discount: 10, note: "Ký hợp đồng 6 tháng" },
-  { months: 12, discount: 16.6, note: "Ký hợp đồng 12 tháng" },
-];
-
 export const faqs = [
   {
     q: "ETStar có tạo review giả không?",
@@ -160,8 +151,7 @@ export const faqs = [
   },
   {
     q: "Giá tính theo cửa hàng hay theo thương hiệu?",
-    a: "Theo chi nhánh: 2.500.000đ / tháng / chi nhánh (chưa gồm VAT), hợp đồng tối thiểu 3 tháng. Chuỗi nhiều chi nhánh vui lòng liên hệ để được báo giá riêng.",
+    a: "Theo chi nhánh, hợp đồng tối thiểu 3 tháng và có ưu đãi khi ký 6 hoặc 12 tháng. Để lại thông tin để Entersight gửi báo giá phù hợp với số chi nhánh của bạn.",
   },
 ];
 
-export const formatVnd = (n: number) => n.toLocaleString("vi-VN");

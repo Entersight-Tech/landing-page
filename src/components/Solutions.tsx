@@ -127,7 +127,7 @@ export default function Solutions() {
             <span className={styles.productTag}>Sản phẩm · ETStar</span>
             <span className={styles.productName}>Thu hút khách mới trên Google Maps</span>
             <span className={styles.productLine}>
-              Review thật từ khách qua QR &amp; AI · phản hồi đa ngôn ngữ · từ 2.500.000đ/tháng
+              Review thật từ khách qua QR &amp; AI · phản hồi đa ngôn ngữ
             </span>
           </span>
           <span className={styles.productCta}>Xem sản phẩm ↗</span>

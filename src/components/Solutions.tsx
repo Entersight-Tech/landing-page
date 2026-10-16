@@ -121,10 +121,10 @@ export default function Solutions() {
         </div>
 
         {/* featured product: its own page, in its own billboard style */}
-        <a href="/review365" className={`${styles.product} reveal`}>
+        <a href="/enterreview" className={`${styles.product} reveal`}>
           <span className={styles.productWord} aria-hidden="true">MAPS</span>
           <span className={styles.productCopy}>
-            <span className={styles.productTag}>Sản phẩm · Review365</span>
+            <span className={styles.productTag}>Sản phẩm · EnterReview</span>
             <span className={styles.productName}>Thu hút khách mới trên Google Maps</span>
             <span className={styles.productLine}>
               Review thật từ khách qua QR &amp; AI · phản hồi đa ngôn ngữ · từ 2.500.000đ/tháng

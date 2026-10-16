@@ -17,14 +17,14 @@ import {
   steps,
   terms,
 } from "./data";
-import styles from "./review365.module.css";
+import styles from "./enterreview.module.css";
 import logo from "../../../public/figma/logo-full.png";
 // generated product shots (Figma AI), backgrounds flattened to white
-import mapShot from "../../../public/review365/map.webp";
-import phoneShot from "../../../public/review365/phone.webp";
-import qrShot from "../../../public/review365/qr.webp";
+import mapShot from "../../../public/enterreview/map.webp";
+import phoneShot from "../../../public/enterreview/phone.webp";
+import qrShot from "../../../public/enterreview/qr.webp";
 
-// Review365 has its own billboard look (white canvas, giant Work Sans 900
+// EnterReview has its own billboard look (white canvas, giant Work Sans 900
 // words in lime / lavender, purple outlines) — scoped to this route.
 const workSans = Work_Sans({
   variable: "--nf-work",
@@ -33,15 +33,15 @@ const workSans = Work_Sans({
   display: "swap",
 });
 
-const title = "Review365 — Thu hút khách mới trên Google Maps | Entersight";
+const title = "EnterReview — Thu hút khách mới trên Google Maps | Entersight";
 const description =
-  "Review365 giúp cửa hàng tăng review thật từ khách hàng qua QR & AI, phản hồi đa ngôn ngữ và tối ưu hiển thị Google Maps. Gói Đồng Hành từ 2.500.000đ/tháng.";
+  "EnterReview giúp cửa hàng tăng review thật từ khách hàng qua QR & AI, phản hồi đa ngôn ngữ và tối ưu hiển thị Google Maps. Gói Đồng Hành từ 2.500.000đ/tháng.";
 
 export const metadata: Metadata = {
   title,
   description,
-  alternates: { canonical: "/review365" },
-  openGraph: { type: "website", locale: "vi_VN", url: "/review365", siteName: "Entersight", title, description },
+  alternates: { canonical: "/enterreview" },
+  openGraph: { type: "website", locale: "vi_VN", url: "/enterreview", siteName: "Entersight", title, description },
 };
 
 const nav = [
@@ -68,7 +68,7 @@ function Stars({ value }: { value: string }) {
   );
 }
 
-export default function Review365Page() {
+export default function EnterReviewPage() {
   return (
     <div className={`${styles.page} ${workSans.variable}`}>
       <header className={styles.bar}>
@@ -76,10 +76,10 @@ export default function Review365Page() {
           <Image src={logo} alt="Entersight" priority />
         </Link>
         <span className={styles.wordmark}>
-          Review<b>365</b>
+          <span>Enter<b>Review</b></span>
           <small>Google Maps · Review thật</small>
         </span>
-        <nav className={styles.links} aria-label="Review365">
+        <nav className={styles.links} aria-label="EnterReview">
           {nav.map((l) => (
             <a key={l.href} href={l.href}>
               {l.label}
@@ -100,18 +100,18 @@ export default function Review365Page() {
               <span className={styles.seal} aria-hidden="true">
                 <svg viewBox="0 0 120 120">
                   <defs>
-                    <path id="r365-ring" d="M60 60 m-44 0 a44 44 0 1 1 88 0 a44 44 0 1 1 -88 0" />
+                    <path id="er-ring" d="M60 60 m-44 0 a44 44 0 1 1 88 0 a44 44 0 1 1 -88 0" />
                   </defs>
                   <text>
-                    <textPath href="#r365-ring">100% KHÁCH THẬT · 0 REVIEW ẢO ·</textPath>
+                    <textPath href="#er-ring">100% KHÁCH THẬT · 0 REVIEW ẢO ·</textPath>
                   </text>
                 </svg>
                 <b>★</b>
               </span>
-              <p className={styles.tag}>Sản phẩm · Review365</p>
+              <p className={styles.tag}>Sản phẩm · EnterReview</p>
               <h1 className={styles.h1}>Thu hút khách mới trên Google Maps.</h1>
               <p className={styles.lead}>
-                Review365 giúp cửa hàng có thêm đánh giá thật từ chính khách của
+                EnterReview giúp cửa hàng có thêm đánh giá thật từ chính khách của
                 mình, phản hồi mọi review đúng lúc và giữ uy tín trên Google Maps —
                 không cần đội marketing riêng.
               </p>
@@ -195,18 +195,18 @@ export default function Review365Page() {
           </div>
           <p className={`${styles.wrap} ${styles.warn}`}>
             <b>Mua review ảo là rủi ro thật.</b> Google liên tục gỡ review giả và
-            có thể hạn chế hồ sơ vi phạm. Review365 chỉ làm với khách thật — khách
+            có thể hạn chế hồ sơ vi phạm. EnterReview chỉ làm với khách thật — khách
             tự chọn số sao và tự quyết định đăng.
           </p>
         </section>
 
         {/* ---------- three pillars ---------- */}
         <section className={styles.section} id="how">
-          <Billboard word="365" tone="lime" />
+          <Billboard word="ENTER" tone="lime" />
           <div className={styles.wrap}>
             <div className={styles.pillarsHead}>
               <div>
-                <p className={styles.tag}>Ba việc Review365 làm cùng bạn</p>
+                <p className={styles.tag}>Ba việc EnterReview làm cùng bạn</p>
                 <h2 className={styles.h2}>Thu hút. Chăm sóc. Bảo vệ.</h2>
               </div>
               <Image
@@ -404,7 +404,7 @@ export default function Review365Page() {
 
       <footer className={styles.foot}>
         <div className={`${styles.wrap} ${styles.footIn}`}>
-        <span>© {new Date().getFullYear()} Entersight · Review365</span>
+        <span>© {new Date().getFullYear()} Entersight · EnterReview</span>
         <Link href="/#solutions">← Các giải pháp khác của Entersight</Link>
         </div>
       </footer>

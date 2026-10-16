@@ -2,13 +2,13 @@
 
 import { useState, type FormEvent } from "react";
 import { LIMITS, validateLead } from "@/lib/lead";
-import styles from "./review365.module.css";
+import styles from "./enterreview.module.css";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
 const HOTLINE = "0941233481";
 
-/** Free Maps check-up request; goes to the same /api/lead sheet, tagged Review365. */
+/** Free Maps check-up request; goes to the same /api/lead sheet, tagged EnterReview. */
 export default function LeadForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
@@ -17,7 +17,7 @@ export default function LeadForm() {
     e.preventDefault();
     const raw = Object.fromEntries(new FormData(e.currentTarget)) as Record<string, string>;
     const note = [raw.maps && `Google Maps: ${raw.maps}`, raw.message].filter(Boolean).join("\n");
-    const fields = { ...raw, message: `[Review365] ${note}`.trim() };
+    const fields = { ...raw, message: `[EnterReview] ${note}`.trim() };
     const checked = validateLead(fields);
     if ("error" in checked) {
       setError(checked.error);

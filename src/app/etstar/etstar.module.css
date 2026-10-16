@@ -1,4 +1,4 @@
-/* Review365 product page — "billboard" system: white canvas, one Work Sans
+/* ETStar product page — "billboard" system: white canvas, one Work Sans
    family, giant 900-weight words in lime / lavender as section markers, and
    purple outlines for everything interactive. No shadows, no fills. */
 .page {
@@ -381,7 +381,8 @@
   color: var(--purple);
 }
 
-.top .listName::after {
+.top .listName::after,
+.won .listName::after {
   content: "Được đề xuất";
   margin-left: 10px;
   padding: 2px 8px;
@@ -395,6 +396,7 @@
 }
 
 .you {
+  transition: border-color 0.4s ease, background-color 0.4s ease;
   margin-top: 4px;
   border: 1.5px dashed var(--charcoal) !important;
   border-radius: 4px;
@@ -960,8 +962,105 @@
   }
 }
 
+/* ---------- motion ---------- */
+/* your store after the reviews come in: recommended, ringed in purple */
+.won {
+  border: 2px solid var(--purple) !important;
+  background: rgba(196, 255, 11, 0.28);
+}
+
+.bbDrift {
+  display: inline-flex;
+  will-change: transform;
+}
+
+.letter {
+  display: inline-block;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(45%);
+  }
+}
+
+@keyframes up {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* hero plays on load — pure CSS, so it runs before (and without) JS */
+.hero .letter {
+  animation: rise 1s cubic-bezier(0.2, 0.75, 0.1, 1) both;
+  animation-delay: calc(var(--i) * 70ms);
+}
+
+.heroCopy > :not(.seal),
+.phone {
+  animation: up 0.9s cubic-bezier(0.2, 0.75, 0.1, 1) both;
+}
+
+.heroCopy > :nth-child(2) { animation-delay: 0.25s; }
+.heroCopy > :nth-child(3) { animation-delay: 0.35s; }
+.heroCopy > :nth-child(4) { animation-delay: 0.45s; }
+.heroCopy > :nth-child(5) { animation-delay: 0.55s; }
+.heroCopy > :nth-child(6) { animation-delay: 0.65s; }
+.phone { animation-delay: 0.5s; }
+
+.seal {
+  animation: up 0.9s 0.8s cubic-bezier(0.2, 0.75, 0.1, 1) both;
+}
+
+.seal svg {
+  animation: spin 22s linear infinite;
+}
+
+/* below the fold: hidden until Motion.tsx marks them [data-in] */
+.page [data-reveal]:not(.billboard) {
+  transition: opacity 0.8s ease, transform 0.9s cubic-bezier(0.2, 0.75, 0.1, 1);
+  transition-delay: calc(var(--d, 0) * 90ms);
+}
+
+.page[data-motion] [data-reveal]:not(.billboard):not([data-in]) {
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+.page[data-motion] .billboard .letter {
+  transition: opacity 0.6s ease, transform 1s cubic-bezier(0.2, 0.75, 0.1, 1);
+  transition-delay: calc(var(--i) * 60ms);
+}
+
+.page[data-motion] .billboard:not([data-in]) .letter {
+  opacity: 0;
+  transform: translateY(45%);
+}
+
+.pillar,
+.case,
+.includedCol {
+  transition-property: opacity, transform, border-color !important;
+}
+
+.pillar:hover,
+.case:hover {
+  border-color: var(--purple);
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .page * {
+  .page *,
+  .page *::before,
+  .page *::after {
     transition: none !important;
+    animation: none !important;
   }
 }

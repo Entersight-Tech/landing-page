@@ -132,6 +132,19 @@ export default function Solutions() {
           </span>
           <span className={styles.productCta}>Xem sản phẩm ↗</span>
         </a>
+
+        {/* featured product: MUSE Studio, in its zinc editorial style */}
+        <a href="/muse" className={`${styles.product} ${styles.productStudio} reveal`}>
+          <span className={styles.productWord} aria-hidden="true">MUSE</span>
+          <span className={styles.productCopy}>
+            <span className={styles.productTag}>Sản phẩm · MUSE Studio</span>
+            <span className={styles.productName}>Không cần buổi chụp: ảnh đăng bán và video TikTok</span>
+            <span className={styles.productLine}>
+              Ảnh người mẫu · ảnh mặc thử gửi khách · video nhảy 9:16 · từ 89.000đ/clip
+            </span>
+          </span>
+          <span className={styles.productCta}>Xem sản phẩm ↗</span>
+        </a>
       </div>
     </section>
   );

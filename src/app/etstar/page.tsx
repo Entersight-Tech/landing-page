@@ -32,15 +32,35 @@ const workSans = Work_Sans({
   display: "swap",
 });
 
-const title = "ETStar — Thu hút khách mới trên Google Maps | Entersight";
+const title = "ETStar — Tăng review thật trên Google Maps | Entersight";
 const description =
-  "ETStar giúp cửa hàng tăng review thật từ khách hàng qua QR & AI, phản hồi đa ngôn ngữ và tối ưu hiển thị Google Maps. Báo giá theo chi nhánh.";
+  "ETStar giúp cửa hàng có thêm review thật qua QR & AI, phản hồi đa ngôn ngữ và nổi bật trên Google Maps. Chẩn đoán hồ sơ miễn phí.";
 
+// the share image is opengraph-image.jpg / twitter-image.jpg next to this file
 export const metadata: Metadata = {
   title,
   description,
   alternates: { canonical: "/etstar" },
   openGraph: { type: "website", locale: "vi_VN", url: "/etstar", siteName: "Entersight", title, description },
+  twitter: { card: "summary_large_image", title, description },
+};
+
+// structured data: what is offered, by whom, where
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "ETStar",
+  serviceType: "Quản lý đánh giá & tối ưu Google Business Profile",
+  description,
+  url: "https://www.entersight-tech.com/etstar",
+  areaServed: { "@type": "Country", name: "Việt Nam" },
+  provider: {
+    "@type": "Organization",
+    name: "Entersight",
+    url: "https://www.entersight-tech.com",
+    email: "info@entersight-tech.com",
+    telephone: "+84941233481",
+  },
 };
 
 const nav = [
@@ -72,6 +92,7 @@ const d = (i: number) => ({ "--d": i }) as React.CSSProperties;
 export default function ETStarPage() {
   return (
     <div className={`${styles.page} ${workSans.variable}`} data-ets>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <header className={styles.bar}>
         <Link href="/" className={styles.home} aria-label="Entersight — trang chủ">
           <Image src={logo} alt="Entersight" priority />

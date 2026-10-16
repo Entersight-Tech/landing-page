@@ -56,7 +56,13 @@ export default function LeadForm() {
   }
 
   return (
-    <form className={styles.form} onSubmit={onSubmit} noValidate>
+    <form
+      className={styles.form}
+      onSubmit={onSubmit}
+      // a stale "wrong phone" message shouldn't sit next to a corrected field
+      onChange={() => status === "error" && setStatus("idle")}
+      noValidate
+    >
       <label>
         Họ và tên
         <input name="name" type="text" autoComplete="name" placeholder="Nguyễn Văn A" maxLength={LIMITS.name} required />

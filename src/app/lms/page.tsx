@@ -4,28 +4,17 @@ import Link from "next/link";
 import Asterisk from "@/components/Asterisk";
 import Display from "./Display";
 import LeadForm from "./LeadForm";
+import { Analytics, HeroStack, StepMock } from "./Mocks";
 import Motion from "./Motion";
 import Roleplay from "./Roleplay";
-import {
-  PRODUCT,
-  adminFeatures,
-  compare,
-  faqs,
-  fitFor,
-  levels,
-  marquee,
-  pains,
-  principles,
-  salesFeatures,
-  steps,
-} from "./data";
+import { PRODUCT, facts, faqs, features, fitFor, managerPoints, personas, principles, steps, whys } from "./data";
 import styles from "./lms.module.css";
 import entersight from "../../../public/figma/logo-full.png";
 import logo from "../../../public/lms/enterlms-logo.svg";
 
-const title = `${PRODUCT} — Đào tạo sale bằng AI từ ca chốt đơn thật | Entersight`;
+const title = `${PRODUCT} — Sale mới vững tay trước khi gặp khách | Entersight`;
 const description =
-  "Biến tài liệu nội bộ và đoạn chat bán hàng thật thành bài học, quiz và buổi luyện tập với AI đóng vai khách. Chấm điểm theo 6 kỹ năng bán hàng. Đặt lịch demo.";
+  "EnterLMS biến tài liệu và đoạn chat chốt đơn của công ty bạn thành bài học, bài thi và buổi luyện với khách ảo do AI đóng vai. Chấm theo 6 kỹ năng bán hàng. Đặt lịch demo.";
 
 // icon.svg, apple-icon.png and opengraph-image.jpg next to this file
 export const metadata: Metadata = {
@@ -61,8 +50,7 @@ const motionFlag = `if(!matchMedia("(prefers-reduced-motion: reduce)").matches)d
 const nav = [
   { label: "Cách hoạt động", href: "#how" },
   { label: "Luyện chat", href: "#roleplay" },
-  { label: "So sánh", href: "#compare" },
-  { label: "Tính năng", href: "#features" },
+  { label: "Cho quản lý", href: "#managers" },
   { label: "Hỏi đáp", href: "#faq" },
 ];
 
@@ -106,7 +94,7 @@ export default function LmsPage() {
       </header>
 
       <main>
-        {/* ---------- hero ---------- */}
+        {/* ---------- hero: the outcome, and the product doing it ---------- */}
         <section className={styles.hero} data-hero>
           <span className={styles.dot} data-dot aria-hidden="true" />
           <span className={styles.heroStarWrap} aria-hidden="true">
@@ -117,75 +105,70 @@ export default function LmsPage() {
           <div className={`${styles.wrap} ${styles.heroGrid}`}>
             <div className={styles.heroCopy}>
               <span className={`${styles.label} ${styles.rise}`} style={d(0)}>
-                <b>AI</b> — Đào tạo sale từ ca thật
+                <b>{PRODUCT}</b> — Đào tạo sale bằng AI
               </span>
               <Display
                 as="h1"
                 onLoad
                 className={styles.h1}
-                runs={[{ mini: "biến" }, "ca chốt đơn thật", { mini: "thành" }, { hl: "giáo trình" }]}
+                runs={["sale mới vững tay", { hl: "trước khi gặp khách" }]}
               />
-              <p className={`${styles.lead} ${styles.rise}`} style={d(4)}>
-                {PRODUCT} đọc tài liệu nội bộ và đoạn chat bán hàng thật của bạn,
-                soạn bài học và quiz, rồi cho nhân viên mới luyện với AI đóng vai
-                khách — trước khi gặp khách thật.
+              <p className={`${styles.lead} ${styles.rise}`} style={d(3)}>
+                {PRODUCT} biến tài liệu nội bộ và các đoạn chat chốt đơn của chính
+                công ty bạn thành bài học, bài thi và buổi luyện với khách ảo do AI
+                đóng vai. Trưởng nhóm chỉ cần duyệt.
               </p>
-              <div className={`${styles.ctas} ${styles.rise}`} style={d(5)}>
+              <div className={`${styles.ctas} ${styles.rise}`} style={d(4)}>
                 <a href="#contact" className={`${styles.btn} ${styles.solid}`}>
                   Đặt lịch demo
                 </a>
-                <a href="#roleplay" className={styles.btn}>
-                  Xem AI đóng vai khách
+                <a href="#how" className={styles.btn}>
+                  Xem cách hoạt động
                 </a>
               </div>
-              <ul className={`${styles.facts} ${styles.rise}`} style={d(6)}>
-                <li>6 kỹ năng bán hàng được chấm điểm</li>
-                <li>4 cấp: Newbie → Quản lý</li>
-                <li>Giao diện tiếng Việt</li>
-              </ul>
             </div>
-            <div className={`${styles.heroCard} ${styles.rise}`} style={d(3)}>
-              <Roleplay compact />
-            </div>
+            <HeroStack />
           </div>
         </section>
 
-        {/* ---------- marquee ---------- */}
-        <div className={styles.marquee} aria-label="Điểm nổi bật">
-          <div className={styles.marqueeTrack}>
-            {[0, 1].map((copy) => (
-              <ul key={copy} aria-hidden={copy === 1 ? true : undefined}>
-                {marquee.map((m) => (
-                  <li key={m}>
-                    {m}
-                    <Asterisk className={styles.marqueeStar} />
-                  </li>
-                ))}
-              </ul>
+        {/* ---------- product facts ---------- */}
+        <section className={styles.factsBand} aria-label={`${PRODUCT} trong 4 con số`}>
+          <ul className={`${styles.wrap} ${styles.factsList}`}>
+            {facts.map((f, i) => (
+              <li key={f.label} data-reveal style={d(i)}>
+                <b>
+                  <span data-count>{f.value}</span>
+                  <small>{f.unit}</small>
+                </b>
+                <span>{f.label}</span>
+              </li>
             ))}
-          </div>
-        </div>
+          </ul>
+        </section>
 
-        {/* ---------- problem ---------- */}
-        <section className={styles.section} id="problem">
+        {/* ---------- problem → answer ---------- */}
+        <section className={styles.section} id="why">
           <div className={styles.wrap}>
             <div className={styles.intro} data-reveal>
-              <Label no="01">Vấn đề</Label>
-              <Display className={styles.h2} runs={["đào tạo sale", { mini: "vẫn đang" }, "tốn người giỏi nhất"]} />
+              <Label no="01">Vì sao</Label>
+              <Display className={styles.h2} runs={["đào tạo sale", { hl: "đang tốn người giỏi nhất" }]} />
             </div>
-            <ol className={styles.pains}>
-              {pains.map((p, i) => (
-                <li key={p.title} data-reveal style={d(i)}>
+            <ol className={styles.whys}>
+              {whys.map((w, i) => (
+                <li key={w.pain} data-reveal style={d(i)}>
                   <span className={styles.num}>0{i + 1}</span>
-                  <h3>{p.title}</h3>
-                  <p>{p.body}</p>
+                  <p className={styles.pain}>{w.pain}</p>
+                  <p className={styles.fix}>
+                    <b>{PRODUCT}</b>
+                    {w.fix}
+                  </p>
                 </li>
               ))}
             </ol>
           </div>
         </section>
 
-        {/* ---------- how it works: blue panel ---------- */}
+        {/* ---------- how it works: a mock per step ---------- */}
         <section className={`${styles.panel} ${styles.blue}`} id="how">
           <span className={styles.panelStarWrap} aria-hidden="true">
             <span data-spin>
@@ -195,151 +178,97 @@ export default function LmsPage() {
           <div className={styles.wrap}>
             <div className={styles.intro} data-reveal>
               <Label no="02">Cách hoạt động</Label>
-              <Display
-                className={styles.h2}
-                runs={[{ mini: "bạn" }, "nạp kinh nghiệm", { mini: "AI" }, { hl: "soạn giáo trình" }]}
-              />
-              <p className={styles.sub}>
-                Con người duyệt nội dung, nhân viên học và được chấm theo kỹ năng.
-                Kết quả quay về Analytics, cho biết đội còn yếu ở đâu để mở khoá tiếp theo.
-              </p>
+              <Display className={styles.h2} runs={["từ ca chốt đơn thật", { hl: "đến người bán được" }]} />
             </div>
-            <ol className={styles.steps} data-track>
+            <ol className={styles.journey} data-track>
               {steps.map((s, i) => (
-                <li key={s.title}>
-                  <span className={styles.stepNo}>0{i + 1}</span>
-                  <span className={styles.who}>{s.who}</span>
-                  <h3>{s.title}</h3>
-                  <p>{s.body}</p>
+                <li key={s.title} className={styles.jStep}>
+                  <div className={styles.jText} data-reveal>
+                    <span className={styles.stepNo}>0{i + 1}</span>
+                    <span className={styles.who}>{s.who}</span>
+                    <h3>{s.title}</h3>
+                    <p>{s.body}</p>
+                  </div>
+                  <div className={styles.jMock} data-reveal style={d(1)}>
+                    <StepMock step={i} />
+                  </div>
                 </li>
               ))}
             </ol>
-            <p className={styles.loop} data-reveal>
-              <span aria-hidden="true">↻</span> Analytics → kỹ năng còn yếu → khoá học tiếp theo
-            </p>
           </div>
         </section>
 
         {/* ---------- roleplay: night panel ---------- */}
         <section className={`${styles.panel} ${styles.night}`} id="roleplay">
-          <div className={`${styles.wrap} ${styles.rpGrid}`}>
+          <div className={`${styles.wrap} ${styles.split}`}>
             <div className={styles.intro} data-reveal>
               <Label no="03">Luyện chat với AI</Label>
-              <Display
-                className={styles.h2}
-                runs={[{ mini: "tập với" }, "khách khó", { mini: "mà không" }, { hl: "mất khách thật" }]}
-              />
+              <Display className={styles.h2} runs={["luyện với khách ảo,", { hl: "nhận điểm thật" }]} />
               <p className={styles.sub}>
-                AI đóng vai khách theo chân dung và cảm xúc rút ra từ chính các ca
-                của công ty. Kết thúc buổi, AI chấm điểm tổng và theo từng kỹ năng;
-                quản lý xem lại hội thoại và có thể sửa điểm.
+                AI đóng vai khách theo chân dung và cảm xúc rút từ chính các ca của công
+                ty: {personas.join(", ").toLowerCase()}. Kết thúc buổi, AI chấm điểm tổng
+                và theo 6 kỹ năng; quản lý xem lại và sửa điểm được.
               </p>
             </div>
             <Roleplay />
           </div>
         </section>
 
-        {/* ---------- before / after ---------- */}
-        <section className={styles.section} id="compare">
-          <div className={styles.wrap}>
+        {/* ---------- for managers ---------- */}
+        <section className={styles.section} id="managers">
+          <div className={`${styles.wrap} ${styles.split} ${styles.splitTop}`}>
             <div className={styles.intro} data-reveal>
-              <Label no="04">Trước & sau</Label>
-              <Display className={styles.h2} runs={["onboarding", { mini: "khi có" }, { hl: PRODUCT }]} />
+              <Label no="04">Cho quản lý</Label>
+              <Display className={styles.h2} runs={["biết đội", { hl: "yếu ở đâu" }]} />
+              <ul className={styles.points}>
+                {managerPoints.map((p) => (
+                  <li key={p.title}>
+                    <b>{p.title}</b>
+                    <span>{p.body}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <div className={styles.compare} role="table" aria-label={`Cách cũ so với ${PRODUCT}`}>
-              <div className={styles.cmpHead} role="row">
-                <span role="columnheader">Việc</span>
-                <span role="columnheader">Cách cũ</span>
-                <span role="columnheader">Với {PRODUCT}</span>
-              </div>
-              {compare.map((c, i) => (
-                <div key={c.topic} className={styles.cmpRow} role="row" data-reveal style={d(i)}>
-                  <b role="rowheader">{c.topic}</b>
-                  <span role="cell" className={styles.old}>
-                    <s>{c.old}</s>
-                  </span>
-                  <span role="cell" className={styles.now}>
-                    {c.now}
-                  </span>
-                </div>
-              ))}
+            <div data-reveal style={d(1)}>
+              <Analytics />
             </div>
           </div>
         </section>
 
-        {/* ---------- features ---------- */}
+        {/* ---------- features + principles ---------- */}
         <section className={styles.section} id="features">
           <div className={styles.wrap}>
             <div className={styles.intro} data-reveal>
               <Label no="05">Tính năng</Label>
-              <Display className={styles.h2} runs={["một nền tảng", { mini: "cho" }, { hl: "cả hai phía" }]} />
+              <Display className={styles.h2} runs={["đủ cho cả", { hl: "vòng onboarding" }]} />
             </div>
-            <div className={styles.featGrid}>
-              <div className={styles.featCol} data-reveal>
-                <h3 className={styles.featHead}>
-                  Đội đào tạo &amp; quản lý <small>/admin</small>
+            {(
+              [
+                ["Đào tạo", "Cho đội đào tạo & quản lý", "/admin"],
+                ["Nhân viên", "Cho nhân viên sale", "/learn"],
+              ] as const
+            ).map(([group, head, path]) => (
+              <div key={group} className={styles.tileGroup}>
+                <h3 className={styles.tileHead}>
+                  {head} <small>{path}</small>
                 </h3>
-                <ul>
-                  {adminFeatures.map((f) => (
-                    <li key={f.title}>
-                      <b>{f.title}</b>
-                      <span>{f.body}</span>
-                    </li>
-                  ))}
+                <ul className={styles.tiles}>
+                  {features
+                    .filter((f) => f.for === group)
+                    .map((f, i) => (
+                      <li key={f.title} data-reveal style={d(i % 3)}>
+                        <b>{f.title}</b>
+                        <p>{f.body}</p>
+                      </li>
+                    ))}
                 </ul>
               </div>
-              <div className={styles.featCol} data-reveal style={d(1)}>
-                <h3 className={styles.featHead}>
-                  Nhân viên sale <small>/learn</small>
-                </h3>
-                <ul>
-                  {salesFeatures.map((f) => (
-                    <li key={f.title}>
-                      <b>{f.title}</b>
-                      <span>{f.body}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ---------- levels ---------- */}
-        <section className={styles.section} id="levels">
-          <div className={styles.wrap}>
-            <div className={styles.intro} data-reveal>
-              <Label no="06">Lộ trình</Label>
-              <Display className={styles.h2} runs={[{ mini: "từ" }, "ngày đầu", { mini: "đến" }, "trưởng nhóm"]} />
-              <p className={styles.subDark}>
-                Mỗi khoá học gắn một cấp. AI dùng cấp này để chỉnh độ khó, và bạn ghi
-                danh cả nhóm theo cấp chỉ một lần.
-              </p>
-            </div>
-            <ol className={styles.levels}>
-              {levels.map((l, i) => (
-                <li key={l.name} data-reveal style={d(i * 2)}>
-                  <span className={styles.levelNo}>Cấp {i + 1}</span>
-                  <h3>{l.name}</h3>
-                  <p>{l.body}</p>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </section>
-
-        {/* ---------- principles ---------- */}
-        <section className={styles.section} id="trust">
-          <div className={styles.wrap}>
-            <div className={styles.intro} data-reveal>
-              <Label no="07">Nguyên tắc</Label>
-              <Display className={styles.h2} runs={["AI làm nhanh", { mini: "con người" }, { hl: "quyết định" }]} />
-            </div>
-            <ul className={styles.principles}>
+            ))}
+            <ul className={styles.principles} aria-label="An tâm khi dùng AI">
               {principles.map((p, i) => (
                 <li key={p.title} data-reveal style={d(i)}>
                   <span className={styles.pdot} aria-hidden="true" />
-                  <h3>{p.title}</h3>
+                  <b>{p.title}</b>
                   <p>{p.body}</p>
                 </li>
               ))}
@@ -351,8 +280,8 @@ export default function LmsPage() {
         <section className={styles.section} id="faq">
           <div className={`${styles.wrap} ${styles.faqGrid}`}>
             <div className={styles.intro} data-reveal>
-              <Label no="08">Hỏi đáp</Label>
-              <Display className={styles.h2} runs={["câu hỏi", { mini: "thường" }, "gặp"]} />
+              <Label no="06">Hỏi đáp</Label>
+              <Display className={styles.h2} runs={["câu hỏi thường gặp"]} />
             </div>
             <div className={styles.faq}>
               {faqs.map((f) => (
@@ -367,10 +296,10 @@ export default function LmsPage() {
 
         {/* ---------- contact: blue panel ---------- */}
         <section className={`${styles.panel} ${styles.blue}`} id="contact">
-          <div className={`${styles.wrap} ${styles.contactGrid}`}>
+          <div className={`${styles.wrap} ${styles.split} ${styles.splitTop}`}>
             <div className={styles.intro} data-reveal>
-              <Label no="09">Đặt lịch demo</Label>
-              <Display className={styles.h2} runs={[{ mini: "xem" }, "đội của bạn", { hl: "luyện thử" }]} />
+              <Label no="07">Đặt lịch demo</Label>
+              <Display className={styles.h2} runs={["xem đội của bạn", { hl: "luyện thử" }]} />
               <p className={styles.sub}>
                 Demo trên chính kịch bản bán hàng của bạn. {PRODUCT} hợp nhất khi:
               </p>

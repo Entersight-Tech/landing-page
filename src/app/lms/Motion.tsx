@@ -5,7 +5,8 @@ import { useEffect } from "react";
 /**
  * /lms motion, all off under reduced motion:
  * - [data-reveal] blocks get [data-in] as they scroll in (headings' words
- *   then rise out of their masks, see Display.tsx);
+ *   then rise out of their masks, see Display.tsx) and their [data-count]
+ *   numbers count up;
  * - --scroll on the page (0–1) drives the header progress line;
  * - [data-spin] shapes turn with scroll;
  * - [data-track] lists get --p (0–1) as they pass through the viewport and
@@ -21,16 +22,33 @@ export default function Motion() {
     document.documentElement.setAttribute("data-lmsjs", "");
     const vh = () => window.innerHeight;
 
+    // [data-count] numbers count up from 0 when their block is revealed
+    const countUp = (el: HTMLElement) => {
+      const end = Number(el.textContent);
+      if (!Number.isFinite(end) || end < 2) return;
+      const t0 = performance.now();
+      const tick = (now: number) => {
+        const k = Math.min(1, (now - t0) / 1100);
+        el.textContent = String(Math.round(end * (1 - Math.pow(1 - k, 3))));
+        if (k < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    const reveal = (el: Element) => {
+      el.setAttribute("data-in", "");
+      el.querySelectorAll<HTMLElement>("[data-count]").forEach(countUp);
+    };
+
     const reveals = Array.from(root.querySelectorAll<HTMLElement>("[data-reveal]"));
     const below = (el: HTMLElement) => el.getBoundingClientRect().top > vh() * 0.92;
-    reveals.filter((el) => !below(el)).forEach((el) => el.setAttribute("data-in", ""));
+    reveals.filter((el) => !below(el)).forEach(reveal);
     root.setAttribute("data-motion", "");
 
     const io = new IntersectionObserver(
       (entries) =>
         entries.forEach((e) => {
           if (!e.isIntersecting) return;
-          e.target.setAttribute("data-in", "");
+          reveal(e.target);
           io.unobserve(e.target);
         }),
       { rootMargin: "0px 0px -8% 0px" },

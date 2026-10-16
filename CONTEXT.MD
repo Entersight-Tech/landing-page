@@ -125,15 +125,19 @@ the sitemap.
 `/lms` (`src/app/lms/`) is the landing for EnterLMS, Entersight's AI sales
 onboarding LMS (app at lms.entersight-tech.com). Built on the Entersight design
 system: light-gray ground, white cards, majorelle-blue and night panels, lime
-CTAs, boxy ↗ buttons, `[ 01 — … ]` labels. Copy lives in `data.ts` and only
-claims what the LMS does in code (no client numbers yet; the roleplay card is
-marked as sample data). Logo, favicon and share image are generated, not
-drawn: `public/lms/enterlms-*.svg` (bubble + three rising bars, outlined
-Montserrat Bold wordmark), `icon.svg`, `apple-icon.png`, `opengraph-image.jpg`.
+CTAs, boxy ↗ buttons, `[ 01 — … ]` labels. Story: outcome hero ("sale mới
+vững tay trước khi gặp khách") → product facts → problem/answer → 4 steps,
+each with a screen mock → roleplay → manager analytics → feature tiles →
+FAQ → demo form. Copy lives in `data.ts` and only claims what the LMS does
+in code; every mock (`Mocks.tsx`, `Roleplay.tsx`) is labelled sample data.
+Logo, favicon and share image are generated: `public/lms/enterlms-*.svg`
+(bubble + three rising bars, outlined Montserrat Bold wordmark), `icon.svg`,
+`apple-icon.png`, `opengraph-image.jpg`.
 Motion (off under `prefers-reduced-motion`): an inline script sets
 `html[data-lmsjs]` before paint; display words rise out of masks
-(`Display.tsx`); `Roleplay.tsx` plays the chat (typing, messages, score
-count-up, bars) when in view, with a replay button; `Motion.tsx` reveals
-`[data-reveal]`, runs the lime line across the steps (`[data-track]`), turns
-the asterisks, drives the header progress line, the hero pointer dot and the
-phone sticky CTA. The form posts to `/api/lead` prefixed `[EnterLMS]`.
+(`Display.tsx`); the hero cards pop in and the lesson flips to approved
+(pure CSS); `Roleplay.tsx` plays the chat when in view, with a replay button;
+`Motion.tsx` reveals `[data-reveal]`, counts up `[data-count]`, fills the lime
+rail along the steps (`[data-track]`), turns the asterisks, drives the header
+progress line, the hero pointer dot and the phone sticky CTA. The form posts
+to `/api/lead` prefixed `[EnterLMS]`.

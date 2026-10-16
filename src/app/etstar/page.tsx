@@ -6,10 +6,8 @@ import LeadForm from "./LeadForm";
 import MapsList from "./MapsList";
 import Motion from "./Motion";
 import {
-  BASE_PRICE,
   cases,
   faqs,
-  formatVnd,
   included,
   industries,
   mapsList,
@@ -17,7 +15,6 @@ import {
   questions,
   stats,
   steps,
-  terms,
 } from "./data";
 import styles from "./etstar.module.css";
 import logo from "../../../public/figma/logo-full.png";
@@ -37,7 +34,7 @@ const workSans = Work_Sans({
 
 const title = "ETStar — Thu hút khách mới trên Google Maps | Entersight";
 const description =
-  "ETStar giúp cửa hàng tăng review thật từ khách hàng qua QR & AI, phản hồi đa ngôn ngữ và tối ưu hiển thị Google Maps. Gói Đồng Hành từ 2.500.000đ/tháng.";
+  "ETStar giúp cửa hàng tăng review thật từ khách hàng qua QR & AI, phản hồi đa ngôn ngữ và tối ưu hiển thị Google Maps. Báo giá theo chi nhánh.";
 
 export const metadata: Metadata = {
   title,
@@ -311,31 +308,14 @@ export default function ETStarPage() {
             <div>
               <p className={styles.tag} data-reveal>Gói Đồng Hành</p>
               <h2 className={styles.h2} data-reveal style={d(1)}>Bắt đầu gọn nhẹ, chạy cùng cửa hàng cả mùa kinh doanh.</h2>
-              <p className={styles.price} data-reveal data-count style={d(2)}>
-                {formatVnd(BASE_PRICE)}
-                <small>VNĐ / tháng / chi nhánh · chưa gồm VAT</small>
+              <p className={styles.price} data-reveal style={d(2)}>
+                Báo giá riêng
+                <small>Theo số chi nhánh · ưu đãi khi ký hợp đồng 6 & 12 tháng</small>
               </p>
-              <table className={styles.terms} data-reveal style={d(3)}>
-                <thead>
-                  <tr>
-                    <th scope="col">Hợp đồng</th>
-                    <th scope="col">Chiết khấu</th>
-                    <th scope="col">Quy đổi / tháng</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {terms.map((t) => (
-                    <tr key={t.months}>
-                      <th scope="row">
-                        {t.months} tháng
-                        <small>{t.note}</small>
-                      </th>
-                      <td>{t.discount ? `${String(t.discount).replace(".", ",")}%` : "—"}</td>
-                      <td>≈ {formatVnd(Math.round((BASE_PRICE * (100 - t.discount)) / 100 / 1000) * 1000)}đ</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              <p className={styles.body} data-reveal style={d(3)}>
+                Gửi tên cửa hàng hoặc link Google Maps — Entersight gửi báo giá và đề
+                xuất gói phù hợp trong ngày làm việc.
+              </p>
             </div>
             <div className={styles.includedCol} data-reveal style={d(1)}>
               <p className={styles.tag} data-reveal>Đã bao gồm</p>
@@ -345,7 +325,7 @@ export default function ETStarPage() {
                 ))}
               </ul>
               <a href="#contact" className={styles.pill}>
-                Tư vấn gói phù hợp <span aria-hidden="true">↗</span>
+                Nhận báo giá <span aria-hidden="true">↗</span>
               </a>
               <p className={styles.fine}>
                 Entersight cung cấp, thiết lập và hỗ trợ trực tiếp · Hợp đồng tiếng

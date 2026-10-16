@@ -679,43 +679,6 @@
   color: var(--charcoal);
 }
 
-.terms {
-  width: 100%;
-  margin-top: 30px;
-  border-collapse: collapse;
-  font-size: 16px;
-}
-
-.terms th,
-.terms td {
-  padding: 12px 10px 12px 0;
-  border-top: 1px solid var(--charcoal);
-  text-align: left;
-  vertical-align: top;
-}
-
-.terms thead th {
-  font-weight: 500;
-  font-size: 12px;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.terms tbody th {
-  font-weight: 500;
-}
-
-.terms small {
-  display: block;
-  font-weight: 400;
-  font-size: 13px;
-}
-
-.terms td:nth-child(2) {
-  font-weight: 900;
-  color: var(--purple);
-}
-
 .includedCol {
   padding: 20px;
   border: 1px solid var(--charcoal);

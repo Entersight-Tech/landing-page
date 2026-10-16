@@ -1,7 +1,5 @@
-// ETStar product page content: Gói Đồng Hành price sheet, rollout and
+// ETStar product page content: Gói Đồng Hành inclusions, rollout and
 // case-study figures supplied by Entersight.
-
-export const BASE_PRICE = 2_500_000;
 
 export const stats = [
   { value: "10.000+", label: "Địa điểm tin dùng" },
@@ -134,13 +132,6 @@ export const included = [
   "Hỗ trợ kỹ thuật tiếng Việt",
 ];
 
-/** Contract terms; 3 months is the minimum. */
-export const terms = [
-  { months: 3, discount: 0, note: "Tối thiểu · giá niêm yết" },
-  { months: 6, discount: 10, note: "Ký hợp đồng 6 tháng" },
-  { months: 12, discount: 16.6, note: "Ký hợp đồng 12 tháng" },
-];
-
 export const faqs = [
   {
     q: "ETStar có tạo review giả không?",
@@ -160,8 +151,7 @@ export const faqs = [
   },
   {
     q: "Giá tính theo cửa hàng hay theo thương hiệu?",
-    a: "Theo chi nhánh: 2.500.000đ / tháng / chi nhánh (chưa gồm VAT), hợp đồng tối thiểu 3 tháng. Chuỗi nhiều chi nhánh vui lòng liên hệ để được báo giá riêng.",
+    a: "Theo chi nhánh, hợp đồng tối thiểu 3 tháng và có ưu đãi khi ký 6 hoặc 12 tháng. Để lại thông tin để Entersight gửi báo giá phù hợp với số chi nhánh của bạn.",
   },
 ];
 
-export const formatVnd = (n: number) => n.toLocaleString("vi-VN");

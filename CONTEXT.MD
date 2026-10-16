@@ -95,6 +95,14 @@ Assets exported from Figma are in `public/figma/`.
 - **Mail**: info@entersight-tech.com
 - **SĐT**: Lã Thị Kiều Oanh — Founder — 0941233481
 
+## Fashion Studio product page
+`/fashion-studio` (`src/app/fashion-studio/`) is a standalone light page for the
+AI Fashion Studio product, styled after an Awesomic-like zinc system (tokens
+scoped to `.page` in `fashion-studio.module.css`; Be Vietnam Pro as the single
+font since DM Sans has no Vietnamese subset). Numbers come from the KYE Agency
+usage report (audit log, 11 Apr – 14 Oct 2026); screenshots and photos are in
+`public/fashion-studio/`. The demo form reuses `/api/lead`.
+
 ## Review365 product page
 `/review365` (`src/app/review365/`) is the landing for Review365, Entersight's
 Google Maps review product (QR + AI review collection, multilingual replies,

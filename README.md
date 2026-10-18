@@ -37,15 +37,18 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## Lead form → Google Sheet + email
 
-The contact form posts to `/api/lead`, which forwards to a Google Apps Script
-web app (`scripts/lead-to-sheet.gs`) that appends a row to a Sheet and emails
-`info@entersight-tech.com`.
+Every lead form — home `#contact`, `/lms`, `/etstar`, `/fashion-studio` — posts
+to `/api/lead`, which forwards to a Google Apps Script web app
+(`scripts/lead-to-sheet.gs`) that appends a row to a Sheet and emails
+`NOTIFY_EMAIL` (currently `thanhlp18@gmail.com`).
 
 1. Create a Google Sheet → Extensions → Apps Script → paste `scripts/lead-to-sheet.gs`.
 2. Set `SECRET` (long random string) and `NOTIFY_EMAIL` in the script.
 3. Deploy → New deployment → Web app, *Execute as: Me*, *Who has access: Anyone*.
 4. In Vercel → Project → Settings → Environment Variables add
    `LEAD_WEBHOOK_URL` (the `/exec` URL) and `LEAD_WEBHOOK_SECRET` (same as `SECRET`), then redeploy.
+5. Check: the `/exec` URL in a browser returns `{"ok":true,...}`; a test submit
+   on the site adds a Sheet row and an email.
 
 Until both variables are set the form shows an error with the Zalo hotline
 instead of pretending the lead was sent.

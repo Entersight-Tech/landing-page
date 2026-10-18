@@ -3,8 +3,6 @@
 // input-gate.ts, qc.ts); numbers are real limits from that code, not targets.
 
 export const PRODUCT = "MUSE Studio";
-export const APP_URL = "https://muse.entersight-tech.com";
-export const LOGIN_URL = `${APP_URL}/login`;
 
 /** lib/engines/modes.ts — the 7 image modes, in chip order. */
 export const imageModes = [
@@ -82,7 +80,7 @@ export const faqs = [
     a: "Trả theo output: một credit xấp xỉ một ảnh 2K. Số credit, thời gian ước tính của video, hiện trước khi bạn bấm Gửi. Entersight tư vấn gói theo khối lượng thực tế của brand.",
   },
   {
-    q: "Ai có thể đăng nhập?",
-    a: "Tài khoản được Entersight cấp theo email Google của brand. Để lại thông tin, chúng tôi bật quyền dùng thử và hướng dẫn buổi đầu.",
+    q: "Bắt đầu dùng MUSE thế nào?",
+    a: "Để lại thông tin, Entersight liên hệ để setup MUSE Studio cho cửa hàng của bạn: nạp ảnh sản phẩm vào Thư viện, tạo người mẫu riêng của brand và hướng dẫn đội ngũ buổi đầu.",
   },
 ];

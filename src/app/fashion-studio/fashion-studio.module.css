@@ -89,7 +89,7 @@
   color: var(--lime);
 }
 
-.barLogin {
+.barCta {
   margin-left: 8px;
 }
 
@@ -98,19 +98,14 @@
     display: none;
   }
 
-  .barLogin {
+  .barCta {
     margin-left: auto;
   }
 }
 
 @media (max-width: 600px) {
-  .by,
-  .barLogin {
+  .by {
     display: none;
-  }
-
-  .bar :global(.btn--solid) {
-    margin-left: auto;
   }
 }
 
@@ -665,6 +660,10 @@
   outline: 2px solid var(--lime);
   outline-offset: 1px;
   border-color: transparent;
+}
+
+.form .wide {
+  grid-column: 1 / -1;
 }
 
 .form button {

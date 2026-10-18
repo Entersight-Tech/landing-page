@@ -5,7 +5,7 @@ import Asterisk from "@/components/Asterisk";
 import ScrollReveal from "@/components/ScrollReveal";
 import DemoForm from "./DemoForm";
 import { CloneMock, StudioMock, VideoMock } from "./Mocks";
-import { LOGIN_URL, PRODUCT, faqs, imageModes, kyeStats, quality, scriptRoles, workspace } from "./data";
+import { PRODUCT, faqs, imageModes, kyeStats, quality, scriptRoles, workspace } from "./data";
 import styles from "./fashion-studio.module.css";
 import logo from "../../../public/figma/logo-reverse.png";
 import library from "../../../public/fashion-studio/app-library.webp";
@@ -41,7 +41,7 @@ const jsonLd = {
   operatingSystem: "Web",
   inLanguage: "vi",
   description,
-  url: "https://muse.entersight-tech.com",
+  url: "https://www.entersight-tech.com/fashion-studio",
   provider: {
     "@type": "Organization",
     name: "Entersight",
@@ -89,11 +89,8 @@ export default function FashionStudio() {
             </a>
           ))}
         </nav>
-        <a href={LOGIN_URL} className={`btn ${styles.barLogin}`}>
-          Đăng nhập
-        </a>
-        <a href="#demo" className="btn btn--solid">
-          Dùng thử
+        <a href="#demo" className={`btn btn--solid ${styles.barCta}`}>
+          Liên hệ setup
         </a>
       </header>
 
@@ -114,10 +111,10 @@ export default function FashionStudio() {
               </p>
               <div className={styles.ctas}>
                 <a href="#demo" className="btn btn--solid">
-                  Đăng ký dùng thử
+                  Liên hệ setup cho cửa hàng
                 </a>
-                <a href={LOGIN_URL} className="btn">
-                  Mở MUSE Studio
+                <a href="#image" className="btn">
+                  Xem tính năng
                 </a>
               </div>
             </div>
@@ -336,13 +333,13 @@ export default function FashionStudio() {
           </div>
           <div className={`container ${styles.ctaIn}`}>
             <div>
-              <Label no="08">Dùng thử</Label>
+              <Label no="08">Liên hệ</Label>
               <h2 className={`display ${styles.h2}`}>
-                chạy MUSE <span className="mini">trên</span> <span className="lime">ảnh của bạn</span>
+                MUSE <span className="mini">cho</span> <span className="lime">cửa hàng của bạn</span>
               </h2>
               <p className={styles.body}>
-                Để lại số điện thoại. Entersight bật tài khoản dùng thử cho email Google của brand và hướng dẫn buổi
-                đầu trên chính ảnh sản phẩm của bạn.
+                Để lại số điện thoại. Entersight liên hệ để setup MUSE Studio cho cửa hàng của bạn và chạy thử
+                trên chính ảnh sản phẩm của bạn.
               </p>
             </div>
             <DemoForm />
@@ -355,7 +352,7 @@ export default function FashionStudio() {
           <Image src={logo} alt="Entersight" className={styles.footLogo} />
         </Link>
         <span>
-          © {new Date().getFullYear()} Entersight · <a href={LOGIN_URL}>muse.entersight-tech.com</a> ·{" "}
+          © {new Date().getFullYear()} Entersight ·{" "}
           <a href="mailto:info@entersight-tech.com">info@entersight-tech.com</a>
         </span>
       </footer>

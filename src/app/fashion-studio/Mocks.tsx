@@ -7,7 +7,7 @@ import blouses from "../../../public/fashion-studio/look-blouses.webp";
 import knit from "../../../public/fashion-studio/look-knit.webp";
 
 // Coded product mocks: the MUSE screens they mirror (StudioChat, the video
-// project editor, CloneStudio) sit behind a whitelisted login, so the page
+// project editor, CloneStudio) are not public, so the page
 // draws their structure in brand tokens instead of shipping screenshots.
 
 function Frame({ title, children }: { title: string; children: React.ReactNode }) {

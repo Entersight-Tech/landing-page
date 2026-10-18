@@ -8,19 +8,16 @@ type Status = "idle" | "sending" | "sent" | "error";
 
 const HOTLINE = "0941233481";
 
-/** Trial request: same /api/lead pipeline as the home page contact form. */
+/** Setup request: same /api/lead pipeline as the home page contact form. */
 export default function DemoForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const data = Object.fromEntries(new FormData(e.currentTarget)) as Record<string, string>;
-    // MUSE logins are whitelisted by Google email, so the email rides in the message
-    const email = (data.email ?? "").trim();
     const fields = {
-      ...data,
-      message: `Đăng ký dùng thử MUSE Studio${email ? ` — email Google: ${email}` : ""}`,
+      ...Object.fromEntries(new FormData(e.currentTarget)),
+      message: "Liên hệ setup MUSE Studio cho cửa hàng",
     };
     const checked = validateLead(fields);
     if ("error" in checked) {
@@ -41,8 +38,8 @@ export default function DemoForm() {
         setStatus("sent");
         return;
       }
-      const body = (await res.json().catch(() => ({}))) as { error?: string };
-      setError(res.status === 400 && body.error ? body.error : "");
+      const data = (await res.json().catch(() => ({}))) as { error?: string };
+      setError(res.status === 400 && data.error ? data.error : "");
       setStatus("error");
     } catch {
       setError("");
@@ -53,7 +50,7 @@ export default function DemoForm() {
   if (status === "sent") {
     return (
       <p className={styles.formDone} role="status">
-        Đã nhận đăng ký. Entersight sẽ liên hệ để bật tài khoản dùng thử.
+        Đã nhận thông tin. Entersight sẽ liên hệ để setup MUSE Studio cho cửa hàng của bạn.
       </p>
     );
   }
@@ -73,13 +70,9 @@ export default function DemoForm() {
         Số điện thoại / Zalo
         <input name="phone" type="tel" placeholder="0912 345 678" inputMode="tel" autoComplete="tel" required />
       </label>
-      <label>
-        Brand / agency
+      <label className={styles.wide}>
+        Cửa hàng / brand
         <input name="company" placeholder="Tên thương hiệu" autoComplete="organization" maxLength={LIMITS.company} />
-      </label>
-      <label>
-        Email Google để đăng nhập
-        <input name="email" type="email" placeholder="ban@brand.vn" autoComplete="email" maxLength={120} />
       </label>
       {/* honeypot */}
       <input name="website" tabIndex={-1} autoComplete="off" className={styles.hp} aria-hidden="true" />
@@ -93,7 +86,7 @@ export default function DemoForm() {
         </p>
       )}
       <button className="btn btn--solid" type="submit" disabled={status === "sending"}>
-        {status === "sending" ? "Đang gửi…" : "Đăng ký dùng thử"}
+        {status === "sending" ? "Đang gửi…" : "Liên hệ setup"}
       </button>
     </form>
   );

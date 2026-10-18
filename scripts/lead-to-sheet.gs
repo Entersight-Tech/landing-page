@@ -3,13 +3,15 @@
  *
  * Setup (once):
  *  1. Create a Google Sheet, then Extensions → Apps Script, paste this file.
- *  2. Set SECRET to a long random string and NOTIFY_EMAIL to who gets alerts.
+ *  2. Set SECRET to a long random string (NOTIFY_EMAIL = who gets alerts;
+ *     several addresses can be comma-separated).
  *  3. Deploy → New deployment → Web app; Execute as: Me; Who has access: Anyone.
  *  4. On Vercel set LEAD_WEBHOOK_URL (the /exec URL) and LEAD_WEBHOOK_SECRET
  *     (same as SECRET), then redeploy.
+ *  5. Check: opening the /exec URL in a browser shows {"ok":true,"service":"entersight-leads"}.
  */
 const SECRET = "CHANGE_ME";
-const NOTIFY_EMAIL = "info@entersight-tech.com";
+const NOTIFY_EMAIL = "thanhlp18@gmail.com";
 const SHEET_NAME = "Leads";
 
 function doPost(e) {
@@ -43,15 +45,22 @@ function doPost(e) {
   MailApp.sendEmail({
     to: NOTIFY_EMAIL,
     subject: "[Entersight] Lead mới: " + data.name + " — " + data.phone,
+    replyTo: NOTIFY_EMAIL,
     body:
       "Họ tên: " + data.name +
       "\nSĐT: " + data.phone +
       "\nDoanh nghiệp: " + (data.company || "—") +
       "\nVấn đề: " + (data.message || "—") +
+      "\nTrang: " + (data.source || "—") +
       "\n\nSheet: " + ss.getUrl(),
   });
 
   return json({ ok: true });
+}
+
+// health check: open the /exec URL in a browser
+function doGet() {
+  return json({ ok: true, service: "entersight-leads" });
 }
 
 function json(obj) {

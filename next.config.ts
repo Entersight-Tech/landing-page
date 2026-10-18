@@ -11,6 +11,8 @@ const nextConfig: NextConfig = {
     return [
       { source: "/review365", destination: "/etstar", permanent: true },
       { source: "/enterreview", destination: "/etstar", permanent: true },
+      // short link for MUSE Studio sales material
+      { source: "/muse", destination: "/fashion-studio", permanent: false },
     ];
   },
 };

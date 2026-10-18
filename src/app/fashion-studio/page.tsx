@@ -101,9 +101,8 @@ export default function FashionStudio() {
           <div className={`container ${styles.heroGrid}`}>
             <div className={styles.heroCopy}>
               <Label no={PRODUCT}>AI Fashion Studio</Label>
-              <h1 className={`display ${styles.h1}`}>
-                <span className="mini">ảnh &amp; video</span> thời trang <span className="mini">từ</span> một{" "}
-                <span className="lime">khung chat</span>
+              <h1 className={styles.h1}>
+                Ảnh &amp; video thời trang từ <span className="lime">một khung chat</span>
               </h1>
               <p className={styles.lead}>
                 Đính kèm ảnh sản phẩm, chọn một chip, gửi. MUSE lên model, thử đồ, đổi pose, quay video affiliate có
@@ -151,8 +150,8 @@ export default function FashionStudio() {
           <div className={`container ${styles.split}`}>
             <div className={`reveal ${styles.intro}`}>
               <Label no="01">Studio · Ảnh</Label>
-              <h2 className={`display ${styles.h2}`}>
-                bảy việc, <span className="mini">một</span> khung chat
+              <h2 className={styles.h2}>
+                Bảy việc trong một khung chat
               </h2>
               <p className={styles.body}>
                 Đổi chip không mất ảnh đã đính kèm, nên một bộ ảnh đi liền mạch từ ảnh sản phẩm tới lên model, đổi
@@ -176,8 +175,8 @@ export default function FashionStudio() {
           <div className={`container ${styles.panelIn}`}>
             <div className={`reveal ${styles.intro}`}>
               <Label no="02">Studio · Video</Label>
-              <h2 className={`display ${styles.h2}`}>
-                từ sản phẩm <span className="mini">đến</span> <span className="lime">video affiliate</span>
+              <h2 className={styles.h2}>
+                Từ sản phẩm đến <span className="lime">video affiliate</span>
               </h2>
               <p className={styles.body}>
                 Nhập điểm bán của sản phẩm, MUSE viết kịch bản theo năm vai trò, mỗi scene là một chuyển động quay
@@ -204,8 +203,8 @@ export default function FashionStudio() {
             </div>
             <div className={`reveal ${styles.intro}`}>
               <Label no="03">Clone Video</Label>
-              <h2 className={`display ${styles.h2}`}>
-                ba ô, <span className="mini">một</span> nút bấm
+              <h2 className={styles.h2}>
+                Ba ô, một nút bấm
               </h2>
               <p className={styles.body}>
                 Clip đang viral, người mẫu của brand, sản phẩm cần bán. MUSE chép lại chuyển động của clip mẫu lên
@@ -221,8 +220,8 @@ export default function FashionStudio() {
           <div className="container">
             <div className={`reveal ${styles.intro} ${styles.introWide}`}>
               <Label no="04">Chất lượng</Label>
-              <h2 className={`display ${styles.h2}`}>
-                đúng chất liệu, <span className="mini">đúng</span> <span className="lime">gương mặt</span>
+              <h2 className={styles.h2}>
+                Đúng chất liệu, đúng gương mặt
               </h2>
             </div>
             <ol className={styles.quality}>
@@ -242,8 +241,8 @@ export default function FashionStudio() {
           <div className="container">
             <div className={`reveal ${styles.intro} ${styles.introWide}`}>
               <Label no="05">Thư viện &amp; tìm kiếm</Label>
-              <h2 className={`display ${styles.h2}`}>
-                kết quả <span className="mini">tự</span> về một kho
+              <h2 className={styles.h2}>
+                Mọi kết quả về một kho
               </h2>
             </div>
             <figure className={`reveal ${styles.shot}`}>
@@ -287,8 +286,8 @@ export default function FashionStudio() {
             </div>
             <div className={`reveal ${styles.intro}`}>
               <Label no="06">KYE Agency</Label>
-              <h2 className={`display ${styles.h2}`}>
-                nền tảng <span className="mini">đã</span> <span className="lime">chạy thật</span>
+              <h2 className={styles.h2}>
+                Nền tảng đã chạy thật
               </h2>
               <p className={styles.body}>
                 MUSE kế thừa phần lõi đang vận hành cùng agency styling KYE từ 04/2026: thư viện gắn thẻ AI, tìm kiếm
@@ -312,7 +311,7 @@ export default function FashionStudio() {
           <div className={`container ${styles.split}`}>
             <div className={`reveal ${styles.intro}`}>
               <Label no="07">Hỏi đáp</Label>
-              <h2 className={`display ${styles.h2}`}>trước khi bắt đầu</h2>
+              <h2 className={styles.h2}>Trước khi bắt đầu</h2>
             </div>
             <div className={styles.faq}>
               {faqs.map((f) => (
@@ -334,8 +333,8 @@ export default function FashionStudio() {
           <div className={`container ${styles.ctaIn}`}>
             <div>
               <Label no="08">Liên hệ</Label>
-              <h2 className={`display ${styles.h2}`}>
-                MUSE <span className="mini">cho</span> <span className="lime">cửa hàng của bạn</span>
+              <h2 className={styles.h2}>
+                MUSE cho <span className="lime">cửa hàng của bạn</span>
               </h2>
               <p className={styles.body}>
                 Để lại số điện thoại. Entersight liên hệ để setup MUSE Studio cho cửa hàng của bạn và chạy thử

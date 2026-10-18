@@ -2,7 +2,9 @@
  * Google Apps Script web app that stores Entersight landing-page leads.
  *
  * Setup (once):
- *  1. Create a Google Sheet, then Extensions → Apps Script, paste this file.
+ *  1. Paste this file into Apps Script — from a Sheet (Extensions → Apps
+ *     Script) or standalone at script.google.com. A standalone script creates
+ *     an "Entersight Leads" Sheet in your Drive on the first lead.
  *  2. Set SECRET to a long random string (NOTIFY_EMAIL = who gets alerts;
  *     several addresses can be comma-separated).
  *  3. Deploy → New deployment → Web app; Execute as: Me; Who has access: Anyone.
@@ -23,7 +25,17 @@ function doPost(e) {
   }
   if (data.secret !== SECRET) return json({ ok: false, error: "unauthorized" });
 
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  try {
+    saveLead(data);
+  } catch (err) {
+    console.error(err);
+    return json({ ok: false, error: String(err) });
+  }
+  return json({ ok: true });
+}
+
+function saveLead(data) {
+  const ss = leadsSpreadsheet();
   const sheet = ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME);
   if (sheet.getLastRow() === 0) {
     sheet.appendRow(["Thời gian", "Họ tên", "SĐT", "Doanh nghiệp", "Vấn đề", "Trang", "Trình duyệt"]);
@@ -54,8 +66,18 @@ function doPost(e) {
       "\nTrang: " + (data.source || "—") +
       "\n\nSheet: " + ss.getUrl(),
   });
+}
 
-  return json({ ok: true });
+// the bound Sheet, or (standalone script) one created once and remembered
+function leadsSpreadsheet() {
+  const bound = SpreadsheetApp.getActiveSpreadsheet();
+  if (bound) return bound;
+  const props = PropertiesService.getScriptProperties();
+  const id = props.getProperty("SHEET_ID");
+  if (id) return SpreadsheetApp.openById(id);
+  const ss = SpreadsheetApp.create("Entersight Leads");
+  props.setProperty("SHEET_ID", ss.getId());
+  return ss;
 }
 
 // health check: open the /exec URL in a browser

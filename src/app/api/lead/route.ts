@@ -45,8 +45,10 @@ export async function POST(req: Request) {
       }),
       signal: AbortSignal.timeout(10_000),
     });
-    const data = (await res.json().catch(() => null)) as { ok?: boolean } | null;
-    if (!res.ok || !data?.ok) throw new Error(`webhook responded ${res.status}`);
+    const data = (await res.json().catch(() => null)) as { ok?: boolean; error?: string } | null;
+    // "unauthorized" = secret mismatch; no JSON = wrong URL or a script that crashed
+    if (!res.ok || !data?.ok)
+      throw new Error(`webhook responded ${res.status}: ${data ? data.error ?? "not ok" : "non-JSON body"}`);
   } catch (err) {
     console.error("[lead] forwarding failed", err);
     return NextResponse.json({ error: "upstream" }, { status: 502 });

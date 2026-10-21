@@ -84,3 +84,36 @@ export const faqs = [
     a: "Để lại thông tin, Entersight liên hệ để setup MUSE Studio cho cửa hàng của bạn: nạp ảnh sản phẩm vào Thư viện, tạo người mẫu riêng của brand và hướng dẫn đội ngũ buổi đầu.",
   },
 ];
+
+/** Real MUSE runs from the MUSE lookbook posts (21/10/2026): the shop's own
+ *  inputs on the left, MUSE output on the right. Images in public/fashion-studio/real/. */
+export const lookbooks = [
+  {
+    tag: "Đổi bối cảnh",
+    title: "Một bộ suit. Bối cảnh mới.",
+    text: "Ảnh studio nền xám của shop thành lookbook trên nền đá, không cần dựng set. Người mẫu là gương mặt cố định đã lưu trong MUSE.",
+    inputs: [
+      { key: "suit-input-outfit", label: "Trang phục", alt: "Ảnh shop: người mẫu mặc suit trắng trong studio nền xám" },
+      { key: "suit-input-bg", label: "Phông nền", alt: "Ảnh phông nền: vách đá vôi có nắng chiếu" },
+    ],
+    results: [
+      { key: "suit-result-close", label: "Cận", alt: "Kết quả MUSE: người mẫu mặc suit trắng, khung cận, trước vách đá" },
+      { key: "suit-result-full", label: "Toàn thân", alt: "Kết quả MUSE: người mẫu mặc suit trắng, toàn thân, trên nền đá" },
+    ],
+  },
+  {
+    tag: "Đổi không gian",
+    title: "Từ sàn runway ra bờ biển.",
+    text: "Ảnh bộ suit thêu chụp từ show, ảnh người mẫu nền trắng và một phông bờ biển: ba khung hình ngoài trời, vẫn giữ chi tiết thêu và đính đá trên áo.",
+    inputs: [
+      { key: "mint-input-outfit", label: "Trang phục", alt: "Ảnh runway: bộ suit thêu màu bạc hà" },
+      { key: "mint-input-model", label: "Người mẫu", alt: "Ảnh người mẫu nam đứng trên nền trắng" },
+      { key: "mint-input-bg", label: "Phông nền", alt: "Ảnh phông nền: bậc đá bên bờ biển, trời u ám" },
+    ],
+    results: [
+      { key: "mint-result-full", label: "Toàn thân", alt: "Kết quả MUSE: người mẫu mặc suit thêu bạc hà, toàn thân, bên bờ biển" },
+      { key: "mint-result-angle", label: "Góc nghiêng", alt: "Kết quả MUSE: người mẫu mặc suit thêu bạc hà, góc nghiêng, bên bờ biển" },
+      { key: "mint-result-detail", label: "Chi tiết đính đá", alt: "Kết quả MUSE: cận mặt người mẫu và khăn, chi tiết đính đá trên áo" },
+    ],
+  },
+] as const;

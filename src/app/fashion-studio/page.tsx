@@ -5,13 +5,37 @@ import Asterisk from "@/components/Asterisk";
 import ScrollReveal from "@/components/ScrollReveal";
 import DemoForm from "./DemoForm";
 import { CloneMock, StudioMock, VideoMock } from "./Mocks";
-import { PRODUCT, faqs, imageModes, kyeStats, quality, scriptRoles, workspace } from "./data";
+import { PRODUCT, faqs, imageModes, kyeStats, lookbooks, quality, scriptRoles, workspace } from "./data";
 import styles from "./fashion-studio.module.css";
 import logo from "../../../public/figma/logo-reverse.png";
 import library from "../../../public/fashion-studio/app-library.webp";
 import search from "../../../public/fashion-studio/app-search.webp";
 import blouses from "../../../public/fashion-studio/look-blouses.webp";
 import stripes from "../../../public/fashion-studio/look-stripes.webp";
+import suitInputOutfit from "../../../public/fashion-studio/real/suit-input-outfit.webp";
+import suitInputBg from "../../../public/fashion-studio/real/suit-input-bg.webp";
+import suitResultClose from "../../../public/fashion-studio/real/suit-result-close.webp";
+import suitResultFull from "../../../public/fashion-studio/real/suit-result-full.webp";
+import mintInputOutfit from "../../../public/fashion-studio/real/mint-input-outfit.webp";
+import mintInputModel from "../../../public/fashion-studio/real/mint-input-model.webp";
+import mintInputBg from "../../../public/fashion-studio/real/mint-input-bg.webp";
+import mintResultFull from "../../../public/fashion-studio/real/mint-result-full.webp";
+import mintResultAngle from "../../../public/fashion-studio/real/mint-result-angle.webp";
+import mintResultDetail from "../../../public/fashion-studio/real/mint-result-detail.webp";
+
+/** Lookbook images by the keys used in data.ts. */
+const real = {
+  "suit-input-outfit": suitInputOutfit,
+  "suit-input-bg": suitInputBg,
+  "suit-result-close": suitResultClose,
+  "suit-result-full": suitResultFull,
+  "mint-input-outfit": mintInputOutfit,
+  "mint-input-model": mintInputModel,
+  "mint-input-bg": mintInputBg,
+  "mint-result-full": mintResultFull,
+  "mint-result-angle": mintResultAngle,
+  "mint-result-detail": mintResultDetail,
+};
 
 const title = `${PRODUCT} — Ảnh & video thời trang bằng AI | Entersight`;
 const description =
@@ -53,6 +77,7 @@ const jsonLd = {
 
 const nav = [
   { label: "Ảnh", href: "#image" },
+  { label: "Lookbook", href: "#lookbook" },
   { label: "Video", href: "#video" },
   { label: "Chất lượng", href: "#quality" },
   { label: "KYE Agency", href: "#kye" },
@@ -170,11 +195,67 @@ export default function FashionStudio() {
           </div>
         </section>
 
-        {/* ---------- 02 video ---------- */}
+        {/* ---------- 02 lookbook (real runs) ---------- */}
+        <section id="lookbook" className={styles.section}>
+          <div className="container">
+            <div className={`reveal ${styles.intro} ${styles.introWide}`}>
+              <Label no="02">Lookbook từ ảnh thật</Label>
+              <h2 className={styles.h2}>
+                Ảnh của shop vào, <span className="lime">lookbook</span> ra
+              </h2>
+              <p className={styles.body}>
+                Hai lần chạy MUSE trên ảnh có sẵn: bên trái là những gì đưa vào khung chat, bên phải là ảnh MUSE trả
+                về. Không dựng set, không thuê địa điểm.
+              </p>
+            </div>
+            {lookbooks.map((lb) => (
+              <article key={lb.title} className={styles.lookbook}>
+                <div className={`reveal ${styles.lbHead}`}>
+                  <span className={styles.modeNo}>{lb.tag}</span>
+                  <h3>{lb.title}</h3>
+                  <p>{lb.text}</p>
+                </div>
+                <div className={styles.lbFlow}>
+                  <div className={`reveal ${styles.lbIn}`}>
+                    <span className={styles.lbStep}>Đầu vào</span>
+                    <ul style={{ gridTemplateColumns: `repeat(${lb.inputs.length}, minmax(0, 1fr))` }}>
+                      {lb.inputs.map((im) => (
+                        <li key={im.key}>
+                          <div className="wipe">
+                            <Image src={real[im.key]} alt={im.alt} sizes="(max-width: 960px) 30vw, 140px" />
+                          </div>
+                          <span>{im.label}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <span className={styles.lbArrow} aria-hidden="true">
+                    →
+                  </span>
+                  <div className={`reveal ${styles.lbOut}`}>
+                    <span className={styles.lbStep}>Kết quả MUSE</span>
+                    <ul>
+                      {lb.results.map((im) => (
+                        <li key={im.key}>
+                          <div className="wipe">
+                            <Image src={real[im.key]} alt={im.alt} sizes="(max-width: 960px) 75vw, 360px" />
+                          </div>
+                          <span>{im.label}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* ---------- 03 video ---------- */}
         <section id="video" className={styles.panel}>
           <div className={`container ${styles.panelIn}`}>
             <div className={`reveal ${styles.intro}`}>
-              <Label no="02">Studio · Video</Label>
+              <Label no="03">Studio · Video</Label>
               <h2 className={styles.h2}>
                 Từ sản phẩm đến <span className="lime">video affiliate</span>
               </h2>
@@ -202,7 +283,7 @@ export default function FashionStudio() {
               <CloneMock />
             </div>
             <div className={`reveal ${styles.intro}`}>
-              <Label no="03">Clone Video</Label>
+              <Label no="04">Clone Video</Label>
               <h2 className={styles.h2}>
                 Ba ô, một nút bấm
               </h2>
@@ -219,7 +300,7 @@ export default function FashionStudio() {
         <section id="quality" className={styles.section}>
           <div className="container">
             <div className={`reveal ${styles.intro} ${styles.introWide}`}>
-              <Label no="04">Chất lượng</Label>
+              <Label no="05">Chất lượng</Label>
               <h2 className={styles.h2}>
                 Đúng chất liệu, đúng gương mặt
               </h2>
@@ -240,7 +321,7 @@ export default function FashionStudio() {
         <section className={styles.section}>
           <div className="container">
             <div className={`reveal ${styles.intro} ${styles.introWide}`}>
-              <Label no="05">Thư viện &amp; tìm kiếm</Label>
+              <Label no="06">Thư viện &amp; tìm kiếm</Label>
               <h2 className={styles.h2}>
                 Mọi kết quả về một kho
               </h2>
@@ -285,7 +366,7 @@ export default function FashionStudio() {
               </div>
             </div>
             <div className={`reveal ${styles.intro}`}>
-              <Label no="06">KYE Agency</Label>
+              <Label no="07">KYE Agency</Label>
               <h2 className={styles.h2}>
                 Nền tảng đã chạy thật
               </h2>
@@ -310,7 +391,7 @@ export default function FashionStudio() {
         <section className={styles.section}>
           <div className={`container ${styles.split}`}>
             <div className={`reveal ${styles.intro}`}>
-              <Label no="07">Hỏi đáp</Label>
+              <Label no="08">Hỏi đáp</Label>
               <h2 className={styles.h2}>Trước khi bắt đầu</h2>
             </div>
             <div className={styles.faq}>
@@ -332,7 +413,7 @@ export default function FashionStudio() {
           </div>
           <div className={`container ${styles.ctaIn}`}>
             <div>
-              <Label no="08">Liên hệ</Label>
+              <Label no="09">Liên hệ</Label>
               <h2 className={styles.h2}>
                 MUSE cho <span className="lime">cửa hàng của bạn</span>
               </h2>

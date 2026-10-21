@@ -1139,3 +1139,122 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
+
+/* ---------- lookbook: real inputs → MUSE output ---------- */
+
+.lookbook {
+  padding: clamp(32px, 4vw, 56px) 0;
+  border-top: 1px solid var(--line);
+}
+
+.lbHead {
+  max-width: 640px;
+  margin-bottom: 28px;
+}
+
+.lbHead h3 {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: clamp(20px, 2vw, 26px);
+  letter-spacing: -0.01em;
+  margin: 10px 0 8px;
+}
+
+.lbHead p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--dim);
+}
+
+.lbFlow {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) auto minmax(0, 2fr);
+  gap: clamp(16px, 2vw, 28px);
+  align-items: center;
+}
+
+.lbStep {
+  display: block;
+  margin-bottom: 12px;
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+}
+
+.lbIn ul,
+.lbOut ul {
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+
+.lbOut ul {
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+}
+
+.lbIn li,
+.lbOut li {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.lbIn li > div,
+.lbOut li > div {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+.lbIn img,
+.lbOut img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.lbIn li > span,
+.lbOut li > span {
+  font-size: 13px;
+  color: var(--muted-2);
+}
+
+.lbArrow {
+  font-family: var(--font-head);
+  font-size: 28px;
+  color: var(--lime);
+}
+
+@media (max-width: 960px) {
+  .lbFlow {
+    grid-template-columns: 1fr;
+  }
+
+  .lbIn {
+    max-width: 420px;
+  }
+
+  .lbArrow {
+    transform: rotate(90deg);
+    justify-self: start;
+    line-height: 1;
+  }
+
+  /* results swipe sideways on small screens */
+  .lbOut ul {
+    grid-auto-columns: 72%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    margin-right: calc(-1 * var(--gutter));
+    padding-right: var(--gutter);
+    scrollbar-width: none;
+  }
+
+  .lbOut li {
+    scroll-snap-align: start;
+  }
+}

@@ -102,6 +102,10 @@ scoped to `.page` in `fashion-studio.module.css`; Be Vietnam Pro as the single
 font since DM Sans has no Vietnamese subset). Numbers come from the KYE Agency
 usage report (audit log, 11 Apr – 14 Oct 2026); screenshots and photos are in
 `public/fashion-studio/`. The demo form reuses `/api/lead`.
+Section 02 "Lookbook từ ảnh thật" shows two real MUSE runs (inputs → output),
+cropped from the MUSE lookbook social posts (21/10/2026) into
+`public/fashion-studio/real/` with the burned-in labels cut off; copy and alt
+text in `lookbooks` (`data.ts`).
 
 ## ETStar product page
 `/etstar` (`src/app/etstar/`) is the landing for ETStar, Entersight's

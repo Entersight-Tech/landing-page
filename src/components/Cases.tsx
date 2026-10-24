@@ -11,6 +11,7 @@ import logoKye from "../../public/figma/logo-kye.png";
 import logoOni from "../../public/figma/logo-oni.png";
 import logoSma from "../../public/figma/logo-sma.png";
 
+// quotes are excerpts of what each client sent, cut with … and never reworded
 type Testimonial = {
   id: string;
   photo: StaticImageData;
@@ -28,7 +29,7 @@ const TESTIMONIALS: Testimonial[] = [
     logo: logoKye,
     brand: "KYE Agency",
     quote:
-      "“Tại KYE, chúng tôi không để nỗi lo công nghệ giới hạn biên độ sáng tạo. Giải pháp AI Fashion Transform chính là cầu nối để công nghệ chạm đến cảm xúc một cách tự nhiên nhất. Với sự hỗ trợ tuyệt đối 24/7, đội ngũ KYE có thể tự do hiện thực hóa những kỳ vọng khắt khe nhất của tệp khách Elite bằng một chuẩn mực chuyên nghiệp và tốc độ vượt trội.”",
+      "“Tại KYE, chúng tôi không để nỗi lo công nghệ giới hạn biên độ sáng tạo. … Với sự hỗ trợ tuyệt đối 24/7, đội ngũ KYE có thể tự do hiện thực hóa những kỳ vọng khắt khe nhất của tệp khách Elite…”",
     role: "Founder · CEO Kye Agency",
     name: "Mr. KYE NGUYỄN",
   },
@@ -38,7 +39,7 @@ const TESTIMONIALS: Testimonial[] = [
     logo: logoOni,
     brand: "Oni Homestay",
     quote:
-      "“Từ một ý tưởng chưa từng nghĩ tới, Entersight đã hiện thực hóa hệ thống vận hành chuyên nghiệp cho mô hình lưu trú nhỏ của tôi tại Huế. Mọi quy trình từ quản lý phòng đến dòng tiền đều được tự động hóa 100%. Giờ đây, thay vì vùi đầu vào sổ sách, tôi có thể thảnh thơi du lịch trong khi hệ thống vẫn gửi báo cáo chi tiết mỗi ngày. Hiệu suất rõ rệt, quản trị thông minh.”",
+      "“Mọi quy trình từ quản lý phòng đến dòng tiền đều được tự động hóa 100%. Giờ đây, thay vì vùi đầu vào sổ sách, tôi có thể thảnh thơi du lịch trong khi hệ thống vẫn gửi báo cáo chi tiết mỗi ngày.”",
     role: "Founder · Oni Homestay",
     name: "Ms. TRẦN BẢO NHI",
   },
@@ -48,7 +49,7 @@ const TESTIMONIALS: Testimonial[] = [
     logo: logoSma,
     brand: "SMA Agency",
     quote:
-      "“Entersight mang đến góc nhìn chiến lược rõ ràng cho các doanh nghiệp trong quá trình tăng trưởng. Từ góc nhìn của một digital performance agency, chúng tôi nhận thấy các doanh nghiệp khi áp dụng những đề xuất từ Entersight có thể xác định rõ điểm nghẽn trong vận hành và cải thiện hiệu quả marketing lên đến 20–30% trong giai đoạn tối ưu ban đầu.”",
+      "“Từ góc nhìn của một digital performance agency, chúng tôi nhận thấy các doanh nghiệp khi áp dụng những đề xuất từ Entersight có thể xác định rõ điểm nghẽn trong vận hành và cải thiện hiệu quả marketing lên đến 20–30% trong giai đoạn tối ưu ban đầu.”",
     role: "Founder · CEO SMA Agency",
     name: "Mr. VŨ ANH PHÚC",
   },

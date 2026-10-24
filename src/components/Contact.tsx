@@ -54,7 +54,7 @@ export default function Contact() {
           </h2>
           <p className={`${styles.sub} reveal`}>
             Không cần chuẩn bị gì. Gửi vài dòng, chúng tôi gọi lại hỏi thêm, rồi
-            nói thẳng phần nào nên làm trước — và phần nào chưa cần làm.
+            đề xuất phần nên làm trước.
           </p>
           <ul className={`${styles.direct} reveal`}>
             <li>

@@ -2,59 +2,44 @@ import styles from "./Transformation.module.css";
 
 const steps = [
   {
-    title: "Tư Vấn",
-    desc: "Khảo sát hiện trạng vận hành của doanh nghiệp. Tư vấn, đào tạo, xây dựng quy trình nâng cao khả năng vận hành & thiết kế lộ trình số hoá phù hợp",
+    title: "Ngồi lại và xem bạn đang làm thế nào",
+    desc: "Chúng tôi hỏi về quy trình hiện tại, xem số liệu bạn đang có và chỉ ra chỗ tốn thời gian, tốn tiền nhất.",
   },
   {
-    title: "Số Hoá",
-    desc: "Số hoá vận hành của doanh nghiệp lên phần mềm theo các danh mục số hoá được thiết kế phù hợp với doanh nghiệp",
+    title: "Đưa việc lên hệ thống",
+    desc: "Những việc đang làm bằng tay và bảng tính được chuyển lên phần mềm, theo đúng cách doanh nghiệp bạn vận hành.",
   },
   {
-    title: "Tối Ưu Hoá",
-    desc: "Tích hợp AI, thiết lập hệ thống, đào tạo và chuyển giao năng lực công nghệ cho doanh nghiệp",
+    title: "Gắn AI và dạy đội bạn dùng",
+    desc: "Thêm AI vào chỗ thật sự đỡ việc, rồi đào tạo để đội của bạn tự chạy được, không phụ thuộc chúng tôi.",
   },
   {
-    title: "Dữ Liệu Hoá",
-    desc: "Kết nối tất cả dữ liệu vận hành từ các ứng dụng trong và ngoài nền tảng để xây dựng báo cáo quản trị",
+    title: "Đo, báo cáo, chỉnh tiếp",
+    desc: "Nối dữ liệu từ các ứng dụng về một báo cáo quản trị, để quyết định dựa trên số chứ không dựa trên cảm giác.",
   },
 ];
 
-/** SVZ "how we work": the four phases step down a staircase as you read. */
 export default function Transformation() {
   return (
-    <section className={styles.section} id="transformation">
-      <div className={`container ${styles.inner}`}>
+    <section className={`${styles.section} light`} id="transformation" aria-labelledby="process-title">
+      <div className="container">
         <header className={styles.head}>
-          <p className="label" data-scramble="in">
-            <b>04</b> — Lộ trình
-          </p>
-          <h2 className={`display ${styles.title} reveal`} data-split>
-            <i className="mini">đồng hành</i>{"\u00a0"}xuyên suốt <span className="lime">lộ trình</span> chuyển đổi số
+          <span className="eyebrow">Làm việc cùng nhau thế nào</span>
+          <h2 id="process-title" className="h2 reveal">
+            Bắt đầu từ cách bạn đang làm, không phải từ một gói dịch vụ có sẵn.
           </h2>
-          <p className={`${styles.lede} reveal`}>
-            Từ khảo sát hiện trạng đến báo cáo quản trị — một đội ngũ đi cùng
-            doanh nghiệp qua bốn giai đoạn.
-          </p>
-          <a href="#contact" className="btn reveal" data-scramble>
-            Tư vấn triển khai ngay
-          </a>
         </header>
 
-        <ol className={styles.stairs}>
+        <ol className={styles.steps}>
           {steps.map((s, i) => (
             <li
               className={`${styles.step} reveal`}
               key={s.title}
-              style={{ "--i": i, transitionDelay: `${i * 0.1}s` } as React.CSSProperties}
+              style={{ "--d": `${i * 0.08}s` } as React.CSSProperties}
             >
-              <span className={styles.num} aria-hidden="true">
-                0{i + 1}
-              </span>
-              <div>
-                <span className={styles.phase}>Giai đoạn {i + 1}</span>
-                <h3 className={styles.stepTitle}>{s.title}</h3>
-                <p className={styles.desc}>{s.desc}</p>
-              </div>
+              <span className={styles.num}>Bước {i + 1}</span>
+              <h3 className={styles.stepTitle}>{s.title}</h3>
+              <p className={styles.desc}>{s.desc}</p>
             </li>
           ))}
         </ol>

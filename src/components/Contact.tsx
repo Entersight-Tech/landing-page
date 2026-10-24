@@ -48,15 +48,13 @@ export default function Contact() {
     <section className={styles.section} id="contact">
       <div className={`container ${styles.inner}`}>
         <div className={styles.left}>
-          <p className="label" data-scramble="in">
-            <b>10</b> — Liên hệ
-          </p>
-          <h2 className={`display ${styles.title} reveal`} data-split>
-            <i className="mini">sẵn sàng</i>{"\u00a0"}bứt phá <span className="lime">cùng Entersight?</span>
+          <span className="eyebrow">Liên hệ</span>
+          <h2 className={`h2 ${styles.title} reveal`}>
+            Kể cho chúng tôi nghe bạn đang vướng ở đâu.
           </h2>
           <p className={`${styles.sub} reveal`}>
-            Để lại thông tin, đội ngũ Entersight sẽ phác thảo lộ trình tối ưu
-            riêng cho mô hình kinh doanh của bạn.
+            Không cần chuẩn bị gì. Gửi vài dòng, chúng tôi gọi lại hỏi thêm, rồi
+            nói thẳng phần nào nên làm trước — và phần nào chưa cần làm.
           </p>
           <ul className={`${styles.direct} reveal`}>
             <li>
@@ -64,7 +62,7 @@ export default function Contact() {
               <a href="mailto:info@entersight-tech.com">info@entersight-tech.com</a>
             </li>
             <li>
-              <span>Zalo / Hotline</span>
+              <span>Zalo / Hotline · Kiều Oanh, founder</span>
               <a href={`https://zalo.me/${HOTLINE}`}>0941 233 481</a>
             </li>
           </ul>
@@ -72,13 +70,13 @@ export default function Contact() {
 
         <div className={styles.formCard}>
           <h3 className={styles.formTitle}>
-            Đăng Ký Nhận Tư Vấn <span>Miễn Phí</span>
+            Gửi yêu cầu tư vấn <span>miễn phí</span>
           </h3>
 
           {status === "sent" ? (
             <p className={styles.thanks} role="status">
-              Cảm ơn bạn! Entersight đã nhận thông tin và sẽ liên hệ trong thời
-              gian sớm nhất.
+              Đã nhận. Chúng tôi sẽ gọi lại theo số bạn để lại. Cần gấp thì
+              nhắn Zalo 0941 233 481.
             </p>
           ) : (
             <form className={styles.form} onSubmit={onSubmit} noValidate>
@@ -105,7 +103,7 @@ export default function Contact() {
                 />
               </label>
               <label>
-                Tên doanh nghiệp
+                Doanh nghiệp / thương hiệu
                 <input
                   name="company"
                   type="text"
@@ -115,11 +113,11 @@ export default function Contact() {
                 />
               </label>
               <label>
-                Vấn đề bạn đang gặp phải
+                Bạn đang vướng ở đâu?
                 <textarea
                   name="message"
                   rows={3}
-                  placeholder="Viết vấn đề của bạn"
+                  placeholder="Ví dụ: chạy quảng cáo 30 triệu/tháng mà không biết đơn đến từ đâu"
                   maxLength={LIMITS.message}
                 />
               </label>
@@ -149,7 +147,7 @@ export default function Contact() {
                 className={styles.submit}
                 disabled={status === "sending"}
               >
-                {status === "sending" ? "Đang gửi…" : "Gửi Yêu Cầu Tư Vấn →"}
+                {status === "sending" ? "Đang gửi…" : "Gửi yêu cầu →"}
               </button>
             </form>
           )}

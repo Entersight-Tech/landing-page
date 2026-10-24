@@ -54,10 +54,7 @@ const TESTIMONIALS: Testimonial[] = [
   },
 ];
 
-/**
- * SVZ "testimonials": a giant marquee runs behind the speaker's cut-out
- * photo; the quote and a brand switcher sit underneath.
- */
+/** Speaker photo beside the quote; tabs switch between clients. */
 export default function Cases() {
   const [active, setActive] = useState(0);
   const count = TESTIMONIALS.length;
@@ -65,68 +62,54 @@ export default function Cases() {
   const t = TESTIMONIALS[active];
 
   return (
-    <section className={styles.section} id="cases">
-      <header className={`container ${styles.head}`}>
-        <p className="label" data-scramble="in">
-          <b>08</b> — Khách hàng
-        </p>
-        <h2 className={`${styles.heading} reveal`} data-split>
-          <span className="lime">10+ doanh nghiệp SMEs</span> đã chuyển mình cùng Entersight
-        </h2>
-      </header>
+    <section className={styles.section} id="cases" aria-labelledby="cases-title">
+      <div className="container">
+        <header className={styles.head}>
+          <span className="eyebrow">Khách hàng nói gì</span>
+          <h2 id="cases-title" className="h2 reveal">
+            Đừng chỉ nghe chúng tôi kể.
+          </h2>
+        </header>
 
-      <div className={styles.stage}>
-        <div className={styles.marquee} aria-hidden="true">
-          <div className={styles.marqueeTrack}>
-            {Array.from({ length: 4 }, (_, i) => (
-              <span key={i}>Khách hàng nói gì —&nbsp;</span>
+        <div className={styles.stage}>
+          <div className={styles.photos}>
+            {TESTIMONIALS.map((p, i) => (
+              <div key={p.id} className={styles.photo} data-active={i === active || undefined}>
+                <Image
+                  src={p.photo}
+                  alt={i === active ? `${p.name} — ${p.brand}` : ""}
+                  fill
+                  sizes="(max-width: 760px) 70vw, 360px"
+                />
+              </div>
             ))}
           </div>
-        </div>
 
-        <div className={styles.photos}>
-          {TESTIMONIALS.map((p, i) => (
-            <div key={p.id} className={styles.photo} data-active={i === active || undefined}>
-              <Image
-                src={p.photo}
-                alt={i === active ? `${p.name} — ${p.brand}` : ""}
-                fill
-                sizes="(max-width: 760px) 60vw, 340px"
-              />
+          <div className={styles.body}>
+            <figure key={t.id} className={styles.quoteBox}>
+              <blockquote className={styles.quote}>{t.quote}</blockquote>
+              <figcaption className={styles.attr}>
+                <strong>{t.name}</strong>
+                <span>{t.role}</span>
+              </figcaption>
+            </figure>
+
+            <div className={styles.switcher} role="tablist" aria-label="Chọn khách hàng">
+              {TESTIMONIALS.map((p, i) => (
+                <button
+                  key={p.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={i === active}
+                  className={styles.brand}
+                  onClick={() => go(i)}
+                >
+                  <Image src={p.logo} alt="" className={styles.brandLogo} />
+                  {p.brand}
+                </button>
+              ))}
             </div>
-          ))}
-        </div>
-      </div>
-
-      <div className={`container ${styles.body}`}>
-        <figure key={t.id} className={styles.quoteBox}>
-          <blockquote className={styles.quote}>{t.quote}</blockquote>
-          <figcaption className={styles.attr}>
-            <strong>{t.name}</strong>
-            <span>{t.role}</span>
-          </figcaption>
-        </figure>
-
-        <div className={styles.switcher} role="tablist" aria-label="Chọn khách hàng">
-          <button type="button" className={styles.arrow} onClick={() => go(active - 1)} aria-label="Khách hàng trước">
-            ←
-          </button>
-          {TESTIMONIALS.map((p, i) => (
-            <button
-              key={p.id}
-              type="button"
-              role="tab"
-              aria-selected={i === active}
-              className={styles.brand}
-              onClick={() => go(i)}
-            >
-              <Image src={p.logo} alt="" className={styles.brandLogo} />
-              {p.brand}
-            </button>
-          ))}
-          <button type="button" className={styles.arrow} onClick={() => go(active + 1)} aria-label="Khách hàng tiếp theo">
-            →
-          </button>
+          </div>
         </div>
       </div>
     </section>

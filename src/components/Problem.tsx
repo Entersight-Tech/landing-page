@@ -1,141 +1,51 @@
-"use client";
-
-import { useEffect, useRef, useState } from "react";
 import styles from "./Problem.module.css";
 
+// said the way owners actually say it on the first call
 const items = [
   {
-    title: "Chi phí leo thang",
-    desc: "Ngân sách marketing bị bào mòn bởi những hoạt động kém hiệu quả và quy trình vận hành lỗi thời.",
+    quote: "Tháng nào cũng đổ tiền quảng cáo, mà không ai nói chắc được đồng nào ra đơn.",
+    fix: "Đo từ quảng cáo đến đơn hàng",
   },
   {
-    title: "Nhân sự quá tải",
-    desc: (
-      <>
-        Nhân viên tiêu tốn <strong>80% thời gian</strong> cho các công việc lặp
-        đi lặp lại, không tạo ra giá trị thật.
-      </>
-    ),
+    quote: "Inbox lúc nào cũng đầy. Khách hỏi giá xong rồi im.",
+    fix: "Kịch bản chốt lead, AI trả lời 24/7",
   },
   {
-    title: "Dữ liệu rời rạc",
-    desc: "Quyết định dựa trên cảm tính khiến doanh nghiệp mất dấu khách hàng ngay tại những điểm chạm quan trọng.",
+    quote: "Nhân viên giỏi mất nửa ngày để chép số liệu từ chỗ này sang chỗ kia.",
+    fix: "Tự động hoá quy trình lặp lại",
   },
   {
-    title: "Quy trình cồng kềnh",
-    desc: 'Thông tin nghẽn lại giữa các team, thao tác thủ công trở thành "nút thắt" gây sai sót và chậm trễ.',
+    quote: "Mỗi đợt tuyển người lại phải dạy lại từ đầu.",
+    fix: "Đào tạo sale bằng AI",
   },
 ];
 
-const WORD = Array.from("NGÂN SÁCH".normalize("NFC"));
-// letter indexes that evaporate, two per pain point
-const DRAIN = [2, 7, 0, 5, 3, 8, 1, 6];
-
-/**
- * The budget evaporates: one screen, no pinning. All four pain points are
- * readable at once; when the section comes into view they light up one after
- * another and each burns two letters off the giant "NGÂN SÁCH".
- */
 export default function Problem() {
-  const ref = useRef<HTMLElement>(null);
-  const [step, setStep] = useState(0);
-
-  useEffect(() => {
-    const section = ref.current;
-    if (!section) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      section.dataset.static = "";
-      return;
-    }
-    let timer = 0;
-    const io = new IntersectionObserver(
-      ([e]) => {
-        if (!e.isIntersecting) return;
-        io.disconnect();
-        let n = 0;
-        timer = window.setInterval(() => {
-          setStep(++n);
-          if (n >= items.length) window.clearInterval(timer);
-        }, 750);
-      },
-      { threshold: 0.45 },
-    );
-    io.observe(section);
-    return () => {
-      io.disconnect();
-      window.clearInterval(timer);
-    };
-  }, []);
-
-  const shown = step;
-  const gone = new Set(DRAIN.slice(0, shown * 2));
-
   return (
-    <section
-      ref={ref}
-      className={styles.section}
-      id="problem"
-      aria-labelledby="problem-title"
-    >
-      <div className={styles.stage}>
-        <div className={`container ${styles.top}`}>
-          <span className="label" data-scramble="in">
-            <b>01</b> — Thách thức của SMEs
-          </span>
-          <span className={styles.counter} aria-hidden="true">
-            <b>{String(shown).padStart(2, "0")}</b> / 04 <i>điểm rò rỉ</i>
-          </span>
-        </div>
+    <section className={styles.section} id="problem" aria-labelledby="problem-title">
+      <div className="container">
+        <header className={styles.head}>
+          <span className="eyebrow">Nghe có quen không?</span>
+          <h2 id="problem-title" className="h2 reveal">
+            Phần lớn doanh nghiệp không thiếu người. Họ thiếu một quy trình chạy
+            được mà không cần chủ phải đứng canh.
+          </h2>
+        </header>
 
-        <h2
-          id="problem-title"
-          className={styles.title}
-          aria-label="Ngân sách marketing của doanh nghiệp đang bốc hơi?"
-        >
-          <span className={styles.word} aria-hidden="true">
-            {WORD.map((ch, i) =>
-              ch === " " ? (
-                <span key={i} className={styles.gap} />
-              ) : (
-                <span key={i} className={styles.ch} data-c={ch} data-gone={gone.has(i) || undefined}>
-                  {ch}
-                </span>
-              ),
-            )}
-          </span>
-          <span className={`container ${styles.line}`} aria-hidden="true">
-            marketing <i className="mini">của doanh nghiệp đang</i>{" "}
-            <span className="lime">bốc hơi?</span>
-          </span>
-        </h2>
-
-        <div className={`container ${styles.bottom}`}>
-          <ol className={styles.list} data-step={shown}>
-            {items.map((it, i) => (
-              <li
-                key={it.title}
-                className={styles.item}
-                data-state={i < shown ? "on" : undefined}
-              >
-                <span className={styles.idx}>
-                  <i className={styles.tick} />
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3 className={styles.itemTitle}>{it.title}</h3>
-                <p className={styles.desc}>{it.desc}</p>
-              </li>
-            ))}
-          </ol>
-
-          <div className={styles.cta}>
-            <p>
-              Tiếp thị thông minh <span>—</span> Vận hành tinh gọn
-            </p>
-            <a href="#contact" className="btn btn--solid" data-scramble>
-              Bắt đầu ngay với Entersight
-            </a>
-          </div>
-        </div>
+        <ol className={styles.list}>
+          {items.map((it, i) => (
+            <li
+              key={it.fix}
+              className={`${styles.item} reveal`}
+              style={{ "--d": `${i * 0.07}s` } as React.CSSProperties}
+            >
+              <p className={styles.quote}>“{it.quote}”</p>
+              <p className={styles.fix}>
+                <span aria-hidden="true">→</span> {it.fix}
+              </p>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );

@@ -1,137 +1,113 @@
 import Image, { type StaticImageData } from "next/image";
 import styles from "./Solutions.module.css";
-import brain from "../../public/figma/brain.png";
-import dataImg from "../../public/figma/solution-data.png";
-import creativeImg from "../../public/figma/solution-creative.png";
-import genaiImg from "../../public/figma/solution-genai.png";
-import dashboardImg from "../../public/figma/solution-dashboard.png";
+import lmsImg from "../app/lms/opengraph-image.jpg";
+import etstarImg from "../app/etstar/opengraph-image.jpg";
 
-type Solution = {
-  title: string;
-  tagline: string;
-  bullets: string[];
-  image: StaticImageData;
-};
+type Service = { name: string; what: string; example: { label: string; href: string } };
 
-const solutions: Solution[] = [
+const services: Service[] = [
   {
-    title: "AI Operation",
-    tagline: "Tự động hóa quy trình & Chăm sóc khách hàng.",
-    bullets: [
-      "Xử lý dữ liệu thông minh trong vài giây, giảm sai sót thủ công.",
-      "Tối ưu hóa nguồn lực, vận hành bộ máy tinh gọn nhưng hiệu suất tối đa.",
-    ],
-    image: brain,
+    name: "Tự động hoá vận hành",
+    what: "Đặt phòng, chốt đơn, chăm sóc khách, báo cáo cuối ngày — việc nào đang làm tay, chúng tôi đưa lên hệ thống và gắn AI vào đúng chỗ cần.",
+    example: { label: "Oni Homestay: check-in không cần lễ tân", href: "#case-oni" },
   },
   {
-    title: "Data Marketing",
-    tagline: "Tiếp thị thông minh dựa trên dữ liệu thực.",
-    bullets: [
-      "Cá nhân hóa trải nghiệm khách hàng trên đa điểm chạm.",
-      "Phân tích sâu hành vi thị trường để tối ưu tỷ lệ chuyển đổi (ROI).",
-      'Triển khai chiến dịch trúng đích, ngừng lãng phí ngân sách "mù".',
-    ],
-    image: dataImg,
+    name: "Marketing theo dữ liệu",
+    what: "Nối quảng cáo với đơn hàng để biết đồng nào đang có lời, cắt tệp sai, viết lại kịch bản chốt lead.",
+    example: { label: "MỘT: ROAS trung bình 8.0", href: "#case-mot" },
   },
   {
-    title: "Creative",
-    tagline: "Sáng tạo bản sắc, chạm điểm rơi cảm xúc.",
-    bullets: [
-      "Sản xuất hình ảnh, video và phát triển nội dung marketing đa kênh.",
-      "Branding: Thiết kế nhận diện và quản trị hệ sinh thái digital đa nền tảng.",
-      "Xây dựng chiến lược sáng tạo và tối ưu quảng cáo để tăng trưởng doanh thu.",
-    ],
-    image: creativeImg,
+    name: "Creative & nội dung",
+    what: "Nhận diện, key visual, social, video — do đội LauLau Creative làm, có AI tạo ảnh để ra nhanh hơn mà vẫn giữ chất thương hiệu.",
+    example: { label: "Xem portfolio LauLau Creative", href: "#work" },
   },
   {
-    title: "Generative AI Platform",
-    tagline: "Hệ thống sản xuất nội dung quy mô lớn.",
-    bullets: [
-      "x5 tốc độ output nội dung mà không tăng chi phí nhân sự.",
-      "Tự động hóa quy trình thiết kế và phát triển ý tưởng sáng tạo.",
-      "Đảm bảo tính đồng nhất thương hiệu trên mọi nền tảng số.",
-    ],
-    image: genaiImg,
-  },
-  {
-    title: "Dashboard & Analytics",
-    tagline: "Quản trị doanh nghiệp theo thời gian thực.",
-    bullets: [
-      "Hệ thống báo cáo minh bạch, nắm bắt mọi chỉ số kinh doanh 24/7.",
-      "Ra quyết định chính xác dựa trên số liệu thực.",
-      "Theo dõi sức khỏe thương hiệu và hiệu quả chiến dịch tức thời.",
-    ],
-    image: dashboardImg,
+    name: "Dashboard & báo cáo",
+    what: "Gom số bán hàng, quảng cáo và vận hành về một màn hình. Sáng ra mở điện thoại là biết hôm qua thế nào.",
+    example: { label: "Nói chuyện về dữ liệu của bạn", href: "#contact" },
   },
 ];
 
-/** SVZ "THE HUB": a light rounded panel holding a bento of the five products. */
+type Product = { name: string; line: string; href: string; image: StaticImageData | string; position?: string };
+
+const products: Product[] = [
+  {
+    name: "ETStar",
+    line: "Thêm review thật trên Google Maps: khách quét QR, AI giúp viết, khách tự đăng.",
+    href: "/etstar",
+    image: etstarImg,
+    position: "left center",
+  },
+  {
+    name: "EnterLMS",
+    line: "Sale mới luyện với khách ảo do AI đóng vai, trước khi gặp khách thật.",
+    href: "/lms",
+    image: lmsImg,
+    position: "left center",
+  },
+  {
+    name: "MUSE Studio",
+    line: "Lên model, try-on, đổi pose và video thời trang trong một khung chat tiếng Việt.",
+    href: "/fashion-studio",
+    image: "/fashion-studio/look-knit.webp",
+  },
+];
+
 export default function Solutions() {
   return (
-    <section className={styles.section} id="solutions">
-      <div className={styles.panel}>
+    <section className={`${styles.section} light`} id="solutions" aria-labelledby="solutions-title">
+      <div className="container">
         <header className={styles.head}>
-          <p className="label" data-scramble="in">
-            <b>03</b> — Giải pháp
-          </p>
-          <h2 className={`display ${styles.title} reveal`} data-split>
-            <i className="mini">một</i>{"\u00a0"}điểm chạm <span className={styles.blue}>mọi giải pháp</span>
+          <span className="eyebrow">Chúng tôi làm gì</span>
+          <h2 id="solutions-title" className="h2 reveal">
+            Bốn mảng việc, một đội làm từ đầu đến cuối.
           </h2>
-          <p className={`${styles.quote} reveal`}>
-            Entersight không chỉ giúp bạn kể câu chuyện hay, chúng tôi xây dựng
-            một bộ máy mạnh mẽ để hiện thực hóa câu chuyện đó bằng công nghệ số.
+          <p className="lede reveal">
+            Bạn không phải tự ghép agency quảng cáo, bên làm phần mềm và người
+            làm nội dung. Một đầu mối, một bảng số chung.
           </p>
         </header>
 
-        <div className={styles.bento}>
-          {solutions.map((s, i) => (
-            <article
-              key={s.title}
-              id={`sol-${i}`}
-              className={`${styles.tile} ${styles[`t${i}`]} reveal`}
-              style={{ transitionDelay: `${(i % 3) * 0.08}s` }}
-              tabIndex={0}
-            >
-              <div className={`${styles.media} wipe`}>
-                <Image
-                  src={s.image}
-                  alt=""
-                  fill
-                  sizes="(max-width: 760px) 92vw, (max-width: 1100px) 46vw, 640px"
-                />
-              </div>
-              <div className={styles.body}>
-                <span className={styles.idx}>ETS / 0{i + 1}</span>
-                <h3 className={styles.name}>{s.title}</h3>
-                <p className={styles.tagline}>{s.tagline}</p>
-                <ul className={styles.bullets}>
-                  {s.bullets.map((b) => (
-                    <li key={b}>{b}</li>
-                  ))}
-                </ul>
-              </div>
-            </article>
+        <ol className={styles.services}>
+          {services.map((s, i) => (
+            <li key={s.name} className={`${styles.service} reveal`}>
+              <span className={styles.idx}>0{i + 1}</span>
+              <h3 className={styles.name}>{s.name}</h3>
+              <p className={styles.what}>{s.what}</p>
+              <a href={s.example.href} className={styles.example}>
+                {s.example.label} <span aria-hidden="true">→</span>
+              </a>
+            </li>
           ))}
+        </ol>
 
-          <a href="#contact" className={`${styles.tile} ${styles.t5} ${styles.ctaTile} reveal`} data-scramble>
-            <span className={styles.idx}>Bắt đầu</span>
-            <span className={styles.ctaText}>Tư vấn triển khai</span>
-            <span className={styles.ctaArrow} aria-hidden="true">↗</span>
-          </a>
+        <div className={styles.productsHead} id="products">
+          <h3 className={`${styles.productsTitle} reveal`}>
+            Và vài sản phẩm chúng tôi tự làm, dùng được ngay.
+          </h3>
         </div>
 
-        {/* featured product: its own page, in its own billboard style */}
-        <a href="/etstar" className={`${styles.product} reveal`}>
-          <span className={styles.productWord} aria-hidden="true">MAPS</span>
-          <span className={styles.productCopy}>
-            <span className={styles.productTag}>Sản phẩm · ETStar</span>
-            <span className={styles.productName}>Thu hút khách mới trên Google Maps</span>
-            <span className={styles.productLine}>
-              Review thật từ khách qua QR &amp; AI · phản hồi đa ngôn ngữ
-            </span>
-          </span>
-          <span className={styles.productCta}>Xem sản phẩm ↗</span>
-        </a>
+        <ul className={styles.products}>
+          {products.map((p, i) => (
+            <li key={p.name} className="reveal" style={{ "--d": `${i * 0.08}s` } as React.CSSProperties}>
+              <a href={p.href} className={styles.product}>
+                <span className={styles.media}>
+                  <Image
+                    src={p.image}
+                    alt=""
+                    fill
+                    sizes="(max-width: 860px) 92vw, 30vw"
+                    style={{ objectPosition: p.position }}
+                  />
+                </span>
+                <span className={styles.productName}>
+                  {p.name} <span aria-hidden="true">↗</span>
+                </span>
+                <span className={styles.productLine}>{p.line}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

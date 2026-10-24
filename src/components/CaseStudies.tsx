@@ -1,18 +1,18 @@
 "use client";
 
-import { useRef, useState, type PointerEvent } from "react";
+import { useEffect, useRef, useState, type PointerEvent } from "react";
 import Image, { type StaticImageData } from "next/image";
 import styles from "./CaseStudies.module.css";
 import oniImg from "../../public/figma/case-oni.png";
 import kyeImg from "../../public/figma/case-kye.jpg";
 import motImg from "../../public/figma/case-mot.png";
 import quaTetImg from "../../public/figma/case-quatet.png";
-import lmsImg from "../app/lms/opengraph-image.jpg";
-import etstarImg from "../app/etstar/opengraph-image.jpg";
 
 type CaseStudy = {
+  id: string;
   title: string;
-  tag: string;
+  /** the one number shown on the closed row */
+  metric: string;
   subtitle: string;
   image: StaticImageData;
   alt: string;
@@ -27,136 +27,93 @@ type CaseStudy = {
 
 const cases: CaseStudy[] = [
   {
-    title: "ENTERLMS",
-    tag: "ETS PRODUCT",
-    subtitle: "Đào tạo sale bằng AI",
-    image: lmsImg,
-    alt: "EnterLMS — đào tạo sale bằng AI",
-    fit: "cover",
-    // share images are 1200×630 with the headline on the left
-    position: "left center",
-    link: "/lms",
-    painpoints: [
-      "Trưởng nhóm giỏi nhất bị kéo đi dạy lại từ đầu mỗi đợt tuyển.",
-      "Nhân viên mới tập trên khách thật — và mất khách thật.",
-      "Doanh số thấp nhưng không biết đội yếu ở kỹ năng nào.",
-    ],
-    solutions: [
-      "AI soạn bài học, slide và quiz từ tài liệu và ca chốt đơn của công ty; trưởng nhóm chỉ sửa và duyệt.",
-      "Luyện chat với khách ảo khó tính, chê đắt, hỏi xoáy cho tới khi vững tay.",
-    ],
-    results: [
-      "AI chấm 6 kỹ năng bán hàng sau mỗi buổi luyện",
-      "Lộ trình 4 cấp, từ Newbie đến Quản lý",
-      "100% bài học, quiz do AI soạn đều qua người duyệt",
-    ],
-  },
-  {
-    title: "ETSTAR",
-    tag: "ETS PRODUCT",
-    subtitle: "Tăng review thật trên Google Maps",
-    image: etstarImg,
-    alt: "ETStar — review thật trên Google Maps",
-    fit: "cover",
-    // share images are 1200×630 with the headline on the left
-    position: "left center",
-    link: "/etstar",
-    painpoints: [
-      "Hồ sơ thiếu thông tin, ít cập nhật nên Google ít đề xuất.",
-      "Khách hài lòng thường ra về im lặng — rất ít người tự nhớ viết review.",
-      "Review bị bỏ ngỏ nhiều ngày là tín hiệu xấu với cả khách lẫn Google.",
-    ],
-    solutions: [
-      "Khách quét QR, trả lời khảo sát ngắn; AI soạn nháp đánh giá, khách tự chỉnh và tự đăng.",
-      "AI soạn phản hồi đa ngôn ngữ theo giọng thương hiệu, cảnh báo sớm review tiêu cực.",
-    ],
-    results: ["10.000+ địa điểm tin dùng", "50K+ đánh giá AI thu thập", "12+ quốc gia triển khai"],
-  },
-  {
-    title: "ONI HOMESTAY",
-    tag: "ETS AI OPERATION",
-    subtitle: "Homestay check in tự động - Hẹn hò riêng tư không lễ tân",
+    id: "oni",
+    title: "Oni Homestay",
+    metric: "0 lễ tân, vận hành 24/7",
+    subtitle: "Homestay ở Huế, khách tự check-in",
     image: oniImg,
     alt: "Oni Homestay",
     fit: "contain",
     link: "http://onihomestay.com/",
     painpoints: [
-      "Áp lực vận hành 24/7 & chi phí nhân sự lễ tân quá cao, khó kiểm soát tài chính và quản lý dữ liệu khách hàng",
+      "Phải có người trực 24/7, chi phí lễ tân cao.",
+      "Tiền và dữ liệu khách nằm rải rác, khó kiểm soát.",
     ],
     solutions: [
-      "Tự động hóa toàn bộ phễu vận hành từ đặt phòng (Booking), check-in tự động đến chăm sóc khách hàng đa kênh bằng AI",
+      "Tự động hoá từ đặt phòng, check-in đến chăm sóc khách đa kênh bằng AI.",
     ],
     results: [
-      "Tối ưu 100% chi phí lễ tân",
-      "Rút ngắn 80% thời gian tư vấn và booking",
-      "Tích hợp thanh toán đa nền tảng (Visa, MasterCard, Momo, VNPay, VietQR...), quản trị dòng tiền tự động",
+      "Không còn chi phí lễ tân",
+      "Thời gian tư vấn và đặt phòng giảm 80%",
+      "Thanh toán Visa, MasterCard, Momo, VNPay, VietQR; dòng tiền tự đối soát",
     ],
   },
   {
-    title: "KYE AGENCY",
-    tag: "ETS AI OPERATION",
-    subtitle: "AI Fashion Studio",
+    id: "kye",
+    title: "KYE Agency",
+    metric: "5× tốc độ ra nội dung",
+    subtitle: "Agency thời trang, ảnh lookbook bằng AI",
     image: kyeImg,
     alt: "Kye Agency",
     fit: "cover",
     link: "/fashion-studio",
     painpoints: [
-      "Tốc độ sản xuất Concept thủ công chậm (7 ngày/ bộ). AI phổ thông gây lỗi chi tiết vải và biến dạng gương mặt mẫu. Dữ liệu hình ảnh phân tán, khó quản lý.",
+      "Làm một bộ concept thủ công mất 7 ngày.",
+      "Công cụ AI phổ thông làm hỏng chi tiết vải và méo mặt người mẫu.",
+      "Ảnh nằm rải rác, khó tìm lại.",
     ],
     solutions: [
-      "Triển khai nền tảng ETS AI Fashion Studio: Tích hợp thử đồ ảo (Virtual Try-on), sáng tạo bối cảnh (Text-to-Image) và tinh chỉnh chi tiết Pro-level",
+      "Dựng MUSE Studio: thử đồ ảo (virtual try-on), tạo bối cảnh từ mô tả và chỉnh chi tiết kỹ.",
     ],
     results: [
-      "Tăng 5x tốc độ output nội dung",
-      "Chuẩn xác 100% chi tiết (ren, lưới, họa tiết) & giữ nguyên diện mạo mẫu gốc.",
-      "Hiệu quả 70% Virtual Try-on ngay giai đoạn Demo.",
+      "Tốc độ ra nội dung tăng 5 lần",
+      "Giữ đúng chi tiết ren, lưới, hoạ tiết và gương mặt mẫu gốc",
+      "70% lượt try-on dùng được ngay từ giai đoạn demo",
     ],
   },
   {
+    id: "mot",
     title: "MỘT",
-    tag: "ETS INTEGRATED MARKETING",
-    subtitle: "Digital Performance",
+    metric: "ROAS trung bình 8.0",
+    subtitle: "Thương hiệu bán online, chạy performance",
     image: motImg,
     alt: "Digital Performance",
     fit: "cover",
     painpoints: [
-      "Đốt ngân sách khổng lồ nhưng CR thấp.",
-      "Mess ảo, không ra đơn",
-      'Thông điệp đại trà, không chạm đúng "nỗi đau"',
-      "A/B testing hàng loạt, thiếu mục tiêu",
+      "Chi nhiều cho quảng cáo nhưng tỉ lệ chuyển đổi thấp.",
+      "Tin nhắn nhiều mà không ra đơn.",
+      "Thông điệp chung chung, không trúng điều khách lo.",
+      "A/B test tràn lan, không rõ đang thử cái gì.",
     ],
     solutions: [
-      "Tối ưu phễu đa tầng & cá nhân hóa hành trình mua sắm số.",
-      "Thu hẹp tệp mục tiêu & chuẩn hóa kịch bản chuyển đổi Lead.",
-      "Tối ưu điểm chạm",
-      "Dashboard theo dõi và tối ưu theo thời gian thực",
+      "Chia phễu theo từng chặng, nội dung riêng cho từng nhóm khách.",
+      "Thu hẹp tệp, viết lại kịch bản chốt lead.",
+      "Dashboard theo dõi để chỉnh trong ngày, không đợi cuối tháng.",
     ],
     results: [
-      "200+ đơn đặt hàng website trong 24H",
-      "Max ROAS = 72",
-      "Average ROAS: 8.0",
-      "Engagement rate >12%",
+      "200+ đơn trên website trong 24 giờ",
+      "ROAS trung bình 8.0, cao nhất 72",
+      "Tỉ lệ tương tác trên 12%",
     ],
   },
   {
-    title: "QUÀ TẾT MÁ LÀM",
-    tag: "ETS INTEGRATED MARKETING",
-    subtitle: "Creative",
+    id: "quatet",
+    title: "Quà Tết Má Làm",
+    metric: "Bộ hình ảnh Tết",
+    subtitle: "Thương hiệu quà Tết, làm lại hình ảnh",
     image: quaTetImg,
     alt: "Quà Tết Má Làm",
     fit: "cover",
     painpoints: [
-      'Đẹp nhưng không "CHẠM"',
-      "Thiếu câu chuyện",
-      "Sáng tạo thiếu định hướng",
+      "Ảnh đẹp nhưng không ai nhớ.",
+      "Sản phẩm thiếu một câu chuyện để kể.",
     ],
     solutions: [
-      "Tái định nghĩa giá trị truyền thống bằng ngôn ngữ thị giác đương đại.",
+      "Kể lại món quà nhà làm bằng hình ảnh hiện đại, đồng bộ trên mọi kênh.",
     ],
     results: [
-      "Tăng hiệu quả tiếp cận khách hàng qua hình ảnh",
-      "Giảm chi phí thuyết phục khách hàng nhờ câu chuyện hình ảnh",
-      "Đồng bộ hình ảnh thương hiệu.",
+      "Hình ảnh thương hiệu đồng bộ",
+      "Khách hiểu sản phẩm nhanh hơn nhờ câu chuyện rõ ràng",
     ],
   },
 ];
@@ -176,6 +133,17 @@ export default function CaseStudies() {
   const [hover, setHover] = useState<number | null>(null);
   const previewRef = useRef<HTMLDivElement>(null);
 
+  // links elsewhere on the page ("#case-oni") open the row they point at
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      const href = (e.target as Element).closest?.("a")?.getAttribute("href");
+      const i = cases.findIndex((c) => href === `#case-${c.id}`);
+      if (i >= 0) setOpen(i);
+    };
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, []);
+
   const onMove = (e: PointerEvent<HTMLElement>) => {
     const el = previewRef.current;
     if (!el) return;
@@ -186,12 +154,10 @@ export default function CaseStudies() {
     <section className={styles.section} id="case-studies">
       <div className="container">
         <header className={styles.head}>
-          <p className="label" data-scramble="in">
-            <b>05</b> — Dự án
-          </p>
-          <h2 className={`display ${styles.title} reveal`} data-split>
-            <i className="mini">chuyển</i>{"\u00a0"}áp lực vận hành <i className="mini">thành</i>{"\u00a0"}
-            <span className="lime">đòn bẩy tăng trưởng</span>
+          <span className="eyebrow">Dự án đã làm</span>
+          <h2 className={`h2 ${styles.title} reveal`}>
+            Bốn doanh nghiệp, bốn vấn đề khác nhau. Mở từng dự án để xem cách
+            chúng tôi xử lý.
           </h2>
         </header>
 
@@ -199,12 +165,12 @@ export default function CaseStudies() {
           {cases.map((c, i) => {
             const isOpen = open === i;
             return (
-              <li key={c.title} className={`${styles.row} reveal`} data-open={isOpen || undefined}>
+              <li key={c.id} id={`case-${c.id}`} className={`${styles.row} reveal`} data-open={isOpen || undefined}>
                 <button
                   type="button"
                   className={styles.rowHead}
                   aria-expanded={isOpen}
-                  aria-controls={`case-${i}`}
+                  aria-controls={`case-${c.id}-body`}
                   onClick={() => setOpen(isOpen ? -1 : i)}
                   onPointerEnter={() => setHover(i)}
                 >
@@ -212,12 +178,12 @@ export default function CaseStudies() {
                   <span className={styles.name}>{c.title}</span>
                   <span className={styles.meta}>
                     <span>{c.subtitle}</span>
-                    <span className={styles.tag}>{c.tag}</span>
+                    <span className={styles.metric}>{c.metric}</span>
                   </span>
                   <span className={styles.plus} aria-hidden="true" />
                 </button>
 
-                <div id={`case-${i}`} className={styles.drawer} role="region" aria-label={c.title}>
+                <div id={`case-${c.id}-body`} className={styles.drawer} role="region" aria-label={c.title}>
                   <div className={styles.drawerInner}>
                     <div className={`${styles.thumb} ${isOpen ? "in" : ""} wipe`}>
                       <Image
@@ -245,7 +211,7 @@ export default function CaseStudies() {
                           className={`btn ${styles.visit}`}
                           {...(c.link.startsWith("/") ? {} : { target: "_blank", rel: "noopener noreferrer" })}
                         >
-                          {c.link.startsWith("/") ? "Xem sản phẩm" : "Xem dự án"}
+                          {c.link.startsWith("/") ? "Xem sản phẩm" : "Xem website"}
                         </a>
                       )}
                     </div>

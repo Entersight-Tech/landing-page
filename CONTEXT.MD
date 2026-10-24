@@ -28,43 +28,35 @@ substituted with **Montserrat** (the closest free geometric sans). Mapped via
 - Body: Roboto → `--font-body` → CSS `--font-body`
 
 ## Page Structure (`src/app/page.tsx`)
-SVZ-inspired editorial layout on a dark canvas (`--night`), keeping the brand
-palette (ink / lime / blue-purple / light gray) and fonts (Montserrat display,
-Roboto body + italic "mini" words). Shared pieces live in globals.css:
-`.display`, `.mini`, `.label` ([ 03 — GIẢI PHÁP ]), `.btn` / `.btn--solid`.
+Dark canvas (`--night`) with light panels (`.light`) for rhythm, brand palette
+(ink / lime / blue-purple / light gray). Headings are sentence case (`.h2`,
+Montserrat) — all-caps Vietnamese with stacked accents reads poorly. Each
+section opens with an `.eyebrow` line, not a numbered `[ 01 — … ]` label.
+Copy is written in plain Vietnamese, in the customer's words; every number on
+the page comes from a case study below it.
 
-1. `Navigation` — fixed, `mix-blend-mode: difference` (white on dark, black on
-   light panels); grouped links on desktop, full-screen sheet on mobile
-2. `Hero` — sticky "curtain" hero: centred display headline, brand asterisk
-   shapes, pointer-following lime dot, service list
-3. `Partners` — light panel that slides over the hero: "CÔNG NGHỆ ✱ SÁNG TẠO"
-   statement settling on scroll + partner logo marquee
-4. `Problem` — one unpinned screen: all four pain points readable at once;
-   on entering view they light up in turn and each burns two letters off the
-   giant "NGÂN SÁCH" (the budget evaporating)
-5. `Distill` — one unpinned screen: "Một đối tác, năm năng lực." + the five
-   capabilities as an index (name + one-liner) linking `#sol-N`
-6. `Solutions` — light "hub" panel with a bento of the 5 products (+ CTA tile)
-7. `Transformation` — 4 phases as a staircase next to a sticky heading
-8. `CaseStudies` — project index rows; one opens to problem/solution/result,
-   pointer-following preview on desktop
-9. `Work` — LauLau Creative portfolio (data in `work.ts`, images in
-   `public/work/<slug>/`): an index screen, then one screen per project whose
-   tone tints the section; "Xem dự án" links to the project's own page
-10. `Results` — pinned headline while the 4 stat cards are dealt on scroll
-11. `Cases` — testimonials: giant marquee behind the speaker photo + switcher
-12. `Values` — purple block, EN / TER / SIGHT value stack
-13. `Outro` — `Contact` (headline + form panel) and footer with the giant
-    ENTER✱SIGHT wordmark
+Story: problem → what we do → proof → how we work → contact.
+1. `Navigation` — fixed, `mix-blend-mode: difference`; flat links on desktop,
+   full-screen sheet on mobile
+2. `Hero` — headline + sub + two CTAs; three real results (Oni, KYE, MỘT);
+   client logos
+3. `Problem` — four pain points as owners say them, each with the fix
+4. `Solutions` (light) — four services, each linking to a case
+   (`#case-<id>` opens that row), then the three products (ETStar, EnterLMS,
+   MUSE Studio) at `#products`
+5. `CaseStudies` — project rows with their key result; one opens to
+   problem/solution/result, pointer-following preview on desktop
+6. `Work` — LauLau Creative: a grid of covers linking to `/work/<slug>`
+   (data in `work.ts`, images in `public/work/<slug>/`)
+7. `Cases` — testimonials: photo beside the quote, client tabs
+8. `Transformation` (light) — the four steps of working together
+9. `Outro` — `Contact` (headline + form panel) and footer with the
+   ENTER✱SIGHT wordmark
 
-Scrolling (`Motion.tsx`): Lenis smooth scroll; on desktop (fine pointer,
-≥900px) each wheel gesture pages exactly one screen — to the next
-`main section` / `[data-page]` / `footer` top, or one viewport further inside
-a taller section (`data-steps` pins exact positions for scroll-driven
-stages). On touch the same stops become CSS scroll-snap points
-(`html[data-snap]`, paused while a form field has focus and during anchor
-jumps), so a swipe settles on the next screen. Once a section's own label has
-scrolled away, `Navigation` shows it as a chip under the logo with progress.
+Motion is deliberately quiet: native scrolling (no smooth-scroll library, no
+scroll-jacking or snap), one reveal (`.reveal` → `in` via `ScrollReveal`, an
+18px rise staggered with `--d`), a CSS load-in on the hero, and hover states.
+All of it is off under `prefers-reduced-motion`.
 
 ## Portfolio pages
 `/work` lists every LauLau Creative project; `/work/<slug>` is a shareable,

@@ -3,13 +3,17 @@ import styles from "./Outro.module.css";
 import Asterisk from "./Asterisk";
 
 const sitemap = [
-  { label: "Thách thức", href: "#problem" },
-  { label: "Giải pháp", href: "#solutions" },
-  { label: "Lộ trình", href: "#transformation" },
+  { label: "Dịch vụ", href: "#solutions" },
   { label: "Dự án", href: "#case-studies" },
-  { label: "Creative", href: "#work" },
-  { label: "Khách hàng", href: "#cases" },
+  { label: "LauLau Creative", href: "#work" },
+  { label: "Cách làm việc", href: "#transformation" },
   { label: "Liên hệ", href: "#contact" },
+];
+
+const products = [
+  { label: "ETStar", href: "/etstar" },
+  { label: "EnterLMS", href: "/lms" },
+  { label: "MUSE Studio", href: "/fashion-studio" },
 ];
 
 const connect = [
@@ -28,7 +32,15 @@ export default function Outro() {
           <div className={styles.col}>
             <span className={styles.colLabel}>Sitemap</span>
             {sitemap.map((l) => (
-              <a key={l.href} href={l.href} data-scramble>
+              <a key={l.href} href={l.href}>
+                {l.label}
+              </a>
+            ))}
+          </div>
+          <div className={styles.col}>
+            <span className={styles.colLabel}>Sản phẩm</span>
+            {products.map((l) => (
+              <a key={l.href} href={l.href}>
                 {l.label}
               </a>
             ))}
@@ -39,7 +51,7 @@ export default function Outro() {
               <a
                 key={l.label}
                 href={l.href}
-                data-scramble
+               
                 {...(l.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
               >
                 {l.label} ↗
@@ -49,10 +61,10 @@ export default function Outro() {
           <div className={`${styles.col} ${styles.pitch}`}>
             <span className={styles.colLabel}>Entersight</span>
             <p>
-              Hệ sinh thái tiếp thị số toàn diện cho SMEs — nơi công nghệ gặp
-              sáng tạo.
+              Marketing, vận hành và nội dung cho doanh nghiệp vừa và nhỏ — làm
+              bằng AI, đo bằng số thật.
             </p>
-            <a href="#top" className="btn" data-scramble>
+            <a href="#top" className="btn">
               Về đầu trang
             </a>
           </div>
@@ -67,7 +79,7 @@ export default function Outro() {
 
         <div className={`container ${styles.base}`}>
           <span>© {new Date().getFullYear()} Entersight. All rights reserved.</span>
-          <span>Công nghệ × Sáng tạo</span>
+          <span>info@entersight-tech.com</span>
         </div>
       </footer>
     </>

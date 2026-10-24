@@ -1,92 +1,70 @@
-"use client";
-
-import { useEffect, useRef } from "react";
 import styles from "./Hero.module.css";
 import Asterisk from "./Asterisk";
 
-const SERVICES = [
-  "AI Operation",
-  "Data Marketing",
-  "Creative",
-  "Generative AI",
-  "Dashboard & Analytics",
+const logos = [
+  { src: "/figma/partner-kye.png", name: "KYE Agency" },
+  { src: "/figma/partner-sma.png", name: "SMA Agency" },
+  { src: "/figma/partner-vemanti.png", name: "Vemanti" },
+  { src: "/figma/partner-buttery.png", name: "Buttery" },
+  { src: "/figma/partner-mtl.png", name: "MTL" },
+  { src: "/figma/partner-dctech.png", name: "DCTech" },
+];
+
+// three results lifted straight from the case studies below
+const proof = [
+  { value: "0", unit: "lễ tân", note: "Oni Homestay tự vận hành check-in, thanh toán, chăm sóc khách" },
+  { value: "5×", unit: "tốc độ", note: "KYE Agency ra nội dung thời trang bằng AI Fashion Studio" },
+  { value: "8.0", unit: "ROAS", note: "trung bình chiến dịch performance cho thương hiệu MỘT" },
 ];
 
 export default function Hero() {
-  const dotRef = useRef<HTMLSpanElement>(null);
-
-  // the lime dot drifts toward the pointer, like SVZ's red orb
-  useEffect(() => {
-    const dot = dotRef.current;
-    if (!dot || window.matchMedia("(prefers-reduced-motion: reduce), (pointer: coarse)").matches) return;
-    let x = 0, y = 0, tx = 0, ty = 0, frame = 0;
-    const tick = () => {
-      x += (tx - x) * 0.06;
-      y += (ty - y) * 0.06;
-      dot.style.transform = `translate(${x}px, ${y}px)`;
-      frame = Math.abs(tx - x) + Math.abs(ty - y) > 0.5 ? requestAnimationFrame(tick) : 0;
-    };
-    const onMove = (e: PointerEvent) => {
-      tx = (e.clientX - window.innerWidth / 2) * 0.35;
-      ty = (e.clientY - window.innerHeight / 2) * 0.35;
-      if (!frame) frame = requestAnimationFrame(tick);
-    };
-    window.addEventListener("pointermove", onMove);
-    return () => {
-      window.removeEventListener("pointermove", onMove);
-      cancelAnimationFrame(frame);
-    };
-  }, []);
-
   return (
     <section className={styles.hero} id="top">
-      <div className={styles.shade} aria-hidden="true" />
-      <div className={styles.grid} aria-hidden="true" />
-      <div className={styles.shapes} aria-hidden="true">
-        <Asterisk className={styles.astA} />
-        <Asterisk className={styles.astB} />
-        <span className={styles.bar} />
-      </div>
+      <Asterisk className={styles.ast} />
 
-      <div className={styles.center}>
-        <p className={`label ${styles.kicker}`}>Entersight — Marketing × AI</p>
+      <div className={`container ${styles.inner}`}>
+        <div className={styles.copy}>
+          <p className={`eyebrow ${styles.kicker}`}>Entersight · Marketing & vận hành bằng AI</p>
+          <h1 className={styles.title}>
+            Để máy làm việc lặp lại. <span className="lime">Đội của bạn lo khách hàng.</span>
+          </h1>
+          <p className={styles.sub}>
+            Chúng tôi dựng hệ thống vận hành, chạy quảng cáo và làm nội dung cho
+            doanh nghiệp vừa và nhỏ — từ homestay ở Huế không cần lễ tân đến
+            studio thời trang ra lookbook bằng AI.
+          </p>
+          <div className={styles.actions}>
+            <a href="#contact" className="btn btn--solid">
+              Kể vấn đề của bạn
+            </a>
+            <a href="#case-studies" className="btn">
+              Xem dự án đã làm
+            </a>
+          </div>
+        </div>
 
-        <h1 className={`display ${styles.title}`}>
-          <span className={styles.line}>
-            <span>
-              <i className="mini">số hoá</i>{"\u00a0"}Quy trình marketing
-            </span>
-          </span>{" "}
-          <span className={styles.line}>
-            <span>
-              <span className="lime">đúng đích</span> <i className="mini">cho SMEs</i>
-            </span>
-          </span>
-          <span ref={dotRef} className={styles.dot} aria-hidden="true" />
-        </h1>
-
-        <ul className={styles.services} aria-label="Năng lực">
-          {SERVICES.map((s) => (
-            <li key={s}>{s}</li>
+        <ul className={styles.proof}>
+          {proof.map((p) => (
+            <li key={p.unit}>
+              <strong>
+                {p.value} <span>{p.unit}</span>
+              </strong>
+              <p>{p.note}</p>
+            </li>
           ))}
         </ul>
       </div>
 
-      <div className={styles.foot}>
-        <p className={styles.sub}>
-          Entersight kiến tạo hệ sinh thái tiếp thị số toàn diện, giúp SMEs tái
-          cấu trúc vận hành, làm chủ mọi điểm chạm khách hàng và xây dựng nền
-          tảng tăng trưởng bền vững.
-        </p>
-        <span className={`label ${styles.scroll}`}>Cuộn để khám phá</span>
-        <div className={styles.actions}>
-          <a href="#case-studies" className="btn" data-scramble>
-            Dự án thực tế
-          </a>
-          <a href="#contact" className="btn btn--solid" data-scramble>
-            Tư vấn triển khai
-          </a>
-        </div>
+      <div className={`container ${styles.trust}`}>
+        <p>Đã làm cùng</p>
+        <ul>
+          {logos.map((l) => (
+            <li key={l.name}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={l.src} alt={l.name} loading="lazy" />
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

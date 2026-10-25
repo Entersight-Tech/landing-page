@@ -107,7 +107,7 @@ export function VideoMock() {
         <ol className={styles.scenes}>
           {scriptRoles.map((r, i) => (
             <li key={r.role}>
-              <span className={styles.sceneNo}>{String(i + 1).padStart(2, "0")}</span>
+              <span className={styles.sceneNo}>{String(i + 1).padStart(2, "0") /* taste-skill-ignore: scene counter inside a data-ui mock */}</span>
               <span className={styles.sceneRole}>{r.role}</span>
               <span className={styles.sceneLine}>{r.line}</span>
               <span className={i < 3 ? styles.sceneDone : styles.sceneWait}>{i < 3 ? "Đã quay" : "Chờ"}</span>

@@ -856,7 +856,7 @@
 .form input:focus,
 .form textarea:focus {
   outline: none;
-  /* colour + shadow instead of a thicker border: the field doesn't shift */
+  /* colour + a 1px underline instead of a thicker border: the field doesn't shift */
   border-bottom-color: var(--purple);
   box-shadow: 0 1px 0 var(--purple); /* taste-skill-ignore: focus state of a form field */
 }

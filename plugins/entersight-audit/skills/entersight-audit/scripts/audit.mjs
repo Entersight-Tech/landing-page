@@ -1,16 +1,20 @@
 #!/usr/bin/env node
-// anti-slop / audit — one command for the measurable part of an AI-slop audit:
+// entersight-audit / audit — one command for the measurable part of an Entersight UI audit:
 //   1. the vendored taste-skill source lint (visual tells in CSS/TSX),
 //   2. lint-vi (Vietnamese copy tells, which the upstream lint cannot read),
 //   3. the vendored taste-skill browser inspector, per URL, at 1440 / 768 / 390,
 //   4. probe.mjs: accessibility (WCAG contrast, labels, alt, focus, targets, skip link), readability
 //      and the Impeccable anti-pattern rules it can measure, per URL, at 1440 / 390,
-// then re-levels every finding with ../brand.json (fail / warn / allow + why).
+// then re-levels every finding with the policy: ../defaults.json (Entersight-wide) merged with the
+// project's .entersight-audit.json at the repo root (fail / warn / allow + why).
 //
-//   node .claude/skills/anti-slop/scripts/audit.mjs [--src src] [--url http://localhost:3000/ ...] [--json]
+//   node <skill>/scripts/audit.mjs [--src src ...] [--url http://localhost:3000/ ...]
+//                                  [--base http://localhost:3000] [--app] [--config file] [--json]
 //
-// Run from the project root. --url wants a production server (next build && next start);
-// without --url only the two source scans run. Exit code 1 while any FAIL remains.
+// Run from the project root. --url wants a production server (next build && next start). --base
+// turns the "urls" paths of the project config into full URLs. Without any URL only the two
+// source scans run. --app (or "mode": "app" in the config) audits app screens (dashboards,
+// settings, inboxes) with the app rules of the upstream meters. Exit code 1 while any FAIL remains.
 import { spawnSync } from 'node:child_process';
 import { existsSync, mkdirSync, readFileSync, writeFileSync, chmodSync, readdirSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
@@ -19,9 +23,24 @@ import { fileURLToPath } from 'node:url';
 const here = dirname(fileURLToPath(import.meta.url));
 const skill = resolve(here, '..');
 const vendor = join(skill, 'vendor', 'taste-skill', 'scripts');
-const brand = JSON.parse(readFileSync(join(skill, 'brand.json'), 'utf8'));
-const rules = brand.rules || {};
-const exceptions = brand.exceptions || [];
+const args = process.argv.slice(2);
+
+// policy: Entersight defaults, then the project's own file (brand and rules override, lists add up)
+const defaults = JSON.parse(readFileSync(join(skill, 'defaults.json'), 'utf8'));
+const cfgFlag = args.indexOf('--config');
+const cfgPath = resolve(cfgFlag >= 0 ? args[cfgFlag + 1] : '.entersight-audit.json');
+let project = {};
+if (existsSync(cfgPath)) {
+  try { project = JSON.parse(readFileSync(cfgPath, 'utf8')); } catch (e) { console.error(`Cannot parse ${cfgPath}: ${e.message}`); process.exit(2); }
+}
+const brand = {
+  brand: { ...defaults.brand, ...(project.brand || {}) },
+  rules: { ...defaults.rules, ...(project.rules || {}) },
+  exceptions: [...(defaults.exceptions || []), ...(project.exceptions || [])],
+};
+const rules = brand.rules;
+const exceptions = brand.exceptions;
+const appMode = args.includes('--app') || project.mode === 'app';
 
 // An exception allows one finding checked by hand: every "label" above "heading" pair in an
 // eyebrow finding must be listed, or (page-level findings) the url path and width must match.
@@ -37,7 +56,6 @@ function exceptionFor(f, url) {
   return mine.find((e) => e.url && e.url === path && (!e.width || e.width === f.width)) || null;
 }
 
-const args = process.argv.slice(2);
 const asJson = args.includes('--json');
 // --src a b c and --src a --src b both work: a flag takes every value up to the next flag
 const opt = (name) => {
@@ -48,9 +66,10 @@ const opt = (name) => {
   });
   return out;
 };
-const src = opt('src').length ? opt('src') : ['src'];
-const urls = opt('url');
-const out = resolve('.anti-slop');
+const src = opt('src').length ? opt('src') : project.src || ['src'];
+const base = opt('base')[0];
+const urls = opt('url').length ? opt('url') : base ? (project.urls || ['/']).map((u) => new URL(u, base).href) : [];
+const out = resolve('.entersight-audit');
 mkdirSync(out, { recursive: true });
 
 const runJson = (cmd, argv, env = {}) => {
@@ -84,7 +103,8 @@ const relevel = (f, source) => {
 const all = [];
 const errors = [];
 
-const lint = runJson('node', [join(vendor, 'lint.mjs'), ...src, '--json']);
+const appFlag = appMode ? ['--app'] : [];
+const lint = runJson('node', [join(vendor, 'lint.mjs'), ...src, '--json', ...appFlag]);
 if (lint.error) errors.push('lint: ' + lint.error);
 const srcLines = new Map();
 const lineAt = (file, n) => {
@@ -114,7 +134,7 @@ const env = urls.length ? chromeEnv() : {};
 for (const url of urls) {
   const slug = new URL(url).pathname.replace(/^\/|\/$/g, '').replace(/\//g, '_') || 'home';
   const dir = join(out, 'inspect', slug);
-  const rep = runJson('node', [join(vendor, 'inspect.mjs'), url, '--out', dir, '--json'], env);
+  const rep = runJson('node', [join(vendor, 'inspect.mjs'), url, '--out', dir, '--json', ...appFlag], env);
   if (rep.error) { errors.push(`inspect ${url}: ${rep.error}`); continue; }
   for (const f of rep.findings || []) {
     if (f.id === 'emoji' && /:\s*[★☆,\s]+$/u.test(f.message)) {
@@ -147,7 +167,7 @@ writeFileSync(join(out, 'report.json'), JSON.stringify(report, null, 1));
 if (asJson) { console.log(JSON.stringify(report, null, 1)); process.exit(all.some((f) => f.level === 'FAIL') ? 1 : 0); }
 
 const line = (s = '') => console.log(s);
-line(`ANTI-SLOP · AUDIT   src: ${src.join(', ')}${urls.length ? '   urls: ' + urls.join(', ') : ''}`);
+line(`ENTERSIGHT · AUDIT${appMode ? ' (app screens)' : ''}   src: ${src.join(', ')}${urls.length ? '   urls: ' + urls.join(', ') : ''}`);
 for (const lvl of ['FAIL', 'WARN']) {
   const list = all.filter((f) => f.level === lvl);
   if (!list.length) continue;
@@ -162,7 +182,7 @@ for (const lvl of ['FAIL', 'WARN']) {
 }
 const allowed = all.filter((f) => f.level === 'ALLOW');
 if (allowed.length) {
-  line('\nALLOWED by brand.json (not counted):');
+  line('\nALLOWED by policy (not counted):');
   const ids = [...new Set(allowed.map((f) => f.id))];
   for (const id of ids) {
     const f = allowed.find((x) => x.id === id);
@@ -173,6 +193,6 @@ if (shots.length) { line('\nLOOK AT THE RENDER before judging quality:'); for (c
 for (const e of errors) line(`\nERROR ${e}`);
 const fails = all.filter((f) => f.level === 'FAIL').length;
 const warns = all.filter((f) => f.level === 'WARN').length;
-line(`\nRESULT: ${fails} FAIL, ${warns} WARN, ${allowed.length} allowed by policy   (report: .anti-slop/report.json)`);
+line(`\nRESULT: ${fails} FAIL, ${warns} WARN, ${allowed.length} allowed by policy   (report: .entersight-audit/report.json)`);
 line('The meters are the floor. Copy voice, the idea and the screenshots still need a reader: see SKILL.md steps 2 and 4.');
 process.exit(fails ? 1 : 0);

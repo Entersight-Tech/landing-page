@@ -1,0 +1,10 @@
+{
+  "name": "entersight-audit",
+  "version": "1.0.0",
+  "description": "Audit Entersight landing pages and app screens for the AI-made look, Vietnamese copy, accessibility, readability, motion and mobile feel, against the Entersight brand policy.",
+  "author": { "name": "Entersight", "email": "info@entersight-tech.com" },
+  "homepage": "https://www.entersight-tech.com",
+  "repository": "https://github.com/Entersight-Tech/landing-page",
+  "license": "SEE LICENSE IN NOTICE.md",
+  "keywords": ["audit", "design", "accessibility", "ai-slop", "vietnamese", "copy", "motion"]
+}

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// anti-slop / lint-vi — scans the Vietnamese copy in source files for the phrases and habits
+// entersight-audit / lint-vi — scans the Vietnamese copy in source files for the phrases and habits
 // that make a page read as generated. The upstream lint only knows English stock phrases.
 //
 //   node lint-vi.mjs [files or directories ...] [--json]
@@ -14,7 +14,7 @@ const asJson = args.includes('--json');
 const roots = args.filter((a) => !a.startsWith('--'));
 if (!roots.length) roots.push('src');
 const EXT = new Set(['.tsx', '.ts', '.jsx', '.js', '.mdx', '.html', '.md']);
-const SKIP = new Set(['node_modules', '.git', '.next', 'dist', 'build', 'out', '.vercel', 'vendor', '.anti-slop', '.taste-skill']);
+const SKIP = new Set(['node_modules', '.git', '.next', 'dist', 'build', 'out', '.vercel', 'vendor', '.anti-slop', '.entersight-audit', '.taste-skill']);
 
 const files = [];
 const walk = (p) => {

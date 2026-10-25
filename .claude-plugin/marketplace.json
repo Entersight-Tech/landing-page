@@ -1,0 +1,12 @@
+{
+  "name": "entersight-tools",
+  "description": "Entersight internal Claude Code plugins",
+  "owner": { "name": "Entersight", "email": "info@entersight-tech.com" },
+  "plugins": [
+    {
+      "name": "entersight-audit",
+      "source": "./plugins/entersight-audit",
+      "description": "Audit Entersight landing pages and app screens: AI-made look, Vietnamese copy, accessibility, motion, mobile."
+    }
+  ]
+}

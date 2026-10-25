@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// anti-slop / probe — rendered-page checks for accessibility, readability and the remaining
+// entersight-audit / probe — rendered-page checks for accessibility, readability and the remaining
 // Impeccable anti-pattern rules, re-implemented here (the Impeccable detector is a native binary we
 // don't run; its rule catalog is vendor/impeccable/rules.md). Uses the Playwright that the
 // environment already has; installs nothing.
@@ -7,7 +7,7 @@
 //   node probe.mjs <url> [<url> ...] [--json]
 //
 // For each URL at 1440 and 390 px: scrolls the whole page (so reveals fire), then measures.
-// Rule ids follow Impeccable's where one exists, so brand.json can re-level them in audit.mjs.
+// Rule ids follow Impeccable's where one exists, so the audit policy can re-level them in audit.mjs.
 import { createRequire } from 'node:module';
 
 const require = createRequire(import.meta.url);

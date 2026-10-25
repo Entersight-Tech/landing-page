@@ -1,0 +1,30 @@
+{
+  "about": "Project policy for the Entersight landing site (this repo), layered over the Entersight defaults in plugins/entersight-audit/skills/entersight-audit/defaults.json. Run: node plugins/entersight-audit/skills/entersight-audit/scripts/audit.mjs (see that skill's SKILL.md).",
+
+  "mode": "page",
+  "src": ["src"],
+  "urls": ["/", "/lms", "/etstar", "/fashion-studio", "/work/ocb"],
+
+  "brand": {
+    "fonts": ["Montserrat (stand-in for SVN-Gotham)", "Roboto", "Be Vietnam Pro (/fashion-studio)", "Work Sans (/etstar)"]
+  },
+
+  "rules": {
+    "blend-text":   { "level": "warn", "why": "The home nav uses difference blending on purpose; check it over coloured panels." },
+    "covered-text": { "level": "warn", "why": "The /lms phone sticky CTA floats over the bottom edge while the page scrolls; check that nothing stays covered when the page is at rest." },
+    "nested-cards": { "level": "warn", "why": "The /fashion-studio demo form is one surface on a coloured panel, not a card inside a card; check any new case." }
+  },
+
+  "exceptions": [
+    { "id": "eyebrow", "label": "Kể vấn đề của bạn", "why": "A button, not a label: the hero CTA sits above the proof figures at tablet width." },
+    { "id": "eyebrow", "label": "Xem website", "why": "A button inside an open case row, above the next row's name." },
+    { "id": "eyebrow", "label": "Bước 5", "why": "/etstar billboard word (T O P) under the last rollout step: the billboard is the route's chosen style." },
+    { "id": "eyebrow", "label": "Giáo dục", "why": "/etstar billboard word (G Ó I) under the industries list." },
+    { "id": "blank-gap", "url": "/", "width": 390, "why": "Meter limit: the inspector walks 11 screens, the home page is ~16 at 390px. Verified by a full scroll: 0 reveals left hidden (2026-10-25). Re-verify if the page changes length." }
+  ],
+
+  "decisions": [
+    { "date": "2026-10-25", "decision": "Owner confirmed: /etstar figures (10.000+ địa điểm, 50K+ đánh giá, 12+ quốc gia, 1–3 ngày, 3-month minimum), KYE on MUSE since 04/2026, and the Cô Đôi Thượng Ngàn client field." },
+    { "date": "2026-10-25", "decision": "color-scheme: dark is not set on the dark pages for now (owner: 'chưa cần')." }
+  ]
+}

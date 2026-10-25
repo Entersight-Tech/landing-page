@@ -42,4 +42,5 @@ next-env.d.ts
 
 # anti-slop audit working files
 .anti-slop/
+.entersight-audit/
 .taste-skill/

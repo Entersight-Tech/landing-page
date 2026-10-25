@@ -21,7 +21,7 @@ export const whys = [
     fix: "AI soạn bài học, slide và quiz từ tài liệu và ca chốt đơn của công ty. Trưởng nhóm chỉ sửa và duyệt.",
   },
   {
-    pain: "Đọc tài liệu xong, nhân viên mới vẫn tập trên khách thật — và mất khách thật.",
+    pain: "Đọc tài liệu xong, nhân viên mới vẫn tập trên khách thật, và làm mất khách thật.",
     fix: "Luyện chat với khách ảo khó tính, chê đắt, hỏi xoáy kỹ thuật cho tới khi vững tay.",
   },
   {

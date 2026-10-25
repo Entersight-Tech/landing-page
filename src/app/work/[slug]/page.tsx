@@ -45,8 +45,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-const pad = (n: number) => String(n).padStart(2, "0");
-
 export default async function WorkPage({ params }: Props) {
   const { slug } = await params;
   const i = works.findIndex((p) => p.slug === slug);
@@ -61,13 +59,8 @@ export default async function WorkPage({ params }: Props) {
         <article>
           <header className={`container ${styles.hero}`}>
             <div className={styles.heroHead}>
-              <p className={`label ${styles.kicker}`}>
-                <b>
-                  {pad(i + 1)} / {pad(works.length)}
-                </b>
-                {w.kind}
-              </p>
               <h1 className={styles.title}>{w.title}</h1>
+              <p className={styles.kind}>{w.kind}</p>
             </div>
             <div className={styles.side}>
               <p className={styles.summary}>{w.summary}</p>
@@ -114,9 +107,7 @@ export default async function WorkPage({ params }: Props) {
                   sizes="(max-width: 1320px) 94vw, 1240px"
                   priority={k === 0}
                 />
-                <figcaption>
-                  <b>{pad(k + 1)}</b> {shot.caption}
-                </figcaption>
+                <figcaption>{shot.caption}</figcaption>
               </figure>
             ))}
           </div>
@@ -124,10 +115,8 @@ export default async function WorkPage({ params }: Props) {
 
         <Link href={`/work/${next.slug}`} className={`container ${styles.next}`}>
           <span>
-            <span className={styles.nextLabel}>Dự án tiếp theo</span>
-            <span className={styles.nextTitle}>
-              {next.title}
-            </span>
+            <span className={styles.nextTitle}>{next.title}</span>
+            <span className={styles.nextKind}>Dự án tiếp theo: {next.kind}</span>
           </span>
           <span className={styles.nextImg}>
             <Image src={next.shots[0].src} alt="" fill sizes="(max-width: 800px) 92vw, 40vw" />

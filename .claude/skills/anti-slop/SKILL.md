@@ -79,6 +79,11 @@ Order of work, highest leverage first:
 
 Keep each change minimal and in the surrounding code's idiom. Re-run step 1 after each round.
 
+Known meter limit: the inspector walks at most 11 screens. On a page longer than that (the home page
+is ~17 screens at 390px) scroll reveals past screen 11 never fire, so it reports a `blank-gap` there.
+Confirm by scrolling the whole page in a browser and counting `.reveal` elements still at opacity 0;
+if there are none, note it in the report instead of "fixing" the page.
+
 ### 4. Look
 
 Open every screenshot the audit lists, at 1440, 768 and 390, after the last change. Judge them with

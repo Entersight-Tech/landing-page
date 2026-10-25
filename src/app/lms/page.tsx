@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Asterisk from "@/components/Asterisk";
@@ -17,6 +17,9 @@ const description =
   "EnterLMS biến tài liệu và đoạn chat chốt đơn của công ty bạn thành bài học, bài thi và buổi luyện với khách ảo do AI đóng vai. Chấm theo 6 kỹ năng bán hàng. Đặt lịch demo.";
 
 // icon.svg, apple-icon.png and opengraph-image.jpg next to this file
+// phone browser chrome matches the top of this page
+export const viewport: Viewport = { themeColor: "#f4f4f4" };
+
 export const metadata: Metadata = {
   title,
   description,
@@ -45,7 +48,9 @@ const jsonLd = {
 
 // set before first paint so blocks that will animate start hidden (no flash);
 // skipped under reduced motion, where everything simply shows
-const motionFlag = `if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.setAttribute("data-lmsjs","")`;
+// if the motion script never arrives (blocked, failed chunk), drop the flag after
+// 3s so hidden blocks show instead of staying blank
+const motionFlag = `if(!matchMedia("(prefers-reduced-motion: reduce)").matches){var h=document.documentElement;h.setAttribute("data-lmsjs","");setTimeout(function(){if(!document.querySelector("[data-motion]"))h.removeAttribute("data-lmsjs")},3000)}`;
 
 const nav = [
   { label: "Cách hoạt động", href: "#how" },
@@ -90,7 +95,7 @@ export default function LmsPage() {
         <a href="#contact" className={`${styles.btn} ${styles.solid}`}>
           Đặt lịch demo
         </a>
-        <span className={styles.progress} aria-hidden="true" />
+        <span className={styles.progress} data-progress aria-hidden="true" />
       </header>
 
       <main>

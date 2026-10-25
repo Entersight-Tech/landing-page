@@ -19,12 +19,14 @@
   --line: rgba(1, 2, 5, 0.12);
   --line-strong: rgba(1, 2, 5, 0.35);
   --focus-ring: #5549de;
-  --ease: cubic-bezier(0.2, 0.75, 0.1, 1);
+  /* the site-wide curve (globals.css), not a fork of it */
+  --ease: var(--ease-out);
   --inset: clamp(12px, 1.4vw, 20px);
   --radius-lg: clamp(18px, 2.2vw, 28px);
   --gutter: clamp(16px, 3vw, 40px);
 
   min-height: 100vh;
+  min-height: 100svh;
   background: var(--surface);
   color: var(--text);
   font-family: var(--font-body);
@@ -157,7 +159,13 @@
   border: 1px solid var(--line-strong);
   border-radius: 4px;
   cursor: pointer;
-  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.16s var(--ease);
+}
+
+.btn:active {
+  transform: scale(0.97);
 }
 
 .btn::after {
@@ -166,14 +174,18 @@
   transition: transform 0.25s var(--ease);
 }
 
-.btn:hover {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: var(--ink);
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--ink);
+  }
 }
 
-.btn:hover::after {
-  transform: translate(2px, -2px);
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover::after {
+    transform: translate(2px, -2px);
+  }
 }
 
 .btn.solid {
@@ -182,10 +194,12 @@
   color: var(--ink);
 }
 
-.btn.solid:hover {
-  background: var(--text);
-  border-color: var(--text);
-  color: var(--surface);
+@media (hover: hover) and (pointer: fine) {
+  .btn.solid:hover {
+    background: var(--text);
+    border-color: var(--text);
+    color: var(--surface);
+  }
 }
 
 .btn:disabled {
@@ -237,7 +251,8 @@
   height: 2px;
   background: var(--majorelle-blue);
   transform-origin: left;
-  transform: scaleX(var(--scroll, 0));
+  /* Motion.tsx writes scaleX() here directly */
+  transform: scaleX(0);
 }
 
 .links {
@@ -247,8 +262,10 @@
   font-size: 14px;
 }
 
-.links a:hover {
-  color: var(--text-brand);
+@media (hover: hover) and (pointer: fine) {
+  .links a:hover {
+    color: var(--text-brand);
+  }
 }
 
 /* ---------- hero ---------- */
@@ -831,6 +848,7 @@
   line-height: 1;
   letter-spacing: -0.035em;
   color: var(--text);
+  font-variant-numeric: tabular-nums;
 }
 
 .factsList b small {
@@ -1360,6 +1378,7 @@
   font-size: 48px;
   line-height: 1;
   letter-spacing: -0.035em;
+  font-variant-numeric: tabular-nums;
 }
 
 .rpBars {
@@ -1428,12 +1447,21 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: transform 0.16s var(--ease);
 }
 
-.replay:hover:not(:disabled) {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: var(--ink);
+.replay:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .replay:hover:not(:disabled) {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--ink);
+  }
 }
 
 .replay:disabled {
@@ -1627,8 +1655,10 @@
   gap: 12px 24px;
 }
 
-.footIn a:hover {
-  color: var(--text-brand);
+@media (hover: hover) and (pointer: fine) {
+  .footIn a:hover {
+    color: var(--text-brand);
+  }
 }
 
 /* ---------- motion ----------
@@ -1700,7 +1730,7 @@
 :global(html[data-lmsjs]) .playNow .miniIn,
 :global(html[data-lmsjs]) .rise {
   animation: fadeUp 0.9s var(--ease) both;
-  animation-delay: calc(var(--i, var(--d, 0)) * 90ms + 150ms);
+  animation-delay: calc(var(--i, var(--d, 0)) * 60ms + 120ms);
 }
 
 :global(html[data-lmsjs]) .heroCard.rise {
@@ -1715,8 +1745,8 @@
 }
 
 :global(html[data-lmsjs]) .page [data-reveal] {
-  transition: opacity 0.9s var(--ease) calc(var(--d, 0) * 90ms),
-    transform 0.9s var(--ease) calc(var(--d, 0) * 90ms);
+  transition: opacity 0.9s var(--ease) calc(var(--d, 0) * 60ms),
+    transform 0.9s var(--ease) calc(var(--d, 0) * 60ms);
 }
 
 /* intros: the block stays put, only its words move */
@@ -1933,12 +1963,20 @@
   transition: opacity 0.5s ease 1s;
 }
 
+/* reduced motion: nothing moves, but colour and opacity feedback stays */
 @media (prefers-reduced-motion: reduce) {
   .page *,
   .page *::before,
   .page *::after {
-    transition: none !important;
     animation: none !important;
+    transition-property: opacity, color, background-color, border-color !important;
+    transition-duration: 0.2s !important;
+    transition-delay: 0s !important;
+  }
+
+  .btn:active,
+  .replay:active {
+    transform: none;
   }
 }
 

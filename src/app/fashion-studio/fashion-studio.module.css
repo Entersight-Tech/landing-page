@@ -85,8 +85,10 @@
   transition: color 0.2s ease;
 }
 
-.links a:hover {
-  color: var(--lime);
+@media (hover: hover) and (pointer: fine) {
+  .links a:hover {
+    color: var(--lime);
+  }
 }
 
 .barCta {
@@ -544,6 +546,13 @@
   font-family: var(--font-head);
   font-weight: 600;
   font-size: 17px;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: opacity 0.1s var(--ease-out);
+}
+
+.faq summary:active {
+  opacity: 0.7;
 }
 
 .faq summary::-webkit-details-marker {
@@ -556,10 +565,13 @@
   font-weight: 400;
   font-size: 22px;
   line-height: 1;
+  display: inline-block;
+  transition: transform 0.2s var(--ease-out);
 }
 
+/* + turns into × */
 .faq details[open] summary::after {
-  content: "–";
+  transform: rotate(45deg);
 }
 
 .faq p {
@@ -658,7 +670,8 @@
   border: 1px solid var(--line-strong);
   background: transparent;
   color: var(--paper);
-  font: 400 15px/1.4 var(--font-body);
+  /* under 16px and iOS zooms the page into the field */
+  font: 400 16px/1.4 var(--font-body);
   letter-spacing: 0;
   text-transform: none;
 }
@@ -733,8 +746,10 @@
   color: var(--muted-2);
 }
 
-.foot a:hover {
-  color: var(--lime);
+@media (hover: hover) and (pointer: fine) {
+  .foot a:hover {
+    color: var(--lime);
+  }
 }
 
 .footLogo {
@@ -1249,6 +1264,8 @@
     grid-auto-columns: 72%;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
+    /* a swipe past the last look must not become browser back */
+    overscroll-behavior-x: contain;
     margin-right: calc(-1 * var(--gutter));
     padding-right: var(--gutter);
     scrollbar-width: none;
@@ -1256,5 +1273,33 @@
 
   .lbOut li {
     scroll-snap-align: start;
+  }
+}
+
+/* the hero mock plays in on load, in CSS, so it never waits on hydration */
+.heroMock {
+  animation: heroIn 0.7s var(--ease-out) 0.15s both;
+}
+
+@keyframes heroIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroMock {
+    animation-name: heroFade;
+  }
+
+  @keyframes heroFade {
+    from {
+      opacity: 0;
+    }
+  }
+
+  .faq summary::after {
+    transition: none;
   }
 }

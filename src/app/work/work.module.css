@@ -2,6 +2,7 @@
 .page {
   --tone: var(--night);
   min-height: 100vh;
+  min-height: 100svh;
   background: var(--tone);
   color: var(--paper);
 }
@@ -176,7 +177,7 @@
   line-height: 0.95;
   letter-spacing: -0.05em;
   text-transform: uppercase;
-  transition: color 0.3s ease;
+  transition: color 0.2s ease;
 }
 
 .nextTitle::after {
@@ -184,8 +185,10 @@
   color: var(--lime);
 }
 
-.next:hover .nextTitle {
-  color: var(--lime);
+@media (hover: hover) and (pointer: fine) {
+  .next:hover .nextTitle {
+    color: var(--lime);
+  }
 }
 
 .nextImg {
@@ -197,11 +200,13 @@
 
 .nextImg img {
   object-fit: cover;
-  transition: transform 0.8s var(--ease-out);
+  transition: transform 0.3s var(--ease-out);
 }
 
-.next:hover .nextImg img {
-  transform: scale(1.04);
+@media (hover: hover) and (pointer: fine) {
+  .next:hover .nextImg img {
+    transform: scale(1.04);
+  }
 }
 
 .foot {
@@ -216,8 +221,10 @@
   color: var(--dim);
 }
 
-.foot a:hover {
-  color: var(--lime);
+@media (hover: hover) and (pointer: fine) {
+  .foot a:hover {
+    color: var(--lime);
+  }
 }
 
 /* ---------- index ---------- */
@@ -254,11 +261,13 @@
 
 .cardImg img {
   object-fit: cover;
-  transition: transform 0.8s var(--ease-out);
+  transition: transform 0.3s var(--ease-out);
 }
 
-.card:hover .cardImg img {
-  transform: scale(1.04);
+@media (hover: hover) and (pointer: fine) {
+  .card:hover .cardImg img {
+    transform: scale(1.04);
+  }
 }
 
 .cardMeta {
@@ -274,11 +283,13 @@
   font-size: clamp(20px, 2vw, 30px);
   letter-spacing: -0.03em;
   text-transform: uppercase;
-  transition: color 0.3s ease;
+  transition: color 0.2s ease;
 }
 
-.card:hover .cardTitle {
-  color: var(--lime);
+@media (hover: hover) and (pointer: fine) {
+  .card:hover .cardTitle {
+    color: var(--lime);
+  }
 }
 
 .cardKind {
@@ -300,5 +311,35 @@
 
   .barLinks a:first-child {
     display: none;
+  }
+}
+
+/* press feedback: the tap highlight is off site-wide */
+.card,
+.next {
+  -webkit-touch-callout: none;
+}
+
+.cardImg {
+  transition: transform 0.16s var(--ease-out);
+}
+
+.card:active .cardImg {
+  transform: scale(0.98);
+}
+
+.next {
+  transition: opacity 0.12s var(--ease-out);
+}
+
+.next:active {
+  opacity: 0.85;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cardImg img,
+  .nextImg img,
+  .card:active .cardImg {
+    transform: none !important;
   }
 }

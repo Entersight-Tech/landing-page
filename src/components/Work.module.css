@@ -61,8 +61,10 @@
   object-fit: contain;
 }
 
-.card:hover .media img {
-  transform: scale(1.04);
+@media (hover: hover) and (pointer: fine) {
+  .card:hover .media img {
+    transform: scale(1.04);
+  }
 }
 
 .name {
@@ -73,8 +75,10 @@
   transition: color 0.2s ease;
 }
 
-.card:hover .name {
-  color: var(--lime);
+@media (hover: hover) and (pointer: fine) {
+  .card:hover .name {
+    color: var(--lime);
+  }
 }
 
 .kind {

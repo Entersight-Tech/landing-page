@@ -134,8 +134,10 @@
   transition: opacity 0.2s ease;
 }
 
-.trust img:hover {
-  opacity: 0.9;
+@media (hover: hover) and (pointer: fine) {
+  .trust img:hover {
+    opacity: 0.9;
+  }
 }
 
 /* load-in: copy first, the numbers a beat later */

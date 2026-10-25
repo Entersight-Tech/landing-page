@@ -236,15 +236,6 @@ button {
   letter-spacing: -0.025em;
 }
 
-/* section label: sentence case at a readable size, not tiny tracked caps */
-.eyebrow {
-  display: block;
-  font-family: var(--font-head);
-  font-weight: 600;
-  font-size: 15px;
-  color: var(--lime);
-}
-
 .lede {
   font-size: clamp(16px, 1.3vw, 18px);
   line-height: 1.65;
@@ -257,10 +248,6 @@ button {
   color: var(--ink);
   --dim: rgba(1, 2, 5, 0.62);
   --line: rgba(1, 2, 5, 0.12);
-}
-
-.light .eyebrow {
-  color: var(--blue);
 }
 
 main section[id] {

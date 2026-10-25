@@ -25,7 +25,6 @@ export default function Problem() {
     <section className={styles.section} id="problem" aria-labelledby="problem-title">
       <div className="container">
         <header className={styles.head}>
-          <span className="eyebrow">Nghe có quen không?</span>
           <h2 id="problem-title" className="h2 reveal">
             Không thiếu người. Thiếu quy trình.
           </h2>

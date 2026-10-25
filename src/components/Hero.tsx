@@ -24,14 +24,13 @@ export default function Hero() {
 
       <div className={`container ${styles.inner}`}>
         <div className={styles.copy}>
-          <p className={`eyebrow ${styles.kicker}`}>Entersight · Marketing & vận hành bằng AI</p>
           <h1 className={styles.title}>
             Để máy làm <span className="lime">việc lặp lại.</span>
           </h1>
           <p className={styles.sub}>
-            Đội của bạn lo khách hàng. Chúng tôi dựng hệ thống vận hành, chạy
-            quảng cáo và làm nội dung cho doanh nghiệp vừa và nhỏ: từ homestay ở
-            Huế không cần lễ tân đến studio thời trang ra lookbook bằng AI.
+            Đội của bạn lo khách hàng. Entersight dựng hệ thống vận hành, chạy
+            quảng cáo và làm nội dung bằng AI cho doanh nghiệp vừa và nhỏ: từ
+            homestay ở Huế không cần lễ tân đến studio thời trang ra lookbook.
           </p>
           <div className={styles.actions}>
             <a href="#contact" className="btn btn--solid">

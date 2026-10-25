@@ -75,9 +75,7 @@
   margin-left: auto;
   font-family: var(--font-head);
   font-weight: 600;
-  font-size: 13px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-size: 14px;
 }
 
 .links a {
@@ -121,7 +119,7 @@
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: -0.02em;
-  margin: 20px 0;
+  margin: 0 0 20px;
 }
 
 /* the first screen's one dominant thing: two authored lines at display size */
@@ -169,12 +167,6 @@
   margin-bottom: clamp(40px, 5vw, 72px);
 }
 
-/* the global micro label, raised to the page's small size (13px floor) */
-.page :global(.label) {
-  font-size: 13px;
-  letter-spacing: 0.12em;
-}
-
 .ctas {
   display: flex;
   flex-wrap: wrap;
@@ -208,7 +200,7 @@
   align-items: center;
 }
 
-/* label + h1 run the full measure above the copy/mock row */
+/* the h1 runs the full measure above the copy/mock row */
 .heroHead {
   grid-column: 1 / -1;
 }
@@ -312,7 +304,7 @@
   }
 }
 
-/* numbered lists: modes and quality */
+/* ruled lists: modes and quality */
 
 .modes,
 .quality {
@@ -344,7 +336,7 @@
   font-weight: 700;
   font-size: 18px;
   letter-spacing: -0.01em;
-  margin: 10px 0 8px;
+  margin: 0 0 8px;
 }
 
 .modes p,
@@ -353,14 +345,6 @@
   font-size: 16px;
   line-height: 1.6;
   color: var(--dim);
-}
-
-.modeNo {
-  font-family: var(--font-head);
-  font-weight: 600;
-  font-size: 13px;
-  letter-spacing: 0.12em;
-  color: var(--lime);
 }
 
 .quality {
@@ -406,10 +390,6 @@
   color: var(--white);
 }
 
-.panel :global(.label) {
-  color: rgba(255, 255, 255, 0.78);
-}
-
 .panel .body {
   color: rgba(255, 255, 255, 0.86);
 }
@@ -441,9 +421,7 @@
   border: 1px solid rgba(255, 255, 255, 0.4);
   font-family: var(--font-head);
   font-weight: 600;
-  font-size: 13px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-size: 14px;
 }
 
 .roles li + li::before {
@@ -687,9 +665,7 @@
   gap: 8px;
   font-family: var(--font-head);
   font-weight: 600;
-  font-size: 13px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: 14px;
   color: var(--dim);
 }
 
@@ -1202,7 +1178,7 @@
   font-weight: 700;
   font-size: 24px;
   letter-spacing: -0.01em;
-  margin: 10px 0 8px;
+  margin: 0 0 8px;
 }
 
 .lbHead p {
@@ -1223,9 +1199,7 @@
   margin-bottom: 12px;
   font-family: var(--font-head);
   font-weight: 600;
-  font-size: 13px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-size: 15px;
   color: var(--muted-2);
 }
 
@@ -1269,8 +1243,9 @@
 }
 
 .lbArrow {
-  font-family: var(--font-head);
-  font-size: 28px;
+  display: block;
+  width: 32px;
+  height: 32px;
   color: var(--lime);
 }
 

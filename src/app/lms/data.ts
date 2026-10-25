@@ -33,24 +33,20 @@ export const whys = [
 /** The main journey, from the overview doc. Each step has a mock in page.tsx. */
 export const steps = [
   {
-    who: "Đội đào tạo",
     title: "Nạp kiến thức và ca thật",
-    body: "Thêm bảng giá, quy trình, FAQ vào Knowledge Base. Tải lên đoạn chat bán hàng (.txt, .docx) và gắn nhãn thành công hay thất bại.",
+    body: "Đội đào tạo thêm bảng giá, quy trình, FAQ vào Knowledge Base. Tải lên đoạn chat bán hàng (.txt, .docx) và gắn nhãn thành công hay thất bại.",
   },
   {
-    who: "AI",
     title: "Phân tích từng ca",
     body: "AI ẩn danh hoá hội thoại, rút chân dung khách, tìm khoảnh khắc then chốt và kỹ thuật đã dùng.",
   },
   {
-    who: "Quản lý",
     title: "Duyệt bài AI soạn",
-    body: "Bài học, slide, infographic và quiz nằm ở bản nháp. Người có chuyên môn sửa, duyệt rồi mới xuất bản.",
+    body: "Bài học, slide, infographic và quiz nằm ở bản nháp. Quản lý hoặc người có chuyên môn sửa, duyệt rồi mới xuất bản.",
   },
   {
-    who: "Nhân viên sale",
     title: "Học, thi và luyện",
-    body: "Mỗi người biết hôm nay cần học gì, làm bài thi có giờ và luyện chat với khách ảo.",
+    body: "Mỗi nhân viên sale biết hôm nay cần học gì, làm bài thi có giờ và luyện chat với khách ảo.",
   },
 ];
 

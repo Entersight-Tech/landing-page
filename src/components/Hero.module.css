@@ -141,7 +141,6 @@
 }
 
 /* load-in: copy first, the numbers a beat later */
-.kicker,
 .title,
 .sub,
 .actions,
@@ -203,7 +202,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .ast,
-  .kicker,
   .title,
   .sub,
   .actions,

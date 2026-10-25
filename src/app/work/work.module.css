@@ -38,13 +38,6 @@
   font-size: 13px;
 }
 
-/* the global .label is 11px tracked caps; here it is read (counter + project type), so sentence case at 13px */
-:global(.label).kicker {
-  font-size: 13px;
-  letter-spacing: 0.02em;
-  text-transform: none;
-}
-
 /* ---------- case page ---------- */
 .hero {
   display: grid;
@@ -58,7 +51,7 @@
 .heroHead {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
 }
 
 .title {
@@ -69,6 +62,15 @@
   line-height: 0.95;
   letter-spacing: -0.05em;
   text-transform: uppercase;
+}
+
+/* the project's kind, a plain line under the title */
+.kind,
+.nextKind {
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--dim);
 }
 
 .facts {
@@ -148,17 +150,9 @@
 }
 
 .shot figcaption {
-  display: flex;
-  gap: 12px;
   margin-top: 12px;
   font-size: 14px;
   color: var(--dim);
-}
-
-.shot figcaption b {
-  font-family: var(--font-head);
-  font-weight: 700;
-  color: var(--lime);
 }
 
 /* next project: the whole band is the link */
@@ -172,16 +166,8 @@
   border-top: 1px solid var(--line);
 }
 
-.nextLabel {
-  font-family: var(--font-head);
-  font-weight: 600;
-  font-size: 14px;
-  color: var(--dim);
-}
-
 .nextTitle {
   display: block;
-  margin-top: 12px;
   font-family: var(--font-head);
   font-weight: 800;
   font-size: clamp(32px, 5.4vw, 88px);
@@ -194,6 +180,11 @@
 .nextTitle::after {
   content: " →";
   color: var(--lime);
+}
+
+.nextKind {
+  display: block;
+  margin-top: 16px;
 }
 
 @media (hover: hover) and (pointer: fine) {

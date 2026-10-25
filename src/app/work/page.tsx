@@ -6,8 +6,7 @@ import { WorkBar, WorkFoot } from "./WorkChrome";
 import styles from "./work.module.css";
 
 const title = "Dự án của LauLau Creative | Entersight";
-const description =
-  "LauLau Creative là đội sáng tạo của Entersight. Đây là các dự án năm 2025: bài pitch sự kiện cho OCB, bộ nhận diện Nookscape, website CHUNCHIN Studio, visual LED và nội dung social.";
+const description = `LauLau Creative là đội sáng tạo của Entersight. Đây là ${works.length} dự án năm 2025: bài pitch sự kiện cho OCB, bộ nhận diện Nookscape, website CHUNCHIN Studio, visual LED và nội dung social.`;
 
 export const metadata: Metadata = {
   title,
@@ -22,16 +21,13 @@ export default function WorkIndex() {
       <WorkBar />
       <main>
         <div className={`container ${styles.indexHead}`}>
-          <p className={`label ${styles.kicker}`}>
-            <b>{works.length}</b> dự án
-          </p>
           <h1 className={styles.title}>
             LauLau <span className="lime">Creative</span>
           </h1>
           <p className={styles.summary}>{description}</p>
         </div>
 
-        <ol className={`container ${styles.grid}`}>
+        <ul className={`container ${styles.grid}`}>
           {works.map((w, i) => (
             <li key={w.slug}>
               <Link href={`/work/${w.slug}`} className={styles.card}>
@@ -54,7 +50,7 @@ export default function WorkIndex() {
               </Link>
             </li>
           ))}
-        </ol>
+        </ul>
       </main>
       <WorkFoot />
     </div>

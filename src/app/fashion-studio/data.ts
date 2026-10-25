@@ -27,22 +27,18 @@ export const scriptRoles = [
 /** The four quality layers (README "Bốn vấn đề của KYE", ARCHITECTURE_MUSE §4–5). */
 export const quality = [
   {
-    k: "01",
     title: "Gác cổng trước khi tốn credit",
     text: "Ảnh quá nhỏ, mờ, cháy sáng hoặc không thấy mặt bị chặn ngay, kèm hướng dẫn chụp lại. Chưa gọi AI, chưa mất credit nào.",
   },
   {
-    k: "02",
     title: "Người mẫu khoá seed",
     text: "Model tạo một lần trong Elements, mang theo seed và bộ makeup mặc định sang mọi mode. Cùng một gương mặt qua từng bộ ảnh.",
   },
   {
-    k: "03",
     title: "QC tự động, làm lại một lần",
     text: "Mỗi ảnh được chấm gương mặt, bàn tay và độ khớp với sản phẩm gốc. Lỗi nặng thì tự tạo lại với seed khác trước khi trả về.",
   },
   {
-    k: "04",
     title: "Báo giá trước khi bấm",
     text: "Số credit hiện trước nút Gửi, kèm trường hợp xấu nhất nếu QC phải làm lại. Ảnh cần xem lại được gắn nhãn, không bị giấu.",
   },
@@ -89,7 +85,6 @@ export const faqs = [
  *  inputs on the left, MUSE output on the right. Images in public/fashion-studio/real/. */
 export const lookbooks = [
   {
-    tag: "Đổi bối cảnh",
     title: "Một bộ suit. Bối cảnh mới.",
     text: "Ảnh studio nền xám của shop thành lookbook trên nền đá, không cần dựng set. Người mẫu là gương mặt cố định đã lưu trong MUSE.",
     inputs: [
@@ -102,7 +97,6 @@ export const lookbooks = [
     ],
   },
   {
-    tag: "Đổi không gian",
     title: "Từ sàn runway ra bờ biển.",
     text: "Ảnh bộ suit thêu chụp từ show, ảnh người mẫu nền trắng và một phông bờ biển: ba khung hình ngoài trời, vẫn giữ chi tiết thêu và đính đá trên áo.",
     inputs: [

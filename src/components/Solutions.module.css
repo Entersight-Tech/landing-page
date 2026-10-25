@@ -5,13 +5,8 @@
 .head {
   display: grid;
   grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-  grid-template-rows: auto auto;
-  gap: 20px clamp(32px, 6vw, 96px);
+    gap: 20px clamp(32px, 6vw, 96px);
   align-items: end;
-}
-
-.head :global(.eyebrow) {
-  grid-column: 1 / -1;
 }
 
 .head :global(.h2) {
@@ -30,19 +25,13 @@
 
 .service {
   display: grid;
-  grid-template-columns: 56px minmax(0, 0.9fr) minmax(0, 1.4fr) minmax(0, 0.8fr);
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr) minmax(0, 0.8fr);
   gap: 16px 32px;
   align-items: baseline;
   padding: 28px 0;
   border-bottom: 1px solid var(--line);
 }
 
-.idx {
-  font-family: var(--font-head);
-  font-weight: 600;
-  font-size: 13px;
-  color: var(--dim);
-}
 
 .name {
   font-family: var(--font-head);
@@ -157,12 +146,7 @@
 
 @media (max-width: 1000px) {
   .service {
-    grid-template-columns: 40px minmax(0, 1fr);
-  }
-
-  .what,
-  .example {
-    grid-column: 2;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .example {

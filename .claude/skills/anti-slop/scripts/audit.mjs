@@ -19,6 +19,21 @@ const skill = resolve(here, '..');
 const vendor = join(skill, 'vendor', 'taste-skill', 'scripts');
 const brand = JSON.parse(readFileSync(join(skill, 'brand.json'), 'utf8'));
 const rules = brand.rules || {};
+const exceptions = brand.exceptions || [];
+
+// An exception allows one finding checked by hand: every "label" above "heading" pair in an
+// eyebrow finding must be listed, or (page-level findings) the url path and width must match.
+function exceptionFor(f, url) {
+  const mine = exceptions.filter((e) => e.id === f.id);
+  if (!mine.length) return null;
+  const pairs = [...(f.message || '').matchAll(/"([^"]+)" above "/g)].map((m) => m[1]);
+  if (pairs.length) {
+    const hit = pairs.map((l) => mine.find((e) => e.label && l.startsWith(e.label)));
+    return hit.every(Boolean) ? hit[0] : null;
+  }
+  const path = url ? new URL(url).pathname : null;
+  return mine.find((e) => e.url && e.url === path && (!e.width || e.width === f.width)) || null;
+}
 
 const args = process.argv.slice(2);
 const asJson = args.includes('--json');
@@ -102,6 +117,11 @@ for (const url of urls) {
   for (const f of rep.findings || []) {
     if (f.id === 'emoji' && /:\s*[★☆,\s]+$/u.test(f.message)) {
       all.push({ ...f, file: url, source: 'inspect', level: 'ALLOW', why: 'Star rating glyph, not an emoji icon.' });
+      continue;
+    }
+    const ex = exceptionFor(f, url);
+    if (ex) {
+      all.push({ ...f, file: url, source: 'inspect', level: 'ALLOW', why: ex.why });
       continue;
     }
     all.push(relevel({ ...f, file: url }, 'inspect'));

@@ -174,7 +174,6 @@ export default function CaseStudies() {
     <section className={styles.section} id="case-studies">
       <div className="container">
         <header className={styles.head}>
-          <span className="eyebrow">Dự án đã làm</span>
           <h2 className={`h2 ${styles.title} reveal`}>
             Bốn doanh nghiệp, bốn bài toán.
           </h2>
@@ -197,7 +196,6 @@ export default function CaseStudies() {
                   onClick={() => setOpen(isOpen ? -1 : i)}
                   onPointerEnter={() => setHover(i)}
                 >
-                  <span className={styles.idx}>{String(i + 1).padStart(2, "0")}</span>
                   <span className={styles.name}>{c.title}</span>
                   <span className={styles.meta}>
                     <span>{c.subtitle}</span>
@@ -220,7 +218,7 @@ export default function CaseStudies() {
                     <div className={styles.cols}>
                       {COLUMNS.map((col) => (
                         <div key={col.key} className={styles.col}>
-                          <span className={styles.colLabel}>{col.label}</span>
+                          <h4 className={styles.colLabel}>{col.label}</h4>
                           <ul>
                             {c[col.key].map((t) => (
                               <li key={t}>{t}</li>

@@ -128,7 +128,7 @@ export default function ETStarPage() {
                     <path id="ets-ring" d="M60 60 m-44 0 a44 44 0 1 1 88 0 a44 44 0 1 1 -88 0" />
                   </defs>
                   <text>
-                    <textPath href="#ets-ring">100% KHÁCH THẬT · 0 REVIEW ẢO ·</textPath>
+                    <textPath href="#ets-ring">100% khách thật · 0 review ảo ·</textPath>
                   </text>
                 </svg>
                 <b>
@@ -137,7 +137,6 @@ export default function ETStarPage() {
                   </svg>
                 </b>
               </span>
-              <p className={styles.tag} data-reveal>Sản phẩm · ETStar</p>
               <h1 className={styles.h1}>Thu hút khách mới trên Google Maps.</h1>
               <p className={styles.lead}>
                 ETStar giúp cửa hàng có thêm review thật từ chính khách của mình
@@ -164,14 +163,14 @@ export default function ETStarPage() {
             </figure>
           </div>
 
-          <dl className={`${styles.wrap} ${styles.stats}`}>
+          <ul className={`${styles.wrap} ${styles.stats}`}>
             {stats.map((s, i) => (
-              <div key={s.label} data-reveal style={d(i)}>
-                <dt>{s.label}</dt>
-                <dd data-count>{s.value}</dd>
-              </div>
+              <li key={s.label} data-reveal style={d(i)}>
+                <b data-count>{s.value}</b>
+                <span>{s.label}</span>
+              </li>
             ))}
-          </dl>
+          </ul>
         </section>
 
         {/* ---------- problem ---------- */}
@@ -179,12 +178,12 @@ export default function ETStarPage() {
           <Billboard word="MAPS" tone="lavender" />
           <div className={`${styles.wrap} ${styles.split}`}>
             <div>
-              <p className={styles.tag} data-reveal>Mỗi ngày, khách vẫn đang tìm</p>
-              <h2 className={styles.h2} data-reveal style={d(1)}>
+              <h2 className={styles.h2} data-reveal>
                 Khách mới có tìm thấy bạn?
               </h2>
-              <p className={styles.body} data-reveal style={d(2)}>
-                Cửa hàng làm tốt vẫn chưa đủ. Khách không biết bạn tốt đến đâu: họ
+              <p className={styles.body} data-reveal style={d(1)}>
+                Mỗi ngày vẫn có khách tìm quán trên Google Maps, nhưng cửa hàng
+                làm tốt vẫn chưa đủ. Khách không biết bạn tốt đến đâu: họ
                 chỉ thấy số sao, lời khách cũ và tốc độ chủ quán phản hồi, rồi quyết
                 định trong vài giây. Nếu hồ
                 sơ yếu, khách sang quán bên cạnh mà bạn không hề biết.
@@ -194,19 +193,18 @@ export default function ETStarPage() {
                 alt="Bản đồ giấy với ghim định vị tím và ngôi sao lime"
                 className={`${styles.photo} ${styles.problemPhoto}`}
                 data-reveal
-                style={d(3)}
+                style={d(2)}
                 sizes="(max-width: 860px) 92vw, 520px"
               />
             </div>
-            <ol className={styles.questions}>
+            <ul className={styles.questions}>
               {questions.map((q, i) => (
                 <li key={q.q} data-reveal style={d(i)}>
-                  <span className={styles.num}>0{i + 1}</span>
                   <h3>{q.q}</h3>
                   <p>{q.a}</p>
                 </li>
               ))}
-            </ol>
+            </ul>
           </div>
           <div className={`${styles.wrap} ${styles.warn}`}>
             <p>
@@ -222,10 +220,7 @@ export default function ETStarPage() {
           <Billboard word="STAR" tone="lime" />
           <div className={styles.wrap}>
             <div className={styles.pillarsHead}>
-              <div>
-                <p className={styles.tag} data-reveal>Ba việc ETStar làm cùng bạn</p>
-                <h2 className={styles.h2} data-reveal style={d(1)}>Thu hút. Chăm sóc. Bảo vệ.</h2>
-              </div>
+              <h2 className={styles.h2} data-reveal>Thu hút. Chăm sóc. Bảo vệ.</h2>
               <Image
                 src={phoneShot}
                 alt="Điện thoại hiển thị review 5 sao cạnh bát phở"
@@ -237,8 +232,7 @@ export default function ETStarPage() {
             </div>
             <div className={styles.row3}>
               {pillars.map((p, i) => (
-                <article key={p.tag} className={styles.pillar} data-reveal style={d(i)}>
-                  <p className={styles.tag}>{p.tag}</p>
+                <article key={p.title} className={styles.pillar} data-reveal style={d(i)}>
                   <h3>{p.title}</h3>
                   <p>{p.body}</p>
                   <p className={styles.caption}>{p.caption}</p>
@@ -253,8 +247,7 @@ export default function ETStarPage() {
           <Billboard word="QR" tone="lavender" />
           <div className={`${styles.wrap} ${styles.split}`}>
             <div className={styles.qrCol}>
-              <p className={styles.tag} data-reveal>Một review thật ra đời thế nào</p>
-              <h2 className={styles.h2} data-reveal style={d(1)}>Từ mã QR đến review trên Maps.</h2>
+              <h2 className={styles.h2} data-reveal>Từ mã QR đến review trên Maps.</h2>
               <ol className={styles.flow}>
                 <li data-reveal style={d(2)}>Khách quét QR tại bàn</li>
                 <li data-reveal style={d(3)}>Trả lời khảo sát ngắn bằng ngôn ngữ của mình</li>
@@ -272,13 +265,13 @@ export default function ETStarPage() {
             </div>
 
             <div>
-              <p className={styles.tag} data-reveal>Lộ trình triển khai</p>
+              <h3 className={styles.stepsTitle} data-reveal>Lộ trình triển khai</h3>
               <ol className={styles.steps}>
                 {steps.map((s, i) => (
                   <li key={s.title} data-reveal style={d(i)}>
-                    <span className={styles.num}>0{i + 1}</span>
+                    <span className={styles.stepNo}>Bước {i + 1}</span>
                     <div>
-                      <h3>{s.title}</h3>
+                      <h4>{s.title}</h4>
                       <p>{s.body}</p>
                     </div>
                   </li>
@@ -292,26 +285,25 @@ export default function ETStarPage() {
         <section className={styles.section} id="results">
           <Billboard word="TOP" tone="lime" />
           <div className={styles.wrap}>
-            <p className={styles.tag} data-reveal>Kịch bản minh hoạ</p>
-            <h2 className={styles.h2} data-reveal style={d(1)}>
+            <h2 className={styles.h2} data-reveal>
               Cửa hàng lên top làm gì khác?
             </h2>
-            <p className={styles.body} data-reveal style={d(2)}>
+            <p className={styles.body} data-reveal style={d(1)}>
               Không phải quảng cáo, cũng không phải may mắn. Họ làm đều đặn vài việc
               nhỏ mà Google Maps ghi nhận. ETStar tự động hoá đúng những việc đó.
+              Bốn kịch bản minh hoạ dưới đây cho thấy từng việc.
             </p>
             <div className={styles.cases}>
               {playbooks.map((c, i) => (
                 <article key={c.kind} className={styles.case} data-reveal style={d(i)}>
                   <header>
-                    <span className={styles.demo}>Minh hoạ</span>
                     <h3>{c.kind}</h3>
-                    <p className={styles.caption}>{c.place}</p>
                   </header>
                   <p className={styles.caseBig}>
                     {c.big}
                     <small>{c.bigLabel}</small>
                   </p>
+                  <p className={styles.caption}>Minh hoạ · {c.place}</p>
                   <dl>
                     <div>
                       <dt>Họ làm</dt>
@@ -357,19 +349,18 @@ export default function ETStarPage() {
           <Billboard word="GÓI" tone="lavender" />
           <div className={`${styles.wrap} ${styles.split}`}>
             <div>
-              <p className={styles.tag} data-reveal>Gói Đồng Hành</p>
-              <h2 className={styles.h2} data-reveal style={d(1)}>Một gói, giá theo chi nhánh.</h2>
-              <p className={styles.price} data-reveal style={d(2)}>
+              <h2 className={styles.h2} data-reveal>Gói Đồng Hành, giá theo chi nhánh.</h2>
+              <p className={styles.price} data-reveal style={d(1)}>
                 Báo giá riêng
                 <small>Hợp đồng từ 3 tháng · ưu đãi khi ký 6 & 12 tháng</small>
               </p>
-              <p className={styles.body} data-reveal style={d(3)}>
+              <p className={styles.body} data-reveal style={d(2)}>
                 Gửi tên cửa hàng hoặc link Google Maps. Entersight gửi báo giá theo
                 số chi nhánh của bạn trong ngày làm việc.
               </p>
             </div>
             <div className={styles.includedCol} data-reveal style={d(1)}>
-              <p className={styles.tag}>Đã bao gồm</p>
+              <h3>Đã bao gồm</h3>
               <ul className={styles.included}>
                 {included.map((x) => (
                   <li key={x}>{x}</li>
@@ -389,10 +380,7 @@ export default function ETStarPage() {
         {/* ---------- faq ---------- */}
         <section className={styles.section} id="faq">
           <div className={`${styles.wrap} ${styles.split}`}>
-            <div>
-              <p className={styles.tag} data-reveal>Hỏi đáp</p>
-              <h2 className={styles.h2} data-reveal style={d(1)}>Những điều chủ cửa hàng hay hỏi.</h2>
-            </div>
+            <h2 className={styles.h2} data-reveal>Những điều chủ cửa hàng hay hỏi.</h2>
             <div className={styles.faq} data-reveal style={d(1)}>
               {faqs.map((f) => (
                 <details key={f.q}>
@@ -409,11 +397,11 @@ export default function ETStarPage() {
           <Billboard word="0đ" tone="lime" />
           <div className={`${styles.wrap} ${styles.split}`}>
             <div>
-              <p className={styles.tag} data-reveal>Chẩn đoán Google Maps miễn phí</p>
-              <h2 className={styles.h2} data-reveal style={d(1)}>Bạn đang lỡ khách mới ở đâu?</h2>
-              <p className={styles.body} data-reveal style={d(2)}>
+              <h2 className={styles.h2} data-reveal>Bạn đang lỡ khách mới ở đâu?</h2>
+              <p className={styles.body} data-reveal style={d(1)}>
                 Để lại thông tin, chúng tôi xem hồ sơ Google Maps hiện tại và gửi
-                bạn bản chẩn đoán ngắn, không thuật ngữ kỹ thuật. Chưa cần cam kết.
+                bạn bản chẩn đoán miễn phí, ngắn gọn, không thuật ngữ kỹ thuật.
+                Chưa cần cam kết.
               </p>
               <p className={styles.fine}>
                 Hoặc nhắn Zalo <a href="https://zalo.me/0941233481">0941 233 481</a> ·{" "}

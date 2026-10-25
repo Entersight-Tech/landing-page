@@ -13,7 +13,6 @@ export default function Work() {
       <div className="container">
         <header className={styles.head}>
           <div>
-            <span className="eyebrow">LauLau Creative</span>
             <h2 id="work-title" className="h2 reveal">
               Hình ảnh do đội nhà làm.
             </h2>

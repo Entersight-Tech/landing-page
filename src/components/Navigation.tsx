@@ -73,7 +73,6 @@ export default function Navigation() {
               style={{ transitionDelay: open ? `${0.08 + i * 0.04}s` : "0s" }}
               onClick={() => setOpen(false)}
             >
-              <span className={styles.sheetIdx}>0{i + 1}</span>
               {l.label}
             </a>
           ))}

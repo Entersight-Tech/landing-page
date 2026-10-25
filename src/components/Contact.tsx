@@ -48,7 +48,6 @@ export default function Contact() {
     <section className={styles.section} id="contact">
       <div className={`container ${styles.inner}`}>
         <div className={styles.left}>
-          <span className="eyebrow">Liên hệ</span>
           <h2 className={`h2 ${styles.title} reveal`}>
             Bạn đang vướng ở đâu?
           </h2>

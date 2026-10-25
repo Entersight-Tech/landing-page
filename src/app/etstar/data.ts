@@ -25,19 +25,16 @@ export const mapsList = [
 
 export const pillars = [
   {
-    tag: "01 · Thu hút",
     title: "Thêm review thật, không cần nhắc từng khách.",
     body: "Khách quét QR, trả lời khảo sát ngắn (đa ngôn ngữ). AI soạn sẵn nội dung đánh giá từ chính trải nghiệm đó. Khách xem lại, tự chỉnh và tự đăng lên Google Maps.",
     caption: "QR tại bàn · quầy thu ngân",
   },
   {
-    tag: "02 · Chăm sóc",
     title: "Mọi review đều được phản hồi đúng lúc.",
     body: "Tất cả review về một nơi. AI soạn phản hồi theo giọng của cửa hàng, bằng ngôn ngữ của khách. Bạn duyệt và đăng trong một chạm, kể cả với khách nước ngoài.",
     caption: "Phản hồi đa ngôn ngữ",
   },
   {
-    tag: "03 · Bảo vệ",
     title: "Review 1★ bất thường được báo sớm.",
     body: "Khi review tiêu cực dồn về bất thường, ETStar gửi cảnh báo kèm gợi ý câu trả lời, và theo dõi khiếu nại gửi Google theo đúng chính sách.",
     caption: "Cảnh báo review 1★",

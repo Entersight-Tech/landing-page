@@ -66,7 +66,6 @@ export default function Cases() {
     <section className={styles.section} id="cases" aria-labelledby="cases-title">
       <div className="container">
         <header className={styles.head}>
-          <span className="eyebrow">Khách hàng nói gì</span>
           <h2 id="cases-title" className="h2 reveal">
             Đừng chỉ nghe chúng tôi kể.
           </h2>

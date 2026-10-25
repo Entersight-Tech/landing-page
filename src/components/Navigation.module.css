@@ -170,11 +170,6 @@
   }
 }
 
-.sheetIdx {
-  font-size: 13px;
-  letter-spacing: 0.12em;
-  color: var(--lime);
-}
 
 .sheetFoot {
   display: flex;

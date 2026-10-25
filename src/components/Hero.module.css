@@ -94,7 +94,7 @@
 }
 
 .proof strong span {
-  font-size: 0.42em;
+  font-size: max(13px, 0.42em);
   font-weight: 600;
   letter-spacing: 0.04em;
   color: var(--paper);

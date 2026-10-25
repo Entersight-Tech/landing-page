@@ -116,7 +116,7 @@ export default function ETStarPage() {
         </nav>
       </header>
 
-      <main>
+      <main id="main">
         {/* ---------- hero ---------- */}
         <section className={styles.hero}>
           <Billboard word="REVIEW" tone="lime" />
@@ -418,7 +418,7 @@ export default function ETStarPage() {
       <footer className={styles.foot}>
         <div className={`${styles.wrap} ${styles.footIn}`}>
         <span>© {new Date().getFullYear()} Entersight · ETStar</span>
-        <Link href="/#solutions">← Các giải pháp khác của Entersight</Link>
+        <Link href="/#solutions">← Sản phẩm và dịch vụ khác của Entersight</Link>
         </div>
       </footer>
       <Motion />

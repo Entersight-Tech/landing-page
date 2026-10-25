@@ -67,6 +67,10 @@ export default function RootLayout({
   return (
     <html lang="vi" className={`${montserrat.variable} ${roboto.variable} ${outline.variable}`}>
       <body>
+        {/* first stop for keyboard users: jump past the header */}
+        <a href="#main" className="skip-link">
+          Bỏ qua, tới nội dung chính
+        </a>
         {/* without JS the scroll reveals would never run: show everything */}
         <noscript>
           <style>{`.reveal{opacity:1!important;transform:none!important}.wipe,.wipe img{clip-path:none!important;transform:none!important}`}</style>

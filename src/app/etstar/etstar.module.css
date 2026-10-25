@@ -95,6 +95,10 @@
   color: var(--purple);
 }
 
+.links a {
+  padding-block: 4px;
+}
+
 @media (hover: hover) and (pointer: fine) {
   .links > a:not(.btn):hover {
     text-decoration: underline;
@@ -458,7 +462,7 @@
 }
 
 .warn p {
-  max-width: 70ch;
+  max-width: 62ch;
 }
 
 .warn b {
@@ -665,7 +669,7 @@
 }
 
 .source {
-  max-width: 70ch;
+  max-width: 62ch;
   margin-top: 20px;
   font-size: 14px;
 }

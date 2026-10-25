@@ -175,9 +175,12 @@ export default function CaseStudies() {
       <div className="container">
         <header className={styles.head}>
           <h2 className={`h2 ${styles.title} reveal`}>
-            Bốn doanh nghiệp, bốn bài toán.
+            Dự án đã làm
           </h2>
-          <p className="lede reveal">Mở từng dự án để xem vấn đề, cách làm và kết quả.</p>
+          <p className="lede reveal">
+            Bốn doanh nghiệp với bốn vấn đề khác nhau. Mở từng dự án để xem vấn đề,
+            cách làm và kết quả.
+          </p>
         </header>
 
         <ol className={styles.list} onPointerMove={onMove} onPointerLeave={() => {
@@ -218,7 +221,7 @@ export default function CaseStudies() {
                     <div className={styles.cols}>
                       {COLUMNS.map((col) => (
                         <div key={col.key} className={styles.col}>
-                          <h4 className={styles.colLabel}>{col.label}</h4>
+                          <h3 className={styles.colLabel}>{col.label}</h3>
                           <ul>
                             {c[col.key].map((t) => (
                               <li key={t}>{t}</li>

@@ -59,11 +59,12 @@ export default function Solutions() {
       <div className="container">
         <header className={styles.head}>
           <h2 id="solutions-title" className="h2 reveal">
-            Bốn mảng việc, một đầu mối.
+            Việc chúng tôi nhận làm
           </h2>
           <p className="lede reveal">
-            Bạn không phải tự ghép agency quảng cáo, bên làm phần mềm và người
-            làm nội dung. Một đội làm từ đầu đến cuối, nhìn chung một bảng số.
+            Bốn mảng, một đầu mối: bạn không phải tự ghép agency quảng cáo, bên
+            làm phần mềm và người làm nội dung. Một đội làm từ đầu đến cuối, nhìn
+            chung một bảng số.
           </p>
         </header>
 

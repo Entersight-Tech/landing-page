@@ -32,6 +32,7 @@
 }
 
 .groups a {
+  padding-block: 4px;
   font-size: 14px;
   font-weight: 500;
   opacity: 0.8;

@@ -55,7 +55,7 @@ export default async function WorkPage({ params }: Props) {
   return (
     <div className={styles.page} style={{ "--tone": w.tone } as React.CSSProperties}>
       <WorkBar />
-      <main>
+      <main id="main">
         <article>
           <header className={`container ${styles.hero}`}>
             <div className={styles.heroHead}>

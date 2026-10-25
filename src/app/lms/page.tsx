@@ -89,7 +89,7 @@ export default function LmsPage() {
         <span className={styles.progress} data-progress aria-hidden="true" />
       </header>
 
-      <main>
+      <main id="main">
         {/* ---------- hero: the outcome, and the product doing it ---------- */}
         <section className={styles.hero} data-hero>
           <span className={styles.dot} data-dot aria-hidden="true" />

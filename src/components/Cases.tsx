@@ -67,7 +67,7 @@ export default function Cases() {
       <div className="container">
         <header className={styles.head}>
           <h2 id="cases-title" className="h2 reveal">
-            Đừng chỉ nghe chúng tôi kể.
+            Khách hàng nói gì
           </h2>
         </header>
 
@@ -94,13 +94,12 @@ export default function Cases() {
               </figcaption>
             </figure>
 
-            <div className={styles.switcher} role="tablist" aria-label="Chọn khách hàng">
+            <div className={styles.switcher} role="group" aria-label="Chọn khách hàng">
               {TESTIMONIALS.map((p, i) => (
                 <button
                   key={p.id}
                   type="button"
-                  role="tab"
-                  aria-selected={i === active}
+                  aria-pressed={i === active}
                   className={styles.brand}
                   onClick={() => go(i)}
                 >

@@ -33,7 +33,7 @@ export function HeroStack() {
             <Chip tone="done">Đã duyệt</Chip>
           </span>
         </div>
-        <h4>Xử lý khi khách chê đắt</h4>
+        <p className={styles.lessonTitle}>Xử lý khi khách chê đắt</p>
         <ul className={styles.bullets}>
           <li>Hỏi điều khách đang so sánh trước khi bàn giá</li>
           <li>Đổi từ giá mua sang chi phí cả năm</li>

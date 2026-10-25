@@ -21,8 +21,10 @@ It stands on three sources and adds what they miss:
 | Source | What it brings | Where |
 | --- | --- | --- |
 | taste-skill (Leonxlnx, MIT) | Real-browser meters for visual tells: headline length, type scale, eyebrows, rules, gradients, empty stretches, blend text | `vendor/taste-skill/` (scripts + references, not loaded as a skill) |
+| Impeccable (pbakaus, Apache-2.0) | 62 anti-pattern rules (catalog only; the detector binary is not run) and its audit / critique notes | `vendor/impeccable/` |
+| Vercel Web Interface Guidelines (MIT) | ~100 rules: accessibility, focus, forms, typography, images, i18n, theming | `../web-design-guidelines/` |
 | Emil Kowalski's skills (MIT) | The motion bar (easing, duration, interruptibility, reduced motion) and the mobile floor | `../review-animations/`, `../improve-animations/`, `../mobile-native/`, `../emil-design-eng/` |
-| **This skill** | Vietnamese copy tells, brand exceptions, audit-mode for existing pages, one report | `scripts/lint-vi.mjs`, `brand.json`, `references/copy-vi.md` |
+| **This skill** | Vietnamese copy tells, a rendered-page accessibility probe (WCAG contrast, labels, alt, focus rings, targets, skip link, readability, the measurable Impeccable rules), brand exceptions, one report | `scripts/lint-vi.mjs`, `scripts/probe.mjs`, `brand.json`, `references/copy-vi.md` |
 
 ## Hard rules
 
@@ -57,12 +59,19 @@ FAIL / WARN / ALLOWED-by-policy, writes `.anti-slop/report.json` and lists the s
 container (cloud session, CI) the script wraps Chromium with `--no-sandbox` by itself; it never does on
 a normal machine. `.anti-slop/` is a working folder; it is git-ignored.
 
-### 2. Read the copy (the meter cannot hear a voice)
+`audit.mjs` runs four meters: the taste-skill source lint, `lint-vi`, the taste-skill inspector and
+`probe.mjs`. With `--url` all four run; without it only the two source scans.
+
+### 2. Read the copy and the code (the meters cannot hear a voice)
 
 Read every visible string of the page in order — headings, lede, buttons, captions, metadata
 (`title`, `description`, Open Graph) — against the five tests in `references/copy-vi.md` §1:
 **đối thủ, cụ thể, bằng chứng, nói miệng, hai dòng.** Use `lint-vi` findings as a starting list, not
 the whole list. Write the rewrites as a Before / After / Why table before touching code.
+
+Then read the code against `../web-design-guidelines/guidelines.md` (forms, copy, state, i18n: the
+parts no meter sees) and against `vendor/impeccable/rules.md` for the rules `probe.mjs` cannot
+measure (aphoristic cadence, repeated container text, shape-assembled illustrations…).
 
 ### 3. Fix
 

@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const w = works.find((p) => p.slug === slug);
   if (!w) return {};
-  const title = `${w.title} — LauLau Creative | Entersight`;
+  const title = `${w.title} · LauLau Creative | Entersight`;
   const cover = w.shots[0];
   return {
     title,
@@ -61,11 +61,11 @@ export default async function WorkPage({ params }: Props) {
         <article>
           <header className={`container ${styles.hero}`}>
             <div className={styles.heroHead}>
-              <p className="label">
+              <p className={`label ${styles.kicker}`}>
                 <b>
                   {pad(i + 1)} / {pad(works.length)}
-                </b>{" "}
-                — {w.kind}
+                </b>
+                {w.kind}
               </p>
               <h1 className={styles.title}>{w.title}</h1>
             </div>
@@ -108,7 +108,7 @@ export default async function WorkPage({ params }: Props) {
               <figure key={shot.src} className={styles.shot} data-fit={shot.fit}>
                 <Image
                   src={shot.src}
-                  alt={`${w.title} — ${shot.caption}`}
+                  alt={`${w.title}: ${shot.caption}`}
                   width={shot.w}
                   height={shot.h}
                   sizes="(max-width: 1320px) 94vw, 1240px"

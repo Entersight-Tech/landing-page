@@ -3,7 +3,8 @@ import styles from "./lms.module.css";
 
 /* Product mock-ups drawn in HTML/SVG. They illustrate real screens of the
    LMS (scripts, AI analysis, review, learner view, analytics); every name
-   and number in them is sample data. */
+   and number in them is sample data. Each root carries data-ui: it is an
+   interface fragment, so its small app-sized type and borders are its own. */
 
 function Chip({ tone, children }: { tone: "ok" | "bad" | "draft" | "done" | "brand"; children: React.ReactNode }) {
   return <span className={`${styles.chip} ${styles[`chip_${tone}`]}`}>{children}</span>;
@@ -12,7 +13,7 @@ function Chip({ tone, children }: { tone: "ok" | "bad" | "draft" | "done" | "bra
 /** Hero: one sales chat becomes a reviewed lesson and a scored skill. */
 export function HeroStack() {
   return (
-    <figure className={styles.stack} aria-label="Minh hoạ: từ đoạn chat thật thành bài học đã duyệt">
+    <figure className={styles.stack} data-ui aria-label="Minh hoạ: từ đoạn chat thật thành bài học đã duyệt">
       <div className={`${styles.mock} ${styles.stackA}`}>
         <span className={styles.file} aria-hidden="true">
           DOCX
@@ -60,7 +61,7 @@ export function HeroStack() {
 export function StepMock({ step }: { step: number }) {
   if (step === 0)
     return (
-      <div className={styles.mock} aria-hidden="true">
+      <div className={styles.mock} aria-hidden="true" data-ui>
         <div className={styles.mockTop}>
           <small>Kịch bản bán hàng</small>
           <span className={styles.ghostBtn}>+ Tải lên</span>
@@ -93,7 +94,7 @@ export function StepMock({ step }: { step: number }) {
 
   if (step === 1)
     return (
-      <div className={styles.mock} aria-hidden="true">
+      <div className={styles.mock} aria-hidden="true" data-ui>
         <div className={styles.mockTop}>
           <small>AI phân tích · chat-khach-che-dat.docx</small>
           <Chip tone="brand">Đã ẩn danh</Chip>
@@ -129,7 +130,7 @@ export function StepMock({ step }: { step: number }) {
 
   if (step === 2)
     return (
-      <div className={styles.mock} aria-hidden="true">
+      <div className={styles.mock} aria-hidden="true" data-ui>
         <div className={styles.mockTop}>
           <small>Nội dung chờ duyệt · 3</small>
         </div>
@@ -159,7 +160,7 @@ export function StepMock({ step }: { step: number }) {
     );
 
   return (
-    <div className={styles.mock} aria-hidden="true">
+    <div className={styles.mock} aria-hidden="true" data-ui>
       <div className={styles.mockTop}>
         <small>Hôm nay của bạn</small>
         <Chip tone="brand">Thử việc</Chip>
@@ -204,7 +205,7 @@ export function Analytics() {
     .slice(0, 3);
 
   return (
-    <figure className={`${styles.mock} ${styles.analytics}`} aria-label="Minh hoạ Analytics của đội">
+    <figure className={`${styles.mock} ${styles.analytics}`} data-ui aria-label="Minh hoạ Analytics của đội">
       <div className={styles.mockTop}>
         <small>Analytics · Đội sale miền Nam</small>
         <span className={styles.levelTabs} aria-hidden="true">

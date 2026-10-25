@@ -37,7 +37,7 @@ const real = {
   "mint-result-detail": mintResultDetail,
 };
 
-const title = `${PRODUCT} — Ảnh & video thời trang bằng AI | Entersight`;
+const title = `${PRODUCT}: ảnh & video thời trang bằng AI | Entersight`;
 const description =
   "MUSE Studio: lên model, try-on, đổi pose, video affiliate có kịch bản và clone video từ clip mẫu, trong một khung chat tiếng Việt. Đang vận hành cùng KYE Agency.";
 
@@ -99,11 +99,11 @@ export default function FashionStudio() {
       <ScrollReveal />
 
       <header className={styles.bar}>
-        <a href="#top" className={styles.wordmark} aria-label={`${PRODUCT} — về đầu trang`}>
+        <a href="#top" className={styles.wordmark} aria-label={`${PRODUCT}, về đầu trang`}>
           <Asterisk className={styles.wordmarkStar} />
           MUSE<span>Studio</span>
         </a>
-        <Link href="/" className={styles.by} aria-label="Entersight — trang chủ">
+        <Link href="/" className={styles.by} aria-label="Entersight, trang chủ">
           <span>bởi</span>
           <Image src={logo} alt="Entersight" />
         </Link>
@@ -124,13 +124,16 @@ export default function FashionStudio() {
         <section className={styles.hero}>
           <Asterisk className={styles.heroStar} />
           <div className={`container ${styles.heroGrid}`}>
-            <div className={styles.heroCopy}>
+            <div className={styles.heroHead}>
               <Label no={PRODUCT}>AI Fashion Studio</Label>
               <h1 className={styles.h1}>
-                Ảnh &amp; video thời trang từ <span className="lime">một khung chat</span>
+                Ảnh &amp; video
+                <br className={styles.brWide} /> thời trang <span className="lime">qua chat</span>
               </h1>
+            </div>
+            <div className={styles.heroCopy}>
               <p className={styles.lead}>
-                Đính kèm ảnh sản phẩm, chọn một chip, gửi. MUSE lên model, thử đồ, đổi pose, quay video affiliate có
+                Đính kèm ảnh sản phẩm, chọn việc cần làm, gửi. MUSE lên model, thử đồ, đổi pose, quay video affiliate có
                 kịch bản và clone video từ clip mẫu. Mọi kết quả tự vào Thư viện, tìm lại bằng tiếng Việt.
               </p>
               <div className={styles.ctas}>
@@ -138,7 +141,7 @@ export default function FashionStudio() {
                   Liên hệ setup cho cửa hàng
                 </a>
                 <a href="#image" className="btn">
-                  Xem tính năng
+                  Xem 7 chế độ ảnh
                 </a>
               </div>
             </div>
@@ -179,8 +182,8 @@ export default function FashionStudio() {
                 Bảy việc trong một khung chat
               </h2>
               <p className={styles.body}>
-                Đổi chip không mất ảnh đã đính kèm, nên một bộ ảnh đi liền mạch từ ảnh sản phẩm tới lên model, đổi
-                pose rồi makeup. Mỗi lần gửi là một cặp hỏi–đáp: mở lại tab vẫn thấy nguyên mạch việc đã làm.
+                Chuyển sang việc khác, ảnh đã đính kèm vẫn còn đó: từ ảnh sản phẩm lên model, đổi pose rồi makeup mà
+                không phải tải ảnh lại. Mỗi lần gửi được lưu thành một cặp hỏi–đáp, mở lại tab vẫn thấy đủ việc đã làm.
               </p>
             </div>
             <ol className={styles.modes}>
@@ -204,8 +207,8 @@ export default function FashionStudio() {
                 Ảnh của shop vào, <span className="lime">lookbook</span> ra
               </h2>
               <p className={styles.body}>
-                Hai lần chạy MUSE trên ảnh có sẵn: bên trái là những gì đưa vào khung chat, bên phải là ảnh MUSE trả
-                về. Không dựng set, không thuê địa điểm.
+                Hai lần chạy MUSE trên ảnh có sẵn của shop: ảnh đưa vào khung chat, rồi ảnh MUSE trả về. Không dựng
+                set, không thuê địa điểm.
               </p>
             </div>
             {lookbooks.map((lb) => (
@@ -289,8 +292,8 @@ export default function FashionStudio() {
               </h2>
               <p className={styles.body}>
                 Clip đang viral, người mẫu của brand, sản phẩm cần bán. MUSE chép lại chuyển động của clip mẫu lên
-                người mẫu đang mặc đồ của bạn. Clip dài được chia đoạn quay song song; lịch sử clone tự bám lại job
-                đang chạy khi bạn quay lại.
+                người mẫu đang mặc đồ của bạn. Clip dài được chia đoạn và quay song song; tắt trang rồi quay lại, video
+                đang chạy vẫn hiện trong lịch sử.
               </p>
             </div>
           </div>
@@ -368,11 +371,11 @@ export default function FashionStudio() {
             <div className={`reveal ${styles.intro}`}>
               <Label no="07">KYE Agency</Label>
               <h2 className={styles.h2}>
-                Nền tảng đã chạy thật
+                Đang chạy ở KYE Agency từ 04/2026
               </h2>
               <p className={styles.body}>
-                MUSE kế thừa phần lõi đang vận hành cùng agency styling KYE từ 04/2026: thư viện gắn thẻ AI, tìm kiếm
-                tiếng Việt, thử đồ ảo và photoshoot AI.
+                MUSE dùng chung phần lõi với hệ thống của agency styling KYE: thư viện gắn thẻ AI, tìm kiếm tiếng
+                Việt, thử đồ ảo và photoshoot AI.
               </p>
               <ul className={styles.stats}>
                 {kyeStats.map((s) => (
@@ -415,11 +418,11 @@ export default function FashionStudio() {
             <div>
               <Label no="09">Liên hệ</Label>
               <h2 className={styles.h2}>
-                MUSE cho <span className="lime">cửa hàng của bạn</span>
+                Chạy thử trên <span className="lime">ảnh của shop bạn</span>
               </h2>
               <p className={styles.body}>
-                Để lại số điện thoại. Entersight liên hệ để setup MUSE Studio cho cửa hàng của bạn và chạy thử
-                trên chính ảnh sản phẩm của bạn.
+                Để lại số điện thoại. Entersight gọi lại, setup MUSE Studio cho cửa hàng và chạy thử trên chính ảnh
+                sản phẩm của bạn.
               </p>
             </div>
             <DemoForm />
@@ -428,7 +431,7 @@ export default function FashionStudio() {
       </main>
 
       <footer className={`container ${styles.foot}`}>
-        <Link href="/" aria-label="Entersight — trang chủ">
+        <Link href="/" aria-label="Entersight, trang chủ">
           <Image src={logo} alt="Entersight" className={styles.footLogo} />
         </Link>
         <span>

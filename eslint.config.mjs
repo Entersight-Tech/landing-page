@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // vendored skill scripts (.claude/skills/*/vendor) are not app code
+    ".claude/**",
   ]),
 ]);
 

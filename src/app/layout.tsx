@@ -33,9 +33,9 @@ const outline = localFont({
   display: "swap",
 });
 
-const title = "Entersight — Số hoá quy trình marketing đúng đích";
+const title = "Entersight — Marketing và vận hành bằng AI cho doanh nghiệp nhỏ";
 const description =
-  "Entersight kiến tạo hệ sinh thái tiếp thị số toàn diện, giúp SMEs tái cấu trúc vận hành, làm chủ mọi điểm chạm khách hàng và xây dựng nền tảng tăng trưởng bền vững.";
+  "Entersight dựng hệ thống vận hành, chạy quảng cáo và làm nội dung cho doanh nghiệp vừa và nhỏ. Oni Homestay vận hành không cần lễ tân, KYE Agency ra nội dung nhanh gấp 5 lần.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.entersight-tech.com"),

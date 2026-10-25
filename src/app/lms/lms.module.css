@@ -60,7 +60,7 @@
   font-weight: 700;
   line-height: 1.02;
   letter-spacing: -0.035em;
-  text-transform: uppercase;
+  /* sentence case: all-caps Vietnamese stacks its accents and reads slowly */
   text-wrap: balance;
 }
 
@@ -69,7 +69,6 @@
 }
 
 .h2 {
-  max-width: 16ch;
   font-size: clamp(30px, 3.8vw, 56px);
 }
 
@@ -98,8 +97,8 @@
   gap: 0.5em;
   font-family: var(--font-head);
   font-weight: 600;
-  font-size: 11px;
-  letter-spacing: 0.16em;
+  font-size: 13px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-muted);
 }
@@ -119,7 +118,7 @@
 
 .lead {
   max-width: 560px;
-  font-size: clamp(17px, 1.5vw, 21px);
+  font-size: clamp(17px, 1.4vw, 19px);
   line-height: 1.5;
 }
 
@@ -135,7 +134,7 @@
 .sub,
 .subDark {
   max-width: 600px;
-  font-size: clamp(16px, 1.3vw, 19px);
+  font-size: clamp(17px, 1.4vw, 19px);
 }
 
 .subDark {
@@ -150,7 +149,7 @@
   padding: 13px 16px 13px 18px;
   font-family: var(--font-head);
   font-weight: 600;
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   white-space: nowrap;
@@ -215,7 +214,8 @@
   display: flex;
   align-items: center;
   gap: 20px;
-  padding: 12px var(--gutter);
+  /* same frame as .wrap (1320px + gutter), so the bar and the content share margins */
+  padding: 12px max(var(--gutter), calc((100% - 1320px) / 2 + var(--gutter)));
   background: var(--surface);
   border-bottom: 1px solid var(--line);
 }
@@ -232,7 +232,7 @@
   gap: 8px;
   padding-left: 20px;
   border-left: 1px solid var(--line-strong);
-  font-size: 12px;
+  font-size: 13px;
   color: var(--text-muted);
 }
 
@@ -259,7 +259,7 @@
   display: flex;
   gap: 24px;
   margin-left: auto;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -311,7 +311,7 @@
 }
 
 .heroCopy .h1 {
-  max-width: 11ch;
+  max-width: 14ch;
 }
 
 .ctas {
@@ -331,7 +331,7 @@
   height: 18px;
   border-radius: 999px;
   background: var(--accent);
-  box-shadow: 0 0 0 1px var(--ink) inset;
+  box-shadow: 0 0 0 1px var(--ink) inset; /* inset 1px ring, not a shadow; taste-skill-ignore */
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
@@ -387,7 +387,7 @@
 
 .note {
   margin-top: 10px;
-  font-size: 11px;
+  font-size: 13px;
   color: var(--text-muted);
 }
 
@@ -414,7 +414,7 @@
 .chip_draft {
   background: var(--surface);
   color: var(--text-muted);
-  box-shadow: 0 0 0 1px var(--line) inset;
+  box-shadow: 0 0 0 1px var(--line) inset; /* inset ring inside a data-ui mock; taste-skill-ignore */
 }
 
 .chip_done {
@@ -613,7 +613,7 @@
 .transcript .key {
   position: relative;
   background: var(--purple-200);
-  box-shadow: 0 0 0 1.5px var(--majorelle-blue) inset;
+  box-shadow: 0 0 0 1.5px var(--majorelle-blue) inset; /* inset ring inside a data-ui mock; taste-skill-ignore */
 }
 
 .keyTag {
@@ -662,11 +662,11 @@
   padding: 7px 10px;
   border-radius: 6px;
   background: var(--surface-raised);
-  box-shadow: 0 0 0 1.5px var(--majorelle-blue) inset;
+  box-shadow: 0 0 0 1.5px var(--majorelle-blue) inset; /* inset ring inside a data-ui mock; taste-skill-ignore */
 }
 
 .ans::before {
-  content: "✓ ";
+  content: "✓ "; /* text check mark inside a data-ui mock; taste-skill-ignore */
   color: var(--majorelle-blue);
   font-weight: 700;
 }
@@ -832,7 +832,7 @@
   flex-direction: column;
   gap: 8px;
   padding: clamp(24px, 3vw, 40px) 24px clamp(24px, 3vw, 40px) 0;
-  font-size: 14px;
+  font-size: 16px;
   color: var(--text-muted);
 }
 
@@ -844,7 +844,7 @@
 .factsList b {
   font-family: var(--font-head);
   font-weight: 700;
-  font-size: clamp(36px, 4vw, 56px);
+  font-size: clamp(30px, 3.8vw, 56px);
   line-height: 1;
   letter-spacing: -0.035em;
   color: var(--text);
@@ -853,7 +853,7 @@
 
 .factsList b small {
   margin-left: 6px;
-  font-size: 0.36em;
+  font-size: 19px;
   letter-spacing: 0;
   color: var(--text-brand);
 }
@@ -910,7 +910,7 @@
   margin-top: auto;
   padding-top: 16px;
   border-top: 1px solid var(--line);
-  font-size: 15px;
+  font-size: 16px;
   color: var(--text-muted);
 }
 
@@ -918,10 +918,8 @@
   display: block;
   margin-bottom: 6px;
   font-family: var(--font-head);
-  font-weight: 600;
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 13px;
   color: var(--text-brand);
 }
 
@@ -943,8 +941,7 @@
 }
 
 .blue {
-  /* the one gradient the system allows: a radial highlight on blue */
-  background: radial-gradient(60% 70% at 85% 0%, #6a5ff0 0%, rgba(106, 95, 240, 0) 70%), var(--majorelle-blue);
+  background: var(--majorelle-blue);
   color: #ffffff;
 }
 
@@ -1049,7 +1046,7 @@
   display: block;
   font-family: var(--font-head);
   font-weight: 700;
-  font-size: clamp(44px, 4.4vw, 64px);
+  font-size: clamp(30px, 3.8vw, 56px);
   line-height: 1;
   letter-spacing: -0.035em;
   color: var(--accent);
@@ -1066,9 +1063,7 @@
   padding: 4px 10px;
   font-family: var(--font-head);
   font-weight: 600;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-size: 13px;
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 999px;
 }
@@ -1077,6 +1072,8 @@
   border: 0;
   border-radius: 18px;
   max-width: 520px;
+  /* sits on the right margin, like every other right-hand column */
+  margin-left: auto;
 }
 
 /* roleplay / managers / contact: copy beside a visual */
@@ -1109,13 +1106,13 @@
   gap: 4px;
   padding: 14px 0;
   border-bottom: 1px solid var(--line);
-  font-size: 15px;
+  font-size: 16px;
 }
 
 .points b {
   font-family: var(--font-head);
   font-weight: 700;
-  font-size: 16px;
+  font-size: 19px;
 }
 
 .points span {
@@ -1143,11 +1140,11 @@
 .tiles b {
   font-family: var(--font-head);
   font-weight: 700;
-  font-size: 17px;
+  font-size: 19px;
 }
 
 .tiles p {
-  font-size: 14px;
+  font-size: 16px;
   color: var(--text-muted);
 }
 
@@ -1162,7 +1159,7 @@
   margin-bottom: 14px;
   font-family: var(--font-head);
   font-weight: 700;
-  font-size: 18px;
+  font-size: 19px;
 }
 
 .tileHead small {
@@ -1182,7 +1179,7 @@
 
 .principles li {
   padding: 24px 24px 0 0;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .principles li + li {
@@ -1195,7 +1192,7 @@
   margin-bottom: 6px;
   font-family: var(--font-head);
   font-weight: 700;
-  font-size: 15px;
+  font-size: 19px;
 }
 
 .principles p {
@@ -1209,7 +1206,7 @@
   margin-bottom: 16px;
   border-radius: 999px;
   background: var(--accent);
-  box-shadow: 0 0 0 1px var(--ink) inset;
+  box-shadow: 0 0 0 1px var(--ink) inset; /* inset 1px ring, not a shadow; taste-skill-ignore */
 }
 
 /* phone-only CTA that follows the reader between hero and form */
@@ -1289,7 +1286,7 @@
   height: 8px;
   border-radius: 999px;
   background: var(--accent);
-  box-shadow: 0 0 0 1px var(--ink) inset;
+  box-shadow: 0 0 0 1px var(--ink) inset; /* inset ring inside a data-ui mock; taste-skill-ignore */
 }
 
 .rpTags {
@@ -1432,7 +1429,7 @@
   justify-content: space-between;
   gap: 12px;
   margin-top: 14px;
-  font-size: 11px;
+  font-size: 13px;
   color: var(--text-muted);
 }
 
@@ -1485,7 +1482,7 @@
 }
 
 .fit li::before {
-  content: "✓";
+  content: "✓"; /* typographic check mark (U+2713), not an emoji; taste-skill-ignore */
   position: absolute;
   left: 0;
   top: 0;
@@ -1519,7 +1516,7 @@
   gap: 16px;
   padding: 20px 0;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 19px;
   cursor: pointer;
   list-style: none;
 }
@@ -1575,9 +1572,7 @@
   gap: 6px;
   font-family: var(--font-head);
   font-weight: 600;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-size: 13px;
   color: var(--text-muted);
 }
 
@@ -1625,7 +1620,7 @@
 }
 
 .error {
-  font-size: 15px;
+  font-size: 16px;
   color: #a33a1f;
 }
 
@@ -1644,7 +1639,7 @@
 /* ---------- footer ---------- */
 .foot {
   padding: 32px 0;
-  font-size: 14px;
+  font-size: 13px;
   color: var(--text-muted);
 }
 
@@ -1947,7 +1942,7 @@
 
 /* the AI's key moment gets marked after the step shows */
 :global(html[data-lmsjs]) .page [data-reveal]:not([data-in]) .key {
-  box-shadow: none;
+  box-shadow: none; /* removes the ring; taste-skill-ignore */
   background: var(--surface);
 }
 
@@ -2022,6 +2017,10 @@
   .contactGrid,
   .jStep {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .jMock .mock {
+    margin-left: 0;
   }
 
   .whys {

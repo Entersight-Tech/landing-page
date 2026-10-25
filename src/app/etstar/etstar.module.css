@@ -81,8 +81,8 @@
   margin-top: 4px;
   font-style: normal;
   font-weight: 500;
-  font-size: 10px;
-  letter-spacing: 0.16em;
+  font-size: 13px;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
@@ -92,7 +92,7 @@
   gap: 24px;
   margin-left: auto;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 16px;
   color: var(--purple);
 }
 
@@ -325,7 +325,7 @@
   transform: rotate(-12deg);
 }
 
-.seal svg {
+.seal > svg {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -337,9 +337,12 @@
   letter-spacing: 0.08em;
 }
 
-.seal b {
-  font-size: 30px;
-  line-height: 1;
+/* the star is drawn, not typed: a 30px glyph here read as a heading */
+.seal b svg {
+  display: block;
+  width: 30px;
+  height: 30px;
+  fill: currentColor;
 }
 
 /* phone: the product object of the hero — charcoal ink outline */
@@ -479,6 +482,10 @@
   font-size: 17px;
 }
 
+.warn p {
+  max-width: 70ch;
+}
+
 .warn b {
   font-weight: 500;
   color: var(--purple);
@@ -492,14 +499,13 @@
   margin-top: 50px;
 }
 
+/* open columns ruled on top, like the questions and steps, not boxed cards */
 .pillar {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding: 20px;
-  border: 1px solid var(--charcoal);
-  border-radius: 4px;
-  background: var(--canvas);
+  padding-top: 20px;
+  border-top: 1px solid var(--charcoal);
 }
 
 .pillar h3 {
@@ -544,8 +550,8 @@
   width: 100%;
   height: auto;
   mix-blend-mode: multiply;
-  -webkit-mask-image: radial-gradient(ellipse 72% 70% at 50% 50%, #000 62%, transparent 100%);
-  mask-image: radial-gradient(ellipse 72% 70% at 50% 50%, #000 62%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 72% 70% at 50% 50%, #000 62%, transparent 100%); /* taste-skill-ignore: edge mask on a photo, not a fill */
+  mask-image: radial-gradient(ellipse 72% 70% at 50% 50%, #000 62%, transparent 100%); /* taste-skill-ignore: edge mask on a photo, not a fill */
 }
 
 .problemPhoto {
@@ -557,7 +563,8 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 50px;
-  align-items: end;
+  /* heading at the top of the section, not pushed below the photo */
+  align-items: start;
 }
 
 .qrPhoto {
@@ -586,7 +593,6 @@
 
 .steps p {
   margin-top: 4px;
-  font-size: 15px;
 }
 
 /* ---------- results ---------- */
@@ -615,7 +621,6 @@
 
 .case .caption {
   margin-top: 4px;
-  font-size: 12px;
 }
 
 .caseBig {
@@ -662,10 +667,10 @@
   display: inline-block;
   margin-bottom: 10px;
   padding: 2px 10px;
-  border: 1px dashed var(--purple);
+  border: 1px solid var(--purple);
   border-radius: 20px;
   font-weight: 500;
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--purple);
@@ -673,7 +678,7 @@
 
 .case dd.move {
   font-weight: 400;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.4;
   color: var(--charcoal);
 }
@@ -685,7 +690,7 @@
 }
 
 .source {
-  max-width: 90ch;
+  max-width: 70ch;
   margin-top: 20px;
   font-size: 14px;
 }
@@ -707,7 +712,7 @@
 .price {
   margin-top: 30px;
   font-weight: 900;
-  font-size: clamp(48px, 6vw, 88px);
+  font-size: clamp(48px, 6vw, 84px);
   line-height: 0.9;
   letter-spacing: -0.02em;
   color: var(--purple);
@@ -744,10 +749,16 @@
   border-bottom: 1px solid rgba(51, 51, 51, 0.2);
 }
 
+/* a drawn check: two borders of a rotated box */
 .included li::before {
-  content: "✓";
-  font-weight: 900;
-  color: var(--purple);
+  content: "";
+  flex: none;
+  width: 12px;
+  height: 6px;
+  margin: 0.4em 2px 0;
+  border-left: 2px solid var(--purple);
+  border-bottom: 2px solid var(--purple);
+  transform: rotate(-45deg);
 }
 
 /* ---------- faq ---------- */
@@ -845,9 +856,9 @@
 .form input:focus,
 .form textarea:focus {
   outline: none;
-  /* colour + shadow instead of a thicker border: the field doesn't shift */
+  /* colour + a 1px underline instead of a thicker border: the field doesn't shift */
   border-bottom-color: var(--purple);
-  box-shadow: 0 1px 0 var(--purple);
+  box-shadow: 0 1px 0 var(--purple); /* taste-skill-ignore: focus state of a form field */
 }
 
 .honeypot {
@@ -859,7 +870,7 @@
 }
 
 .error {
-  font-size: 15px;
+  font-size: 16px;
   color: #a33a1f;
 }
 
@@ -936,7 +947,7 @@
     height: 96px;
   }
 
-  .seal svg {
+  .seal > svg {
     font-size: 13px;
   }
 }
@@ -1038,7 +1049,7 @@
   animation: up 0.9s 0.8s var(--ease-out) both;
 }
 
-.seal svg {
+.seal > svg {
   animation: spin 22s linear infinite;
 }
 

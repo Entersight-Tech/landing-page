@@ -110,18 +110,19 @@ export default function LmsPage() {
           <div className={`${styles.wrap} ${styles.heroGrid}`}>
             <div className={styles.heroCopy}>
               <span className={`${styles.label} ${styles.rise}`} style={d(0)}>
-                <b>{PRODUCT}</b> — Đào tạo sale bằng AI
+                <b>{PRODUCT}</b> — Đào tạo sale mới bằng AI
               </span>
               <Display
                 as="h1"
                 onLoad
                 className={styles.h1}
-                runs={["sale mới vững tay", { hl: "trước khi gặp khách" }]}
+                runs={["Vững tay", { hl: "trước khi gặp khách" }]}
               />
               <p className={`${styles.lead} ${styles.rise}`} style={d(3)}>
                 {PRODUCT} biến tài liệu nội bộ và các đoạn chat chốt đơn của chính
                 công ty bạn thành bài học, bài thi và buổi luyện với khách ảo do AI
-                đóng vai. Trưởng nhóm chỉ cần duyệt.
+                đóng vai. Sale mới tập ở đây trước khi gặp khách thật; trưởng nhóm
+                chỉ cần duyệt.
               </p>
               <div className={`${styles.ctas} ${styles.rise}`} style={d(4)}>
                 <a href="#contact" className={`${styles.btn} ${styles.solid}`}>
@@ -156,7 +157,7 @@ export default function LmsPage() {
           <div className={styles.wrap}>
             <div className={styles.intro} data-reveal>
               <Label no="01">Vì sao</Label>
-              <Display className={styles.h2} runs={["đào tạo sale", { hl: "đang tốn người giỏi nhất" }]} />
+              <Display className={styles.h2} runs={["Đào tạo sale", { hl: "đang tốn người giỏi nhất" }]} />
             </div>
             <ol className={styles.whys}>
               {whys.map((w, i) => (
@@ -183,7 +184,7 @@ export default function LmsPage() {
           <div className={styles.wrap}>
             <div className={styles.intro} data-reveal>
               <Label no="02">Cách hoạt động</Label>
-              <Display className={styles.h2} runs={["từ ca chốt đơn thật", { hl: "đến người bán được" }]} />
+              <Display className={styles.h2} runs={["Từ ca chốt đơn thật", { hl: "đến người bán được" }]} />
             </div>
             <ol className={styles.journey} data-track>
               {steps.map((s, i) => (
@@ -208,7 +209,7 @@ export default function LmsPage() {
           <div className={`${styles.wrap} ${styles.split}`}>
             <div className={styles.intro} data-reveal>
               <Label no="03">Luyện chat với AI</Label>
-              <Display className={styles.h2} runs={["luyện với khách ảo,", { hl: "nhận điểm thật" }]} />
+              <Display className={styles.h2} runs={["Luyện với khách\u00a0ảo,", { hl: "nhận điểm thật" }]} />
               <p className={styles.sub}>
                 AI đóng vai khách theo chân dung và cảm xúc rút từ chính các ca của công
                 ty: {personas.join(", ").toLowerCase()}. Kết thúc buổi, AI chấm điểm tổng
@@ -224,7 +225,7 @@ export default function LmsPage() {
           <div className={`${styles.wrap} ${styles.split} ${styles.splitTop}`}>
             <div className={styles.intro} data-reveal>
               <Label no="04">Cho quản lý</Label>
-              <Display className={styles.h2} runs={["biết đội", { hl: "yếu ở đâu" }]} />
+              <Display className={styles.h2} runs={["Biết đội", { hl: "yếu ở đâu" }]} />
               <ul className={styles.points}>
                 {managerPoints.map((p) => (
                   <li key={p.title}>
@@ -245,7 +246,7 @@ export default function LmsPage() {
           <div className={styles.wrap}>
             <div className={styles.intro} data-reveal>
               <Label no="05">Tính năng</Label>
-              <Display className={styles.h2} runs={["đủ cho cả", { hl: "vòng onboarding" }]} />
+              <Display className={styles.h2} runs={["Từ soạn bài", { hl: "đến\u00a0thi qua thử việc" }]} />
             </div>
             {(
               [
@@ -286,7 +287,7 @@ export default function LmsPage() {
           <div className={`${styles.wrap} ${styles.faqGrid}`}>
             <div className={styles.intro} data-reveal>
               <Label no="06">Hỏi đáp</Label>
-              <Display className={styles.h2} runs={["câu hỏi thường gặp"]} />
+              <Display className={styles.h2} runs={["Câu hỏi thường gặp"]} />
             </div>
             <div className={styles.faq}>
               {faqs.map((f) => (
@@ -304,7 +305,7 @@ export default function LmsPage() {
           <div className={`${styles.wrap} ${styles.split} ${styles.splitTop}`}>
             <div className={styles.intro} data-reveal>
               <Label no="07">Đặt lịch demo</Label>
-              <Display className={styles.h2} runs={["xem đội của bạn", { hl: "luyện thử" }]} />
+              <Display className={styles.h2} runs={["Xem đội của bạn", { hl: "luyện thử" }]} />
               <p className={styles.sub}>
                 Demo trên chính kịch bản bán hàng của bạn. {PRODUCT} hợp nhất khi:
               </p>
@@ -330,7 +331,7 @@ export default function LmsPage() {
             © {new Date().getFullYear()} {PRODUCT} · một sản phẩm của Entersight
           </span>
           <a href="mailto:info@entersight-tech.com">info@entersight-tech.com</a>
-          <Link href="/#solutions">← Các giải pháp khác của Entersight</Link>
+          <Link href="/#solutions">← Sản phẩm và dịch vụ khác của Entersight</Link>
         </div>
       </footer>
 

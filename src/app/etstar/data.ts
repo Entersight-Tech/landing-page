@@ -11,7 +11,7 @@ export const stats = [
 /** What a new customer weighs in the few seconds before picking a store. */
 export const questions = [
   { q: "Cửa hàng có xuất hiện không?", a: "Hồ sơ thiếu thông tin, ít cập nhật thì Google ít đề xuất." },
-  { q: "Review có đủ mới và đáng tin?", a: "Khách hài lòng thường ra về im lặng — rất ít người tự nhớ viết." },
+  { q: "Review có đủ mới và đáng tin?", a: "Khách hài lòng thường ra về im lặng, rất ít người tự nhớ viết." },
   { q: "Chủ cửa hàng có chăm sóc khách?", a: "Review bị bỏ ngỏ nhiều ngày là tín hiệu xấu với cả khách lẫn Google." },
 ];
 
@@ -25,36 +25,36 @@ export const mapsList = [
 
 export const pillars = [
   {
-    tag: "01 — Thu hút",
+    tag: "01 · Thu hút",
     title: "Thêm review thật, không cần nhắc từng khách.",
-    body: "Khách quét QR, trả lời khảo sát ngắn (đa ngôn ngữ). AI soạn sẵn nội dung đánh giá từ chính trải nghiệm đó — khách xem lại, tự chỉnh và tự đăng lên Google Maps.",
+    body: "Khách quét QR, trả lời khảo sát ngắn (đa ngôn ngữ). AI soạn sẵn nội dung đánh giá từ chính trải nghiệm đó. Khách xem lại, tự chỉnh và tự đăng lên Google Maps.",
     caption: "QR tại bàn · quầy thu ngân",
   },
   {
-    tag: "02 — Chăm sóc",
+    tag: "02 · Chăm sóc",
     title: "Mọi review đều được phản hồi đúng lúc.",
-    body: "Tất cả review về một nơi. AI soạn phản hồi theo giọng thương hiệu và theo ngôn ngữ của khách — bạn duyệt và đăng trong một chạm, kể cả với khách nước ngoài.",
+    body: "Tất cả review về một nơi. AI soạn phản hồi theo giọng của cửa hàng, bằng ngôn ngữ của khách. Bạn duyệt và đăng trong một chạm, kể cả với khách nước ngoài.",
     caption: "Phản hồi đa ngôn ngữ",
   },
   {
-    tag: "03 — Bảo vệ",
-    title: "Chủ động giữ gìn uy tín cửa hàng.",
-    body: "Cảnh báo sớm review tiêu cực bất thường, gợi ý cách phản hồi chuyên nghiệp và theo dõi khiếu nại theo đúng chính sách Google.",
+    tag: "03 · Bảo vệ",
+    title: "Review 1★ bất thường được báo sớm.",
+    body: "Khi review tiêu cực dồn về bất thường, ETStar gửi cảnh báo kèm gợi ý câu trả lời, và theo dõi khiếu nại gửi Google theo đúng chính sách.",
     caption: "Cảnh báo review 1★",
   },
 ];
 
 /** Rollout, from the price sheet. */
 export const steps = [
-  { title: "Tạo hồ sơ Google Business Profile", body: "Thông tin cơ bản, danh mục, địa chỉ, giờ hoạt động — tạo mới hoặc kết nối hồ sơ sẵn có." },
-  { title: "Tối ưu hồ sơ", body: "Tên cửa hàng, từ khóa địa phương, mô tả và hình ảnh theo chuẩn Google Maps." },
+  { title: "Tạo hồ sơ Google Business Profile", body: "Tạo mới hoặc kết nối hồ sơ sẵn có, điền đủ danh mục, địa chỉ, giờ mở cửa." },
+  { title: "Hoàn thiện hồ sơ", body: "Tên cửa hàng, từ khóa địa phương, mô tả và hình ảnh theo chuẩn Google Maps." },
   { title: "Tăng review thật", body: "Quét QR → khảo sát → AI soạn nháp đánh giá → khách xem lại và tự đăng lên Maps." },
   { title: "Phản hồi đa ngôn ngữ", body: "AI soạn phản hồi giúp quán trả lời khách nước ngoài mà không cần biết ngoại ngữ." },
   { title: "Theo dõi & báo cáo", body: "Dashboard lượng đánh giá, thứ hạng từ khóa và báo cáo định kỳ." },
 ];
 
 /**
- * Illustrative playbooks — NOT client results. Each pairs one thing a store
+ * Illustrative playbooks, NOT client results. Each pairs one thing a store
  * does with the Google Maps behaviour it plays into; the numbers only show
  * the kind of change that behaviour drives, and the page says so.
  */
@@ -83,7 +83,7 @@ export const playbooks: Playbook[] = [
   {
     kind: "Spa & làm đẹp",
     place: "Đà Nẵng",
-    move: "Trả lời mọi review trong 24 giờ — kể cả review 3★.",
+    move: "Trả lời mọi review trong 24 giờ, kể cả review 3★.",
     google: "Phản hồi của chủ hiện công khai ngay dưới review, khách mới đọc được.",
     big: "100%",
     bigLabel: "review được phản hồi",
@@ -94,7 +94,7 @@ export const playbooks: Playbook[] = [
     kind: "Nha khoa",
     place: "Cầu Giấy, Hà Nội",
     move: "Khảo sát gợi khách nhắc đúng dịch vụ đã làm: niềng răng, tẩy trắng…",
-    google: "Hồ sơ khớp hơn với lượt tìm theo dịch vụ — yếu tố “mức độ liên quan”.",
+    google: "Hồ sơ khớp hơn với lượt tìm theo dịch vụ, tức yếu tố “mức độ liên quan”.",
     big: "#15 → #4",
     bigLabel: "“niềng răng gần đây”",
     metric: "Lượt xem hồ sơ / tháng",
@@ -124,9 +124,9 @@ export const industries = [
 export const included = [
   "Kết nối Google Business Profile",
   "Tạo khảo sát & QR Code cho từng cửa hàng",
-  "Cài đặt từ khóa địa phương tối ưu",
+  "Chọn và cài từ khóa địa phương cho hồ sơ",
   "Đăng bài GBP tự động 2 lần / tuần",
-  "Hỗ trợ soạn phản hồi — tối đa 30 review / tuần",
+  "Soạn sẵn phản hồi, tối đa 30 review / tuần",
   "Dashboard theo dõi cơ bản",
   "Câu lệnh (prompt) phản hồi chuẩn thương hiệu",
   "Hỗ trợ kỹ thuật tiếng Việt",
@@ -135,7 +135,7 @@ export const included = [
 export const faqs = [
   {
     q: "ETStar có tạo review giả không?",
-    a: "Không. ETStar chỉ giúp khách thật chia sẻ trải nghiệm thật. Khách tự chọn số sao, tự chỉnh nội dung và tự quyết định có đăng lên Google Maps hay không — tuân thủ chính sách của Google.",
+    a: "Không. ETStar chỉ giúp khách thật chia sẻ trải nghiệm thật. Khách tự chọn số sao, tự chỉnh nội dung và tự quyết định có đăng lên Google Maps hay không, đúng chính sách của Google.",
   },
   {
     q: "Thiết lập mất bao lâu? Có cần biết kỹ thuật?",
@@ -143,7 +143,7 @@ export const faqs = [
   },
   {
     q: "Có đảm bảo cửa hàng lên Top 3 không?",
-    a: "Không dịch vụ nào đảm bảo được vị trí cố định — thứ hạng phụ thuộc mức liên quan, khoảng cách và cạnh tranh. ETStar giúp bạn chủ động cải thiện những yếu tố làm được: hồ sơ, review và tốc độ phản hồi.",
+    a: "Không dịch vụ nào đảm bảo được vị trí cố định. Thứ hạng phụ thuộc mức liên quan, khoảng cách và cạnh tranh. ETStar giúp bạn chủ động cải thiện những yếu tố làm được: hồ sơ, review và tốc độ phản hồi.",
   },
   {
     q: "Ai triển khai và hỗ trợ? Có hóa đơn VAT không?",

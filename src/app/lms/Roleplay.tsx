@@ -82,6 +82,7 @@ export default function Roleplay({ compact = false }: { compact?: boolean }) {
     <figure
       ref={ref}
       className={styles.rp}
+      data-ui
       aria-label="Minh hoạ một buổi luyện chat với khách ảo"
       data-started={started ? "" : undefined}
       data-scored={scored ? "" : undefined}

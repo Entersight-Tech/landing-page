@@ -29,7 +29,7 @@ const TESTIMONIALS: Testimonial[] = [
     logo: logoKye,
     brand: "KYE Agency",
     quote:
-      "“Tại KYE, chúng tôi không để nỗi lo công nghệ giới hạn biên độ sáng tạo. … Với sự hỗ trợ tuyệt đối 24/7, đội ngũ KYE có thể tự do hiện thực hóa những kỳ vọng khắt khe nhất của tệp khách Elite…”",
+      "“Tại KYE, chúng tôi không để nỗi lo công nghệ giới hạn biên độ sáng tạo. … Với sự hỗ trợ tuyệt đối 24/7, đội ngũ KYE có thể tự do hiện thực hóa những kỳ vọng khắt khe nhất của tệp khách Elite…”", // slop-ok: the client's own words
     role: "Founder · CEO Kye Agency",
     name: "Mr. KYE NGUYỄN",
   },

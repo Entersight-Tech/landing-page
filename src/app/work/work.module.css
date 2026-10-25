@@ -32,6 +32,19 @@
   gap: 8px;
 }
 
+/* the shared .btn is 12px; nothing on these pages reads under 13px */
+.barLinks a,
+.links a {
+  font-size: 13px;
+}
+
+/* the global .label is 11px tracked caps; here it is read (counter + project type), so sentence case at 13px */
+:global(.label).kicker {
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
 /* ---------- case page ---------- */
 .hero {
   display: grid;
@@ -51,7 +64,8 @@
 .title {
   font-family: var(--font-head);
   font-weight: 800;
-  font-size: clamp(40px, 7vw, 116px);
+  /* sized so the longest name (Where Scents Meet the Soul) holds two lines at 390px and in the hero column */
+  font-size: clamp(40px, 6vw, 96px);
   line-height: 0.95;
   letter-spacing: -0.05em;
   text-transform: uppercase;
@@ -68,9 +82,7 @@
 .facts dt {
   font-family: var(--font-head);
   font-weight: 600;
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  font-size: 13px;
   color: var(--dim);
 }
 
@@ -84,7 +96,8 @@
 }
 
 .summary {
-  font-size: clamp(15px, 1.2vw, 17px);
+  max-width: 68ch;
+  font-size: clamp(16px, 1.2vw, 17px);
   line-height: 1.7;
   color: rgba(244, 244, 244, 0.82);
 }
@@ -106,7 +119,7 @@
   padding: 6px 10px;
   border: 1px solid rgba(244, 244, 244, 0.2);
   border-radius: 999px;
-  font-size: 11.5px;
+  font-size: 13px;
   color: rgba(244, 244, 244, 0.8);
 }
 
@@ -138,7 +151,7 @@
   display: flex;
   gap: 12px;
   margin-top: 12px;
-  font-size: 12.5px;
+  font-size: 14px;
   color: var(--dim);
 }
 
@@ -162,9 +175,7 @@
 .nextLabel {
   font-family: var(--font-head);
   font-weight: 600;
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  font-size: 14px;
   color: var(--dim);
 }
 
@@ -217,7 +228,7 @@
   padding-top: 24px;
   padding-bottom: 32px;
   border-top: 1px solid var(--line);
-  font-size: 12.5px;
+  font-size: 13px;
   color: var(--dim);
 }
 
@@ -293,7 +304,7 @@
 }
 
 .cardKind {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--dim);
   text-align: right;
 }

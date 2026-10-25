@@ -176,9 +176,9 @@ export default function CaseStudies() {
         <header className={styles.head}>
           <span className="eyebrow">Dự án đã làm</span>
           <h2 className={`h2 ${styles.title} reveal`}>
-            Bốn doanh nghiệp, bốn vấn đề khác nhau. Mở từng dự án để xem cách
-            chúng tôi xử lý.
+            Bốn doanh nghiệp, bốn bài toán.
           </h2>
+          <p className="lede reveal">Mở từng dự án để xem vấn đề, cách làm và kết quả.</p>
         </header>
 
         <ol className={styles.list} onPointerMove={onMove} onPointerLeave={() => {

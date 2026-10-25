@@ -1,7 +1,8 @@
 import styles from "./lms.module.css";
 
-/** One run of a display headline: plain caps, a lowercase italic `mini`
- *  connector, or the one highlighted phrase (`hl`). */
+/** One run of a display headline: plain text (sentence case, written as it
+ *  should read; all-caps Vietnamese stacks its accents badly), a lowercase
+ *  italic `mini` connector, or the one highlighted phrase (`hl`). */
 export type Run = string | { mini: string } | { hl: string };
 
 /**

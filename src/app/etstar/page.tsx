@@ -24,7 +24,7 @@ import phoneShot from "../../../public/etstar/phone.webp";
 import qrShot from "../../../public/etstar/qr.webp";
 
 // ETStar has its own billboard look (white canvas, giant Work Sans 900
-// words in lime / lavender, purple outlines) — scoped to this route.
+// words in lime / lavender, purple outlines), scoped to this route.
 const workSans = Work_Sans({
   variable: "--nf-work",
   weight: ["400", "500", "900"],
@@ -34,7 +34,7 @@ const workSans = Work_Sans({
 
 const title = "ETStar — Tăng review thật trên Google Maps | Entersight";
 const description =
-  "ETStar giúp cửa hàng có thêm review thật qua QR & AI, phản hồi đa ngôn ngữ và nổi bật trên Google Maps. Chẩn đoán hồ sơ miễn phí.";
+  "ETStar giúp cửa hàng có thêm review thật từ khách quét QR, trả lời review bằng tiếng của khách và hoàn thiện hồ sơ Google Maps. Chẩn đoán hồ sơ miễn phí.";
 
 // the share image is opengraph-image.jpg / twitter-image.jpg next to this file
 // phone browser chrome matches the top of this page
@@ -53,7 +53,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Service",
   name: "ETStar",
-  serviceType: "Quản lý đánh giá & tối ưu Google Business Profile",
+  serviceType: "Quản lý đánh giá & hồ sơ Google Business Profile",
   description,
   url: "https://www.entersight-tech.com/etstar",
   areaServed: { "@type": "Country", name: "Việt Nam" },
@@ -73,7 +73,7 @@ const nav = [
   { label: "Hỏi đáp", href: "#faq" },
 ];
 
-/** Giant decorative word that sits behind a section — the billboard. Its
+/** Giant decorative word that sits behind a section: the billboard. Its
  *  letters rise in turn when it scrolls in, and it drifts sideways on scroll. */
 function Billboard({ word, tone }: { word: string; tone: "lime" | "lavender" }) {
   return (
@@ -97,7 +97,7 @@ export default function ETStarPage() {
     <div className={`${styles.page} ${workSans.variable}`} data-ets>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <header className={styles.bar}>
-        <Link href="/" className={styles.home} aria-label="Entersight — trang chủ">
+        <Link href="/" className={styles.home} aria-label="Entersight, trang chủ">
           <Image src={logo} alt="Entersight" priority />
         </Link>
         <span className={styles.wordmark}>
@@ -131,14 +131,18 @@ export default function ETStarPage() {
                     <textPath href="#ets-ring">100% KHÁCH THẬT · 0 REVIEW ẢO ·</textPath>
                   </text>
                 </svg>
-                <b>★</b>
+                <b>
+                  <svg viewBox="0 0 24 24">
+                    <path d="M12 2l2.9 6.9 7.1.6-5.4 4.7 1.7 7.1L12 17.6l-6.3 3.7 1.7-7.1L2 9.5l7.1-.6z" />
+                  </svg>
+                </b>
               </span>
               <p className={styles.tag} data-reveal>Sản phẩm · ETStar</p>
               <h1 className={styles.h1}>Thu hút khách mới trên Google Maps.</h1>
               <p className={styles.lead}>
-                ETStar giúp cửa hàng có thêm đánh giá thật từ chính khách của
-                mình, phản hồi mọi review đúng lúc và giữ uy tín trên Google Maps —
-                không cần đội marketing riêng.
+                ETStar giúp cửa hàng có thêm review thật từ chính khách của mình
+                và trả lời từng review, kể cả bằng tiếng của khách nước ngoài.
+                Không cần đội marketing riêng.
               </p>
               <div className={styles.ctas}>
                 <a href="#contact" className={styles.pill}>
@@ -151,7 +155,7 @@ export default function ETStarPage() {
               <p className={styles.fine}>Không review ảo · Hóa đơn VAT · Hỗ trợ tiếng Việt</p>
             </div>
 
-            <figure className={styles.phone} aria-label="Minh hoạ: danh sách cửa hàng gần đây trên Google Maps">
+            <figure className={styles.phone} data-ui aria-label="Minh hoạ: danh sách cửa hàng gần đây trên Google Maps">
               <div className={styles.phoneTop}>
                 <span>9:41</span>
                 <span className={styles.search}>quán ăn gần đây</span>
@@ -177,11 +181,12 @@ export default function ETStarPage() {
             <div>
               <p className={styles.tag} data-reveal>Mỗi ngày, khách vẫn đang tìm</p>
               <h2 className={styles.h2} data-reveal style={d(1)}>
-                Cửa hàng làm tốt — nhưng khách mới có tìm thấy và tin bạn?
+                Khách mới có tìm thấy bạn?
               </h2>
               <p className={styles.body} data-reveal style={d(2)}>
-                Khách không biết bạn tốt đến đâu. Họ chỉ thấy số sao, lời khách cũ
-                và tốc độ chủ quán phản hồi — rồi quyết định trong vài giây. Nếu hồ
+                Cửa hàng làm tốt vẫn chưa đủ. Khách không biết bạn tốt đến đâu: họ
+                chỉ thấy số sao, lời khách cũ và tốc độ chủ quán phản hồi, rồi quyết
+                định trong vài giây. Nếu hồ
                 sơ yếu, khách sang quán bên cạnh mà bạn không hề biết.
               </p>
               <Image
@@ -203,11 +208,13 @@ export default function ETStarPage() {
               ))}
             </ol>
           </div>
-          <p className={`${styles.wrap} ${styles.warn}`}>
-            <b>Mua review ảo là rủi ro thật.</b> Google liên tục gỡ review giả và
-            có thể hạn chế hồ sơ vi phạm. ETStar chỉ làm với khách thật — khách
-            tự chọn số sao và tự quyết định đăng.
-          </p>
+          <div className={`${styles.wrap} ${styles.warn}`}>
+            <p>
+              <b>Mua review ảo là rủi ro thật.</b> Google liên tục gỡ review giả và
+              có thể hạn chế hồ sơ vi phạm. ETStar chỉ làm với khách thật: khách
+              tự chọn số sao và tự quyết định có đăng hay không.
+            </p>
+          </div>
         </section>
 
         {/* ---------- three pillars ---------- */}
@@ -247,10 +254,10 @@ export default function ETStarPage() {
           <div className={`${styles.wrap} ${styles.split}`}>
             <div className={styles.qrCol}>
               <p className={styles.tag} data-reveal>Một review thật ra đời thế nào</p>
-              <h2 className={styles.h2} data-reveal style={d(1)}>Từ một lần quét QR đến một review trên Maps.</h2>
+              <h2 className={styles.h2} data-reveal style={d(1)}>Từ mã QR đến review trên Maps.</h2>
               <ol className={styles.flow}>
                 <li data-reveal style={d(2)}>Khách quét QR tại bàn</li>
-                <li data-reveal style={d(3)}>Trả lời khảo sát ngắn — chọn ngôn ngữ của mình</li>
+                <li data-reveal style={d(3)}>Trả lời khảo sát ngắn bằng ngôn ngữ của mình</li>
                 <li data-reveal style={d(4)}>AI soạn nháp review từ đúng trải nghiệm đó</li>
                 <li data-reveal style={d(5)}>Khách xem lại, tự chỉnh và tự đăng lên Google Maps</li>
               </ol>
@@ -287,11 +294,11 @@ export default function ETStarPage() {
           <div className={styles.wrap}>
             <p className={styles.tag} data-reveal>Kịch bản minh hoạ</p>
             <h2 className={styles.h2} data-reveal style={d(1)}>
-              Cửa hàng lên top Google Maps đã làm gì khác?
+              Cửa hàng lên top làm gì khác?
             </h2>
             <p className={styles.body} data-reveal style={d(2)}>
               Không phải quảng cáo, cũng không phải may mắn. Họ làm đều đặn vài việc
-              nhỏ mà Google Maps ghi nhận — và ETStar tự động hoá đúng những việc đó.
+              nhỏ mà Google Maps ghi nhận. ETStar tự động hoá đúng những việc đó.
             </p>
             <div className={styles.cases}>
               {playbooks.map((c, i) => (
@@ -334,7 +341,7 @@ export default function ETStarPage() {
                 hướng dẫn của Google
               </a>
               , thứ hạng địa phương dựa trên mức độ liên quan, khoảng cách và mức độ
-              nổi bật — trong đó có số lượng và điểm đánh giá. Kết quả thực tế tùy
+              nổi bật, trong đó có số lượng và điểm đánh giá. Kết quả thực tế tùy
               ngành hàng, vị trí và mức độ cạnh tranh.
             </p>
             <ul className={styles.industries} aria-label="Ngành phù hợp">
@@ -351,14 +358,14 @@ export default function ETStarPage() {
           <div className={`${styles.wrap} ${styles.split}`}>
             <div>
               <p className={styles.tag} data-reveal>Gói Đồng Hành</p>
-              <h2 className={styles.h2} data-reveal style={d(1)}>Bắt đầu gọn nhẹ, chạy cùng cửa hàng cả mùa kinh doanh.</h2>
+              <h2 className={styles.h2} data-reveal style={d(1)}>Một gói, giá theo chi nhánh.</h2>
               <p className={styles.price} data-reveal style={d(2)}>
                 Báo giá riêng
-                <small>Theo số chi nhánh · ưu đãi khi ký hợp đồng 6 & 12 tháng</small>
+                <small>Hợp đồng từ 3 tháng · ưu đãi khi ký 6 & 12 tháng</small>
               </p>
               <p className={styles.body} data-reveal style={d(3)}>
-                Gửi tên cửa hàng hoặc link Google Maps — Entersight gửi báo giá và đề
-                xuất gói phù hợp trong ngày làm việc.
+                Gửi tên cửa hàng hoặc link Google Maps. Entersight gửi báo giá theo
+                số chi nhánh của bạn trong ngày làm việc.
               </p>
             </div>
             <div className={styles.includedCol} data-reveal style={d(1)}>
@@ -403,11 +410,10 @@ export default function ETStarPage() {
           <div className={`${styles.wrap} ${styles.split}`}>
             <div>
               <p className={styles.tag} data-reveal>Chẩn đoán Google Maps miễn phí</p>
-              <h2 className={styles.h2} data-reveal style={d(1)}>Cửa hàng của bạn đang bỏ lỡ khách mới ở đâu?</h2>
+              <h2 className={styles.h2} data-reveal style={d(1)}>Bạn đang lỡ khách mới ở đâu?</h2>
               <p className={styles.body} data-reveal style={d(2)}>
-                Để lại thông tin — chúng tôi xem hồ sơ Google Maps hiện tại và gửi
-                bạn bản chẩn đoán ngắn, dễ hiểu, không thuật ngữ kỹ thuật. Chưa cần
-                cam kết.
+                Để lại thông tin, chúng tôi xem hồ sơ Google Maps hiện tại và gửi
+                bạn bản chẩn đoán ngắn, không thuật ngữ kỹ thuật. Chưa cần cam kết.
               </p>
               <p className={styles.fine}>
                 Hoặc nhắn Zalo <a href="https://zalo.me/0941233481">0941 233 481</a> ·{" "}

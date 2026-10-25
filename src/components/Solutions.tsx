@@ -60,11 +60,11 @@ export default function Solutions() {
         <header className={styles.head}>
           <span className="eyebrow">Chúng tôi làm gì</span>
           <h2 id="solutions-title" className="h2 reveal">
-            Bốn mảng việc, một đội làm từ đầu đến cuối.
+            Bốn mảng việc, một đầu mối.
           </h2>
           <p className="lede reveal">
             Bạn không phải tự ghép agency quảng cáo, bên làm phần mềm và người
-            làm nội dung. Một đầu mối, một bảng số chung.
+            làm nội dung. Một đội làm từ đầu đến cuối, nhìn chung một bảng số.
           </p>
         </header>
 

@@ -50,11 +50,11 @@ export default function Contact() {
         <div className={styles.left}>
           <span className="eyebrow">Liên hệ</span>
           <h2 className={`h2 ${styles.title} reveal`}>
-            Kể cho chúng tôi nghe bạn đang vướng ở đâu.
+            Bạn đang vướng ở đâu?
           </h2>
           <p className={`${styles.sub} reveal`}>
-            Không cần chuẩn bị gì. Gửi vài dòng, chúng tôi gọi lại hỏi thêm, rồi
-            đề xuất phần nên làm trước.
+            Kể cho chúng tôi nghe. Không cần chuẩn bị gì: gửi vài dòng, chúng tôi
+            gọi lại hỏi thêm, rồi đề xuất phần nên làm trước.
           </p>
           <ul className={`${styles.direct} reveal`}>
             <li>

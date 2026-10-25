@@ -137,3 +137,13 @@ Motion (off under `prefers-reduced-motion`): an inline script sets
 rail along the steps (`[data-track]`), turns the asterisks, drives the header
 progress line, the hero pointer dot and the phone sticky CTA. The form posts
 to `/api/lead` prefixed `[EnterLMS]`.
+
+## Design-quality skills (`.claude/skills/`)
+- `anti-slop` — the entry point for "looks / reads AI-made" audits. Runs the
+  vendored taste-skill meters (source lint + real-browser inspector) and a
+  Vietnamese copy lint, then applies the brand policy in `brand.json`
+  (brand palette, faces and quiet motion are exempt). Usage and the review
+  steps are in its `SKILL.md`; Vietnamese copy tells in
+  `references/copy-vi.md`. Working files go to `.anti-slop/` (git-ignored).
+- Emil Kowalski's skills (`review-animations`, `improve-animations`,
+  `mobile-native`, `emil-design-eng`, …) set the motion and mobile bar.

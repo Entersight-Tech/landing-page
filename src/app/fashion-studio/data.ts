@@ -7,7 +7,7 @@ export const PRODUCT = "MUSE Studio";
 /** lib/engines/modes.ts — the 7 image modes, in chip order. */
 export const imageModes = [
   { name: "Lên Model", text: "Thả 1–5 ảnh sản phẩm, nhận ảnh người mẫu mặc đúng món đó." },
-  { name: "Try-On", text: "Ảnh model + ảnh sản phẩm. Mọi thứ còn lại tự động." },
+  { name: "Try-On", text: "Ảnh model + ảnh sản phẩm: món đồ lên đúng người trong ảnh bạn đưa." },
   { name: "Đổi Pose", text: "Giữ form đồ và chất liệu, chỉ đổi dáng theo ảnh tham chiếu." },
   { name: "Makeup & Tóc", text: "Thay lớp makeup, kiểu tóc theo ảnh mẫu, bật riêng từng lớp." },
   { name: "Đổi Model", text: "Giữ đồ, pose và bối cảnh, chỉ thay người." },
@@ -18,7 +18,7 @@ export const imageModes = [
 /** lib/studio/script-generator.ts — ROLE_ORDER and its Vietnamese labels. */
 export const scriptRoles = [
   { role: "Mở đầu", line: "Giữ chân người xem trong 2 giây đầu." },
-  { role: "Vấn đề", line: "Chạm vào nỗi lo của người mua." },
+  { role: "Vấn đề", line: "Nói ra điều người mua đang ngại." },
   { role: "Lợi ích", line: "Nêu điểm bán từ USP bạn nhập." },
   { role: "Thể hiện", line: "Cho thấy sản phẩm trên người mẫu." },
   { role: "Kêu gọi", line: "Bảo người xem làm gì tiếp." },
@@ -52,8 +52,8 @@ export const quality = [
 export const workspace = [
   ["Thư viện ảnh AI", "Mỗi ảnh có tên, tag, màu, chất liệu, phong cách. Ảnh outfit tách thành từng món."],
   ["Smart Search", "Gõ “váy cúp ngực đen” như nói chuyện, hoặc tải ảnh lên để tìm món tương tự."],
-  ["Trải nghiệm khách hàng", "Thử nhiều sản phẩm trên ảnh của chính khách, tinh chỉnh nhiều vòng, lưu lịch sử."],
-  ["Elements", "Models, poses, bối cảnh, makeup & tóc, photo style: tạo một lần, dùng mọi nơi."],
+  ["Thử đồ cho khách", "Thử nhiều sản phẩm trên ảnh của chính khách, tinh chỉnh nhiều vòng, lưu lịch sử."],
+  ["Elements", "Models, poses, bối cảnh, makeup & tóc, photo style: tạo một lần, dùng lại ở mọi chế độ."],
   ["Moodboard", "Gom ảnh cảm hứng theo concept, chia sẻ với cộng sự."],
   ["Ảnh người mẫu", "Quản lý ảnh người mẫu và KOL thật, chia sẻ bằng đường link."],
 ];
@@ -77,11 +77,11 @@ export const faqs = [
   },
   {
     q: "Chi phí tính thế nào?",
-    a: "Trả theo output: một credit xấp xỉ một ảnh 2K. Số credit, thời gian ước tính của video, hiện trước khi bạn bấm Gửi. Entersight tư vấn gói theo khối lượng thực tế của brand.",
+    a: "Trả theo output: một credit xấp xỉ một ảnh 2K. Số credit (với video, cả thời gian ước tính) hiện trước khi bạn bấm Gửi. Entersight đề xuất gói theo số ảnh, video brand thật sự làm.",
   },
   {
     q: "Bắt đầu dùng MUSE thế nào?",
-    a: "Để lại thông tin, Entersight liên hệ để setup MUSE Studio cho cửa hàng của bạn: nạp ảnh sản phẩm vào Thư viện, tạo người mẫu riêng của brand và hướng dẫn đội ngũ buổi đầu.",
+    a: "Để lại thông tin, Entersight liên hệ để setup MUSE Studio cho cửa hàng của bạn: nạp ảnh sản phẩm vào Thư viện, tạo người mẫu riêng của brand và hướng dẫn đội của bạn trong buổi đầu.",
   },
 ];
 

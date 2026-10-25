@@ -12,7 +12,7 @@ import knit from "../../../public/fashion-studio/look-knit.webp";
 
 function Frame({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className={styles.frame} role="img" aria-label={`Minh hoạ giao diện ${title}`}>
+    <div className={styles.frame} data-ui role="img" aria-label={`Minh hoạ giao diện ${title}`}>
       <div className={styles.frameBar} aria-hidden="true">
         <i />
         <i />
@@ -94,7 +94,7 @@ export function StudioMock() {
 /** Studio · Video — affiliate shoot: product + model on top, scenes by script role. */
 export function VideoMock() {
   return (
-    <Frame title="Studio · Video — Buổi quay">
+    <Frame title="Studio · Video · Buổi quay">
       <div className={styles.shoot}>
         <div className={styles.shootHead}>
           <Thumb src={jackets} className={styles.thumbMd} />

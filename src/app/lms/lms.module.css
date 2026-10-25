@@ -91,31 +91,6 @@
   color: var(--text-brand);
 }
 
-.label {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5em;
-  font-family: var(--font-head);
-  font-weight: 600;
-  font-size: 13px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-
-.label::before {
-  content: "[";
-}
-
-.label::after {
-  content: "]";
-}
-
-.label b {
-  font-weight: 700;
-  color: var(--text-brand);
-}
-
 .lead {
   max-width: 560px;
   font-size: clamp(17px, 1.4vw, 19px);
@@ -871,15 +846,6 @@
   max-width: 20ch;
 }
 
-.num {
-  display: block;
-  font-family: var(--font-head);
-  font-weight: 700;
-  font-size: 13px;
-  letter-spacing: 0.12em;
-  color: var(--text-brand);
-}
-
 /* problem → answer */
 .whys {
   display: grid;
@@ -915,16 +881,9 @@
 }
 
 .fix b {
-  display: block;
-  margin-bottom: 6px;
   font-family: var(--font-head);
   font-weight: 700;
-  font-size: 13px;
   color: var(--text-brand);
-}
-
-.fix b::after {
-  content: " ↗";
 }
 
 /* ---------- rounded panels (blue / night) ---------- */
@@ -950,18 +909,14 @@
   color: #f4f4f4;
 }
 
-.blue .label,
 .blue .sub {
   color: rgba(255, 255, 255, 0.88);
 }
 
-.night .label,
 .night .sub {
   color: var(--muted);
 }
 
-.blue .label b,
-.night .label b,
 .blue .hl,
 .night .hl {
   color: var(--accent);
@@ -1042,30 +997,14 @@
   color: rgba(255, 255, 255, 0.88);
 }
 
+/* "Bước N." leads the step heading; lights up as the track reaches it */
 .stepNo {
-  display: block;
-  font-family: var(--font-head);
-  font-weight: 700;
-  font-size: clamp(30px, 3.8vw, 56px);
-  line-height: 1;
-  letter-spacing: -0.035em;
   color: var(--accent);
   transition: color 0.5s ease;
 }
 
 .page[data-tracking] .jStep:not([data-on]) .stepNo {
   color: rgba(255, 255, 255, 0.3);
-}
-
-.who {
-  display: inline-block;
-  margin: 16px 0 12px;
-  padding: 4px 10px;
-  font-family: var(--font-head);
-  font-weight: 600;
-  font-size: 13px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 999px;
 }
 
 .jMock .mock {

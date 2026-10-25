@@ -1,5 +1,5 @@
 {
-  "about": "Entersight policy layered over the vendored taste-skill meters. scripts/audit.mjs reads this file: every finding whose id is listed here is re-levelled to fail / warn / allow. Ids not listed keep the upstream level. Change a rule here, with a reason, instead of arguing with the meter in a report.",
+  "about": "Entersight policy layered over the vendored taste-skill meters. scripts/audit.mjs reads this file: every finding whose id is listed here is re-levelled to fail / warn / allow. Ids not listed keep the upstream level. Change a rule here, with a reason, instead of arguing with the meter in a report. 'exceptions' allow one specific finding (a label text for eyebrow pairs, or a url+width for page-level findings) that was checked by hand and is a meter false positive; every entry says why.",
   "brand": {
     "palette": {
       "night": "#08071a",
@@ -83,6 +83,10 @@
     "em-dash": {
       "level": "allow",
       "why": "Counted per file, in Vietnamese copy, by scripts/lint-vi.mjs instead."
+    },
+    "covered-text": {
+      "level": "warn",
+      "why": "The /lms phone sticky CTA floats over the bottom edge while the page scrolls; check that nothing stays covered when the page is at rest."
     }
   },
   "decisions": [
@@ -101,6 +105,34 @@
     {
       "date": "2026-10-25",
       "decision": "Owner confirmed: /etstar figures (10.000+ địa điểm, 50K+ đánh giá, 12+ quốc gia, 1–3 ngày, 3-month minimum), KYE on MUSE since 04/2026, and the Cô Đôi Thượng Ngàn client field."
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "eyebrow",
+      "label": "Kể vấn đề của bạn",
+      "why": "A button, not a label: the hero CTA sits above the proof figures at tablet width."
+    },
+    {
+      "id": "eyebrow",
+      "label": "Xem website",
+      "why": "A button inside an open case row, above the next row's name."
+    },
+    {
+      "id": "eyebrow",
+      "label": "Bước 5",
+      "why": "/etstar billboard word (T O P) under the last rollout step: the billboard is the route's chosen style."
+    },
+    {
+      "id": "eyebrow",
+      "label": "Giáo dục",
+      "why": "/etstar billboard word (G Ó I) under the industries list."
+    },
+    {
+      "id": "blank-gap",
+      "url": "/",
+      "width": 390,
+      "why": "Meter limit: the inspector walks 11 screens, the home page is ~16 at 390px. Verified by a full scroll: 0 reveals left hidden (2026-10-25). Re-verify if the page changes length."
     }
   ]
 }

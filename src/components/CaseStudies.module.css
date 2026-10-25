@@ -115,12 +115,16 @@
 .drawer {
   display: grid;
   grid-template-rows: 0fr;
+  /* closed: hidden from keyboard and screen readers once it has collapsed */
+  visibility: hidden;
   /* height has no transform equivalent; keep the morph short */
-  transition: grid-template-rows 0.4s var(--ease-in-out);
+  transition: grid-template-rows 0.4s var(--ease-in-out), visibility 0s linear 0.4s;
 }
 
 .row[data-open] .drawer {
   grid-template-rows: 1fr;
+  visibility: visible;
+  transition: grid-template-rows 0.4s var(--ease-in-out), visibility 0s;
 }
 
 .drawerInner {

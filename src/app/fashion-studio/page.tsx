@@ -216,9 +216,9 @@ export default function FashionStudio() {
                       ))}
                     </ul>
                   </div>
-                  <span className={styles.lbArrow} aria-hidden="true">
-                    →
-                  </span>
+                  <svg className={styles.lbArrow} viewBox="0 0 32 32" fill="none" aria-hidden="true">
+                    <path d="M4 16h22M18 8l8 8-8 8" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
                   <div className={`reveal ${styles.lbOut}`}>
                     <span className={styles.lbStep}>Kết quả MUSE</span>
                     <ul>

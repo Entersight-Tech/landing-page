@@ -298,12 +298,12 @@ export default function ETStarPage() {
                 <article key={c.kind} className={styles.case} data-reveal style={d(i)}>
                   <header>
                     <h3>{c.kind}</h3>
-                    <p className={styles.caption}>Minh hoạ · {c.place}</p>
                   </header>
                   <p className={styles.caseBig}>
                     {c.big}
                     <small>{c.bigLabel}</small>
                   </p>
+                  <p className={styles.caption}>Minh hoạ · {c.place}</p>
                   <dl>
                     <div>
                       <dt>Họ làm</dt>

@@ -36,6 +36,8 @@
   background: none;
   text-align: left;
   cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .idx {
@@ -52,16 +54,23 @@
   font-size: clamp(26px, 3.6vw, 52px);
   line-height: 1.05;
   letter-spacing: -0.03em;
-  transition: color 0.3s ease, transform 0.5s var(--ease-out);
+  transition: color 0.2s ease, transform 0.25s var(--ease-out);
 }
 
-.rowHead:hover .name,
 .row[data-open] .name {
   color: var(--lime);
 }
 
-.rowHead:hover .name {
-  transform: translateX(6px);
+@media (hover: hover) and (pointer: fine) {
+  .rowHead:hover .name {
+    color: var(--lime);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .rowHead:hover .name {
+    transform: translateX(6px);
+  }
 }
 
 .meta {
@@ -98,7 +107,7 @@
   top: 50%;
   height: 1.5px;
   background: currentColor;
-  transition: transform 0.4s var(--ease-out);
+  transition: transform 0.25s var(--ease-out);
 }
 
 .plus::after {
@@ -113,7 +122,8 @@
 .drawer {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 0.7s var(--ease-out);
+  /* height has no transform equivalent; keep the morph short */
+  transition: grid-template-rows 0.4s var(--ease-in-out);
 }
 
 .row[data-open] .drawer {
@@ -206,8 +216,8 @@
   border-radius: 14px;
   background: var(--paper);
   opacity: 0;
-  transform: scale(0.9) rotate(-4deg);
-  transition: opacity 0.3s ease, transform 0.5s var(--ease-out);
+  transform: scale(0.95) rotate(-3deg);
+  transition: opacity 0.2s ease, transform 0.3s var(--ease-out);
 }
 
 .previewImg[data-active] {
@@ -245,5 +255,14 @@
 
   .cols {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drawer,
+  .name,
+  .plus::before,
+  .plus::after {
+    transition: none;
   }
 }

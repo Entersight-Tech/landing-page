@@ -144,10 +144,30 @@ export default function CaseStudies() {
     return () => document.removeEventListener("click", onClick);
   }, []);
 
+  // the preview trails the pointer instead of being glued to it
+  const follow = useRef({ x: 0, y: 0, tx: 0, ty: 0, frame: 0, live: false });
   const onMove = (e: PointerEvent<HTMLElement>) => {
     const el = previewRef.current;
+    const f = follow.current;
     if (!el) return;
-    el.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+    f.tx = e.clientX;
+    f.ty = e.clientY;
+    if (!f.live || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      // first move (or reduced motion): jump straight there
+      f.x = f.tx;
+      f.y = f.ty;
+      f.live = true;
+      el.style.transform = `translate(${f.x}px, ${f.y}px)`;
+      return;
+    }
+    if (f.frame) return;
+    const tick = () => {
+      f.x += (f.tx - f.x) * 0.22;
+      f.y += (f.ty - f.y) * 0.22;
+      el.style.transform = `translate(${f.x.toFixed(1)}px, ${f.y.toFixed(1)}px)`;
+      f.frame = Math.abs(f.tx - f.x) + Math.abs(f.ty - f.y) > 0.5 ? requestAnimationFrame(tick) : 0;
+    };
+    f.frame = requestAnimationFrame(tick);
   };
 
   return (
@@ -161,7 +181,10 @@ export default function CaseStudies() {
           </h2>
         </header>
 
-        <ol className={styles.list} onPointerMove={onMove} onPointerLeave={() => setHover(null)}>
+        <ol className={styles.list} onPointerMove={onMove} onPointerLeave={() => {
+            setHover(null);
+            follow.current.live = false;
+          }}>
           {cases.map((c, i) => {
             const isOpen = open === i;
             return (

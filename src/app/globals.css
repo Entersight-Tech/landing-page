@@ -22,7 +22,9 @@
   --maxw: 1320px;
   --gutter: clamp(16px, 3vw, 40px);
   --radius: clamp(18px, 2.2vw, 28px);
-  --ease-out: cubic-bezier(0.2, 0.75, 0.1, 1);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  /* on-screen movement (accordion height, sheet) */
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 
   /* next/font sets --nf-* on <html>, so they resolve here on :root */
   --font-head: var(--nf-heading), "Segoe UI", sans-serif;
@@ -39,6 +41,22 @@
 
 html {
   scroll-behavior: smooth;
+  /* no grey flash on tap: every pressable has its own :active instead */
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* the mobile menu sheet is open: the page behind must not scroll */
+html[data-menu] {
+  overflow: hidden;
+}
+
+/* fire click on touch without the double-tap wait */
+a,
+button,
+[role="button"],
+label {
+  touch-action: manipulation;
 }
 
 body {
@@ -164,34 +182,43 @@ button {
   border-radius: 4px;
   background: transparent;
   cursor: pointer;
-  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.16s var(--ease-out);
+}
+
+.btn:active {
+  transform: scale(0.97);
 }
 
 .btn::after {
   content: "↗";
   font-size: 14px;
-  transition: transform 0.25s var(--ease-out);
+  transition: transform 0.2s var(--ease-out);
 }
 
-.btn:hover {
-  background: var(--lime);
-  border-color: var(--lime);
-  color: var(--ink);
-}
+/* hover only where a pointer can hover: a tap would leave it stuck on */
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover {
+    background: var(--lime);
+    border-color: var(--lime);
+    color: var(--ink);
+  }
 
-.btn:hover::after {
-  transform: translate(2px, -2px);
+  .btn:hover::after {
+    transform: translate(2px, -2px);
+  }
+
+  .btn--solid:hover {
+    background: var(--paper);
+    border-color: var(--paper);
+  }
 }
 
 .btn--solid {
   background: var(--lime);
   border-color: var(--lime);
   color: var(--ink);
-}
-
-.btn--solid:hover {
-  background: var(--paper);
-  border-color: var(--paper);
 }
 
 .btn--ink {
@@ -280,12 +307,21 @@ main section[id] {
     scroll-behavior: auto;
   }
 
-  .reveal,
+  /* gentler, not none: blocks still fade in, nothing moves */
+  .reveal {
+    transform: none;
+    transition: opacity 0.3s ease;
+  }
+
   .wipe,
   .wipe img {
-    opacity: 1;
     clip-path: none;
     transform: none;
     transition: none;
+  }
+
+  .btn,
+  .btn:active {
+    transform: none;
   }
 }

@@ -142,7 +142,7 @@ export default function FashionStudio() {
                 </a>
               </div>
             </div>
-            <div className={`reveal ${styles.heroMock}`}>
+            <div className={styles.heroMock}>
               <StudioMock />
             </div>
           </div>

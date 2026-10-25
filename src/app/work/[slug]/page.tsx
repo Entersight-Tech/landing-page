@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -13,6 +13,13 @@ export const dynamicParams = false;
 
 export function generateStaticParams() {
   return works.map((w) => ({ slug: w.slug }));
+}
+
+// phone browser chrome takes the project's tone, the colour at the top
+export async function generateViewport({ params }: Props): Promise<Viewport> {
+  const { slug } = await params;
+  const w = works.find((p) => p.slug === slug);
+  return w ? { themeColor: w.tone } : {};
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

@@ -3,17 +3,43 @@
 import { useEffect } from "react";
 
 /**
- * /lms motion, all off under reduced motion:
+ * /lms motion, all off under reduced motion (except the phone CTA):
  * - [data-reveal] blocks get [data-in] as they scroll in (headings' words
  *   then rise out of their masks, see Display.tsx) and their [data-count]
  *   numbers count up;
- * - --scroll on the page (0–1) drives the header progress line;
+ * - the header progress line ([data-progress]) scales with page scroll;
  * - [data-spin] shapes turn with scroll;
  * - [data-track] lists get --p (0–1) as they pass through the viewport and
  *   mark each child [data-on] once the line has reached it;
  * - [data-dot] follows the pointer inside its [data-hero] (fine pointers).
  */
 export default function Motion() {
+  // phone CTA: once past the hero, until the form itself is on screen. Runs
+  // under reduced motion too (it's navigation, not decoration).
+  useEffect(() => {
+    const root = document.querySelector<HTMLElement>("[data-lms]");
+    const form = root?.querySelector<HTMLElement>("#contact");
+    if (!root) return;
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const vh = window.innerHeight;
+      const formTop = form?.getBoundingClientRect().top ?? 0;
+      root.toggleAttribute("data-cta", scrollY > vh * 0.8 && formTop > vh * 0.6);
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
   useEffect(() => {
     const root = document.querySelector<HTMLElement>("[data-lms]");
     if (!root || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -57,20 +83,26 @@ export default function Motion() {
 
     const spins = Array.from(root.querySelectorAll<HTMLElement>("[data-spin]"));
     const tracks = Array.from(root.querySelectorAll<HTMLElement>("[data-track]"));
+    const progress = root.querySelector<HTMLElement>("[data-progress]");
     let frame = 0;
+    // all layout reads first, then all writes: no forced layout per frame
     const update = () => {
       frame = 0;
-      const max = document.documentElement.scrollHeight - vh();
-      // phone CTA: once past the hero, until the form itself is on screen
-      const form = root.querySelector<HTMLElement>("#contact");
-      root.toggleAttribute("data-cta", scrollY > vh() * 0.8 && (form?.getBoundingClientRect().top ?? 0) > vh() * 0.6);
-      root.style.setProperty("--scroll", String(max > 0 ? Math.min(1, scrollY / max) : 0));
-      spins.forEach((el) => {
-        el.style.transform = `rotate(${(scrollY * 0.04).toFixed(2)}deg)`;
-      });
-      tracks.forEach((el) => {
+      const h = vh();
+      const max = document.documentElement.scrollHeight - h;
+      const y = scrollY;
+      const trackState = tracks.map((el) => {
         const r = el.getBoundingClientRect();
-        const p = Math.max(0, Math.min(1, (vh() * 0.85 - r.top) / (r.height + vh() * 0.25)));
+        return Math.max(0, Math.min(1, (h * 0.85 - r.top) / (r.height + h * 0.25)));
+      });
+
+      // transforms written on the element itself, not a variable on the page
+      if (progress) progress.style.transform = `scaleX(${(max > 0 ? Math.min(1, y / max) : 0).toFixed(4)})`;
+      spins.forEach((el) => {
+        el.style.transform = `rotate(${(y * 0.04).toFixed(2)}deg)`;
+      });
+      tracks.forEach((el, k) => {
+        const p = trackState[k];
         el.style.setProperty("--p", p.toFixed(3));
         const items = Array.from(el.children) as HTMLElement[];
         items.forEach((li, i) => li.toggleAttribute("data-on", p >= (i + 0.35) / items.length));

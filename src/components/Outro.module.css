@@ -26,8 +26,10 @@
   transition: color 0.2s ease;
 }
 
-.col a:not(:global(.btn)):hover {
-  color: var(--lime);
+@media (hover: hover) and (pointer: fine) {
+  .col a:not(:global(.btn)):hover {
+    color: var(--lime);
+  }
 }
 
 .colLabel {

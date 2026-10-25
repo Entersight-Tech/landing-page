@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Montserrat, Roboto } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -54,6 +54,11 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title, description },
 };
 
+// mobile browser chrome takes the colour of the top of the page
+export const viewport: Viewport = {
+  themeColor: "#08071a",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -62,6 +67,10 @@ export default function RootLayout({
   return (
     <html lang="vi" className={`${montserrat.variable} ${roboto.variable} ${outline.variable}`}>
       <body>
+        {/* without JS the scroll reveals would never run: show everything */}
+        <noscript>
+          <style>{`.reveal{opacity:1!important;transform:none!important}.wipe,.wipe img{clip-path:none!important;transform:none!important}`}</style>
+        </noscript>
         {children}
       </body>
     </html>

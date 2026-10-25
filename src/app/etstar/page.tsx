@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Work_Sans } from "next/font/google";
@@ -37,6 +37,9 @@ const description =
   "ETStar giúp cửa hàng có thêm review thật qua QR & AI, phản hồi đa ngôn ngữ và nổi bật trên Google Maps. Chẩn đoán hồ sơ miễn phí.";
 
 // the share image is opengraph-image.jpg / twitter-image.jpg next to this file
+// phone browser chrome matches the top of this page
+export const viewport: Viewport = { themeColor: "#ffffff" };
+
 export const metadata: Metadata = {
   title,
   description,
@@ -228,7 +231,7 @@ export default function ETStarPage() {
             <div className={styles.row3}>
               {pillars.map((p, i) => (
                 <article key={p.tag} className={styles.pillar} data-reveal style={d(i)}>
-                  <p className={styles.tag} data-reveal>{p.tag}</p>
+                  <p className={styles.tag}>{p.tag}</p>
                   <h3>{p.title}</h3>
                   <p>{p.body}</p>
                   <p className={styles.caption}>{p.caption}</p>
@@ -359,7 +362,7 @@ export default function ETStarPage() {
               </p>
             </div>
             <div className={styles.includedCol} data-reveal style={d(1)}>
-              <p className={styles.tag} data-reveal>Đã bao gồm</p>
+              <p className={styles.tag}>Đã bao gồm</p>
               <ul className={styles.included}>
                 {included.map((x) => (
                   <li key={x}>{x}</li>

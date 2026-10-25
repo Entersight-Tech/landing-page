@@ -39,9 +39,8 @@ export default function Motion() {
     reveals
       .filter((el) => !pending.includes(el))
       .forEach((el) => {
+        // already read on load: no count-up, the number stays as rendered
         el.setAttribute("data-in", "");
-        if (el.hasAttribute("data-count")) countUp(el);
-        el.querySelectorAll<HTMLElement>("[data-count]").forEach(countUp);
       });
     root.setAttribute("data-motion", "");
 
@@ -64,10 +63,13 @@ export default function Motion() {
     let frame = 0;
     const drift = () => {
       frame = 0;
+      // read every box first, then write: no forced layout between words
+      const h = vh();
+      const boxes = drifts.map((el) => el.getBoundingClientRect());
       drifts.forEach((el, i) => {
-        const r = el.getBoundingClientRect();
-        if (r.bottom < 0 || r.top > vh()) return;
-        const p = (vh() - r.top) / (vh() + r.height);
+        const r = boxes[i];
+        if (r.bottom < 0 || r.top > h) return;
+        const p = (h - r.top) / (h + r.height);
         el.style.transform = `translate3d(${((0.5 - p) * 12 * (i % 2 ? -1 : 1)).toFixed(2)}%, 0, 0)`;
       });
     };

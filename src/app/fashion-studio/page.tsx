@@ -83,15 +83,6 @@ const nav = [
   { label: "KYE Agency", href: "#kye" },
 ];
 
-/** [ 01 — Name ] section label from the design system. */
-function Label({ no, children }: { no: string; children: React.ReactNode }) {
-  return (
-    <span className="label">
-      <b>{no}</b> — {children}
-    </span>
-  );
-}
-
 export default function FashionStudio() {
   return (
     <div className={styles.page} id="top">
@@ -125,7 +116,6 @@ export default function FashionStudio() {
           <Asterisk className={styles.heroStar} />
           <div className={`container ${styles.heroGrid}`}>
             <div className={styles.heroHead}>
-              <Label no={PRODUCT}>AI Fashion Studio</Label>
               <h1 className={styles.h1}>
                 Ảnh &amp; video
                 <br className={styles.brWide} /> thời trang <span className="lime">qua chat</span>
@@ -133,7 +123,7 @@ export default function FashionStudio() {
             </div>
             <div className={styles.heroCopy}>
               <p className={styles.lead}>
-                Đính kèm ảnh sản phẩm, chọn việc cần làm, gửi. MUSE lên model, thử đồ, đổi pose, quay video affiliate có
+                MUSE Studio là studio AI cho shop thời trang. Đính kèm ảnh sản phẩm, chọn việc cần làm, gửi. MUSE lên model, thử đồ, đổi pose, quay video affiliate có
                 kịch bản và clone video từ clip mẫu. Mọi kết quả tự vào Thư viện, tìm lại bằng tiếng Việt.
               </p>
               <div className={styles.ctas}>
@@ -173,36 +163,31 @@ export default function FashionStudio() {
           </ul>
         </section>
 
-        {/* ---------- 01 image studio ---------- */}
+        {/* ---------- image studio ---------- */}
         <section id="image" className={styles.section}>
           <div className={`container ${styles.split}`}>
             <div className={`reveal ${styles.intro}`}>
-              <Label no="01">Studio · Ảnh</Label>
-              <h2 className={styles.h2}>
-                Bảy việc trong một khung chat
-              </h2>
+              <h2 className={styles.h2}>Bảy việc với ảnh, một khung chat</h2>
               <p className={styles.body}>
                 Chuyển sang việc khác, ảnh đã đính kèm vẫn còn đó: từ ảnh sản phẩm lên model, đổi pose rồi makeup mà
                 không phải tải ảnh lại. Mỗi lần gửi được lưu thành một cặp hỏi–đáp, mở lại tab vẫn thấy đủ việc đã làm.
               </p>
             </div>
-            <ol className={styles.modes}>
-              {imageModes.map((m, i) => (
+            <ul className={styles.modes}>
+              {imageModes.map((m) => (
                 <li key={m.name} className="reveal">
-                  <span className={styles.modeNo}>{String(i + 1).padStart(2, "0")}</span>
                   <h3>{m.name}</h3>
                   <p>{m.text}</p>
                 </li>
               ))}
-            </ol>
+            </ul>
           </div>
         </section>
 
-        {/* ---------- 02 lookbook (real runs) ---------- */}
+        {/* ---------- lookbook (real runs) ---------- */}
         <section id="lookbook" className={styles.section}>
           <div className="container">
             <div className={`reveal ${styles.intro} ${styles.introWide}`}>
-              <Label no="02">Lookbook từ ảnh thật</Label>
               <h2 className={styles.h2}>
                 Ảnh của shop vào, <span className="lime">lookbook</span> ra
               </h2>
@@ -214,7 +199,6 @@ export default function FashionStudio() {
             {lookbooks.map((lb) => (
               <article key={lb.title} className={styles.lookbook}>
                 <div className={`reveal ${styles.lbHead}`}>
-                  <span className={styles.modeNo}>{lb.tag}</span>
                   <h3>{lb.title}</h3>
                   <p>{lb.text}</p>
                 </div>
@@ -254,11 +238,10 @@ export default function FashionStudio() {
           </div>
         </section>
 
-        {/* ---------- 03 video ---------- */}
+        {/* ---------- video ---------- */}
         <section id="video" className={styles.panel}>
           <div className={`container ${styles.panelIn}`}>
             <div className={`reveal ${styles.intro}`}>
-              <Label no="03">Studio · Video</Label>
               <h2 className={styles.h2}>
                 Từ sản phẩm đến <span className="lime">video affiliate</span>
               </h2>
@@ -267,11 +250,11 @@ export default function FashionStudio() {
                 được. Người mẫu nói thành tiếng, kể cả tiếng Việt. Scene nào yếu thì sinh lại đúng scene đó, rồi
                 ghép thành một video.
               </p>
-              <ul className={styles.roles}>
+              <ol className={styles.roles} aria-label="Thứ tự vai trò trong kịch bản">
                 {scriptRoles.map((r) => (
                   <li key={r.role}>{r.role}</li>
                 ))}
-              </ul>
+              </ol>
             </div>
             <div className="reveal">
               <VideoMock />
@@ -279,17 +262,14 @@ export default function FashionStudio() {
           </div>
         </section>
 
-        {/* ---------- 03 clone ---------- */}
+        {/* ---------- clone ---------- */}
         <section className={styles.section}>
           <div className={`container ${styles.split} ${styles.splitRev}`}>
             <div className="reveal">
               <CloneMock />
             </div>
             <div className={`reveal ${styles.intro}`}>
-              <Label no="04">Clone Video</Label>
-              <h2 className={styles.h2}>
-                Ba ô, một nút bấm
-              </h2>
+              <h2 className={styles.h2}>Clone video: ba ô, một nút bấm</h2>
               <p className={styles.body}>
                 Clip đang viral, người mẫu của brand, sản phẩm cần bán. MUSE chép lại chuyển động của clip mẫu lên
                 người mẫu đang mặc đồ của bạn. Clip dài được chia đoạn và quay song song; tắt trang rồi quay lại, video
@@ -299,35 +279,28 @@ export default function FashionStudio() {
           </div>
         </section>
 
-        {/* ---------- 04 quality ---------- */}
+        {/* ---------- quality ---------- */}
         <section id="quality" className={styles.section}>
           <div className="container">
             <div className={`reveal ${styles.intro} ${styles.introWide}`}>
-              <Label no="05">Chất lượng</Label>
-              <h2 className={styles.h2}>
-                Đúng chất liệu, đúng gương mặt
-              </h2>
+              <h2 className={styles.h2}>Đúng chất liệu, đúng gương mặt</h2>
             </div>
-            <ol className={styles.quality}>
+            <ul className={styles.quality}>
               {quality.map((q) => (
-                <li key={q.k} className="reveal">
-                  <span className={styles.modeNo}>{q.k}</span>
+                <li key={q.title} className="reveal">
                   <h3>{q.title}</h3>
                   <p>{q.text}</p>
                 </li>
               ))}
-            </ol>
+            </ul>
           </div>
         </section>
 
-        {/* ---------- 05 workspace ---------- */}
+        {/* ---------- workspace ---------- */}
         <section className={styles.section}>
           <div className="container">
             <div className={`reveal ${styles.intro} ${styles.introWide}`}>
-              <Label no="06">Thư viện &amp; tìm kiếm</Label>
-              <h2 className={styles.h2}>
-                Mọi kết quả về một kho
-              </h2>
+              <h2 className={styles.h2}>Một thư viện, tìm bằng tiếng Việt</h2>
             </div>
             <figure className={`reveal ${styles.shot}`}>
               <div className="wipe">
@@ -360,7 +333,7 @@ export default function FashionStudio() {
           </div>
         </section>
 
-        {/* ---------- 06 KYE case ---------- */}
+        {/* ---------- KYE case ---------- */}
         <section id="kye" className={styles.section}>
           <div className={`container ${styles.case}`}>
             <div className={`reveal ${styles.caseImg}`}>
@@ -369,7 +342,6 @@ export default function FashionStudio() {
               </div>
             </div>
             <div className={`reveal ${styles.intro}`}>
-              <Label no="07">KYE Agency</Label>
               <h2 className={styles.h2}>
                 Đang chạy ở KYE Agency từ 04/2026
               </h2>
@@ -394,8 +366,7 @@ export default function FashionStudio() {
         <section className={styles.section}>
           <div className={`container ${styles.split}`}>
             <div className={`reveal ${styles.intro}`}>
-              <Label no="08">Hỏi đáp</Label>
-              <h2 className={styles.h2}>Trước khi bắt đầu</h2>
+              <h2 className={styles.h2}>Hỏi đáp trước khi bắt đầu</h2>
             </div>
             <div className={styles.faq}>
               {faqs.map((f) => (
@@ -416,7 +387,6 @@ export default function FashionStudio() {
           </div>
           <div className={`container ${styles.ctaIn}`}>
             <div>
-              <Label no="09">Liên hệ</Label>
               <h2 className={styles.h2}>
                 Chạy thử trên <span className="lime">ảnh của shop bạn</span>
               </h2>

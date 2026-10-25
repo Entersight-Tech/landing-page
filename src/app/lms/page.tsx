@@ -59,15 +59,6 @@ const nav = [
   { label: "Hỏi đáp", href: "#faq" },
 ];
 
-/** [ 01 — Name ] section label from the design system. */
-function Label({ no, children }: { no: string; children: React.ReactNode }) {
-  return (
-    <span className={styles.label}>
-      <b>{no}</b> — {children}
-    </span>
-  );
-}
-
 /** Stagger index for a revealed item. */
 const d = (i: number) => ({ "--d": i }) as React.CSSProperties;
 
@@ -109,9 +100,6 @@ export default function LmsPage() {
           </span>
           <div className={`${styles.wrap} ${styles.heroGrid}`}>
             <div className={styles.heroCopy}>
-              <span className={`${styles.label} ${styles.rise}`} style={d(0)}>
-                <b>{PRODUCT}</b> — Đào tạo sale mới bằng AI
-              </span>
               <Display
                 as="h1"
                 onLoad
@@ -119,10 +107,10 @@ export default function LmsPage() {
                 runs={["Vững tay", { hl: "trước khi gặp khách" }]}
               />
               <p className={`${styles.lead} ${styles.rise}`} style={d(3)}>
-                {PRODUCT} biến tài liệu nội bộ và các đoạn chat chốt đơn của chính
-                công ty bạn thành bài học, bài thi và buổi luyện với khách ảo do AI
-                đóng vai. Sale mới tập ở đây trước khi gặp khách thật; trưởng nhóm
-                chỉ cần duyệt.
+                {PRODUCT} dùng AI đào tạo sale mới từ tài liệu nội bộ và các đoạn chat
+                chốt đơn của chính công ty bạn: bài học, bài thi và buổi luyện với
+                khách ảo do AI đóng vai. Sale mới tập ở đây trước khi gặp khách thật;
+                trưởng nhóm chỉ cần duyệt.
               </p>
               <div className={`${styles.ctas} ${styles.rise}`} style={d(4)}>
                 <a href="#contact" className={`${styles.btn} ${styles.solid}`}>
@@ -156,21 +144,18 @@ export default function LmsPage() {
         <section className={styles.section} id="why">
           <div className={styles.wrap}>
             <div className={styles.intro} data-reveal>
-              <Label no="01">Vì sao</Label>
               <Display className={styles.h2} runs={["Đào tạo sale", { hl: "đang tốn người giỏi nhất" }]} />
             </div>
-            <ol className={styles.whys}>
+            <ul className={styles.whys}>
               {whys.map((w, i) => (
                 <li key={w.pain} data-reveal style={d(i)}>
-                  <span className={styles.num}>0{i + 1}</span>
                   <p className={styles.pain}>{w.pain}</p>
                   <p className={styles.fix}>
-                    <b>{PRODUCT}</b>
-                    {w.fix}
+                    <b>{PRODUCT}:</b> {w.fix}
                   </p>
                 </li>
               ))}
-            </ol>
+            </ul>
           </div>
         </section>
 
@@ -183,16 +168,15 @@ export default function LmsPage() {
           </span>
           <div className={styles.wrap}>
             <div className={styles.intro} data-reveal>
-              <Label no="02">Cách hoạt động</Label>
               <Display className={styles.h2} runs={["Từ ca chốt đơn thật", { hl: "đến người bán được" }]} />
             </div>
             <ol className={styles.journey} data-track>
               {steps.map((s, i) => (
                 <li key={s.title} className={styles.jStep}>
                   <div className={styles.jText} data-reveal>
-                    <span className={styles.stepNo}>0{i + 1}</span>
-                    <span className={styles.who}>{s.who}</span>
-                    <h3>{s.title}</h3>
+                    <h3>
+                      <span className={styles.stepNo}>Bước {i + 1}.</span> {s.title}
+                    </h3>
                     <p>{s.body}</p>
                   </div>
                   <div className={styles.jMock} data-reveal style={d(1)}>
@@ -208,7 +192,6 @@ export default function LmsPage() {
         <section className={`${styles.panel} ${styles.night}`} id="roleplay">
           <div className={`${styles.wrap} ${styles.split}`}>
             <div className={styles.intro} data-reveal>
-              <Label no="03">Luyện chat với AI</Label>
               <Display className={styles.h2} runs={["Luyện với khách\u00a0ảo,", { hl: "nhận điểm thật" }]} />
               <p className={styles.sub}>
                 AI đóng vai khách theo chân dung và cảm xúc rút từ chính các ca của công
@@ -224,8 +207,7 @@ export default function LmsPage() {
         <section className={styles.section} id="managers">
           <div className={`${styles.wrap} ${styles.split} ${styles.splitTop}`}>
             <div className={styles.intro} data-reveal>
-              <Label no="04">Cho quản lý</Label>
-              <Display className={styles.h2} runs={["Biết đội", { hl: "yếu ở đâu" }]} />
+              <Display className={styles.h2} runs={["Quản lý biết đội", { hl: "yếu ở đâu" }]} />
               <ul className={styles.points}>
                 {managerPoints.map((p) => (
                   <li key={p.title}>
@@ -245,7 +227,6 @@ export default function LmsPage() {
         <section className={styles.section} id="features">
           <div className={styles.wrap}>
             <div className={styles.intro} data-reveal>
-              <Label no="05">Tính năng</Label>
               <Display className={styles.h2} runs={["Từ soạn bài", { hl: "đến\u00a0thi qua thử việc" }]} />
             </div>
             {(
@@ -286,7 +267,6 @@ export default function LmsPage() {
         <section className={styles.section} id="faq">
           <div className={`${styles.wrap} ${styles.faqGrid}`}>
             <div className={styles.intro} data-reveal>
-              <Label no="06">Hỏi đáp</Label>
               <Display className={styles.h2} runs={["Câu hỏi thường gặp"]} />
             </div>
             <div className={styles.faq}>
@@ -304,7 +284,6 @@ export default function LmsPage() {
         <section className={`${styles.panel} ${styles.blue}`} id="contact">
           <div className={`${styles.wrap} ${styles.split} ${styles.splitTop}`}>
             <div className={styles.intro} data-reveal>
-              <Label no="07">Đặt lịch demo</Label>
               <Display className={styles.h2} runs={["Xem đội của bạn", { hl: "luyện thử" }]} />
               <p className={styles.sub}>
                 Demo trên chính kịch bản bán hàng của bạn. {PRODUCT} hợp nhất khi:

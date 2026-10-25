@@ -3,6 +3,8 @@
 //   1. the vendored taste-skill source lint (visual tells in CSS/TSX),
 //   2. lint-vi (Vietnamese copy tells, which the upstream lint cannot read),
 //   3. the vendored taste-skill browser inspector, per URL, at 1440 / 768 / 390,
+//   4. probe.mjs: accessibility (WCAG contrast, labels, alt, focus, targets, skip link), readability
+//      and the Impeccable anti-pattern rules it can measure, per URL, at 1440 / 390,
 // then re-levels every finding with ../brand.json (fail / warn / allow + why).
 //
 //   node .claude/skills/anti-slop/scripts/audit.mjs [--src src] [--url http://localhost:3000/ ...] [--json]
@@ -127,6 +129,17 @@ for (const url of urls) {
     all.push(relevel({ ...f, file: url }, 'inspect'));
   }
   for (const im of rep.images || []) shots.push(...[im.fold, ...(im.pages || [])].filter(Boolean));
+}
+
+// 4. rendered-page accessibility / readability / Impeccable checks (probe.mjs), all URLs in one run
+if (urls.length) {
+  const pr = runJson('node', [join(here, 'probe.mjs'), ...urls, '--json']);
+  if (pr.error) errors.push('probe: ' + pr.error);
+  for (const f of pr.findings || []) {
+    const ex = exceptionFor({ ...f, message: f.message }, f.url);
+    if (ex) { all.push({ ...f, file: f.url, source: 'probe', level: 'ALLOW', why: ex.why }); continue; }
+    all.push(relevel({ ...f, file: f.url, match: (f.samples || [])[0] }, 'probe'));
+  }
 }
 
 const report = { at: new Date().toISOString(), src, urls, findings: all, screenshots: shots, errors };

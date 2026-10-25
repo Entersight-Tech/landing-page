@@ -87,6 +87,18 @@
     "covered-text": {
       "level": "warn",
       "why": "The /lms phone sticky CTA floats over the bottom edge while the page scrolls; check that nothing stays covered when the page is at rest."
+    },
+    "touch-target": {
+      "level": "warn",
+      "why": "Footer and in-text links are 20–23px tall but spaced well apart, which passes WCAG 2.2 (2.5.8) through its spacing exception. Buttons and nav links must still be ≥24px."
+    },
+    "nested-cards": {
+      "level": "warn",
+      "why": "The /fashion-studio demo form is one surface on a coloured panel, not a card inside a card; check any new case."
+    },
+    "overused-font": {
+      "level": "allow",
+      "why": "Roboto is the brand body face (Impeccable lists it as overused)."
     }
   },
   "decisions": [
@@ -105,6 +117,10 @@
     {
       "date": "2026-10-25",
       "decision": "Owner confirmed: /etstar figures (10.000+ địa điểm, 50K+ đánh giá, 12+ quốc gia, 1–3 ngày, 3-month minimum), KYE on MUSE since 04/2026, and the Cô Đôi Thượng Ngàn client field."
+    },
+    {
+      "date": "2026-10-25",
+      "decision": "Audit adds probe.mjs (own code: WCAG contrast, labels, alt, focus, targets, skip link, readability, measurable Impeccable rules) and the Vercel Web Interface Guidelines as a reading checklist. Impeccable's detector binary is not run (external code is blocked in this environment); its rule catalog is vendored."
     }
   ],
   "exceptions": [

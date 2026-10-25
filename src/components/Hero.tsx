@@ -2,12 +2,12 @@ import styles from "./Hero.module.css";
 import Asterisk from "./Asterisk";
 
 const logos = [
-  { src: "/figma/partner-kye.png", name: "KYE Agency" },
-  { src: "/figma/partner-sma.png", name: "SMA Agency" },
-  { src: "/figma/partner-vemanti.png", name: "Vemanti" },
-  { src: "/figma/partner-buttery.png", name: "Buttery" },
-  { src: "/figma/partner-mtl.png", name: "MTL" },
-  { src: "/figma/partner-dctech.png", name: "DCTech" },
+  { src: "/figma/partner-kye.png", name: "KYE Agency", w: 219, h: 96 },
+  { src: "/figma/partner-sma.png", name: "SMA Agency", w: 418, h: 156 },
+  { src: "/figma/partner-vemanti.png", name: "Vemanti", w: 430, h: 103 },
+  { src: "/figma/partner-buttery.png", name: "Buttery", w: 438, h: 204 },
+  { src: "/figma/partner-mtl.png", name: "MTL", w: 392, h: 163 },
+  { src: "/figma/partner-dctech.png", name: "DCTech", w: 378, h: 62 },
 ];
 
 // three results lifted straight from the case studies below
@@ -60,7 +60,7 @@ export default function Hero() {
           {logos.map((l) => (
             <li key={l.name}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={l.src} alt={l.name} loading="lazy" />
+              <img src={l.src} alt={l.name} width={l.w} height={l.h} loading="lazy" />
             </li>
           ))}
         </ul>

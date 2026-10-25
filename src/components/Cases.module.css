@@ -119,7 +119,7 @@
   transform: scale(0.97);
 }
 
-.brand[aria-selected="true"] {
+.brand[aria-pressed="true"] {
   color: var(--ink);
   background: var(--lime);
   border-color: var(--lime);

@@ -333,7 +333,7 @@
   color: var(--text-muted);
 }
 
-.mock h4 {
+.mock .lessonTitle {
   margin: 10px 0 8px;
   font-family: var(--font-head);
   font-weight: 700;
@@ -1003,8 +1003,9 @@
   transition: color 0.5s ease;
 }
 
+/* not reached yet: dimmer, but still 3:1 against the blue panel */
 .page[data-tracking] .jStep:not([data-on]) .stepNo {
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.62);
 }
 
 .jMock .mock {
@@ -1543,7 +1544,9 @@
 .form input:focus,
 .form textarea:focus {
   outline: none;
-  border-bottom: 2px solid var(--majorelle-blue);
+  /* colour + a 1px underline instead of a thicker border: the field doesn't shift */
+  border-bottom-color: var(--majorelle-blue);
+  box-shadow: 0 1px 0 var(--majorelle-blue); /* taste-skill-ignore: focus state of a form field */
 }
 
 .form .btn:focus-visible {

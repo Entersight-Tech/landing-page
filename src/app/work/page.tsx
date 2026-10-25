@@ -19,7 +19,7 @@ export default function WorkIndex() {
   return (
     <div className={styles.page}>
       <WorkBar />
-      <main>
+      <main id="main">
         <div className={`container ${styles.indexHead}`}>
           <h1 className={styles.title}>
             LauLau <span className="lime">Creative</span>

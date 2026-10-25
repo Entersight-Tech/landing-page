@@ -110,7 +110,7 @@ export default function FashionStudio() {
         </a>
       </header>
 
-      <main>
+      <main id="main">
         {/* ---------- hero ---------- */}
         <section className={styles.hero}>
           <Asterisk className={styles.heroStar} />

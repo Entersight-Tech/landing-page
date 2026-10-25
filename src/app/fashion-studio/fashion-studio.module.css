@@ -79,6 +79,7 @@
 }
 
 .links a {
+  padding-block: 4px;
   color: var(--dim);
   transition: color 0.2s ease;
 }

@@ -63,7 +63,7 @@ hàng đầu · uy tín · chuyển đổi số · số hoá quy trình · "gi�
 3. **Viết heading như tiêu đề**, khoảng 5 từ hoặc ~32 ký tự. Phần giải thích chuyển xuống câu dẫn ngay bên dưới.
 4. **Đọc to.** Câu nào vấp khi đọc thì viết lại.
 
-### Ví dụ đã làm trên trang này
+### Ví dụ đã làm trên landing page Entersight
 
 | Trước | Sau | Vì sao |
 | --- | --- | --- |
@@ -73,5 +73,6 @@ hàng đầu · uy tín · chuyển đổi số · số hoá quy trình · "gi�
 | Sẵn sàng bứt phá cùng Entersight? | Kể cho chúng tôi nghe bạn đang vướng ở đâu. | Câu mời nói chuyện thay cho khẩu hiệu |
 | Một đối tác, năm năng lực. | Bốn mảng việc, một đội làm từ đầu đến cuối. | Bớt khẩu hiệu đối xứng, nói lợi ích (một đầu mối) |
 
-Lưu ý: chính các câu "Sau" ở trên vẫn trượt bài **Hai dòng** (inspector đo hero 4 dòng ở 1440px).
-Đó là việc còn lại của vòng sau.
+Lưu ý: chính các câu "Sau" ở trên, ở vòng đầu, vẫn trượt bài **Hai dòng** (hero 4 dòng ở 1440px) và
+lặp một dáng câu đối xứng qua nhiều heading. Vòng sau rút hero còn "Để máy làm việc lặp lại." và gọi
+tên section thẳng ("Việc chúng tôi nhận làm", "Dự án đã làm"). Viết lại xong vẫn phải đo lại.

@@ -5,9 +5,9 @@ import { works } from "@/components/work";
 import { WorkBar, WorkFoot } from "./WorkChrome";
 import styles from "./work.module.css";
 
-const title = "LauLau Creative — Dự án | Entersight";
+const title = "Dự án của LauLau Creative | Entersight";
 const description =
-  "Portfolio của LauLau Creative, đội ngũ sáng tạo của Entersight: creative direction, branding, UX/UI, visual sự kiện và nội dung số.";
+  "LauLau Creative là đội sáng tạo của Entersight. Đây là các dự án năm 2025: bài pitch sự kiện cho OCB, bộ nhận diện Nookscape, website CHUNCHIN Studio, visual LED và nội dung social.";
 
 export const metadata: Metadata = {
   title,
@@ -16,16 +16,14 @@ export const metadata: Metadata = {
   openGraph: { type: "website", locale: "vi_VN", url: "/work", siteName: "Entersight", title, description },
 };
 
-const pad = (n: number) => String(n).padStart(2, "0");
-
 export default function WorkIndex() {
   return (
     <div className={styles.page}>
       <WorkBar />
       <main>
         <div className={`container ${styles.indexHead}`}>
-          <p className="label">
-            <b>{pad(works.length)}</b> — Dự án
+          <p className={`label ${styles.kicker}`}>
+            <b>{works.length}</b> dự án
           </p>
           <h1 className={styles.title}>
             LauLau <span className="lime">Creative</span>

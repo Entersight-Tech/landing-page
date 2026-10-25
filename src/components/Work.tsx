@@ -15,13 +15,14 @@ export default function Work() {
           <div>
             <span className="eyebrow">LauLau Creative</span>
             <h2 id="work-title" className="h2 reveal">
-              Phần hình ảnh do đội creative của chúng tôi làm.
+              Hình ảnh do đội nhà làm.
             </h2>
           </div>
           <div className={styles.headSide}>
             <p className="lede reveal">
-              Nhận diện thương hiệu, key visual sự kiện, website, social — cho
-              ngân hàng, studio cưới, quán nướng và cả ca sĩ.
+              LauLau Creative là đội sáng tạo của Entersight: nhận diện thương
+              hiệu, key visual sự kiện, website, social. Khách hàng từ ngân hàng,
+              studio cưới, quán nướng đến ca sĩ.
             </p>
             <Link href="/work" className="btn">
               Toàn bộ portfolio

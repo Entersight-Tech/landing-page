@@ -22,7 +22,15 @@ const rules = brand.rules || {};
 
 const args = process.argv.slice(2);
 const asJson = args.includes('--json');
-const opt = (name) => args.flatMap((a, i) => (a === '--' + name && args[i + 1] ? [args[i + 1]] : []));
+// --src a b c and --src a --src b both work: a flag takes every value up to the next flag
+const opt = (name) => {
+  const out = [];
+  args.forEach((a, i) => {
+    if (a !== '--' + name) return;
+    for (let k = i + 1; k < args.length && !args[k].startsWith('--'); k++) out.push(args[k]);
+  });
+  return out;
+};
 const src = opt('src').length ? opt('src') : ['src'];
 const urls = opt('url');
 const out = resolve('.anti-slop');

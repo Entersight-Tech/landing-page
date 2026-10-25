@@ -26,8 +26,12 @@ export default function Transformation() {
         <header className={styles.head}>
           <span className="eyebrow">Làm việc cùng nhau thế nào</span>
           <h2 id="process-title" className="h2 reveal">
-            Bắt đầu từ cách bạn đang làm, không phải từ một gói dịch vụ có sẵn.
+            Bắt đầu từ cách bạn đang làm.
           </h2>
+          <p className="lede reveal">
+            Không có gói dịch vụ dựng sẵn. Mỗi bước dựa trên quy trình thật của
+            doanh nghiệp bạn.
+          </p>
         </header>
 
         <ol className={styles.steps}>

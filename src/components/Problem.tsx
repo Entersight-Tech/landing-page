@@ -27,9 +27,12 @@ export default function Problem() {
         <header className={styles.head}>
           <span className="eyebrow">Nghe có quen không?</span>
           <h2 id="problem-title" className="h2 reveal">
-            Phần lớn doanh nghiệp không thiếu người. Họ thiếu một quy trình chạy
-            được mà không cần chủ phải đứng canh.
+            Không thiếu người. Thiếu quy trình.
           </h2>
+          <p className="lede reveal">
+            Doanh nghiệp chúng tôi gặp thường có đủ người giỏi. Cái thiếu là một
+            quy trình chạy được mà không cần chủ phải đứng canh.
+          </p>
         </header>
 
         <ol className={styles.list}>

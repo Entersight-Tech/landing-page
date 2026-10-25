@@ -11,7 +11,11 @@
 }
 
 .head :global(.h2) {
-  max-width: 26ch;
+  max-width: 20ch;
+}
+
+.head :global(.lede) {
+  max-width: 52ch;
 }
 
 .list {

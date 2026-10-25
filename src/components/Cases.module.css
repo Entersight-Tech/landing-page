@@ -23,7 +23,7 @@
   aspect-ratio: 4 / 5;
   overflow: hidden;
   border-radius: 14px;
-  background: radial-gradient(80% 70% at 50% 100%, #2a2370 0%, var(--night-2) 70%);
+  background: var(--night-2);
 }
 
 .photo {

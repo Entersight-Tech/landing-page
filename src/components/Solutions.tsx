@@ -58,7 +58,6 @@ export default function Solutions() {
     <section className={`${styles.section} light`} id="solutions" aria-labelledby="solutions-title">
       <div className="container">
         <header className={styles.head}>
-          <span className="eyebrow">Chúng tôi làm gì</span>
           <h2 id="solutions-title" className="h2 reveal">
             Bốn mảng việc, một đầu mối.
           </h2>
@@ -69,9 +68,8 @@ export default function Solutions() {
         </header>
 
         <ol className={styles.services}>
-          {services.map((s, i) => (
+          {services.map((s) => (
             <li key={s.name} className={`${styles.service} reveal`}>
-              <span className={styles.idx}>0{i + 1}</span>
               <h3 className={styles.name}>{s.name}</h3>
               <p className={styles.what}>{s.what}</p>
               <a href={s.example.href} className={styles.example}>

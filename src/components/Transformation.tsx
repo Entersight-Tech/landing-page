@@ -24,13 +24,12 @@ export default function Transformation() {
     <section className={`${styles.section} light`} id="transformation" aria-labelledby="process-title">
       <div className="container">
         <header className={styles.head}>
-          <span className="eyebrow">Làm việc cùng nhau thế nào</span>
           <h2 id="process-title" className="h2 reveal">
-            Bắt đầu từ cách bạn đang làm.
+            Cách chúng tôi làm việc
           </h2>
           <p className="lede reveal">
-            Không có gói dịch vụ dựng sẵn. Mỗi bước dựa trên quy trình thật của
-            doanh nghiệp bạn.
+            Bắt đầu từ cách bạn đang làm, không từ một gói dịch vụ dựng sẵn. Mỗi
+            bước dựa trên quy trình thật của doanh nghiệp bạn.
           </p>
         </header>
 
